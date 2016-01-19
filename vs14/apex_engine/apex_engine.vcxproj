@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\apex_engine\assets\assetmanager.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\util\stb_image.h" />
     <ClInclude Include="..\..\src\apex_engine\math\apexmath.h" />
@@ -52,6 +53,7 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\vertexattributes.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\apex_engine\assets\assetmanager.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\math_util.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\vector2f.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\vector3f.cpp" />

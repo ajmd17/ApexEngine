@@ -6,6 +6,7 @@ using namespace std;
 #include <rendering/game.h>
 #include <rendering/material.h>
 #include <rendering/texture2d.h>
+#include <assets/assetmanager.h>
 
 class TestGame : public Game
 {
@@ -31,7 +32,8 @@ void TestGame::init()
 	quat.setFromAxis(Vector3f::UnitY, 30);
 	
 
-
+	AssetManager am;
+	am.loadModel("data/assets/hi.txt");
 
 	Vector3f vec(5.0f, 2.0, -1.0);
 	cout << "Vector before multiplying by a matrix: " << vec << "\n";
@@ -43,12 +45,12 @@ void TestGame::init()
 	cout << "Vector after multiplying by a matrix: " << vec << "\n";
 
 	mat = new Material();
-	//Vector4f col;
-	//mat->getVector4f(Material::COLOR_DIFFUSE, col);
-	//cout << "Material: " << col << "\n";
-	//mat->setVector4f(Material::COLOR_DIFFUSE, Vector4f(0.0));
-	//mat->getVector4f(Material::COLOR_DIFFUSE, col);
-	//cout << "Material: " << col << "\n";
+	Vector4f col;
+	mat->getVector4f(Material::COLOR_DIFFUSE, col);
+	cout << "Material: " << col << "\n";
+	mat->setVector4f(Material::COLOR_DIFFUSE, Vector4f(0.0));
+	mat->getVector4f(Material::COLOR_DIFFUSE, col);
+	cout << "Material: " << col << "\n";
 
 	delete mat;
 
