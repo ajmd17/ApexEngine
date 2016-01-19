@@ -5,6 +5,7 @@ using namespace std;
 #include <rendering/rendermanager.h>
 #include <rendering/game.h>
 #include <rendering/material.h>
+#include <rendering/texture2d.h>
 
 class TestGame : public Game
 {
@@ -29,6 +30,7 @@ void TestGame::init()
 	Quaternion quat;
 	quat.setFromAxis(Vector3f::UnitY, 30);
 	
+
 
 
 	Vector3f vec(5.0f, 2.0, -1.0);

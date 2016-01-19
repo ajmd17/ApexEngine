@@ -8,8 +8,6 @@ using std::string;
 
 #include "game.h"
 
-#include "texture.h"
-
 #include "../assets/loadedasset.h"
 
 #include "enums.h"
@@ -48,10 +46,11 @@ public:
 	/* Texture stuff */
 	void loadTexture2D(LoadedAsset &asset);
 	void loadCubemap(string filepaths[]);
-	int genTexture();
-	void bindTexture2D(int i);
-	void bindTexture3D(int i);
-	void bindCubemap(int i);
+	virtual int genTexture() = 0;
+	virtual void deleteTexture(int id) = 0;
+	virtual void bindTexture2D(int i) = 0;
+	virtual void bindTexture3D(int i) = 0;
+	virtual void bindCubemap(int i) = 0;
 	void generateMipmap2D();
 	void generateMipmapCubemap();
 	void activeTextureSlot(int slot);

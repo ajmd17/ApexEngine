@@ -3,7 +3,6 @@
 
 #include "light/lightsource.h"
 #include "light/pointlight.h"
-#include "texture.h"
 
 class Environment
 {

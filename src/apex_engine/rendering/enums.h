@@ -1,6 +1,20 @@
 #ifndef SHADERENUMS_H
 #define SHADERENUMS_H
 
+enum TextureWrapMode
+{
+	Repeat,
+	ClampToBorder,
+	ClampToEdge
+};
+
+enum TextureFilterMode
+{
+	Linear,
+	Nearest,
+	Mipmap
+};
+
 enum PrimitiveType
 {
 	Triangles,

@@ -1,6 +1,10 @@
 #include "glrenderer.h"
 #include <rendering/constants.h>
 
+// For loading textures.
+#define STB_IMAGE_IMPLEMENTATION
+#include <assets/util/stb_image.h>
+
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
 #endif
@@ -107,21 +111,6 @@ void GLRenderer::createContext(Game *game, int width, int height)
 		window.display();
 	}
 #endif
-
-	//Fake arguments
-	/*char *myargv [1];
-	int myargc=1;
-	myargv [0]=strdup ("Myappname");
-
-	glutInit(&myargc, myargv);
-	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-	glutInitWindowPosition(width,height);
-	glutInitWindowSize(width, height);
-	glutCreateWindow("Lighthouse3D- GLUT Tutorial");
-
-	//	glutDisplayFunc(renderScene);
-
-	glutMainLoop();*/
 }
 
 void GLRenderer::viewport(int x, int y, int width, int height)
@@ -150,6 +139,37 @@ void GLRenderer::clear(bool clearColor, bool clearDepth, bool clearStencil)
 void GLRenderer::clearColor(float r, float g, float b, float a)
 {
 	glClearColor(r, g, b, a);
+}
+
+int GLRenderer::genTexture()
+{
+	unsigned int res[1];
+	glGenTextures(1, res);
+	cout << "Generated texture with ID: " << res[0] << "\n";
+	return res[0];
+}
+
+void GLRenderer::deleteTexture(int id)
+{
+	unsigned int res[1];
+	res[0] = id;
+	glDeleteTextures(1, res);
+	cout << "Deleted texture with ID: " << res[0] << "\n";
+}
+
+void GLRenderer::bindTexture2D(int i)
+{
+	glBindTexture(GL_TEXTURE_2D, i);
+}
+
+void GLRenderer::bindTexture3D(int i)
+{
+	glBindTexture(GL_TEXTURE_3D, i);
+}
+
+void GLRenderer::bindCubemap(int i)
+{
+	glBindTexture(GL_TEXTURE_CUBE_MAP, i);
 }
 
 int GLRenderer::generateShaderProgram()

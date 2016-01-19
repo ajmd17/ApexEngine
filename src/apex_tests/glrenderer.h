@@ -46,6 +46,12 @@ public:
     virtual void clear(bool clearColor, bool clearDepth, bool clearStencil);
 	virtual void clearColor(float r, float g, float b, float a);
 
+	virtual int genTexture();
+	virtual void deleteTexture(int id);
+	virtual void bindTexture2D(int i);
+	virtual void bindTexture3D(int i);
+	virtual void bindCubemap(int i);
+
 	virtual int generateShaderProgram();
     virtual void bindShaderProgram(int id);
     virtual void compileShaderProgram(int id);

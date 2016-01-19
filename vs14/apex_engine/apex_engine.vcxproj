@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h" />
+    <ClInclude Include="..\..\src\apex_engine\assets\util\stb_image.h" />
     <ClInclude Include="..\..\src\apex_engine\math\apexmath.h" />
     <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
     <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
@@ -46,6 +47,7 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\shader_util.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\texture2d.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\vertexattributes.h" />
   </ItemGroup>
@@ -59,6 +61,7 @@
     <ClCompile Include="..\..\src\apex_engine\rendering\mesh.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\rendermanager.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\shader.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\rendering\texture2d.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\vertexattributes.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
