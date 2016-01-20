@@ -1,0 +1,51 @@
+At the time of writing this, apex_engine does not need to be linked to any
+libraries or include any external header files. However, this is likely to change
+in the near future as I am working on support for Lua scripting.
+
+However, apex_tests does need to be linked to libraries and header files.
+
+It needs to be linked to these libraries:
+	- The Apex Engine library itself, which should be placed inside "\vsXX\Debug\" folder.
+	- SFML, which is used to create the window context on a desktop.
+
+And must include these header folders:
+	- The Apex Engine headers
+	- GLEW, used to gain access to certain OpenGL commands that Windows doesn't
+		give us access to be default
+	- All the SFML headers
+	
+How to add the libraries and includes step by step:
+
+1. Adding the directories
+
+	- In Visual Studio, right click on the project "apex_tests". A property page should appear.
+	- Click on "VC++ Directories". 
+	- Click the arrow on "Include Directories" and click "<Edit...>"
+	- There should be a new folder icon in the dialog. Click that and it will allow you 
+		to add our include directories. We will actually only have to add two.
+	- You can click "..." to navigate to the directories. They should look like this:
+			"ProjectFolder\src\apex_engine"
+			"ProjectFolder\src\apex_tests\include"
+		Where "ProjectFolder" is the actual folder that you downloaded.
+	- Now we will add the libraries. The same rules apply for adding library directories 
+		as adding include directories.
+	- Once again, we only have to add two directories. They will look like this:
+			"ProjectFolder\vsXX\Debug"
+			"ProjectFolder\src\apex_tests\lib"
+		Once again, "ProjectFolder" is the folder that you downloaded. 
+		vsXX will be the version of Visual Studio that the solution uses.
+		Ex: Visual Studio 2015 will be "vs14".
+	- Done! Now it's time to tell Visual Studio which specific libraries to use.
+	
+2. Adding each library
+
+	- In the properties window, there will be an item titled "Linker". Expand this and
+		you will see another item below titled "Input". Click this.
+	- You could add each library line by line, but it's probably easier to just delete everything
+		and paste this into it (excluding quotation marks):
+		
+		"apex_engine_lib.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;glew32.lib;opengl32.lib;kernel32.lib;user32.lib;%(AdditionalDependencies)"
+
+3. Done! 
+	
+	- Everything should compile now as planned. Thanks for checking out the engine.

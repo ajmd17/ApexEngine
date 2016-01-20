@@ -1,4 +1,4 @@
-﻿Build started 2016-01-19 10:51:56 AM.
+﻿Build started 2016-01-19 10:30:50 PM.
      1>Project "C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\apex_tests\apex_tests.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\apex_tests\main.cpp
@@ -46,4 +46,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.13
+Time Elapsed 00:00:03.20
