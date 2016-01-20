@@ -1,10 +1,17 @@
-At the time of writing this, apex_engine does not need to be linked to any
-libraries or include any external header files. However, this is likely to change
-in the near future as I am working on support for Lua scripting.
+apex_engine needs to be linked to Lua, for in game scripting.
+This includes adding the include directories, and static libraries.
 
-However, apex_tests does need to be linked to libraries and header files.
+1. Adding the directories
 
-It needs to be linked to these libraries:
+	- In Visual Studio, right click on the project "apex_tests". A property page should appear.
+	- Click on "VC++ Directories". 
+	- Click the arrow on "Include Directories" and click "<Edit...>"
+	- There should be a new folder icon in the dialog. Click that and it will allow you 
+		to add our include directories. We will actually only have to add two.
+	- You can click "..." to navigate to the directories. They should look like this:
+			"ProjectFolder\includes\Lua"
+
+apex_tests needs to be linked to these libraries:
 	- The Apex Engine library itself, which should be placed inside "\vsXX\Debug\" folder.
 	- SFML, which is used to create the window context on a desktop.
 
@@ -31,7 +38,7 @@ How to add the libraries and includes step by step:
 		as adding include directories.
 	- Once again, we only have to add two directories. They will look like this:
 			"ProjectFolder\vsXX\Debug"
-			"ProjectFolder\libs"
+			"ProjectFolder\libs\win32"
 		Once again, "ProjectFolder" is the folder that you downloaded. 
 		vsXX will be the version of Visual Studio that the solution uses.
 		Ex: Visual Studio 2015 will be "vs14".

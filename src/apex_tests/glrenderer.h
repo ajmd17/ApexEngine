@@ -9,7 +9,7 @@
 #ifndef __APPLE__
 
 #ifndef GLEW_H
-#include "include/GL/glew.h"
+#include <GL/glew.h>
 #define GLEW_H
 #endif
 
