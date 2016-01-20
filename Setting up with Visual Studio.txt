@@ -11,7 +11,7 @@ It needs to be linked to these libraries:
 And must include these header folders:
 	- The Apex Engine headers
 	- GLEW, used to gain access to certain OpenGL commands that Windows doesn't
-		give us access to be default
+		give us access to by default
 	- All the SFML headers
 	
 How to add the libraries and includes step by step:
