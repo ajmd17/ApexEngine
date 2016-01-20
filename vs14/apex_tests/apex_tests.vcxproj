@@ -71,23 +71,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_tests\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_tests\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_tests\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_tests\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_tests\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_tests\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_tests\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_tests\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

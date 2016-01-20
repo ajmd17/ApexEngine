@@ -25,13 +25,13 @@ How to add the libraries and includes step by step:
 		to add our include directories. We will actually only have to add two.
 	- You can click "..." to navigate to the directories. They should look like this:
 			"ProjectFolder\src\apex_engine"
-			"ProjectFolder\src\apex_tests\include"
+			"ProjectFolder\includes"
 		Where "ProjectFolder" is the actual folder that you downloaded.
 	- Now we will add the libraries. The same rules apply for adding library directories 
 		as adding include directories.
 	- Once again, we only have to add two directories. They will look like this:
 			"ProjectFolder\vsXX\Debug"
-			"ProjectFolder\src\apex_tests\lib"
+			"ProjectFolder\libs"
 		Once again, "ProjectFolder" is the folder that you downloaded. 
 		vsXX will be the version of Visual Studio that the solution uses.
 		Ex: Visual Studio 2015 will be "vs14".
