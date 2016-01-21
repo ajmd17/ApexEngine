@@ -7,12 +7,10 @@
 #include <rendering/shader.h>
 
 #ifndef __APPLE__
-
 #ifndef GLEW_H
 #include <GL/glew.h>
 #define GLEW_H
 #endif
-
 #endif
 
 #include <SFML/Graphics.hpp>
