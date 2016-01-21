@@ -11,6 +11,19 @@
 		196FC5431C4D9D7900F9AEC4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FC5171C4D9D7900F9AEC4 /* main.cpp */; };
 		196FC5451C4D9DAE00F9AEC4 /* libapexengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196FC5441C4D9DAE00F9AEC4 /* libapexengine.a */; };
 		196FC5471C4D9FB100F9AEC4 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196FC5461C4D9FB100F9AEC4 /* OpenGL.framework */; };
+		19825E5B1C5070E6007A68B7 /* FLAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E4E1C5070E6007A68B7 /* FLAC.framework */; };
+		19825E5C1C5070E6007A68B7 /* freetype.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E4F1C5070E6007A68B7 /* freetype.framework */; };
+		19825E5D1C5070E6007A68B7 /* ogg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E501C5070E6007A68B7 /* ogg.framework */; };
+		19825E5E1C5070E6007A68B7 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E511C5070E6007A68B7 /* OpenAL.framework */; };
+		19825E5F1C5070E6007A68B7 /* sfml-audio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E521C5070E6007A68B7 /* sfml-audio.framework */; };
+		19825E601C5070E6007A68B7 /* sfml-graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E531C5070E6007A68B7 /* sfml-graphics.framework */; };
+		19825E611C5070E6007A68B7 /* sfml-network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E541C5070E6007A68B7 /* sfml-network.framework */; };
+		19825E621C5070E6007A68B7 /* sfml-system.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E551C5070E6007A68B7 /* sfml-system.framework */; };
+		19825E631C5070E6007A68B7 /* sfml-window.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E561C5070E6007A68B7 /* sfml-window.framework */; };
+		19825E641C5070E6007A68B7 /* SFML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E571C5070E6007A68B7 /* SFML.framework */; };
+		19825E651C5070E6007A68B7 /* vorbis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E581C5070E6007A68B7 /* vorbis.framework */; };
+		19825E661C5070E6007A68B7 /* vorbisenc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E591C5070E6007A68B7 /* vorbisenc.framework */; };
+		19825E671C5070E6007A68B7 /* vorbisfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E5A1C5070E6007A68B7 /* vorbisfile.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +33,19 @@
 		196FC5171C4D9D7900F9AEC4 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		196FC5441C4D9DAE00F9AEC4 /* libapexengine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libapexengine.a; path = "../../../../Library/Developer/Xcode/DerivedData/workspace-dckxrmzhmsteloeotfahbvvuxggl/Build/Products/Debug/libapexengine.a"; sourceTree = "<group>"; };
 		196FC5461C4D9FB100F9AEC4 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		19825E4E1C5070E6007A68B7 /* FLAC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAC.framework; path = ../../libs/osx/FLAC.framework; sourceTree = "<group>"; };
+		19825E4F1C5070E6007A68B7 /* freetype.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = freetype.framework; path = ../../libs/osx/freetype.framework; sourceTree = "<group>"; };
+		19825E501C5070E6007A68B7 /* ogg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ogg.framework; path = ../../libs/osx/ogg.framework; sourceTree = "<group>"; };
+		19825E511C5070E6007A68B7 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = ../../libs/osx/OpenAL.framework; sourceTree = "<group>"; };
+		19825E521C5070E6007A68B7 /* sfml-audio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-audio.framework"; path = "../../libs/osx/sfml-audio.framework"; sourceTree = "<group>"; };
+		19825E531C5070E6007A68B7 /* sfml-graphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-graphics.framework"; path = "../../libs/osx/sfml-graphics.framework"; sourceTree = "<group>"; };
+		19825E541C5070E6007A68B7 /* sfml-network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-network.framework"; path = "../../libs/osx/sfml-network.framework"; sourceTree = "<group>"; };
+		19825E551C5070E6007A68B7 /* sfml-system.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-system.framework"; path = "../../libs/osx/sfml-system.framework"; sourceTree = "<group>"; };
+		19825E561C5070E6007A68B7 /* sfml-window.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "sfml-window.framework"; path = "../../libs/osx/sfml-window.framework"; sourceTree = "<group>"; };
+		19825E571C5070E6007A68B7 /* SFML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SFML.framework; path = ../../libs/osx/SFML.framework; sourceTree = "<group>"; };
+		19825E581C5070E6007A68B7 /* vorbis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vorbis.framework; path = ../../libs/osx/vorbis.framework; sourceTree = "<group>"; };
+		19825E591C5070E6007A68B7 /* vorbisenc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vorbisenc.framework; path = ../../libs/osx/vorbisenc.framework; sourceTree = "<group>"; };
+		19825E5A1C5070E6007A68B7 /* vorbisfile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vorbisfile.framework; path = ../../libs/osx/vorbisfile.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,7 +53,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19825E641C5070E6007A68B7 /* SFML.framework in Frameworks */,
+				19825E5F1C5070E6007A68B7 /* sfml-audio.framework in Frameworks */,
+				19825E661C5070E6007A68B7 /* vorbisenc.framework in Frameworks */,
+				19825E5B1C5070E6007A68B7 /* FLAC.framework in Frameworks */,
 				196FC5471C4D9FB100F9AEC4 /* OpenGL.framework in Frameworks */,
+				19825E601C5070E6007A68B7 /* sfml-graphics.framework in Frameworks */,
+				19825E671C5070E6007A68B7 /* vorbisfile.framework in Frameworks */,
+				19825E611C5070E6007A68B7 /* sfml-network.framework in Frameworks */,
+				19825E621C5070E6007A68B7 /* sfml-system.framework in Frameworks */,
+				19825E651C5070E6007A68B7 /* vorbis.framework in Frameworks */,
+				19825E5D1C5070E6007A68B7 /* ogg.framework in Frameworks */,
+				19825E5E1C5070E6007A68B7 /* OpenAL.framework in Frameworks */,
+				19825E5C1C5070E6007A68B7 /* freetype.framework in Frameworks */,
+				19825E631C5070E6007A68B7 /* sfml-window.framework in Frameworks */,
 				196FC5451C4D9DAE00F9AEC4 /* libapexengine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,6 +77,19 @@
 		196FC4581C4D9BDB00F9AEC4 = {
 			isa = PBXGroup;
 			children = (
+				19825E4E1C5070E6007A68B7 /* FLAC.framework */,
+				19825E4F1C5070E6007A68B7 /* freetype.framework */,
+				19825E501C5070E6007A68B7 /* ogg.framework */,
+				19825E511C5070E6007A68B7 /* OpenAL.framework */,
+				19825E521C5070E6007A68B7 /* sfml-audio.framework */,
+				19825E531C5070E6007A68B7 /* sfml-graphics.framework */,
+				19825E541C5070E6007A68B7 /* sfml-network.framework */,
+				19825E551C5070E6007A68B7 /* sfml-system.framework */,
+				19825E561C5070E6007A68B7 /* sfml-window.framework */,
+				19825E571C5070E6007A68B7 /* SFML.framework */,
+				19825E581C5070E6007A68B7 /* vorbis.framework */,
+				19825E591C5070E6007A68B7 /* vorbisenc.framework */,
+				19825E5A1C5070E6007A68B7 /* vorbisfile.framework */,
 				196FC5461C4D9FB100F9AEC4 /* OpenGL.framework */,
 				196FC5441C4D9DAE00F9AEC4 /* libapexengine.a */,
 				196FC47A1C4D9D7900F9AEC4 /* apex_tests */,
@@ -255,7 +307,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_NO_COMMON_BLOCKS = NO;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include/,
+					"../includes/**",
 					"$(inherited)",
 					"../../src/apex_engine/**",
 				);
@@ -263,6 +315,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -274,13 +327,14 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_NO_COMMON_BLOCKS = NO;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include/,
+					"../includes/**",
 					"$(inherited)",
 					"../../src/apex_engine/**",
 				);
 				INFOPLIST_FILE = "apextests/apextests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -305,6 +359,7 @@
 				196FC4791C4D9BDB00F9AEC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

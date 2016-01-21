@@ -28,13 +28,13 @@ void GLRenderer::renderThread(WindowGamePair &pair)
 			game->render();
 		}
 
-		/*glRotatef(0.1, 0, 1, 0);
+		glRotatef(0.1, 0, 1, 0);
 		glColor3f(0, 1, 0);
 		glBegin(GL_TRIANGLES);
 		glVertex3f(-0.5, 0.0, 0);
 		glVertex3f(0.0,0.5, 0.0);
 		glVertex3f(0.5, 0.0, 0.0);
-		glEnd();*/
+		glEnd();
 
 
 		window->display();
@@ -46,11 +46,13 @@ void GLRenderer::renderThread(WindowGamePair &pair)
 
 void GLRenderer::createContext(Game *game, int width, int height)
 {
-#ifndef __APPLE__
 	sf::RenderWindow window;
 	window.create(sf::VideoMode(width, height), "Apex Engine");
-
+    
+    // Mac OS X / iOS don't need glew.
+#ifndef __APPLE__
 	glewInit();
+#endif
 
 	sf::Thread render_thread(std::bind(&GLRenderer::renderThread, this, WindowGamePair(&window, game)));
 	sf::Event event;
@@ -58,6 +60,7 @@ void GLRenderer::createContext(Game *game, int width, int height)
 	window.setActive(false);
 
 	render_thread.launch();
+    
 	while (window.waitEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
@@ -71,46 +74,8 @@ void GLRenderer::createContext(Game *game, int width, int height)
 			glViewport(0, 0, window.getSize().x, window.getSize().y);
 		}
 	}
+    
 	render_thread.wait();
-
-#endif
-#ifdef __APPLE__
-	sf::RenderWindow window;
-	window.create(sf::VideoMode(width, height), "Apex Engine");
-
-	if (game != NULL)
-		game->init();
-
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-			{
-				if (game != NULL)
-					game->exit();
-				window.close();
-			}
-		}
-		this->viewport(0, 0, window.getSize().x, window.getSize().y);
-		if (game != NULL)
-		{
-			game->update();
-			game->render();
-		}
-        
-        glRotatef(0.1, 0, 1, 0);
-        glColor3f(0, 1, 0);
-        glBegin(GL_TRIANGLES);
-        glVertex3f(-0.5, 0.0, 0);
-        glVertex3f(0.0,0.5, 0.0);
-        glVertex3f(0.5, 0.0, 0.0);
-        glEnd();
-
-		window.display();
-	}
-#endif
 }
 
 void GLRenderer::viewport(int x, int y, int width, int height)

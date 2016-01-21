@@ -1,6 +1,15 @@
 // Abstract game class
 #ifndef GAME_H
 #define GAME_H
+// main.cpp
+extern "C" {
+# include "lua.h"
+# include "lauxlib.h"
+# include "lualib.h"
+}
+#include <LuaBridge.h>
+
+using namespace luabridge;
 
 #include "environment.h"
 

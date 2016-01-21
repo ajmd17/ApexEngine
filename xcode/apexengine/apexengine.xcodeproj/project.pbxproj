@@ -47,6 +47,7 @@
 		196FC37E1C4D8FBE00F9AEC4 /* vertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 196FC3661C4D8FBE00F9AEC4 /* vertex.h */; };
 		196FC37F1C4D8FBE00F9AEC4 /* vertexattributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FC3671C4D8FBE00F9AEC4 /* vertexattributes.cpp */; };
 		196FC3801C4D8FBE00F9AEC4 /* vertexattributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 196FC3681C4D8FBE00F9AEC4 /* vertexattributes.h */; };
+		19825E4C1C506E31007A68B7 /* liblua53.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19825E4A1C506E30007A68B7 /* liblua53.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		196FC3661C4D8FBE00F9AEC4 /* vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vertex.h; sourceTree = "<group>"; };
 		196FC3671C4D8FBE00F9AEC4 /* vertexattributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vertexattributes.cpp; sourceTree = "<group>"; };
 		196FC3681C4D8FBE00F9AEC4 /* vertexattributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vertexattributes.h; sourceTree = "<group>"; };
+		19825E4A1C506E30007A68B7 /* liblua53.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua53.dylib; path = ../../libs/osx/liblua53.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19825E4C1C506E31007A68B7 /* liblua53.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +110,7 @@
 		196FC2E11C4D8E5B00F9AEC4 = {
 			isa = PBXGroup;
 			children = (
+				19825E4A1C506E30007A68B7 /* liblua53.dylib */,
 				196FC2F81C4D8E7300F9AEC4 /* apex_engine */,
 				196FC2EB1C4D8E5B00F9AEC4 /* Products */,
 			);
@@ -410,26 +414,32 @@
 		196FC2F61C4D8E5B00F9AEC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
-				HEADER_SEARCH_PATHS = "../../src/apex_engine/**";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../includes/Lua/**";
+				LIBRARY_SEARCH_PATHS = ../libs/osx/;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
 		196FC2F71C4D8E5B00F9AEC4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
-				HEADER_SEARCH_PATHS = "../../src/apex_engine/**";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../includes/Lua/**";
+				LIBRARY_SEARCH_PATHS = ../libs/osx/;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
@@ -452,6 +462,7 @@
 				196FC2F71C4D8E5B00F9AEC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,5 +1,4 @@
-#include <iostream>
-using namespace std;
+
 #include "glrenderer.h"
 #include <math/apexmath.h>
 #include <rendering/rendermanager.h>
@@ -7,6 +6,9 @@ using namespace std;
 #include <rendering/material.h>
 #include <rendering/texture2d.h>
 #include <assets/assetmanager.h>
+
+
+using namespace std;
 
 class TestGame : public Game
 {
@@ -32,8 +34,6 @@ void TestGame::init()
 	quat.setFromAxis(Vector3f::UnitY, 30);
 	
 
-	AssetManager am;
-	am.loadModel("data/assets/hi.txt");
 
 	Vector3f vec(5.0f, 2.0, -1.0);
 	cout << "Vector before multiplying by a matrix: " << vec << "\n";

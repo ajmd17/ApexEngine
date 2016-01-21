@@ -1,7 +1,7 @@
 #include "lightsource.h"
 
-#include "../../math/vector3f.h";
-#include "../../math/vector4f.h";
+#include "../../math/vector3f.h"
+#include "../../math/vector4f.h"
 
 class PointLight : public LightSource
 {

@@ -1,0 +1,42 @@
+﻿Build started 2016-01-17 9:51:23 AM.
+     1>Project "C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\apex_engine\lib_test.vcxproj" on node 2 (Rebuild target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (lib_test.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\apex_engine_lib.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\apex_engine\rendering\mesh.cpp ..\..\src\apex_engine\Source.cpp
+         Source.cpp
+         mesh.cpp
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(50): warning C4305: 'initializing': truncation from 'double' to 'float'
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertex.h(181): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertex.h(196): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader.h(18): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader.h(99): warning C4018: '<': signed/unsigned mismatch
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(173): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(179): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(37): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(38): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\boundingbox.h(46): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\boundingbox.h(81): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.h(141): warning C4018: '<': signed/unsigned mismatch
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.h(152): warning C4018: '<': signed/unsigned mismatch
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.h(182): warning C4018: '<': signed/unsigned mismatch
+         Generating Code...
+     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader.h(61): warning C4715: 'ShaderProperties::hasValue': not all control paths return a value
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\Lib.exe /OUT:"C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug\apex_engine_lib.lib" /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" /NOLOGO Debug\mesh.obj
+         Debug\Source.obj
+         lib_test.vcxproj -> C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug\apex_engine_lib.lib
+     1>Done Building Project "C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\apex_engine\lib_test.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.94

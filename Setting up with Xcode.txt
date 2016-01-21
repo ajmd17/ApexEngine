@@ -1,0 +1,31 @@
+Getting Apex Engine set up in Xcode
+
+
+There are two projects included in the workspace:
+	
+	- apexengine: This is the core engine. It builds as a static library (.a) which is then linked into your game. This needs to be linked with the Lua headers as well as the Lua static library, for in-game scripting.
+
+	- apextests: Currently includes the desktop OpenGL renderer (which will likely be moved to a separate library in the near future). This is a runnable program that displays a simple rendering, using the Apex Engine static library. This needs to be linked with a few libraries before it will compile.
+
+
+Setting up apexengine
+
+
+1. Click on the project “apexengine” in the workspace. Under “Build Settings”, search for or scroll until you find the title “Header Search Paths”. Add the path “/usr/local/include” if it is not there already, and set it to recursive. Using Finder, navigate to the path “/usr/local/include” or create it if it does not exist. Copy the contents of “ProjectPath/includes/Lua” to “/usr/local/include”.
+
+2. Navigate to the folder in Finder, “ProjectPath/libs/osx/“, where “ProjectPath” is the downloaded Apex Engine folder. Drag the library “liblua53.dylib” into the project and add it to the target.
+
+3. Build apexengine and you will see the static library “libapexengine.a” under “Products”.
+
+
+Setting up apextests
+
+
+1. The first step is to link apextests with the core engine. Drag “libapexengine.a” into the apextests project and add it to the target. 
+
+2. The next step is to add all of the additional libraries. These libraries are required to render. Navigate to the folder in Finder, “ProjectPath/libs/osx/“, where “ProjectPath” is the downloaded Apex Engine folder. Drag all the files you see in this folder that have the .framework extension into the the project and add it to the target. You will also have to manually add the framework “OpenGL.framework”.
+
+3. i) Now it is time to add all the includes from apexengine to apextests. Click on the “apextests” project, and under “Build Settings”, look for “Header Search Paths”. Add the search path “../../src/apex_engine” and set it to recursive. 
+
+ii) Add the rest of the required includes. Simply adding “../includes”, recursive, will do the trick.
+
