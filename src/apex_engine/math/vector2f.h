@@ -10,7 +10,7 @@ using std::ostream;
 class Vector2f
 {
 public:
-	static Vector2f Zero, One, UnitX, UnitY;
+	static const Vector2f Zero, One, UnitX, UnitY;
 
 	float x, y;
 
@@ -41,12 +41,12 @@ public:
 		this->y = other.y;
 	}
 
-	float &getX()
+	float getX() const
 	{
 		return x;
 	}
 
-	float &getY()
+	float getY() const
 	{
 		return y;
 	}
@@ -127,7 +127,7 @@ public:
 		return this;
 	}
 
-	Vector2f *mult(float scalar)
+	Vector2f *scale(float scalar)
 	{
 		Vector2f *res = new Vector2f(*this);
 		res->x *= scalar;
@@ -135,7 +135,7 @@ public:
 		return res;
 	}
 
-	Vector2f *multStore(float scalar)
+	Vector2f *scaleStore(float scalar)
 	{
 		this->x *= scalar;
 		this->y *= scalar;
@@ -169,7 +169,7 @@ public:
 		float len2 = len*len;
 		if (len2 == 0 || len2 == 1)
 			return res;
-		res->multStore(1.0f / len);
+		res->scaleStore(1.0f / len);
 		return res;
 	}
 
@@ -179,7 +179,7 @@ public:
 		float len2 = len*len;
 		if (len2 == 0 || len2 == 1)
 			return this;
-		this->multStore(1.0f / len);
+		this->scaleStore(1.0f / len);
 		return this;
 	}
 

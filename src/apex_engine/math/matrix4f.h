@@ -39,6 +39,18 @@ public:
 	{
 	}
 
+	template <int index>
+	float getM() const
+	{
+		return this->values[index];
+	}
+
+	template <int index>
+	void setM(float value)
+	{
+		this->values[index] = value;
+	}
+
 	Matrix4f *setToIdentity()
 	{
 		this->values[M00] = 1;
@@ -197,7 +209,7 @@ public:
 		return this;
 	}
 
-	Matrix4f *mult(float scalar)
+	Matrix4f *scale(float scalar)
 	{
 		Matrix4f *res = new Matrix4f();
 		for (int i = 0; i < MATRIX_SIZE; i++)
@@ -207,7 +219,7 @@ public:
 		return res;
 	}
 
-	Matrix4f *multStore(float scalar)
+	Matrix4f *scaleStore(float scalar)
 	{
 		for (int i = 0; i < MATRIX_SIZE; i++)
 		{

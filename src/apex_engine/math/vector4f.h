@@ -44,22 +44,22 @@ public:
 		this->w = other.w;
 	}
 
-	float &getX()
+	float getX() const
 	{
 		return x;
 	}
 
-	float &getY()
+	float getY() const
 	{
 		return y;
 	}
 
-	float &getZ()
+	float getZ() const
 	{
 		return z;
 	}
 
-	float &getW()
+	float getW() const
 	{
 		return w;
 	}
@@ -168,7 +168,7 @@ public:
 		return this;
 	}
 
-	Vector4f *mult(float scalar)
+	Vector4f *scale(float scalar)
 	{
 		Vector4f *res = new Vector4f(*this);
 		res->x *= scalar;
@@ -178,7 +178,7 @@ public:
 		return res;
 	}
 
-	Vector4f *multStore(float scalar)
+	Vector4f *scaleStore(float scalar)
 	{
 		this->x *= scalar;
 		this->y *= scalar;
@@ -187,7 +187,7 @@ public:
 		return this;
 	}
 
-	Vector4f *mult(Matrix4f &mat)
+	Vector4f *transform(Matrix4f &mat)
 	{
 		Vector4f *res = new Vector4f();
 		res->set(this->x * mat.values[Matrix4f::M00] + this->y * mat.values[Matrix4f::M01] + this->z * mat.values[Matrix4f::M02] + this->w * mat.values[Matrix4f::M03],
@@ -197,7 +197,7 @@ public:
 		return res;
 	}
 
-	Vector4f *multStore(Matrix4f &mat)
+	Vector4f *transformStore(Matrix4f &mat)
 	{
 		return set(this->x * mat.values[Matrix4f::M00] + this->y * mat.values[Matrix4f::M01] + this->z * mat.values[Matrix4f::M02] + this->w * mat.values[Matrix4f::M03],
 			this->x * mat.values[Matrix4f::M10] + this->y * mat.values[Matrix4f::M11] + this->z * mat.values[Matrix4f::M12] + this->w * mat.values[Matrix4f::M13],
@@ -236,7 +236,7 @@ public:
 		float len2 = len*len;
 		if (len2 == 0 || len2 == 1)
 			return res;
-		res->multStore(1.0f / len);
+		res->scaleStore(1.0f / len);
 		return res;
 	}
 
@@ -246,7 +246,7 @@ public:
 		float len2 = len*len;
 		if (len2 == 0 || len2 == 1)
 			return this;
-		this->multStore(1.0f / len);
+		this->scaleStore(1.0f / len);
 		return this;
 	}
 

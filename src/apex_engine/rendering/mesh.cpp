@@ -23,7 +23,7 @@ BoundingBox Mesh::createBoundingBox(vector<Vertex> &vertices, vector<int> &indic
 	Vector3f *tmpVecs = new Vector3f[indices.size()];
 	for (int i = 0; i < indices.size(); i++)
 	{
-		tmpVecs[i] = *(vertices[indices[i]].getPosition().mult(worldTransform));
+		tmpVecs[i] = *(vertices[indices[i]].getPosition().transform(worldTransform));
 		b.extend(tmpVecs[i]);
 	}
 	delete[] tmpVecs;

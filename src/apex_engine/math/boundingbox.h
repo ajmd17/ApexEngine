@@ -91,12 +91,12 @@ BoundingBox BoundingBox::createBoundingBox(Vector3f &dimMin, Vector3f &dimMax)
 	min.set(dimMin);
 	max.set(dimMax);
 
-	center.set(min)->addStore(max)->multStore(0.5f);
+	center.set(min)->addStore(max)->scaleStore(0.5f);
 
 	extent.set(dimMax);
 	extent.subStore(dimMin);
 
-	dimensions.set(max)->subStore(min)->multStore(0.5f);
+	dimensions.set(max)->subStore(min)->scaleStore(0.5f);
 
 	updateCorners();
 
@@ -217,7 +217,7 @@ bool BoundingBox::intersect(Ray &ray, Vector3f &outVec)
 
 	outVec.set(ray.getPosition());
 	Vector3f tmpVec = Vector3f(ray.getDirection());
-	tmpVec.multStore(tMin);
+	tmpVec.scaleStore(tMin);
 	outVec.addStore(tmpVec);
 
 	return true;

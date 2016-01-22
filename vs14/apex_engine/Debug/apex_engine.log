@@ -1,66 +1,14 @@
-﻿Build started 2016-01-20 11:34:39 PM.
+﻿Build started 2016-01-22 12:51:31 AM.
      1>Project "C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\apex_engine\apex_engine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\apex_engine\rendering\mesh.cpp ..\..\src\apex_engine\rendering\rendermanager.cpp ..\..\src\apex_engine\rendering\shader.cpp ..\..\src\apex_engine\rendering\texture2d.cpp
-         mesh.cpp
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertex.h(196): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.h(39): warning C4482: nonstandard extension used: enum 'PrimitiveType' used in qualified name
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.h(91): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(178): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(184): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(47): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\boundingbox.h(46): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\boundingbox.h(47): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\boundingbox.h(83): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\boundingbox.h(84): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.cpp(10): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.cpp(24): warning C4018: '<' : signed/unsigned mismatch
-         Generating Code...
-         Compiling...
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\apex_engine\rendering\texture2d.cpp
          texture2d.cpp
      1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
      1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-         shader.cpp
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader_util.h(114): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader.h(98): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader.h(103): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertex.h(196): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.h(39): warning C4482: nonstandard extension used: enum 'PrimitiveType' used in qualified name
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.h(91): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader.cpp(67): warning C4482: nonstandard extension used: enum 'FaceDirection' used in qualified name
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader.cpp(93): warning C4482: nonstandard extension used: enum 'Face' used in qualified name
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader.cpp(95): warning C4482: nonstandard extension used: enum 'Face' used in qualified name
-         rendermanager.cpp
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-         Generating Code...
        Lib:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug\apex_engine_lib.lib" lua53.lib /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" /NOLOGO Debug\assetmanager.obj
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug\apex_engine_lib.lib" /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" /NOLOGO Debug\assetmanager.obj
          Debug\math_util.obj
          Debug\vector2f.obj
          Debug\vector3f.obj
@@ -77,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.26
+Time Elapsed 00:00:00.71

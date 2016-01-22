@@ -133,7 +133,7 @@ public:
 		tempVec.set(target);
 		tempVec.subStore(pos);
 		tempVec2.set(pos);
-		tempVec2.multStore(-1);
+		tempVec2.scaleStore(-1);
 		setToTranslation(tmpMat, tempVec2);
 		setToLookAt(tmpMat2, tempVec, up);
 		mat.set(tmpMat);

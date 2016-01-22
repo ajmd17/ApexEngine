@@ -27,16 +27,7 @@ void GLRenderer::renderThread(WindowGamePair &pair)
 			game->update();
 			game->render();
 		}
-
-		glRotatef(0.1, 0, 1, 0);
-		glColor3f(0, 1, 0);
-		glBegin(GL_TRIANGLES);
-		glVertex3f(-0.5, 0.0, 0);
-		glVertex3f(0.0,0.5, 0.0);
-		glVertex3f(0.5, 0.0, 0.0);
-		glEnd();
-
-
+		
 		window->display();
 		globalMutex.unlock();
 	}
@@ -48,6 +39,7 @@ void GLRenderer::createContext(Game *game, int width, int height)
 {
 	sf::RenderWindow window;
 	window.create(sf::VideoMode(width, height), "Apex Engine");
+	window.setVerticalSyncEnabled(true);
     
     // Mac OS X / iOS don't need glew.
 #ifndef __APPLE__
@@ -324,6 +316,7 @@ void GLRenderer::renderMesh(Mesh &mesh)
 		glDisableVertexAttribArray(i);
 	}
 
+	// Unbind the buffers
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
