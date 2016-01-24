@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{a7d546b7-be24-49b9-8422-b6046fbe2e34}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\assets\assetmanager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\boundingbox.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\math_util.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\vector2f.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\vector3f.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\vector4f.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\light\pointlight.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\material.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\mesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\rendermanager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\shader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\shadermanager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\texture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\texture2d.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\vertexattributes.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Cube.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\assets\assetloader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\assets\assetmanager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\assets\loadedasset.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\assets\util\stb_image.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\apexmath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\boundingbox.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\math_util.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\matrix4f.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\matrix_util.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\quaternion.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\ray.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\transform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\vector2f.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\vector3f.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\math\vector4f.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\camera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\constants.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\enums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\environment.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\game.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\light\lightsource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\light\pointlight.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\material.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\mesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\mesh_util.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\renderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\rendermanager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\shader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\shadermanager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\shader_util.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\texture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\texture2d.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\vertex.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\rendering\vertexattributes.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\scene\node.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\scene\scene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\scene\spatial.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\..\..\src\apex_engine\scripting\scriptutil.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cube.h" />
+  </ItemGroup>
+</Project>

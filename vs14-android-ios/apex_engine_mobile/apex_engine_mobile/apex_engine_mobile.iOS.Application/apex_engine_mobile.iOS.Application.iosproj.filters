@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="apex_engine_mobile.iOS">
+      <UniqueIdentifier>{b4f5f87e-0168-40a9-9476-6e59d2584d64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="apex_engine_mobile.iOS\Images.xcassets">
+      <UniqueIdentifier>{be765b15-5cb0-44b6-b360-da915993ea54}</UniqueIdentifier>
+      <Extensions>apex_engine_mobile.iOS\Images.xcassets\*</Extensions>
+    </Filter>
+    <Filter Include="apex_engine_mobile.iOS\Images.xcassets\AppIcon.appiconset">
+      <UniqueIdentifier>{be3b0a30-e7bd-4e68-9a93-e9956860149c}</UniqueIdentifier>
+      <Extensions>apex_engine_mobile.iOS\Images.xcassets\AppIcon.appiconset\*</Extensions>
+    </Filter>
+    <Filter Include="apex_engine_mobile.iOS\Supporting Files">
+      <UniqueIdentifier>{4fe788cd-5bbd-4c89-9558-8bb20d495243}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework References">
+      <UniqueIdentifier>{937142AA-24D8-438C-ABAD-457275E01196}</UniqueIdentifier>
+      <Extensions>framework</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="apex_engine_mobile.iOS\AppDelegate.m">
+      <Filter>apex_engine_mobile.iOS</Filter>
+    </ClCompile>
+    <ClCompile Include="apex_engine_mobile.iOS\GameViewController.m">
+      <Filter>apex_engine_mobile.iOS</Filter>
+    </ClCompile>
+    <ClCompile Include="apex_engine_mobile.iOS\main.m">
+      <Filter>apex_engine_mobile.iOS\Supporting Files</Filter>
+    </ClCompile>
+    <ClInclude Include="apex_engine_mobile.iOS\AppDelegate.h">
+      <Filter>apex_engine_mobile.iOS</Filter>
+    </ClInclude>
+    <ClInclude Include="apex_engine_mobile.iOS\GameViewController.h">
+      <Filter>apex_engine_mobile.iOS</Filter>
+    </ClInclude>
+    <Content Include="apex_engine_mobile.iOS\Base.lproj\Main.storyboard">
+      <Filter>apex_engine_mobile.iOS</Filter>
+    </Content>
+    <Content Include="apex_engine_mobile.iOS\Images.xcassets\AppIcon.appiconset\Contents.json">
+      <Filter>apex_engine_mobile.iOS\Images.xcassets\AppIcon.appiconset</Filter>
+    </Content>
+    <None Include="apex_engine_mobile.iOS\Info.plist">
+      <Filter>apex_engine_mobile.iOS\Supporting Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

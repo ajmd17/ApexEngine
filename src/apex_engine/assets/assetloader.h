@@ -14,7 +14,7 @@ public:
 	virtual void resetLoader() = 0;
 
 	template <typename ReturnType>
-	virtual ReturnType *load(LoadedAsset &asset) = 0;
+	ReturnType *load(LoadedAsset &asset) {}
 };
 
 #endif

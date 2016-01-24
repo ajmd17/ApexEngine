@@ -37,19 +37,18 @@ void BoundingBox::updateCorners()
 	corners[7].set(max.x, min.y, min.z);
 }
 
-BoundingBox BoundingBox::extend(BoundingBox &b)
+void BoundingBox::extend(BoundingBox &b)
 {
-	this->extend(b.min).extend(b.max);
-	return *this;
+	this->extend(b.min);
+	this->extend(b.max);
 }
 
-BoundingBox BoundingBox::extend(Vector3f &point)
+void BoundingBox::extend(Vector3f &point)
 {
 	Vector3f minVec, maxVec;
 	Vector3f::min(min, point, minVec);
 	Vector3f::max(max, point, maxVec);
 	this->createBoundingBox(minVec, maxVec);
-	return *this;
 }
 
 bool BoundingBox::intersect(Ray &ray, Vector3f &outVec)
@@ -57,7 +56,7 @@ bool BoundingBox::intersect(Ray &ray, Vector3f &outVec)
 	const float epsilon = 1e-6f;
 	float tMin = MIN_SIZE, tMax = MAX_SIZE;
 
-	if (abs(ray.getDirection().x) < epsilon)
+	if (fabs(ray.getDirection().x) < epsilon)
 	{
 		if (ray.getPosition().x < min.x || ray.getPosition().x > max.x)
 		{
@@ -77,7 +76,7 @@ bool BoundingBox::intersect(Ray &ray, Vector3f &outVec)
 		}
 	}
 
-	if (abs(ray.getDirection().y) < epsilon)
+	if (fabs(ray.getDirection().y) < epsilon)
 	{
 		if (ray.getPosition().y < min.y || ray.getPosition().y > max.y)
 		{
@@ -107,7 +106,7 @@ bool BoundingBox::intersect(Ray &ray, Vector3f &outVec)
 		if (tMaxY < tMax) tMax = tMaxY;
 	}
 
-	if (abs(ray.getDirection().z) < epsilon)
+	if (fabs(ray.getDirection().z) < epsilon)
 	{
 		if (ray.getPosition().z < min.z || ray.getPosition().z > max.z)
 		{

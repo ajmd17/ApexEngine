@@ -10,6 +10,7 @@
 using std::vector;
 
 #include <algorithm>
+#include <iostream>
 
 class Node : public Spatial
 {
@@ -57,7 +58,7 @@ public:
 		}
 	}
 
-	BoundingBox getGlobalBoundingBox()
+	BoundingBox &getGlobalBoundingBox()
 	{
 		if (!globalBoundingBoxCreated)
 		{
@@ -67,7 +68,7 @@ public:
 		return globalBoundingBox;
 	}
 
-	BoundingBox getLocalBoundingBox()
+	BoundingBox &getLocalBoundingBox()
 	{
 		if (!localBoundingBoxCreated)
 		{
@@ -92,7 +93,7 @@ public:
 		}
 		else
 		{
-			cout << "Index out of range. Size: " << children.size() << ", Index: " << index << "\n";
+			std::cout << "Index out of range. Size: " << children.size() << ", Index: " << index << "\n";
 		}
 		return 0;
 	}

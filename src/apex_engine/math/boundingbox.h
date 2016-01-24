@@ -27,9 +27,9 @@ public:
 
 	BoundingBox createBoundingBox(Vector3f &, Vector3f &);
 
-	BoundingBox extend(BoundingBox &b);
+	void extend(BoundingBox &b);
 
-	BoundingBox extend(Vector3f &point);
+	void extend(Vector3f &point);
 
 	void updateCorners();
 

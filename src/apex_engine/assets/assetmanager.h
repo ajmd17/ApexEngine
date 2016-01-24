@@ -23,18 +23,12 @@ class AssetManager
 {
 private:
 	vector<LoadedAsset> loadedAssets;
-	static map<char*, AssetLoader*> loaders;
+	//static map<char*, AssetLoader*> loaders;
 public:
 	AssetManager() {}
 
 	~AssetManager()
 	{
-
-	}
-
-	static void registerLoader(char *extType, AssetLoader *loader)
-	{
-		
 	}
 
 	template <typename AssetType>

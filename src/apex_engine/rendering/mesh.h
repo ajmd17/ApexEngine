@@ -38,7 +38,7 @@ public:
 		created = false;
 		vbo = 0;
 		ibo = 0;
-		this->primitiveType = PrimitiveType::Triangles;
+		this->primitiveType = Triangles;
 	}
 
 	void render()

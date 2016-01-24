@@ -94,12 +94,12 @@ public:
 
 	void addVertexProgram(string &code)
 	{
-		addProgram(ShaderType::VertexShader, code);
+		addProgram(VertexShader, code);
 	}
 
 	void addFragmentProgram(string &code)
 	{
-		addProgram(ShaderType::FragmentShader, code);
+		addProgram(FragmentShader, code);
 	}
 
 	ShaderProperties &getProperties()

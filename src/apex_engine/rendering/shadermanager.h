@@ -3,6 +3,8 @@
 
 #include "shader.h"
 
+#include <type_traits>
+
 #include <string>
 using std::string;
 

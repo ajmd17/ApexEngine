@@ -135,9 +135,9 @@ public:
 		return globalTransform.getRotation();
 	}
 
-	virtual BoundingBox getGlobalBoundingBox() = 0;
+	virtual BoundingBox &getGlobalBoundingBox() = 0;
 
-	virtual BoundingBox getLocalBoundingBox() = 0;
+	virtual BoundingBox &getLocalBoundingBox() = 0;
 
 	bool isAttachedToRoot() const
 	{

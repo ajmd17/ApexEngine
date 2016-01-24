@@ -70,7 +70,7 @@ void Shader::compileShader()
 void Shader::setDefaultValues()
 {
 	RenderManager::getRenderer()->setDepthClamp(true);
-	RenderManager::getRenderer()->setFaceDirection(FaceDirection::Ccw);
+	RenderManager::getRenderer()->setFaceDirection(Ccw);
 }
 
 void Shader::applyMaterial(Material &material)
@@ -96,9 +96,9 @@ void Shader::applyMaterial(Material &material)
 		currentMaterial.getInt(Material::INT_FACETOCULL, faceToCull);
 
 		if (faceToCull == 0)
-			RenderManager::getRenderer()->setFaceToCull(Face::Back);
+			RenderManager::getRenderer()->setFaceToCull(Back);
 		else if (faceToCull == 1)
-			RenderManager::getRenderer()->setFaceToCull(Face::Front);
+			RenderManager::getRenderer()->setFaceToCull(Front);
 	}
 	else
 		RenderManager::getRenderer()->setCullFace(false);
