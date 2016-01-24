@@ -1,6 +1,9 @@
 #ifndef LIGHTSOURCE_H
 #define LIGHTSOURCE_H
 
+// Abstract class for anything that may emit light in the scene
+// Author: Andrew MacDonald
+
 class Shader;
 
 class LightSource

@@ -1,6 +1,9 @@
 #ifndef SHADERENUMS_H
 #define SHADERENUMS_H
 
+// Common enums that are used in the rendering engine.
+// Author: Andrew MacDonald
+
 enum TextureWrapMode
 {
 	Repeat,

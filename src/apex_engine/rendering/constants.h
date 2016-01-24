@@ -1,5 +1,9 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
+
+// Constants that are commonly used as part of the rendering engine.
+// Author: Andrew MacDonald
+
 #include <string>
 using std::string;
 

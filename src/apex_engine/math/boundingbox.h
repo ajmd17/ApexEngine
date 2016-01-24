@@ -1,6 +1,9 @@
 #ifndef BOUNDINGBOX_H
 #define BOUNDINGBOX_H
 
+// A bounding box/cube in 3D space.
+// Author: Andrew MacDonald
+
 #include "matrix4f.h"
 #include "vector3f.h"
 #include "transform.h"

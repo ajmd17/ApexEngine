@@ -1,7 +1,8 @@
-// Standard mathematics library for the engine.
-
 #ifndef APEXMATH_H
 #define APEXMATH_H
+
+// Standard mathematics library for the engine.
+// Author: Andrew MacDonald
 
 #include "vector2f.h"
 #include "vector3f.h"

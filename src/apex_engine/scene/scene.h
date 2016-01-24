@@ -4,6 +4,7 @@
 // There will be a single "Scene" class in your game.
 // It will be used to manipulate the environment around the player,
 // as well as add items to the scene node.
+// Author: Andrew MacDonald
 
 #include "spatial.h"
 #include "node.h"

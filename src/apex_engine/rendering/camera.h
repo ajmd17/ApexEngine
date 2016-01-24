@@ -1,6 +1,8 @@
-// Abstract Camera class. A camera contains the math necessary to properly render things.
 #ifndef CAMERA_H
 #define CAMERA_H
+
+// Abstract Camera class. A camera contains the math necessary to properly render things with projection.
+// Author: Andrew MacDonald
 
 #include "../math/vector3f.h"
 #include "../math/matrix4f.h"

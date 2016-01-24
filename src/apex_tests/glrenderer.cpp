@@ -259,7 +259,7 @@ void GLRenderer::addShader(Shader &program, string code, ShaderType type)
 #ifndef GL_ES
 	case ShaderType::GeometryShader:
 		i_type = GL_GEOMETRY_SHADER;
-		str_type = "Geometry Shader";
+		str_type = "Geomsetry Shader";
 		break;
 	case ShaderType::TessEvalShader:
 		i_type = GL_TESS_EVALUATION_SHADER;

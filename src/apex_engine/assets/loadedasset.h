@@ -1,6 +1,9 @@
 #ifndef LOADEDASSET_H
 #define LOADEDASSET_H
 
+// An asset that has been loaded by the asset manager, to be used by an asset loader
+// Author: Andrew MacDonald
+
 #include <iostream>
 using std::istream;
 

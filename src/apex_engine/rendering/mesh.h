@@ -1,6 +1,8 @@
-// Mesh class, contains vertex and index data for 3D models
 #ifndef MESH_H
 #define MESH_H
+
+// Mesh class, contains vertex and index data for 3D models
+// Author: Andrew MacDonald
 
 #include "enums.h"
 #include "vertex.h"

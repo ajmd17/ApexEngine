@@ -1,6 +1,8 @@
-// Abstract game class
 #ifndef GAME_H
 #define GAME_H
+
+// Abstract game class. This is essentially your application
+// Author: Andrew MacDonald
 
 #include "../scene/scene.h"
 

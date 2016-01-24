@@ -1,7 +1,8 @@
-// Abstract renderer class. Depending on the platform, the engine will use a specific renderer.
-
 #ifndef RENDERER_H
 #define RENDERER_H
+
+// Abstract renderer class. Depending on the platform, the engine will use a specific renderer.
+// Author: Andrew MacDonald
 
 #include <string>
 using std::string;
