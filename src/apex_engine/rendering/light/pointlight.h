@@ -1,3 +1,6 @@
+#ifndef POINTLIGHT_H
+#define POINTLIGHT_H
+
 #include "lightsource.h"
 
 #include "../../math/vector3f.h"
@@ -13,3 +16,5 @@ public:
 
 	virtual void bindLight(int index, Shader &shader);
 };
+
+#endif

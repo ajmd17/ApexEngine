@@ -46,15 +46,20 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\renderer.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\rendermanager.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\shadermanager.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\shader_util.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\texture2d.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\vertexattributes.h" />
+    <ClInclude Include="..\..\src\apex_engine\scene\node.h" />
+    <ClInclude Include="..\..\src\apex_engine\scene\scene.h" />
+    <ClInclude Include="..\..\src\apex_engine\scene\spatial.h" />
     <ClInclude Include="..\..\src\apex_engine\scripting\scriptutil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\apex_engine\assets\assetmanager.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\math\boundingbox.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\math_util.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\vector2f.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\vector3f.cpp" />
@@ -64,6 +69,7 @@
     <ClCompile Include="..\..\src\apex_engine\rendering\mesh.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\rendermanager.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\shader.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\rendering\shadermanager.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\texture2d.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\vertexattributes.cpp" />
   </ItemGroup>

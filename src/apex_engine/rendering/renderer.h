@@ -6,17 +6,18 @@
 #include <string>
 using std::string;
 
-#include "game.h"
-
+#include "enums.h"
 #include "../assets/loadedasset.h"
 
-#include "enums.h"
-
-#include "camera.h"
 #include <iostream>
 using std::cout;
 
+class Camera;
+class Game;
+class Shader;
 class Mesh;
+class Texture;
+class Texture2D;
 
 class Renderer
 {
@@ -44,16 +45,16 @@ public:
 	/* End mesh stuff */
 
 	/* Texture stuff */
-	void loadTexture2D(LoadedAsset &asset);
+	virtual void loadTexture2D(LoadedAsset &asset, Texture2D &outTex) = 0;
 	void loadCubemap(string filepaths[]);
 	virtual int genTexture() = 0;
 	virtual void deleteTexture(int id) = 0;
 	virtual void bindTexture2D(int i) = 0;
 	virtual void bindTexture3D(int i) = 0;
 	virtual void bindCubemap(int i) = 0;
-	void generateMipmap2D();
+	virtual void generateMipmap2D() = 0;
 	void generateMipmapCubemap();
-	void activeTextureSlot(int slot);
+	virtual void activeTextureSlot(int slot) = 0;
 	/* End texture stuff */
 
 	/* Shader stuff */

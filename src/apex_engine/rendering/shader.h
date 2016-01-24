@@ -29,7 +29,6 @@ protected:
 	Material currentMaterial;
 	int id;
 private:
-
 	ShaderProperties properties;
 	Matrix4f worldMatrix, viewMatrix, projectionMatrix;
 public:

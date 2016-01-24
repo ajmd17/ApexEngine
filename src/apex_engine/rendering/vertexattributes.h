@@ -79,11 +79,25 @@ public:
 		return attribs.size();
 	}
 
+	bool hasAttribute(VertexAttribute &attr)
+	{
+		for (int i = 0; i < attribs.size(); i++)
+		{
+			if (strcmp(attribs[i].getAttributeName(), attr.getAttributeName()) == 0)
+			{
+				if (attribs[i].getSize() == attr.getSize())
+					return true;
+			}
+		}
+		return false;
+	}
+
 	void setAttribute(VertexAttribute &val)
 	{
 		for (int i = 0; i < attribs.size(); i++)
 		{
-			if (*(attribs[i].getAttributeName()) == *(val.getAttributeName())) {
+			if (strcmp(attribs[i].getAttributeName(), val.getAttributeName()) == 0)
+			{
 				std::cout << "An attribute with the name '" << val.getAttributeName() << "' already exists!\n";
 				return;
 			}
@@ -101,6 +115,19 @@ public:
 	VertexAttribute &getAttribute(int index)
 	{
 		return attribs[index];
+	}
+
+	bool getAttribute(const char *name, VertexAttribute &outAttr)
+	{
+		for (int i = 0; i < attribs.size(); i++)
+		{
+			if (strcmp(attribs[i].getAttributeName(), name) == 0)
+			{
+				outAttr = attribs[i];
+				return true;
+			}
+		}
+		return false;
 	}
 };
 

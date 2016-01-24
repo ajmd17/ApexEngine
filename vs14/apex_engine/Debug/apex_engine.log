@@ -1,28 +1,10 @@
-﻿Build started 2016-01-22 12:51:31 AM.
-     1>Project "C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\apex_engine\apex_engine.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\src\apex_engine\rendering\texture2d.cpp
-         texture2d.cpp
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-     1>c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-       Lib:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug\apex_engine_lib.lib" /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" /NOLOGO Debug\assetmanager.obj
-         Debug\math_util.obj
-         Debug\vector2f.obj
-         Debug\vector3f.obj
-         Debug\vector4f.obj
-         Debug\pointlight.obj
-         Debug\material.obj
-         Debug\mesh.obj
-         Debug\rendermanager.obj
-         Debug\shader.obj
-         Debug\texture2d.obj
-         Debug\vertexattributes.obj
-         apex_engine.vcxproj -> C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug\apex_engine_lib.lib
-     1>Done Building Project "C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\apex_engine\apex_engine.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:00.71
+﻿  Skipping... (no relevant changes detected)
+  texture2d.cpp
+  shadermanager.cpp
+  shader.cpp
+  rendermanager.cpp
+  mesh.cpp
+  material.cpp
+  pointlight.cpp
+  assetmanager.cpp
+  apex_engine.vcxproj -> C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug\apex_engine_lib.lib

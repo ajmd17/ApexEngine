@@ -1,5 +1,7 @@
 #include "glrenderer.h"
 #include <rendering/constants.h>
+#include <rendering/texture2d.h>
+#include <rendering/game.h>
 
 // For loading textures.
 #define STB_IMAGE_IMPLEMENTATION
@@ -9,6 +11,19 @@
 #include <OpenGL/gl.h>
 #endif
 
+#ifndef __APPLE__
+#ifndef GLEW_H
+#include <GL/glew.h>
+#define GLEW_H
+#endif
+#endif
+
+#ifdef __ANDROID__
+#define GL_ES
+#include <GLES/gl.h>
+#endif
+
+#ifdef USE_SFML
 void GLRenderer::renderThread(WindowGamePair &pair)
 {
 	sf::RenderWindow *window = pair.window;
@@ -17,12 +32,13 @@ void GLRenderer::renderThread(WindowGamePair &pair)
 	window->setActive(true);
 
 	game->init();
+	game->setRunning(true);
 
 	while (window->isOpen())
 	{
 		globalMutex.lock();
 
-		if (game != NULL)
+		if (game != NULL && game->isRunning())
 		{
 			game->update();
 			game->render();
@@ -34,14 +50,15 @@ void GLRenderer::renderThread(WindowGamePair &pair)
 
 	window->setActive(false);
 }
+#endif
 
 void GLRenderer::createContext(Game *game, int width, int height)
 {
 	sf::RenderWindow window;
 	window.create(sf::VideoMode(width, height), "Apex Engine");
 	window.setVerticalSyncEnabled(true);
-    
-    // Mac OS X / iOS don't need glew.
+
+	// Mac OS X / iOS don't need glew.
 #ifndef __APPLE__
 	glewInit();
 #endif
@@ -58,7 +75,11 @@ void GLRenderer::createContext(Game *game, int width, int height)
 		if (event.type == sf::Event::Closed)
 		{
 			if (game != NULL)
+			{
 				game->exit();
+				game->setRunning(false);
+			}
+
 			window.close();
 		}
 		else if (event.type == sf::Event::Resized)
@@ -98,6 +119,36 @@ void GLRenderer::clearColor(float r, float g, float b, float a)
 	glClearColor(r, g, b, a);
 }
 
+
+void GLRenderer::loadTexture2D(LoadedAsset &asset, Texture2D &outTex)
+{
+	int w;
+	int h;
+	int comp;
+	unsigned char* image = stbi_load(asset.getFilePath(), &w, &h, &comp, STBI_rgb_alpha);
+
+	if (image == nullptr)
+		throw(std::string("Failed to load texture!"));
+
+	unsigned int m_texture = Texture::genTexture();
+	outTex = Texture2D(m_texture);
+
+	outTex.use();
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	if (comp == 3)
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	else if (comp == 4)
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+
+	stbi_image_free(image);
+	outTex.genMipmap();
+}
+
 int GLRenderer::genTexture()
 {
 	unsigned int res[1];
@@ -122,6 +173,16 @@ void GLRenderer::bindTexture2D(int i)
 void GLRenderer::bindTexture3D(int i)
 {
 	glBindTexture(GL_TEXTURE_3D, i);
+}
+
+void GLRenderer::generateMipmap2D()
+{
+	glGenerateMipmap(GL_TEXTURE_2D);
+}
+
+void GLRenderer::activeTextureSlot(int slot)
+{
+	glActiveTexture(GL_TEXTURE0 + slot);
 }
 
 void GLRenderer::bindCubemap(int i)
@@ -195,6 +256,7 @@ void GLRenderer::addShader(Shader &program, string code, ShaderType type)
 		str_type = "Fragment Shader";
 		break;
 #ifndef __APPLE__
+#ifndef GL_ES
 	case ShaderType::GeometryShader:
 		i_type = GL_GEOMETRY_SHADER;
 		str_type = "Geometry Shader";
@@ -207,6 +269,7 @@ void GLRenderer::addShader(Shader &program, string code, ShaderType type)
 		i_type = GL_TESS_CONTROL_SHADER;
 		str_type = "Tessellation Control Shader";
 		break;
+#endif
 #endif
 	}
 

@@ -21,8 +21,9 @@ public:
 
 	~Texture()
 	{
-		if (id != 0)
+		if (id != 0 && RenderManager::getRenderer() != 0)
 			RenderManager::getRenderer()->deleteTexture(id);
+		this->id = 0;
 	}
 
 	int getID()

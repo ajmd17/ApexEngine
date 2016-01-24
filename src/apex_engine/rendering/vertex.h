@@ -14,12 +14,12 @@ private:
 		count_bone_weights;
 
 	Vector3f position,
-		normal,
-		tangent,
-		bitangent;
+	   	 	 normal,
+	 		 tangent,
+			 bitangent;
 
 	Vector2f texCoord0,
-		texCoord1;
+			 texCoord1;
 
 	float boneWeights[4];
 	int boneIndices[4];
@@ -47,19 +47,6 @@ public:
 
 	Vertex(const Vertex &other)
 	{
-		/*if (this->position != NULL)
-			delete position;
-		if (this->normal != NULL)
-			delete normal;
-		if (this->texCoord0 != NULL)
-			delete texCoord0;
-		if (this->texCoord1 != NULL)
-			delete texCoord1;
-		if (this->tangent != NULL)
-			delete tangent;
-		if (this->bitangent != NULL)
-			delete bitangent;*/
-
 		this->position = other.position;
 		this->normal = other.normal;
 		this->texCoord0 = other.texCoord0;
@@ -75,24 +62,10 @@ public:
 
 	~Vertex()
 	{
-		/*if (this->position != NULL)
-			delete position;
-		if (this->normal != NULL)
-			delete normal;
-		if (this->texCoord0 != NULL)
-			delete texCoord0;
-		if (this->texCoord1 != NULL)
-			delete texCoord1;
-		if (this->tangent != NULL)
-			delete tangent;
-		if (this->bitangent != NULL)
-			delete bitangent;*/
 	}
 
 	void setPosition(Vector3f &pos)
 	{
-		///if (this->position != NULL)
-		//	delete position;
 		this->position = pos;
 	}
 
@@ -103,8 +76,6 @@ public:
 
 	void setNormal(Vector3f &norm)
 	{
-		//if (this->normal != NULL)
-		//	delete normal;
 		this->normal = norm;
 	}
 
@@ -115,8 +86,6 @@ public:
 
 	void setTexCoord0(Vector2f &tc0)
 	{
-		//if (this->texCoord0 != NULL)
-		//	delete texCoord0;
 		this->texCoord0 = tc0;
 	}
 
@@ -127,8 +96,6 @@ public:
 
 	void setTexCoord1(Vector2f &tc1)
 	{
-		//if (this->texCoord1 != NULL)
-		//	delete texCoord1;
 		this->texCoord1 = tc1;
 	}
 
@@ -139,8 +106,6 @@ public:
 	
 	void setTangent(Vector3f &tan)
 	{
-		//if (this->tangent != NULL)
-		//	delete tangent;
 		this->tangent = tan;
 	}
 
@@ -151,12 +116,10 @@ public:
 
 	void setBitangent(Vector3f &bitan)
 	{
-		//if (this->bitangent != NULL)
-	//	delete bitangent;
 		this->bitangent = bitan;
 	}
 
-	Vector3f &getBitngent()
+	Vector3f &getBitangent()
 	{
 		return this->bitangent;
 	}

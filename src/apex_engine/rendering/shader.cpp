@@ -9,7 +9,9 @@ Shader::Shader(ShaderProperties properties, string vs_code, string fs_code)
 {
 	// 2 shaders. Create the space to store their IDs.
 	this->m_shaderCounter = 0;
-	this->m_shaderIDs = new int[2];
+
+	const int numShaders = 2; // vertex, fragment
+	this->m_shaderIDs = new int[numShaders];
 
 	this->properties = properties;
 	this->create();
@@ -23,15 +25,19 @@ Shader::Shader(ShaderProperties properties, string vs_code, string fs_code)
 	this->addFragmentProgram(formatted_fs);
     
 	this->compileShader();
+	RenderManager::getRenderer()->bindShaderProgram(0);
 }
 
 Shader::~Shader()
 {
-	RenderManager::getRenderer()->deleteShaderProgram(*this);
+	if (this->getProgramID() != 0)
+		RenderManager::getRenderer()->deleteShaderProgram(*this);
+
 	int arraySize = sizeof(m_shaderIDs) / sizeof(m_shaderIDs[0]);
 	for (int i = 0; i < arraySize; i++)
 	{
-		RenderManager::getRenderer()->deleteShader(m_shaderIDs[i]);
+		if (m_shaderIDs[i] != 0)
+			RenderManager::getRenderer()->deleteShader(m_shaderIDs[i]);
 	}
 	delete[] m_shaderIDs;
 }

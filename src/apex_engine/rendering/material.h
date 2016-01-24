@@ -1,8 +1,6 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
-
-
 #include <map>
 using std::map;
 
@@ -10,6 +8,7 @@ using std::map;
 using std::string;
 
 #include "../math/vector4f.h"
+#include "texture.h"
 
 class Material
 {
@@ -22,6 +21,7 @@ private:
 	map<string, float> floats;
 	map<string, Vector4f> vector4fs;
 	map<string, string> strings;
+	map<string, Texture*> textures;
 public:
 	const static string 
 		STRING_NAME,
@@ -97,6 +97,14 @@ public:
 		return false;
 	}
 
+	bool hasTexture(string name)
+	{
+		map<string, Texture*>::iterator it = textures.find(name.c_str());
+		if (it != textures.end())
+			return true;
+		return false;
+	}
+
 	// Getting values 
 
 	bool getBool(string name, bool &outBool)
@@ -158,6 +166,19 @@ public:
 			std::map<string, string>::iterator it;
 			it = strings.find(name);
 			outStr = it->second;
+			return true;
+		}
+		else
+			return false;
+	}
+
+	bool getTexture(string name, Texture &outTex)
+	{
+		if (hasTexture(name))
+		{
+			std::map<string, Texture*>::iterator it;
+			it = textures.find(name);
+			outTex = *it->second;
 			return true;
 		}
 		else
@@ -233,6 +254,20 @@ public:
 			std::map<string, string>::iterator it;
 			it = strings.find(name);
 			it->second = val;
+		}
+	}
+
+	void setTexture(string name, Texture &val)
+	{
+		bool hasVal = this->hasTexture(name);
+
+		if (!hasVal)
+			textures.insert(std::pair<string, Texture*>(name, &val));
+		else
+		{
+			std::map<string, Texture*>::iterator it;
+			it = textures.find(name);
+			it->second = &val;
 		}
 	}
 

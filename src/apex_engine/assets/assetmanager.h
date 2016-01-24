@@ -9,6 +9,8 @@ using std::vector;
 #include <string>
 using std::string;
 
+class Texture2D;
+
 class AssetManager
 {
 private:
@@ -21,7 +23,13 @@ public:
 
 	}
 
+	template <typename AssetType>
+	AssetType *load(const char *filepath)
+	{}
+
 	void loadModel(char *filepath);
+
+	Texture2D *loadTexture(char *filepath);
 };
 
 #endif

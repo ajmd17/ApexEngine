@@ -2,30 +2,43 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "environment.h"
+#include "../scene/scene.h"
 
 class Game
 {
 private:
-	Environment environment;
+	Scene *scene;
+	bool running;
 public:
-    Game() {}
+	Game() 
+	{ 
+		running = false; 
+		scene = new Scene();
+	}
     
-    virtual ~Game() {}
+    ~Game() 
+	{
+		delete scene;
+	}
     
     virtual void init() = 0;
     virtual void update() = 0;
     virtual void render() = 0;
     virtual void exit() = 0;
 
-	Environment &getEnvironment()
-	{
-		return environment;
+	void setRunning(bool running) 
+	{ 
+		this->running = running; 
 	}
 
-	void setEnvironment(Environment &env)
+	bool isRunning() const
 	{
-		this->environment = env;
+		return running;
+	}
+
+	Scene *getScene()
+	{
+		return scene;
 	}
 };
 

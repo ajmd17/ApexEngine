@@ -28,22 +28,31 @@ public:
 		this->set(x, y, z, w);
 	}
 
-	float &getX()
+	// Required copy constructor
+	Quaternion(const Quaternion &other)
+	{
+		this->x = other.x;
+		this->y = other.y;
+		this->z = other.z;
+		this->w = other.w;
+	}
+
+	float getX() const
 	{
 		return x;
 	}
 
-	float &getY()
+	float getY() const
 	{
 		return y;
 	}
 
-	float &getZ()
+	float getZ() const
 	{
 		return z;
 	}
 
-	float &getW()
+	float getW() const
 	{
 		return w;
 	}

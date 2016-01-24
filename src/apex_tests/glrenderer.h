@@ -6,18 +6,15 @@
 #include <rendering/mesh_util.h>
 #include <rendering/shader.h>
 
-#ifndef __APPLE__
-#ifndef GLEW_H
-#include <GL/glew.h>
-#define GLEW_H
-#endif
-#endif
-
-#include <SFML/Graphics.hpp>
-
 #include <iostream>
 using std::cout;
 
+#ifndef __ANDROID__
+#define USE_SFML
+#include <SFML/Graphics.hpp>
+#endif
+
+#ifdef USE_SFML
 class WindowGamePair
 {
 public:
@@ -29,6 +26,7 @@ public:
 		this->game = game;
 	}
 };
+#endif
 
 class GLRenderer : public Renderer
 {
@@ -44,11 +42,14 @@ public:
     virtual void clear(bool clearColor, bool clearDepth, bool clearStencil);
 	virtual void clearColor(float r, float g, float b, float a);
 
+	virtual void loadTexture2D(LoadedAsset &asset, Texture2D &outTex);
 	virtual int genTexture();
 	virtual void deleteTexture(int id);
 	virtual void bindTexture2D(int i);
 	virtual void bindTexture3D(int i);
 	virtual void bindCubemap(int i);
+	virtual void generateMipmap2D();
+	virtual void activeTextureSlot(int slot);
 
 	virtual int generateShaderProgram();
     virtual void bindShaderProgram(int id);

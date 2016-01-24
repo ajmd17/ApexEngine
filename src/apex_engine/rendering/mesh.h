@@ -39,10 +39,6 @@ public:
 		this->primitiveType = PrimitiveType::Triangles;
 	}
 
-	~Mesh()
-	{
-	}
-
 	void render()
 	{
 		if (!created)
@@ -81,6 +77,19 @@ public:
 		this->vertexSize = vertSize;
 	}
 
+	void setAttributes()
+	{
+		//TODO: Automatically detect what attributes to set instead of just assuming everything
+		this->getAttributes().setAttribute(VertexAttributes::POSITIONS);
+		this->getAttributes().setAttribute(VertexAttributes::TEXCOORDS0);
+		this->getAttributes().setAttribute(VertexAttributes::TEXCOORDS1);
+		this->getAttributes().setAttribute(VertexAttributes::NORMALS);
+		this->getAttributes().setAttribute(VertexAttributes::TANGENTS);
+		this->getAttributes().setAttribute(VertexAttributes::BITANGENTS);
+		this->getAttributes().setAttribute(VertexAttributes::BONEINDICES);
+		this->getAttributes().setAttribute(VertexAttributes::BONEWEIGHTS);
+	}
+
 	void setVertices(vector<Vertex> &vertices)
 	{
 		this->vertices.clear();
@@ -93,7 +102,7 @@ public:
 			indices.push_back(i);
 		}
 
-		this->getAttributes().setAttribute(VertexAttributes::POSITIONS);
+		setAttributes();
 
 		uploaded = false;
 	}
@@ -105,6 +114,8 @@ public:
 
 		this->vertices = vertices;
 		this->indices = indices;
+
+		setAttributes();
 
 		uploaded = false;
 	}
