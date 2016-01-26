@@ -210,7 +210,7 @@ public:
 		return localTranslation;
 	}
 
-	void setLocalTranslation(Vector3f &vec)
+	void setLocalTranslation(Vector3f vec)
 	{
 		localTranslation.set(vec);
 		setUpdateNeeded();
@@ -221,7 +221,7 @@ public:
 		return localScale;
 	}
 
-	void setLocalScale(Vector3f &vec)
+	void setLocalScale(Vector3f vec)
 	{
 		localScale.set(vec);
 		setUpdateNeeded();
@@ -232,7 +232,7 @@ public:
 		return localRotation;
 	}
 
-	void setLocalRotation(Quaternion &rot)
+	void setLocalRotation(Quaternion rot)
 	{
 		localRotation.set(rot);
 		setUpdateNeeded();

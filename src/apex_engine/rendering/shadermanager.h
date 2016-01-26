@@ -18,7 +18,7 @@ public:
 
 	template<typename ShaderClass>
 	typename std::enable_if<std::is_base_of<Shader, ShaderClass>::value, Shader*>::type
-	static getShader(ShaderProperties &properties)
+	static getShader(ShaderProperties properties)
 	{
 		// TODO: Iterate through current shaders and find ones with same class and properties before adding a new one
 		

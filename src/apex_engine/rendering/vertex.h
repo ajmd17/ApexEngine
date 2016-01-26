@@ -27,18 +27,18 @@ private:
 public:
 	Vertex() {}
 	
-	Vertex(Vector3f &pos)
+	Vertex(Vector3f pos)
 	{
 		this->position = pos;
 	}
 
-	Vertex(Vector3f &pos, Vector2f &texCoord0)
+	Vertex(Vector3f pos, Vector2f texCoord0)
 	{
 		this->position = pos;
 		this->texCoord0 = texCoord0;
 	}
 
-	Vertex(Vector3f &pos, Vector2f &texCoord0, Vector3f &normal)
+	Vertex(Vector3f pos, Vector2f texCoord0, Vector3f normal)
 	{
 		this->position = pos;
 		this->texCoord0 = texCoord0;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1920E1B31C55898A0087D330 /* liblua53.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1920E1B21C55898A0087D330 /* liblua53.dylib */; };
 		196FC5181C4D9D7900F9AEC4 /* glrenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FC47B1C4D9D7900F9AEC4 /* glrenderer.cpp */; };
 		196FC5431C4D9D7900F9AEC4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FC5171C4D9D7900F9AEC4 /* main.cpp */; };
 		196FC5451C4D9DAE00F9AEC4 /* libapexengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196FC5441C4D9DAE00F9AEC4 /* libapexengine.a */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1920E1B21C55898A0087D330 /* liblua53.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua53.dylib; path = ../../libs/osx/liblua53.dylib; sourceTree = "<group>"; };
 		196FC4621C4D9BDB00F9AEC4 /* apextests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apextests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		196FC47B1C4D9D7900F9AEC4 /* glrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glrenderer.cpp; sourceTree = "<group>"; };
 		196FC47C1C4D9D7900F9AEC4 /* glrenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glrenderer.h; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1920E1B31C55898A0087D330 /* liblua53.dylib in Frameworks */,
 				19825E641C5070E6007A68B7 /* SFML.framework in Frameworks */,
 				19825E5F1C5070E6007A68B7 /* sfml-audio.framework in Frameworks */,
 				19825E661C5070E6007A68B7 /* vorbisenc.framework in Frameworks */,
@@ -77,6 +80,7 @@
 		196FC4581C4D9BDB00F9AEC4 = {
 			isa = PBXGroup;
 			children = (
+				1920E1B21C55898A0087D330 /* liblua53.dylib */,
 				19825E4E1C5070E6007A68B7 /* FLAC.framework */,
 				19825E4F1C5070E6007A68B7 /* freetype.framework */,
 				19825E501C5070E6007A68B7 /* ogg.framework */,

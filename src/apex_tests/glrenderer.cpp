@@ -3,9 +3,13 @@
 #include <rendering/texture2d.h>
 #include <rendering/game.h>
 
+#ifndef USE_SFML // SFML comes with its own image utilities, use this if we aren't using SFML
+#ifndef STB_IMAGE_IMPLEMENTATION
 // For loading textures.
 #define STB_IMAGE_IMPLEMENTATION
 #include <assets/util/stb_image.h>
+#endif
+#endif
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -46,6 +50,7 @@ void GLRenderer::renderThread(WindowGamePair &pair)
 		
 		window->display();
 		globalMutex.unlock();
+        
 	}
 
 	window->setActive(false);
@@ -57,6 +62,8 @@ void GLRenderer::createContext(Game *game, int width, int height)
 	sf::RenderWindow window;
 	window.create(sf::VideoMode(width, height), "Apex Engine");
 	window.setVerticalSyncEnabled(true);
+    
+    bool canCloseWindow = false;
 
 	// Mac OS X / iOS don't need glew.
 #ifndef __APPLE__
@@ -73,14 +80,16 @@ void GLRenderer::createContext(Game *game, int width, int height)
 	while (window.waitEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
-		{
-			if (game != NULL)
-			{
-				game->exit();
-				game->setRunning(false);
-			}
-
-			window.close();
+        {
+            
+            globalMutex.lock();
+            if (game != NULL)
+            {
+                game->exit();
+                game->setRunning(false);
+            }
+            window.close();
+            globalMutex.unlock();
 		}
 		else if (event.type == sf::Event::Resized)
 		{
@@ -124,28 +133,47 @@ void GLRenderer::loadTexture2D(LoadedAsset &asset, Texture2D &outTex)
 {
 	int w;
 	int h;
+	// Load texture from file:
+#ifndef USE_SFML
 	int comp;
 	unsigned char* image = stbi_load(asset.getFilePath(), &w, &h, &comp, STBI_rgb_alpha);
 
 	if (image == nullptr)
 		throw(std::string("Failed to load texture!"));
+#endif
+#ifdef USE_SFML
+	sf::Image img_data;
+	if (!img_data.loadFromFile(asset.getFilePath()))
+		throw(std::string("Failed to load texture!"));
+	w = img_data.getSize().x;
+	h = img_data.getSize().y;
+#endif
+	// Create texture:
 
 	unsigned int m_texture = Texture::genTexture();
 	outTex = Texture2D(m_texture);
 
 	outTex.use();
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
+	// Upload data:
+
+#ifndef USE_SFML
 	if (comp == 3)
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	else if (comp == 4)
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 
 	stbi_image_free(image);
+#endif
+#ifdef USE_SFML
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, img_data.getPixelsPtr());
+#endif
 	outTex.genMipmap();
 }
 
@@ -271,6 +299,8 @@ void GLRenderer::addShader(Shader &program, string code, ShaderType type)
 		break;
 #endif
 #endif
+    default:
+        throw std::runtime_error ("Invalid shader type.");
 	}
 
 	int shader = glCreateShader(i_type);

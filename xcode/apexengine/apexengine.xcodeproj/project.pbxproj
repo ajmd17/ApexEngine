@@ -7,7 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		196FC3271C4D8E7300F9AEC4 /* loadedasset.h in Headers */ = {isa = PBXBuildFile; fileRef = 196FC2FA1C4D8E7300F9AEC4 /* loadedasset.h */; };
+		1920E1951C55863A0087D330 /* shadermanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1920E1931C55863A0087D330 /* shadermanager.cpp */; };
+		1920E1961C55863A0087D330 /* shadermanager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E1941C55863A0087D330 /* shadermanager.h */; };
+		1920E19B1C55864F0087D330 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E1981C55864F0087D330 /* node.h */; };
+		1920E19C1C55864F0087D330 /* scene.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E1991C55864F0087D330 /* scene.h */; };
+		1920E19D1C55864F0087D330 /* spatial.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E19A1C55864F0087D330 /* spatial.h */; };
+		1920E1A51C55867F0087D330 /* assetloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E19F1C55867F0087D330 /* assetloader.h */; };
+		1920E1A61C55867F0087D330 /* assetmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1920E1A01C55867F0087D330 /* assetmanager.cpp */; };
+		1920E1A71C55867F0087D330 /* assetmanager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E1A11C55867F0087D330 /* assetmanager.h */; };
+		1920E1A81C55867F0087D330 /* loadedasset.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E1A21C55867F0087D330 /* loadedasset.h */; };
+		1920E1A91C55867F0087D330 /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E1A41C55867F0087D330 /* stb_image.h */; };
+		1920E1AB1C55892A0087D330 /* boundingbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1920E1AA1C55892A0087D330 /* boundingbox.cpp */; };
+		1920E1AF1C5589590087D330 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1920E1AC1C5589590087D330 /* texture.cpp */; };
+		1920E1B01C5589590087D330 /* texture2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1920E1AD1C5589590087D330 /* texture2d.cpp */; };
+		1920E1B11C5589590087D330 /* texture2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E1AE1C5589590087D330 /* texture2d.h */; };
 		196FC3281C4D8E7300F9AEC4 /* apexmath.h in Headers */ = {isa = PBXBuildFile; fileRef = 196FC2FE1C4D8E7300F9AEC4 /* apexmath.h */; };
 		196FC3291C4D8E7300F9AEC4 /* boundingbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 196FC2FF1C4D8E7300F9AEC4 /* boundingbox.h */; };
 		196FC32A1C4D8E7300F9AEC4 /* math_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FC3001C4D8E7300F9AEC4 /* math_util.cpp */; };
@@ -43,7 +56,6 @@
 		196FC37A1C4D8FBE00F9AEC4 /* shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 196FC3621C4D8FBE00F9AEC4 /* shader.h */; };
 		196FC37B1C4D8FBE00F9AEC4 /* shader_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 196FC3631C4D8FBE00F9AEC4 /* shader_util.h */; };
 		196FC37C1C4D8FBE00F9AEC4 /* texture.h in Headers */ = {isa = PBXBuildFile; fileRef = 196FC3641C4D8FBE00F9AEC4 /* texture.h */; };
-		196FC37D1C4D8FBE00F9AEC4 /* vector3f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FC3651C4D8FBE00F9AEC4 /* vector3f.cpp */; };
 		196FC37E1C4D8FBE00F9AEC4 /* vertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 196FC3661C4D8FBE00F9AEC4 /* vertex.h */; };
 		196FC37F1C4D8FBE00F9AEC4 /* vertexattributes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FC3671C4D8FBE00F9AEC4 /* vertexattributes.cpp */; };
 		196FC3801C4D8FBE00F9AEC4 /* vertexattributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 196FC3681C4D8FBE00F9AEC4 /* vertexattributes.h */; };
@@ -51,8 +63,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1920E1931C55863A0087D330 /* shadermanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shadermanager.cpp; sourceTree = "<group>"; };
+		1920E1941C55863A0087D330 /* shadermanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shadermanager.h; sourceTree = "<group>"; };
+		1920E1981C55864F0087D330 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
+		1920E1991C55864F0087D330 /* scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scene.h; sourceTree = "<group>"; };
+		1920E19A1C55864F0087D330 /* spatial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spatial.h; sourceTree = "<group>"; };
+		1920E19F1C55867F0087D330 /* assetloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assetloader.h; sourceTree = "<group>"; };
+		1920E1A01C55867F0087D330 /* assetmanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = assetmanager.cpp; sourceTree = "<group>"; };
+		1920E1A11C55867F0087D330 /* assetmanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assetmanager.h; sourceTree = "<group>"; };
+		1920E1A21C55867F0087D330 /* loadedasset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loadedasset.h; sourceTree = "<group>"; };
+		1920E1A41C55867F0087D330 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		1920E1AA1C55892A0087D330 /* boundingbox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = boundingbox.cpp; sourceTree = "<group>"; };
+		1920E1AC1C5589590087D330 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
+		1920E1AD1C5589590087D330 /* texture2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture2d.cpp; sourceTree = "<group>"; };
+		1920E1AE1C5589590087D330 /* texture2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = texture2d.h; sourceTree = "<group>"; };
 		196FC2EA1C4D8E5B00F9AEC4 /* libapexengine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libapexengine.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		196FC2FA1C4D8E7300F9AEC4 /* loadedasset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loadedasset.h; sourceTree = "<group>"; };
 		196FC2FE1C4D8E7300F9AEC4 /* apexmath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apexmath.h; sourceTree = "<group>"; };
 		196FC2FF1C4D8E7300F9AEC4 /* boundingbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = boundingbox.h; sourceTree = "<group>"; };
 		196FC3001C4D8E7300F9AEC4 /* math_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = math_util.cpp; sourceTree = "<group>"; };
@@ -88,7 +113,6 @@
 		196FC3621C4D8FBE00F9AEC4 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
 		196FC3631C4D8FBE00F9AEC4 /* shader_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader_util.h; sourceTree = "<group>"; };
 		196FC3641C4D8FBE00F9AEC4 /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
-		196FC3651C4D8FBE00F9AEC4 /* vector3f.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vector3f.cpp; sourceTree = "<group>"; };
 		196FC3661C4D8FBE00F9AEC4 /* vertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vertex.h; sourceTree = "<group>"; };
 		196FC3671C4D8FBE00F9AEC4 /* vertexattributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vertexattributes.cpp; sourceTree = "<group>"; };
 		196FC3681C4D8FBE00F9AEC4 /* vertexattributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vertexattributes.h; sourceTree = "<group>"; };
@@ -107,6 +131,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1920E1971C55864F0087D330 /* scene */ = {
+			isa = PBXGroup;
+			children = (
+				1920E1981C55864F0087D330 /* node.h */,
+				1920E1991C55864F0087D330 /* scene.h */,
+				1920E19A1C55864F0087D330 /* spatial.h */,
+			);
+			path = scene;
+			sourceTree = "<group>";
+		};
+		1920E19E1C55867F0087D330 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				1920E19F1C55867F0087D330 /* assetloader.h */,
+				1920E1A01C55867F0087D330 /* assetmanager.cpp */,
+				1920E1A11C55867F0087D330 /* assetmanager.h */,
+				1920E1A21C55867F0087D330 /* loadedasset.h */,
+				1920E1A31C55867F0087D330 /* util */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		1920E1A31C55867F0087D330 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				1920E1A41C55867F0087D330 /* stb_image.h */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		196FC2E11C4D8E5B00F9AEC4 = {
 			isa = PBXGroup;
 			children = (
@@ -127,22 +181,15 @@
 		196FC2F81C4D8E7300F9AEC4 /* apex_engine */ = {
 			isa = PBXGroup;
 			children = (
+				1920E19E1C55867F0087D330 /* assets */,
+				1920E1971C55864F0087D330 /* scene */,
 				196FC34F1C4D8FBE00F9AEC4 /* rendering */,
-				196FC2F91C4D8E7300F9AEC4 /* assets */,
 				196FC2FB1C4D8E7300F9AEC4 /* audio */,
 				196FC2FC1C4D8E7300F9AEC4 /* input */,
 				196FC2FD1C4D8E7300F9AEC4 /* math */,
 			);
 			name = apex_engine;
 			path = ../../src/apex_engine;
-			sourceTree = "<group>";
-		};
-		196FC2F91C4D8E7300F9AEC4 /* assets */ = {
-			isa = PBXGroup;
-			children = (
-				196FC2FA1C4D8E7300F9AEC4 /* loadedasset.h */,
-			);
-			path = assets;
 			sourceTree = "<group>";
 		};
 		196FC2FB1C4D8E7300F9AEC4 /* audio */ = {
@@ -167,6 +214,7 @@
 				196FC3001C4D8E7300F9AEC4 /* math_util.cpp */,
 				196FC3011C4D8E7300F9AEC4 /* math_util.h */,
 				196FC3021C4D8E7300F9AEC4 /* matrix4f.h */,
+				1920E1AA1C55892A0087D330 /* boundingbox.cpp */,
 				196FC3031C4D8E7300F9AEC4 /* matrix_util.h */,
 				196FC3041C4D8E7300F9AEC4 /* quaternion.h */,
 				196FC3051C4D8E7300F9AEC4 /* ray.h */,
@@ -184,6 +232,8 @@
 		196FC34F1C4D8FBE00F9AEC4 /* rendering */ = {
 			isa = PBXGroup;
 			children = (
+				1920E1931C55863A0087D330 /* shadermanager.cpp */,
+				1920E1941C55863A0087D330 /* shadermanager.h */,
 				196FC3501C4D8FBE00F9AEC4 /* camera.h */,
 				196FC3511C4D8FBE00F9AEC4 /* constants.h */,
 				196FC3521C4D8FBE00F9AEC4 /* enums.h */,
@@ -200,9 +250,11 @@
 				196FC3601C4D8FBE00F9AEC4 /* rendermanager.h */,
 				196FC3611C4D8FBE00F9AEC4 /* shader.cpp */,
 				196FC3621C4D8FBE00F9AEC4 /* shader.h */,
+				1920E1AC1C5589590087D330 /* texture.cpp */,
+				1920E1AD1C5589590087D330 /* texture2d.cpp */,
+				1920E1AE1C5589590087D330 /* texture2d.h */,
 				196FC3631C4D8FBE00F9AEC4 /* shader_util.h */,
 				196FC3641C4D8FBE00F9AEC4 /* texture.h */,
-				196FC3651C4D8FBE00F9AEC4 /* vector3f.cpp */,
 				196FC3661C4D8FBE00F9AEC4 /* vertex.h */,
 				196FC3671C4D8FBE00F9AEC4 /* vertexattributes.cpp */,
 				196FC3681C4D8FBE00F9AEC4 /* vertexattributes.h */,
@@ -228,16 +280,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				196FC37E1C4D8FBE00F9AEC4 /* vertex.h in Headers */,
+				1920E1A71C55867F0087D330 /* assetmanager.h in Headers */,
 				196FC3781C4D8FBE00F9AEC4 /* rendermanager.h in Headers */,
 				196FC32C1C4D8E7300F9AEC4 /* matrix4f.h in Headers */,
 				196FC3361C4D8E7300F9AEC4 /* vector4f.h in Headers */,
 				196FC37A1C4D8FBE00F9AEC4 /* shader.h in Headers */,
+				1920E19B1C55864F0087D330 /* node.h in Headers */,
 				196FC32D1C4D8E7300F9AEC4 /* matrix_util.h in Headers */,
 				196FC36D1C4D8FBE00F9AEC4 /* game.h in Headers */,
+				1920E1A51C55867F0087D330 /* assetloader.h in Headers */,
 				196FC32B1C4D8E7300F9AEC4 /* math_util.h in Headers */,
 				196FC32E1C4D8E7300F9AEC4 /* quaternion.h in Headers */,
+				1920E1A81C55867F0087D330 /* loadedasset.h in Headers */,
 				196FC37C1C4D8FBE00F9AEC4 /* texture.h in Headers */,
+				1920E19C1C55864F0087D330 /* scene.h in Headers */,
 				196FC3741C4D8FBE00F9AEC4 /* mesh.h in Headers */,
+				1920E19D1C55864F0087D330 /* spatial.h in Headers */,
+				1920E1B11C5589590087D330 /* texture2d.h in Headers */,
 				196FC3301C4D8E7300F9AEC4 /* transform.h in Headers */,
 				196FC3701C4D8FBE00F9AEC4 /* pointlight.h in Headers */,
 				196FC3751C4D8FBE00F9AEC4 /* mesh_util.h in Headers */,
@@ -248,8 +307,9 @@
 				196FC3691C4D8FBE00F9AEC4 /* camera.h in Headers */,
 				196FC3801C4D8FBE00F9AEC4 /* vertexattributes.h in Headers */,
 				196FC3291C4D8E7300F9AEC4 /* boundingbox.h in Headers */,
-				196FC3271C4D8E7300F9AEC4 /* loadedasset.h in Headers */,
+				1920E1A91C55867F0087D330 /* stb_image.h in Headers */,
 				196FC37B1C4D8FBE00F9AEC4 /* shader_util.h in Headers */,
+				1920E1961C55863A0087D330 /* shadermanager.h in Headers */,
 				196FC3721C4D8FBE00F9AEC4 /* material.h in Headers */,
 				196FC32F1C4D8E7300F9AEC4 /* ray.h in Headers */,
 				196FC3341C4D8E7300F9AEC4 /* vector3f.h in Headers */,
@@ -315,17 +375,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1920E1951C55863A0087D330 /* shadermanager.cpp in Sources */,
+				1920E1AB1C55892A0087D330 /* boundingbox.cpp in Sources */,
 				196FC3711C4D8FBE00F9AEC4 /* material.cpp in Sources */,
 				196FC3331C4D8E7300F9AEC4 /* vector3f.cpp in Sources */,
 				196FC36F1C4D8FBE00F9AEC4 /* pointlight.cpp in Sources */,
+				1920E1A61C55867F0087D330 /* assetmanager.cpp in Sources */,
 				196FC3791C4D8FBE00F9AEC4 /* shader.cpp in Sources */,
 				196FC37F1C4D8FBE00F9AEC4 /* vertexattributes.cpp in Sources */,
 				196FC3311C4D8E7300F9AEC4 /* vector2f.cpp in Sources */,
 				196FC3351C4D8E7300F9AEC4 /* vector4f.cpp in Sources */,
 				196FC3771C4D8FBE00F9AEC4 /* rendermanager.cpp in Sources */,
+				1920E1B01C5589590087D330 /* texture2d.cpp in Sources */,
+				1920E1AF1C5589590087D330 /* texture.cpp in Sources */,
 				196FC32A1C4D8E7300F9AEC4 /* math_util.cpp in Sources */,
 				196FC3731C4D8FBE00F9AEC4 /* mesh.cpp in Sources */,
-				196FC37D1C4D8FBE00F9AEC4 /* vector3f.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

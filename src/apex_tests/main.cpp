@@ -3,6 +3,8 @@ using namespace std;
 #include "glrenderer.h"
 #include <assets/assetmanager.h>
 #include <math/apexmath.h>
+
+#include <rendering/vertex.h>
 #include <rendering/rendermanager.h>
 #include <rendering/game.h>
 #include <rendering/texture2d.h>
@@ -62,7 +64,7 @@ void TestGame::init()
 
 	this->renderManager.getRenderer()->clearColor(1, 0, 0, 1);
 
-
+    
 	Node *n = new Node("root");
 	Node *n2 = new Node();
 
@@ -93,8 +95,9 @@ void TestGame::init()
 	myVerts.push_back(Vertex(Vector3f(0, 1, 3), Vector2f(0.5, 1)));
 	myVerts.push_back(Vertex(Vector3f(1, 0, 3), Vector2f(1, 0)));
 	mesh->setVertices(myVerts);
-
-	shader = ShaderManager::getShader<MyShader>(ShaderProperties());
+    
+    ShaderProperties props;
+	shader = ShaderManager::getShader<MyShader> (props);
 	
 	// Test Lua
 	lua = luaL_newstate();
@@ -253,7 +256,7 @@ void TestGame::init()
 
 			.addFunction("size", &Node::size)
 			.addFunction("add", &Node::add)
-			.addFunction("get", &Node::get)
+			.addFunction("get", &Node::get<Spatial>)
 			.addFunction("remove", &Node::remove)
 			.addFunction("removeAt", &Node::removeAt)
 
@@ -267,6 +270,7 @@ void TestGame::init()
 
 void TestGame::exit()
 {
+    cout << "Exit!\n";
 	delete mat;
 	delete mytex;
 	delete mesh;
@@ -295,7 +299,7 @@ void TestGame::render()
 		shader->use();
 
 		mytex->activeTextureSlot(0);
-		mytex->use();
+        mytex->use();
 		shader->setUniform("u_texture", 0);
 
 		shader->setUniform("u_mat", myMatrix);

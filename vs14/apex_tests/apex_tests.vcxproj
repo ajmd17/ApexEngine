@@ -72,21 +72,21 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes\Lua;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes\Lua;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;$(LibraryPath)</LibraryPath>
     <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes\Lua;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Debug;$(LibraryPath)</LibraryPath>
     <IncludePath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes\Lua;C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -95,14 +95,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>
-      </PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG_;_WINDOWS;SFML_STATIC;</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>apex_engine_lib.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;freeglut.lib;opengl32.lib;kernel32.lib;user32.lib;glew32.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>apex_engine_lib.lib;jpeg.lib;winmm.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;glew32.lib;kernel32.lib;user32.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -111,14 +111,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>
-      </PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG_;_WINDOWS;SFML_STATIC;</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>apex_engine_lib.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;freeglut.lib;opengl32.lib;kernel32.lib;user32.lib;glew32.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>apex_engine_lib.lib;jpeg.lib;winmm.lib;sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;glew32.lib;kernel32.lib;user32.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -129,15 +129,15 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>
-      </PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>apex_engine_lib.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;freeglut.lib;opengl32.lib;kernel32.lib;user32.lib;glew32.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>apex_engine_lib.lib;sfml-system.lib;sfml-graphics.lib;sfml-window.lib;glew32.lib;opengl32.lib;kernel32.lib;user32.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -148,15 +148,15 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>
-      </PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>apex_engine_lib.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;freeglut.lib;opengl32.lib;kernel32.lib;user32.lib;glew32.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>apex_engine_lib.lib;sfml-system.lib;sfml-graphics.lib;sfml-window.lib;glew32.lib;opengl32.lib;kernel32.lib;user32.lib;lua53.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

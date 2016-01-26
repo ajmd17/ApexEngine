@@ -13,28 +13,31 @@ using std::cout;
 #define USE_SFML
 #include <SFML/Graphics.hpp>
 #endif
-
 #ifdef USE_SFML
+
 class WindowGamePair
 {
 public:
 	sf::RenderWindow *window;
 	Game *game;
+    
 	WindowGamePair(sf::RenderWindow *window, Game *game)
 	{
 		this->window = window;
 		this->game = game;
 	}
 };
+
 #endif
 
 class GLRenderer : public Renderer
 {
 public:
-	sf::Mutex globalMutex;
-	void renderThread(WindowGamePair &pair);
+    sf::Mutex globalMutex;
+    
+    void renderThread(WindowGamePair &pair);
 
-	GLRenderer() { }
+    GLRenderer() { }
 	~GLRenderer() { }
 
 	virtual void createContext(Game *game, int width, int height);
