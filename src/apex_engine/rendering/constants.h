@@ -18,7 +18,7 @@ const string A_BONEWEIGHTS = "a_boneweights";
 const string A_BONEINDICES = "a_boneindices";
 
 // Default shader uniforms 
-const string APEX_WORLDMATRIX = "Apex_WorldMatrix";
+const string APEX_MODELMATRIX = "Apex_ModelMatrix";
 const string APEX_VIEWMATRIX = "Apex_ViewMatrix";
 const string APEX_PROJECTIONMATRIX = "Apex_ProjectionMatrix";
 const string APEX_CAMERAPOSITION = "Apex_CameraPosition";

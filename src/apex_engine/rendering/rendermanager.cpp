@@ -1,3 +1,3 @@
 #include "rendermanager.h"
 
-Renderer *RenderManager::m_renderer = 0;
+IEngine *RenderManager::m_engine = 0;

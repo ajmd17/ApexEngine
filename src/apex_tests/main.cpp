@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#include "glrenderer.h"
+#include "opengl_engine.h"
 #include <assets/assetmanager.h>
 #include <math/apexmath.h>
 
@@ -62,7 +62,7 @@ void TestGame::init()
 	AssetManager astMgr;
 	mytex = astMgr.loadTexture("tex.png");
 
-	this->renderManager.getRenderer()->clearColor(1, 0, 0, 1);
+	this->renderManager.getEngine()->clearColor(1, 0, 0, 1);
 
     
 	Node *n = new Node("root");
@@ -74,7 +74,7 @@ void TestGame::init()
 	n->add(n2);
 	n->update();
 
-	cout << n->get<Node>(0)->getGlobalTranslation() << "\n";
+	cout << n->getAt<Node>(0)->getGlobalTranslation() << "\n";
 
 	delete n;
 	delete n2;
@@ -98,6 +98,7 @@ void TestGame::init()
     
     ShaderProperties props;
 	shader = ShaderManager::getShader<MyShader> (props);
+	cout << props << "\n";
 	
 	// Test Lua
 	lua = luaL_newstate();
@@ -235,18 +236,13 @@ void TestGame::init()
 			.addFunction("getLocalTranslation", &Spatial::getLocalTranslation)
 			.addFunction("getLocalRotation", &Spatial::getLocalRotation)
 			.addFunction("getLocalScale", &Spatial::getLocalScale)
-			//.addFunction("getLocalBoundingBox", &Spatial::getLocalBoundingBox)
 
 			.addFunction("getGlobalTranslation", &Spatial::getGlobalTranslation)
 			.addFunction("getGlobalRotation", &Spatial::getGlobalRotation)
 			.addFunction("getGlobalScale", &Spatial::getGlobalScale)
-			//.addFunction("getGlobalMatrix", &Spatial::getGlobalMatrix)
-			//.addFunction("getGlobalTransform", &Spatial::getGlobalTransform)
-			//.addFunction("getGlobalBoundingBox", &Spatial::getGlobalBoundingBox)
 
 			.addFunction("update", &Spatial::update)
 			.addFunction("setUpdateNeeded", &Spatial::setUpdateNeeded)
-
 			.addFunction("isAttachedToRoot", &Spatial::isAttachedToRoot)
 
 			.endClass()
@@ -256,7 +252,9 @@ void TestGame::init()
 
 			.addFunction("size", &Node::size)
 			.addFunction("add", &Node::add)
-			.addFunction("get", &Node::get<Spatial>)
+			.addFunction("getAt", &Node::getAt<Spatial>)
+			.addFunction("getByName", &Node::getByName<Spatial>)
+			.addFunction("contains", &Node::contains)
 			.addFunction("remove", &Node::remove)
 			.addFunction("removeAt", &Node::removeAt)
 
@@ -293,8 +291,8 @@ void TestGame::update()
 
 void TestGame::render()
 {
-	if (this->renderManager.getRenderer() != NULL) {
-		this->renderManager.getRenderer()->clear(true, true, false);
+	if (this->renderManager.getEngine() != NULL) {
+		this->renderManager.getEngine()->clear(true, true, false);
 
 		shader->use();
 
@@ -311,13 +309,13 @@ void TestGame::render()
 
 int main()
 {
-	Renderer *pRenderer = new GLRenderer();
-	RenderManager::setRenderer(pRenderer);
+	IEngine *pEngine = new GLEngine();
+	RenderManager::setEngine(pEngine);
 	Game *game = new TestGame();
 
-	pRenderer->createContext(game, 300, 150);
+	pEngine->createContext(game, 300, 150);
 
-	delete pRenderer;
+	delete pEngine;
 	delete game;
 
 	return 0;

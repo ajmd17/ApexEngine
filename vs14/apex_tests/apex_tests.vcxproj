@@ -160,11 +160,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\apex_tests\glrenderer.cpp" />
+    <ClCompile Include="..\..\src\apex_tests\opengl_engine.cpp" />
     <ClCompile Include="..\..\src\apex_tests\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\apex_tests\glrenderer.h" />
+    <ClInclude Include="..\..\src\apex_tests\opengl_engine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,15 +2,15 @@
 #define RENDERMANAGER_H
 
 #include "environment.h"
-#include "renderer.h"
+#include "engine.h"
 
 class RenderManager
 {
 private:
-	static Renderer *m_renderer;
+	static IEngine *m_engine;
 public:
-	static Renderer *getRenderer() { return m_renderer; }
-	static void setRenderer(Renderer *renderer) { m_renderer = renderer; }
+	static IEngine *getEngine() { return m_engine; }
+	static void setEngine(IEngine *renderer) { m_engine = renderer; }
 };
 
 #endif

@@ -1,6 +1,6 @@
-#ifndef GLRENDERER_H
-#define GLRENDERER_H
-#include <rendering/renderer.h>
+#ifndef GLENGINE_H
+#define GLENGINE_H
+#include <rendering/engine.h>
 
 #include <rendering/mesh.h>
 #include <rendering/mesh_util.h>
@@ -30,22 +30,22 @@ public:
 
 #endif
 
-class GLRenderer : public Renderer
+class GLEngine : public IEngine
 {
 public:
     sf::Mutex globalMutex;
     
     void renderThread(WindowGamePair &pair);
 
-    GLRenderer() { }
-	~GLRenderer() { }
+    GLEngine() { }
+	~GLEngine() { }
 
 	virtual void createContext(Game *game, int width, int height);
 	virtual void viewport(int x, int y, int width, int height);
     virtual void clear(bool clearColor, bool clearDepth, bool clearStencil);
 	virtual void clearColor(float r, float g, float b, float a);
 
-	virtual void loadTexture2D(LoadedAsset &asset, Texture2D &outTex);
+	virtual void loadTexture2D(AssetInfo &asset, Texture2D &outTex);
 	virtual int genTexture();
 	virtual void deleteTexture(int id);
 	virtual void bindTexture2D(int i);

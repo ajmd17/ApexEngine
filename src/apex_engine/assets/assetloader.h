@@ -4,17 +4,17 @@
 // Asset loader interface.
 // Author: Andrew MacDonald
 
-#include "loadedasset.h"
+#include "assetinfo.h"
+#include "loadableobject.h"
 
-class AssetLoader
+class IAssetLoader
 {
 public:
-	AssetLoader() {}
+	IAssetLoader() {}
 
 	virtual void resetLoader() = 0;
 
-	template <typename ReturnType>
-	ReturnType *load(LoadedAsset &asset) {}
+	virtual ILoadableObject *load(AssetInfo &asset) = 0;
 };
 
 #endif

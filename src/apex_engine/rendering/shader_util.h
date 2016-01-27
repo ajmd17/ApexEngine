@@ -64,7 +64,13 @@ public:
 
 	friend ostream& operator<<(ostream& out, const ShaderProperties &props) // output
 	{
-		out << "{";
+		out << "ShaderProperties {\n";
+		/*for (int i = 0; i < props.values.size(); i++)
+		{
+			std::map<string, bool>::iterator it;
+			it = props.values.find(props.values.begin() + i);
+			out << it->first << "\t" << it->second << "\n";
+		}*/
 		out << "}\n";
 		return out;
 	}

@@ -72,11 +72,11 @@
     <ClCompile Include="..\..\src\apex_engine\math\boundingbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scene\geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
     <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
     <ClInclude Include="..\..\src\apex_engine\math\matrix4f.h" />
@@ -94,7 +94,6 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\material.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\mesh.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\mesh_util.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\renderer.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\rendermanager.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
@@ -352,8 +351,6 @@
     <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\apex_engine\Header.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\apex_math.h" />
     <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
     <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
     <ClInclude Include="..\..\src\apex_engine\math\matrix4f.h" />
@@ -374,7 +371,6 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\renderer.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\rendermanager.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\shader_enums.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h">
@@ -3755,6 +3751,22 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\apex_engine\assets\util\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\rendering\engine.h" />
+    <ClInclude Include="..\..\src\apex_engine\assets\modelloaders\objloader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\assets\loadableobject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\assets\assetinfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scene\geometry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

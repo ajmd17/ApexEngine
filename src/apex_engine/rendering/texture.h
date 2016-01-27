@@ -21,8 +21,8 @@ public:
 
 	~Texture()
 	{
-		if (id != 0 && RenderManager::getRenderer() != 0)
-			RenderManager::getRenderer()->deleteTexture(id);
+		if (id != 0 && RenderManager::getEngine() != 0)
+			RenderManager::getEngine()->deleteTexture(id);
 		this->id = 0;
 	}
 
@@ -38,13 +38,13 @@ public:
 
 	static int genTexture()
 	{
-		int res = RenderManager::getRenderer()->genTexture();
+		int res = RenderManager::getEngine()->genTexture();
 		return res;
 	}
 
 	static void activeTextureSlot(int slot)
 	{
-		RenderManager::getRenderer()->activeTextureSlot(slot);
+		RenderManager::getEngine()->activeTextureSlot(slot);
 	}
 
 	virtual void use() = 0;

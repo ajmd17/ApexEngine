@@ -45,15 +45,15 @@ public:
 	{
 		if (!created)
 		{
-			RenderManager::getRenderer()->createMesh(*this);
+			RenderManager::getEngine()->createMesh(*this);
 			created = true;
 		}
 		if (!uploaded)
 		{
-			RenderManager::getRenderer()->uploadMesh(*this);
+			RenderManager::getEngine()->uploadMesh(*this);
 			uploaded = true;
 		}
-		RenderManager::getRenderer()->renderMesh(*this);
+		RenderManager::getEngine()->renderMesh(*this);
 	}
 
 	BoundingBox createBoundingBox(vector<Vertex> &vertices, vector<int> &indices);

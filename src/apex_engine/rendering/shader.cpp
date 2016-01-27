@@ -25,52 +25,52 @@ Shader::Shader(ShaderProperties properties, string vs_code, string fs_code)
 	this->addFragmentProgram(formatted_fs);
     
 	this->compileShader();
-	RenderManager::getRenderer()->bindShaderProgram(0);
+	RenderManager::getEngine()->bindShaderProgram(0);
 }
 
 Shader::~Shader()
 {
 	if (this->getProgramID() != 0)
-		RenderManager::getRenderer()->deleteShaderProgram(*this);
+		RenderManager::getEngine()->deleteShaderProgram(*this);
 
 	int arraySize = sizeof(m_shaderIDs) / sizeof(m_shaderIDs[0]);
 	for (int i = 0; i < arraySize; i++)
 	{
 		if (m_shaderIDs[i] != 0)
-			RenderManager::getRenderer()->deleteShader(m_shaderIDs[i]);
+			RenderManager::getEngine()->deleteShader(m_shaderIDs[i]);
 	}
 	delete[] m_shaderIDs;
 }
 
 void Shader::create()
 {
-	this->id = RenderManager::getRenderer()->generateShaderProgram();
+	this->id = RenderManager::getEngine()->generateShaderProgram();
 }
 
 void Shader::use()
 {
-	RenderManager::getRenderer()->bindShaderProgram(this->id);
+	RenderManager::getEngine()->bindShaderProgram(this->id);
 }
 
 void Shader::end()
 {
-    RenderManager::getRenderer()->bindShaderProgram(0);
+    RenderManager::getEngine()->bindShaderProgram(0);
 }
 
 void Shader::addProgram(ShaderType type, string &code)
 {
-	RenderManager::getRenderer()->addShader(*this, code, type);
+	RenderManager::getEngine()->addShader(*this, code, type);
 }
 
 void Shader::compileShader()
 {
-	RenderManager::getRenderer()->compileShaderProgram(this->id);
+	RenderManager::getEngine()->compileShaderProgram(this->id);
 }
 
 void Shader::setDefaultValues()
 {
-	RenderManager::getRenderer()->setDepthClamp(true);
-	RenderManager::getRenderer()->setFaceDirection(Ccw);
+	RenderManager::getEngine()->setDepthClamp(true);
+	RenderManager::getEngine()->setFaceDirection(Ccw);
 }
 
 void Shader::applyMaterial(Material &material)
@@ -79,41 +79,48 @@ void Shader::applyMaterial(Material &material)
 
 	bool outDepthTest;
 	currentMaterial.getBool(Material::BOOL_DEPTHTEST, outDepthTest);
-	RenderManager::getRenderer()->setDepthTest(outDepthTest);
+	RenderManager::getEngine()->setDepthTest(outDepthTest);
 
 	bool outDepthMask;
 	currentMaterial.getBool(Material::BOOL_DEPTHMASK, outDepthMask);
-	RenderManager::getRenderer()->setDepthMask(outDepthMask);
+	RenderManager::getEngine()->setDepthMask(outDepthMask);
 
 	bool cullEnabled;
 	currentMaterial.getBool(Material::BOOL_CULLENABLED, cullEnabled);
 
 	if (cullEnabled)
 	{
-		RenderManager::getRenderer()->setCullFace(true);
+		RenderManager::getEngine()->setCullFace(true);
 
 		int faceToCull;
 		currentMaterial.getInt(Material::INT_FACETOCULL, faceToCull);
 
 		if (faceToCull == 0)
-			RenderManager::getRenderer()->setFaceToCull(Back);
+			RenderManager::getEngine()->setFaceToCull(Back);
 		else if (faceToCull == 1)
-			RenderManager::getRenderer()->setFaceToCull(Front);
+			RenderManager::getEngine()->setFaceToCull(Front);
 	}
 	else
-		RenderManager::getRenderer()->setCullFace(false);
+		RenderManager::getEngine()->setCullFace(false);
 
 	float alphaDiscard;
 	currentMaterial.getFloat(Material::FLOAT_ALPHADISCARD, alphaDiscard);
 	this->setUniform(MATERIAL_ALPHADISCARD, alphaDiscard);
 
-	RenderManager::getRenderer()->setCullFace(false);
+	RenderManager::getEngine()->setCullFace(false);
+}
+
+void Shader::applyTransforms(Matrix4f &modelMatrix, Matrix4f &viewMatrix, Matrix4f &projectionMatrix)
+{
+	this->modelMatrix = modelMatrix;
+	this->viewMatrix = viewMatrix;
+	this->projectionMatrix = projectionMatrix;
 }
 
 void Shader::update(Environment &environment, Camera &cam, Mesh &mesh)
 {
 	this->setDefaultValues();
-	this->setUniform(APEX_WORLDMATRIX, worldMatrix);
+	this->setUniform(APEX_MODELMATRIX, modelMatrix);
 	this->setUniform(APEX_VIEWMATRIX, viewMatrix);
 	this->setUniform(APEX_PROJECTIONMATRIX, projectionMatrix);
 	this->setUniform(APEX_CAMERAPOSITION, cam.getTranslation());
@@ -121,30 +128,30 @@ void Shader::update(Environment &environment, Camera &cam, Mesh &mesh)
 
 void Shader::setUniform(string name, int i)
 {
-	RenderManager::getRenderer()->setShaderUniform(this->id, name, i);
+	RenderManager::getEngine()->setShaderUniform(this->id, name, i);
 }
 
 void Shader::setUniform(string name, float f)
 {
-	RenderManager::getRenderer()->setShaderUniform(this->id, name, f);
+	RenderManager::getEngine()->setShaderUniform(this->id, name, f);
 }
 
 void Shader::setUniform(string name, float x, float y)
 {
-	RenderManager::getRenderer()->setShaderUniform(this->id, name, x, y);
+	RenderManager::getEngine()->setShaderUniform(this->id, name, x, y);
 }
 
 void Shader::setUniform(string name, float x, float y, float z)
 {
-	RenderManager::getRenderer()->setShaderUniform(this->id, name, x, y, z);
+	RenderManager::getEngine()->setShaderUniform(this->id, name, x, y, z);
 }
 
 void Shader::setUniform(string name, float x, float y, float z, float w)
 {
-	RenderManager::getRenderer()->setShaderUniform(this->id, name, x, y, z, w);
+	RenderManager::getEngine()->setShaderUniform(this->id, name, x, y, z, w);
 }
 	
 void Shader::setUniform(string name, Matrix4f &mat)
 {
-	RenderManager::getRenderer()->setShaderUniform(this->id, name, mat.values);
+	RenderManager::getEngine()->setShaderUniform(this->id, name, mat.values);
 }

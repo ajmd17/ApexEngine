@@ -30,7 +30,7 @@ protected:
 	int id;
 private:
 	ShaderProperties properties;
-	Matrix4f worldMatrix, viewMatrix, projectionMatrix;
+	Matrix4f modelMatrix, viewMatrix, projectionMatrix;
 public:
 	int *m_shaderIDs, m_shaderCounter; 
 	// don't mess with this, used by the OpenGL renderer to count up and properly store shader IDs in the shader
@@ -60,6 +60,8 @@ public:
 	void addProgram(ShaderType type, string &code);
 
 	virtual void applyMaterial(Material &material);
+
+	void applyTransforms(Matrix4f &modelMatrix, Matrix4f &viewMatrix, Matrix4f &projectionMatrix);
 
 	void setDefaultValues();
 

@@ -1,4 +1,4 @@
-#include "glrenderer.h"
+#include "opengl_engine.h"
 #include <rendering/constants.h>
 #include <rendering/texture2d.h>
 #include <rendering/game.h>
@@ -28,7 +28,7 @@
 #endif
 
 #ifdef USE_SFML
-void GLRenderer::renderThread(WindowGamePair &pair)
+void GLEngine::renderThread(WindowGamePair &pair)
 {
 	sf::RenderWindow *window = pair.window;
 	Game *game = pair.game;
@@ -57,7 +57,7 @@ void GLRenderer::renderThread(WindowGamePair &pair)
 }
 #endif
 
-void GLRenderer::createContext(Game *game, int width, int height)
+void GLEngine::createContext(Game *game, int width, int height)
 {
 	sf::RenderWindow window;
 	window.create(sf::VideoMode(width, height), "Apex Engine");
@@ -70,7 +70,7 @@ void GLRenderer::createContext(Game *game, int width, int height)
 	glewInit();
 #endif
 
-	sf::Thread render_thread(std::bind(&GLRenderer::renderThread, this, WindowGamePair(&window, game)));
+	sf::Thread render_thread(std::bind(&GLEngine::renderThread, this, WindowGamePair(&window, game)));
 	sf::Event event;
 
 	window.setActive(false);
@@ -100,12 +100,12 @@ void GLRenderer::createContext(Game *game, int width, int height)
 	render_thread.wait();
 }
 
-void GLRenderer::viewport(int x, int y, int width, int height)
+void GLEngine::viewport(int x, int y, int width, int height)
 {
 	glViewport(x, y, width, height);
 }
 
-void GLRenderer::clear(bool clearColor, bool clearDepth, bool clearStencil)
+void GLEngine::clear(bool clearColor, bool clearDepth, bool clearStencil)
 {
 	if (clearColor && clearDepth && clearStencil)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -123,13 +123,13 @@ void GLRenderer::clear(bool clearColor, bool clearDepth, bool clearStencil)
 		glClear(GL_STENCIL_BUFFER_BIT);
 }
 
-void GLRenderer::clearColor(float r, float g, float b, float a)
+void GLEngine::clearColor(float r, float g, float b, float a)
 {
 	glClearColor(r, g, b, a);
 }
 
 
-void GLRenderer::loadTexture2D(LoadedAsset &asset, Texture2D &outTex)
+void GLEngine::loadTexture2D(AssetInfo &asset, Texture2D &outTex)
 {
 	int w;
 	int h;
@@ -177,7 +177,7 @@ void GLRenderer::loadTexture2D(LoadedAsset &asset, Texture2D &outTex)
 	outTex.genMipmap();
 }
 
-int GLRenderer::genTexture()
+int GLEngine::genTexture()
 {
 	unsigned int res[1];
 	glGenTextures(1, res);
@@ -185,7 +185,7 @@ int GLRenderer::genTexture()
 	return res[0];
 }
 
-void GLRenderer::deleteTexture(int id)
+void GLEngine::deleteTexture(int id)
 {
 	unsigned int res[1];
 	res[0] = id;
@@ -193,43 +193,43 @@ void GLRenderer::deleteTexture(int id)
 	cout << "Deleted texture with ID: " << res[0] << "\n";
 }
 
-void GLRenderer::bindTexture2D(int i)
+void GLEngine::bindTexture2D(int i)
 {
 	glBindTexture(GL_TEXTURE_2D, i);
 }
 
-void GLRenderer::bindTexture3D(int i)
+void GLEngine::bindTexture3D(int i)
 {
 	glBindTexture(GL_TEXTURE_3D, i);
 }
 
-void GLRenderer::generateMipmap2D()
+void GLEngine::generateMipmap2D()
 {
 	glGenerateMipmap(GL_TEXTURE_2D);
 }
 
-void GLRenderer::activeTextureSlot(int slot)
+void GLEngine::activeTextureSlot(int slot)
 {
 	glActiveTexture(GL_TEXTURE0 + slot);
 }
 
-void GLRenderer::bindCubemap(int i)
+void GLEngine::bindCubemap(int i)
 {
 	glBindTexture(GL_TEXTURE_CUBE_MAP, i);
 }
 
-int GLRenderer::generateShaderProgram()
+int GLEngine::generateShaderProgram()
 {
 	GLuint prog = glCreateProgram();
 	return (int)prog;
 }
 
-void GLRenderer::bindShaderProgram(int id)
+void GLEngine::bindShaderProgram(int id)
 {
 	glUseProgram(id);
 }
 
-void GLRenderer::compileShaderProgram(int id)
+void GLEngine::compileShaderProgram(int id)
 {
 	// Bind all default vertex attributes
 	glBindAttribLocation(id, 0, A_POSITION.c_str());
@@ -259,17 +259,17 @@ void GLRenderer::compileShaderProgram(int id)
 	}
 }
 
-void GLRenderer::deleteShaderProgram(Shader &shader)
+void GLEngine::deleteShaderProgram(Shader &shader)
 {
 	glDeleteProgram(shader.getProgramID());
 }
 
-void GLRenderer::deleteShader(int &id)
+void GLEngine::deleteShader(int &id)
 {
 	glDeleteShader(id);
 }
 
-void GLRenderer::addShader(Shader &program, string code, ShaderType type)
+void GLEngine::addShader(Shader &program, string code, ShaderType type)
 {
 	int i_type;
 	string str_type = "Undefined";
@@ -329,49 +329,49 @@ void GLRenderer::addShader(Shader &program, string code, ShaderType type)
 	}
 }
 
-void GLRenderer::setShaderUniform(int id, string name, int i)
+void GLEngine::setShaderUniform(int id, string name, int i)
 {
 	int loc = glGetUniformLocation(id, name.c_str());
 	glUniform1i(loc, i);
 }
 
-void GLRenderer::setShaderUniform(int id, string name, float f)
+void GLEngine::setShaderUniform(int id, string name, float f)
 {
 	int loc = glGetUniformLocation(id, name.c_str());
 	glUniform1f(loc, f);
 }
 
-void GLRenderer::setShaderUniform(int id, string name, float x, float y)
+void GLEngine::setShaderUniform(int id, string name, float x, float y)
 {
 	int loc = glGetUniformLocation(id, name.c_str());
 	glUniform2f(loc, x, y);
 }
 
-void GLRenderer::setShaderUniform(int id, string name, float x, float y, float z)
+void GLEngine::setShaderUniform(int id, string name, float x, float y, float z)
 {
 	int loc = glGetUniformLocation(id, name.c_str());
 	glUniform3f(loc, x, y, z);
 }
 
-void GLRenderer::setShaderUniform(int id, string name, float x, float y, float z, float w)
+void GLEngine::setShaderUniform(int id, string name, float x, float y, float z, float w)
 {
 	int loc = glGetUniformLocation(id, name.c_str());
 	glUniform4f(loc, x, y, z, w);
 }
 
-void GLRenderer::setShaderUniform(int id, string name, float matrix[])
+void GLEngine::setShaderUniform(int id, string name, float matrix[])
 {
 	int loc = glGetUniformLocation(id, name.c_str());
 	glUniformMatrix4fv(loc, 1, true, matrix);
 }
 
-void GLRenderer::createMesh(Mesh &mesh)
+void GLEngine::createMesh(Mesh &mesh)
 {
 	glGenBuffers(1, &(mesh.vbo));
 	glGenBuffers(1, &(mesh.ibo));
 }
 
-void GLRenderer::uploadMesh(Mesh &mesh)
+void GLEngine::uploadMesh(Mesh &mesh)
 {
 	mesh.size = mesh.indices.size();
 	vector<float> vertexBuffer = MeshUtil::createFloatBuffer(mesh);
@@ -384,13 +384,13 @@ void GLRenderer::uploadMesh(Mesh &mesh)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void GLRenderer::deleteMesh(Mesh &mesh)
+void GLEngine::deleteMesh(Mesh &mesh)
 {
 	glDeleteBuffers(1, &(mesh.vbo));
 	glDeleteBuffers(1, &(mesh.ibo));
 }
 
-void GLRenderer::renderMesh(Mesh &mesh)
+void GLEngine::renderMesh(Mesh &mesh)
 {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glBindBuffer(GL_ARRAY_BUFFER, mesh.vbo);
@@ -414,7 +414,7 @@ void GLRenderer::renderMesh(Mesh &mesh)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void GLRenderer::setDepthTest(bool depthTest)
+void GLEngine::setDepthTest(bool depthTest)
 {
 	if (depthTest)
 		glEnable(GL_DEPTH_TEST);
@@ -422,12 +422,12 @@ void GLRenderer::setDepthTest(bool depthTest)
 		glDisable(GL_DEPTH_TEST);
 }
 
-void GLRenderer::setDepthMask(bool depthMask)
+void GLEngine::setDepthMask(bool depthMask)
 {
 	glDepthMask(depthMask);
 }
 
-void GLRenderer::setDepthClamp(bool depthClamp)
+void GLEngine::setDepthClamp(bool depthClamp)
 {
 	if (depthClamp)
 		glEnable(GL_DEPTH_CLAMP);
@@ -435,7 +435,7 @@ void GLRenderer::setDepthClamp(bool depthClamp)
 		glDisable(GL_DEPTH_CLAMP);
 }
 
-void GLRenderer::setBlend(bool blend)
+void GLEngine::setBlend(bool blend)
 {
 	if (blend)
 		glEnable(GL_BLEND);
@@ -443,7 +443,7 @@ void GLRenderer::setBlend(bool blend)
 		glDisable(GL_BLEND);
 }
 
-void GLRenderer::setBlendMode(BlendMode blendMode)
+void GLEngine::setBlendMode(BlendMode blendMode)
 {
 	if (blendMode == BlendMode::AlphaBlend)
 	{
@@ -451,7 +451,7 @@ void GLRenderer::setBlendMode(BlendMode blendMode)
 	}
 }
 
-void GLRenderer::setCullFace(bool cullFace)
+void GLEngine::setCullFace(bool cullFace)
 {
 	if (cullFace)
 		glEnable(GL_CULL_FACE);
@@ -459,7 +459,7 @@ void GLRenderer::setCullFace(bool cullFace)
 		glDisable(GL_CULL_FACE);
 }
 
-void GLRenderer::setFaceToCull(Face face)
+void GLEngine::setFaceToCull(Face face)
 {
 	switch (face)
 	{
@@ -470,7 +470,7 @@ void GLRenderer::setFaceToCull(Face face)
 	}
 }
 
-void GLRenderer::setFaceDirection(FaceDirection faceDirection)
+void GLEngine::setFaceDirection(FaceDirection faceDirection)
 {
 	switch (faceDirection)
 	{

@@ -3,6 +3,7 @@
 
 // A spatial that can have other spatials attached to it.
 // A node cannot be rendered.
+// Author: Andrew MacDonald
 
 #include "spatial.h"
 
@@ -85,11 +86,11 @@ public:
 
 	template <class SpatialType>
 	typename std::enable_if<std::is_base_of<Spatial, SpatialType>::value, SpatialType*>::type
-	get(int index)
+	getAt(int index)
 	{
 		if (children.size() > index)
 		{
-			return (SpatialType*)children[index];
+			return static_cast<SpatialType*>(children[index]);
 		}
 		else
 		{
@@ -98,9 +99,35 @@ public:
 		return 0;
 	}
 
-	Spatial *get(int index)
+	Spatial *getAt(int index)
 	{
-		Spatial *res = get<Spatial> (index);
+		Spatial *res = getAt<Spatial> (index);
+		return res;
+	}
+
+	template <class SpatialType>
+	typename std::enable_if<std::is_base_of<Spatial, SpatialType>::value, SpatialType*>::type
+	getByName(char *name)
+	{
+		for (int i = 0; i < children.size(); i++)
+		{
+			Spatial *child_at = children[i];
+			if (child_at != 0)
+			{
+				if (strcmp(child_at->getName().c_str(), name) == 0)
+					return static_cast<SpatialType*>(child_at);
+			} 
+			else
+				// The object is null. Probably deleted before being removed from the node.
+				// Erase from the list.
+				children.erase(children.begin() + i);
+		}
+		return 0;
+	}
+
+	Spatial *getByName(char *name)
+	{
+		Spatial *res = getByName<Spatial>(name);
 		return res;
 	}
 
@@ -134,7 +161,7 @@ public:
 
 	void removeAt(int i)
 	{
-		Spatial *spatial = this->get<Spatial>(i);
+		Spatial *spatial = this->getAt<Spatial>(i);
 		this->remove(spatial);
 	}
 };

@@ -4,7 +4,8 @@
 // Asset manager for the engine.
 // Author: Andrew MacDonald
 
-#include "loadedasset.h"
+#include "assetinfo.h"
+#include "loadableobject.h"
 
 #include <vector>
 using std::vector;
@@ -22,8 +23,9 @@ class Texture2D;
 class AssetManager
 {
 private:
-	vector<LoadedAsset> loadedAssets;
-	//static map<char*, AssetLoader*> loaders;
+	static map<AssetInfo, ILoadableObject*> loadedAssets;
+	static map<char*, IAssetLoader*> loaders;
+
 public:
 	AssetManager() {}
 
@@ -31,17 +33,24 @@ public:
 	{
 	}
 
-	template <typename AssetType>
-	static AssetType *load(const char *filepath)
+	template <typename T>
+	static void registerExt(const char *ext);
+
+	static ILoadableObject *load(char *filepath)
 	{
-		//LoadedAsset ast(0, filepath);
-		//AssetType returnedAsset = AssetManager::loaders["apx"]->load<AssetType>(ast);
-		return 0;
+
 	}
 
-	void loadModel(char *filepath);
+	/*template <typename ObjectType>
+	typename std::enable_if<std::is_base_of<ObjectType, LoadableObject>::value, ObjectType*>::type
+	static load(char *filepath)
+	{
+		return static_cast<ObjectType>(load(filepath));
+	}*/
 
-	Texture2D *loadTexture(char *filepath);
+	static void loadModel(char *filepath);
+
+	static Texture2D *loadTexture(char *filepath);
 };
 
 #endif

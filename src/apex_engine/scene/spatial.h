@@ -1,18 +1,20 @@
 #ifndef SPATIAL_H
 #define SPATIAL_H
 
-//Defines an object in a space. 3D by default. 2D if you ignore the Z value.
+// Defines an object in a space. 3D by default. 2D if you ignore the Z value.
+// Author: Andrew MacDonald
 
 #include "../math/vector3f.h"
 #include "../math/quaternion.h"
 #include "../math/matrix4f.h"
 #include "../math/transform.h"
 #include "../math/boundingbox.h"
+#include "../assets/loadableobject.h"
 
 #include <string>
 using std::string;
 
-class Spatial
+class Spatial : public ILoadableObject // A spatial is loadable as a resource
 {
 protected:
 	string name;
@@ -52,6 +54,8 @@ public:
 		this->attachedToRoot = false;
 	}
 
+	~Spatial() {}
+
 	void setName(string name)
 	{
 		this->name = name;
@@ -62,12 +66,12 @@ public:
 		return name;
 	}
 
-	Transform getGlobalTransform()
+	Transform &getGlobalTransform()
 	{
 		return globalTransform;
 	}
 
-	Matrix4f getGlobalMatrix()
+	Matrix4f &getGlobalMatrix()
 	{
 		return globalMatrix;
 	}
@@ -120,17 +124,17 @@ public:
 		return tmpGlobalTrans;
 	}
 
-	Vector3f getGlobalTranslation()
+	Vector3f &getGlobalTranslation()
 	{
 		return globalTransform.getTranslation();
 	}
 
-	Vector3f getGlobalScale()
+	Vector3f &getGlobalScale()
 	{
 		return globalTransform.getScale();
 	}
 
-	Quaternion getGlobalRotation()
+	Quaternion &getGlobalRotation()
 	{
 		return globalTransform.getRotation();
 	}
@@ -205,7 +209,7 @@ public:
 		updateNeeded = true;
 	}
 
-	Vector3f getLocalTranslation() const
+	Vector3f &getLocalTranslation()
 	{
 		return localTranslation;
 	}
@@ -216,7 +220,7 @@ public:
 		setUpdateNeeded();
 	}
 
-	Vector3f getLocalScale() const
+	Vector3f &getLocalScale()
 	{
 		return localScale;
 	}
@@ -227,7 +231,7 @@ public:
 		setUpdateNeeded();
 	}
 
-	Quaternion getLocalRotation() const
+	Quaternion &getLocalRotation()
 	{
 		return localRotation;
 	}

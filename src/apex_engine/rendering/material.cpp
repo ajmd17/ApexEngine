@@ -44,7 +44,7 @@ Material::Material()
     this->setInt(INT_BLENDMODE, 0);
     this->setInt(INT_FACETOCULL, 0);
     
-    this->setBool(BOOL_CASTSHADOWS, 1);
+    this->setBool(BOOL_CASTSHADOWS, true);
     this->setBool(BOOL_DEPTHMASK, true);
     this->setBool(BOOL_DEPTHTEST, true);
     this->setBool(BOOL_CULLENABLED, true);

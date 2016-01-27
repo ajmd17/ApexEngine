@@ -1,28 +1,28 @@
-#ifndef LOADEDASSET_H
-#define LOADEDASSET_H
+#ifndef ASSETINFO_H
+#define ASSETINFO_H
 
-// An asset that has been loaded by the asset manager, to be used by an asset loader
+// Contains information about an asset, including file path and a file stream. To be used by an asset loader.
 // Author: Andrew MacDonald
 
 #include <iostream>
 using std::istream;
 
-class LoadedAsset
+class AssetInfo
 {
 private:
 	istream *stream;
 	char *filepath;
 public:
-	LoadedAsset()
+	AssetInfo()
 	{}
 
-	LoadedAsset(LoadedAsset &asset)
+	AssetInfo(AssetInfo &asset)
 	{
 		this->stream = asset.getStream();
 		this->filepath = asset.getFilePath();
 	}
 
-	LoadedAsset(istream *stream, char *filepath)
+	AssetInfo(istream *stream, char *filepath)
 	{
 		this->stream = stream;
 		this->filepath = filepath;

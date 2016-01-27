@@ -1,14 +1,14 @@
-#ifndef RENDERER_H
-#define RENDERER_H
+#ifndef ENGINE_H
+#define ENGINE_H
 
-// Abstract renderer class. Depending on the platform, the engine will use a specific renderer.
+// Game engine interface. Depending on the platform, a specific version of this will be used.
 // Author: Andrew MacDonald
 
 #include <string>
 using std::string;
 
 #include "enums.h"
-#include "../assets/loadedasset.h"
+#include "../assets/assetinfo.h"
 
 #include <iostream>
 using std::cout;
@@ -20,12 +20,12 @@ class Mesh;
 class Texture;
 class Texture2D;
 
-class Renderer
+class IEngine
 {
 public:
 
-    Renderer() {}
-    virtual ~Renderer() {}
+	IEngine() {}
+    virtual ~IEngine() {}
 
 	/* Rendering stuff */
 	virtual void createContext(Game *game, int width, int height) = 0;
@@ -46,7 +46,7 @@ public:
 	/* End mesh stuff */
 
 	/* Texture stuff */
-	virtual void loadTexture2D(LoadedAsset &asset, Texture2D &outTex) = 0;
+	virtual void loadTexture2D(AssetInfo &asset, Texture2D &outTex) = 0;
 	void loadCubemap(string filepaths[]);
 	virtual int genTexture() = 0;
 	virtual void deleteTexture(int id) = 0;

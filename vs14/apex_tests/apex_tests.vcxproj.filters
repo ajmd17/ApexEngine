@@ -18,12 +18,12 @@
     <ClCompile Include="..\..\src\apex_tests\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\apex_tests\glrenderer.cpp">
+    <ClCompile Include="..\..\src\apex_tests\opengl_engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\apex_tests\glrenderer.h">
+    <ClInclude Include="..\..\src\apex_tests\opengl_engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

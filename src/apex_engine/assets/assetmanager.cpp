@@ -12,18 +12,18 @@ using std::ifstream;
 
 Texture2D *AssetManager::loadTexture(char *filepath)
 {
-	LoadedAsset asset;
+	AssetInfo asset;
 	asset.setFilePath(filepath);
 
 	Texture2D *res = new Texture2D();
-	RenderManager::getRenderer()->loadTexture2D(asset, *res);
+	RenderManager::getEngine()->loadTexture2D(asset, *res);
 
 	return res;
 }
 
 void AssetManager::loadModel(char *filepath)
 {
-	LoadedAsset asset;
+	AssetInfo asset;
 
 	ifstream filestream(filepath);
 
