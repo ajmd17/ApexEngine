@@ -133,19 +133,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\libs\win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\libs\win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\libs\win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\libs\win32;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\libs\win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

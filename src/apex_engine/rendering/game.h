@@ -24,8 +24,11 @@ public:
 	}
     
     virtual void init() = 0;
+
     virtual void update() = 0;
+
     virtual void render() = 0;
+
     virtual void exit() = 0;
 
 	void setRunning(bool running) 

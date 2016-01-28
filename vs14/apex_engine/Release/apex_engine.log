@@ -1,110 +1,98 @@
 ﻿  assetmanager.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-  boundingbox.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(300): warning C4521: 'Quaternion' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(187): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(193): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(47): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-  math_util.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-..\..\src\apex_engine\math\math_util.cpp(3): warning C4305: 'initializing' : truncation from 'double' to 'const float'
-  vector2f.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
-  vector3f.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-  vector4f.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
   pointlight.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader_util.h(114): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\shader_util.h(120): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
   material.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
   mesh.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertex.h(159): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.h(102): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(300): warning C4521: 'Quaternion' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(187): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(193): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(47): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertex.h(159): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh.h(102): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\quaternion.h(300): warning C4521: 'Quaternion' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\quaternion.h(187): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\quaternion.h(193): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(47): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
 ..\..\src\apex_engine\rendering\mesh.cpp(10): warning C4018: '<' : signed/unsigned mismatch
 ..\..\src\apex_engine\rendering\mesh.cpp(24): warning C4018: '<' : signed/unsigned mismatch
   rendermanager.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
   shader.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader_util.h(114): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertex.h(159): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\mesh.h(102): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\shader_util.h(120): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertex.h(159): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh.h(102): warning C4018: '<' : signed/unsigned mismatch
   shadermanager.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader_util.h(114): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\shader_util.h(120): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
   texture2d.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-  vertexattributes.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
-  apex_engine.vcxproj -> C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Release\apex_engine_lib.lib
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+  geometry.cpp
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\shader_util.h(120): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertex.h(159): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\../rendering/mesh.h(102): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\../math/quaternion.h(300): warning C4521: 'Quaternion' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\../math/quaternion.h(187): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\../math/quaternion.h(193): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(47): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+  apex_engine.vcxproj -> C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\vs14\Release\apex_engine_lib.lib

@@ -1,99 +1,69 @@
-﻿  glrenderer.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertex.h(159): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh.h(102): warning C4018: '<' : signed/unsigned mismatch
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh_util.h(44): warning C4018: '<' : signed/unsigned mismatch
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh_util.h(82): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh_util.h(83): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh_util.h(84): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh_util.h(85): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader_util.h(114): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\../math/quaternion.h(300): warning C4521: 'Quaternion' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\../math/quaternion.h(187): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\../math/quaternion.h(193): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(47): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(26): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(33): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(45): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(55): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(109): warning C4018: '<' : signed/unsigned mismatch
-..\..\src\apex_tests\glrenderer.cpp(255): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
-..\..\src\apex_tests\glrenderer.cpp(259): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
-..\..\src\apex_tests\glrenderer.cpp(265): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
-..\..\src\apex_tests\glrenderer.cpp(269): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
-..\..\src\apex_tests\glrenderer.cpp(273): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
-..\..\src\apex_tests\glrenderer.cpp(425): warning C4482: nonstandard extension used: enum 'BlendMode' used in qualified name
-..\..\src\apex_tests\glrenderer.cpp(443): warning C4482: nonstandard extension used: enum 'Face' used in qualified name
-..\..\src\apex_tests\glrenderer.cpp(445): warning C4482: nonstandard extension used: enum 'Face' used in qualified name
-..\..\src\apex_tests\glrenderer.cpp(454): warning C4482: nonstandard extension used: enum 'FaceDirection' used in qualified name
-..\..\src\apex_tests\glrenderer.cpp(456): warning C4482: nonstandard extension used: enum 'FaceDirection' used in qualified name
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(90): warning C4018: '>' : signed/unsigned mismatch
-          c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(103) : see reference to function template instantiation 'Spatial *Node::get<Spatial>(int)' being compiled
-  main.cpp
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertex.h(159): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh.h(102): warning C4018: '<' : signed/unsigned mismatch
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh_util.h(44): warning C4018: '<' : signed/unsigned mismatch
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh_util.h(82): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh_util.h(83): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh_util.h(84): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\rendering/mesh_util.h(85): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\rendering\shader_util.h(114): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(300): warning C4521: 'Quaternion' : multiple copy constructors specified
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(187): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\quaternion.h(193): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(47): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(26): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(33): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(45): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(55): warning C4018: '<' : signed/unsigned mismatch
-c:\users\user\documents\visual studio 2015\projects\lib_test\src\apex_engine\scene\node.h(109): warning C4018: '<' : signed/unsigned mismatch
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\scene/node.h(90): warning C4018: '>' : signed/unsigned mismatch
-          C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\scene/node.h(103) : see reference to function template instantiation 'Spatial *Node::get<Spatial>(int)' being compiled
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\src\apex_engine\scene/node.h(90): warning C4018: '>' : signed/unsigned mismatch
-          ..\..\src\apex_tests\main.cpp(77) : see reference to function template instantiation 'Node *Node::get<Node>(int)' being compiled
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
-apex_engine_lib.lib(rendermanager.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in glrenderer.obj
-apex_engine_lib.lib(rendermanager.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
-apex_engine_lib.lib(vertexattributes.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in glrenderer.obj
-apex_engine_lib.lib(texture2d.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in glrenderer.obj
-apex_engine_lib.lib(boundingbox.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in glrenderer.obj
-apex_engine_lib.lib(material.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in glrenderer.obj
-apex_engine_lib.lib(shader.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in glrenderer.obj
-apex_engine_lib.lib(assetmanager.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in glrenderer.obj
-apex_engine_lib.lib(shadermanager.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in glrenderer.obj
-LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+﻿  opengl_engine.cpp
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\../math/vector3f.h(284): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertex.h(159): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\light\../../math/vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
+C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\src\apex_engine\rendering/mesh.h(102): warning C4018: '<' : signed/unsigned mismatch
+C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\src\apex_engine\rendering/mesh_util.h(44): warning C4018: '<' : signed/unsigned mismatch
+C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\src\apex_engine\rendering/mesh_util.h(82): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\src\apex_engine\rendering/mesh_util.h(83): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\src\apex_engine\rendering/mesh_util.h(84): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\src\apex_engine\rendering/mesh_util.h(85): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\shader_util.h(120): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\../math/quaternion.h(300): warning C4521: 'Quaternion' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\../math/quaternion.h(187): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\../math/quaternion.h(193): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(47): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(27): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(34): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(46): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(56): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(136): warning C4018: '<' : signed/unsigned mismatch
+..\..\src\apex_tests\opengl_engine.cpp(277): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
+..\..\src\apex_tests\opengl_engine.cpp(281): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
+..\..\src\apex_tests\opengl_engine.cpp(287): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
+..\..\src\apex_tests\opengl_engine.cpp(291): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
+..\..\src\apex_tests\opengl_engine.cpp(295): warning C4482: nonstandard extension used: enum 'ShaderType' used in qualified name
+..\..\src\apex_tests\opengl_engine.cpp(447): warning C4482: nonstandard extension used: enum 'BlendMode' used in qualified name
+..\..\src\apex_tests\opengl_engine.cpp(465): warning C4482: nonstandard extension used: enum 'Face' used in qualified name
+..\..\src\apex_tests\opengl_engine.cpp(467): warning C4482: nonstandard extension used: enum 'Face' used in qualified name
+..\..\src\apex_tests\opengl_engine.cpp(476): warning C4482: nonstandard extension used: enum 'FaceDirection' used in qualified name
+..\..\src\apex_tests\opengl_engine.cpp(478): warning C4482: nonstandard extension used: enum 'FaceDirection' used in qualified name
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(91): warning C4018: '>' : signed/unsigned mismatch
+          c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(104) : see reference to function template instantiation 'Spatial *Node::getAt<Spatial>(int)' being compiled
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(112): warning C4018: '<' : signed/unsigned mismatch
+          c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(130) : see reference to function template instantiation 'Spatial *Node::getByName<Spatial>(char *)' being compiled
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14\Release\apex_tests.exe : fatal error LNK1319: 8 mismatches detected
+  Generating code
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\boundingbox.cpp(4): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\program files (x86)\microsoft visual studio 10.0\vc\include\fstream(423): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\program files (x86)\microsoft visual studio 10.0\vc\include\fstream(322): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\boundingbox.cpp(47): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\program files (x86)\microsoft visual studio 10.0\vc\include\fstream(587): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\material.h(77): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\material.h(69): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\material.h(61): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\material.h(233): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\material.h(219): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\material.h(205): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\material.h(191): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\program files (x86)\microsoft visual studio 10.0\vc\include\string(64): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\shader_util.h(88): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\shader_util.h(115): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\shader.cpp(9): warning C4748: /GS can not protect parameters and local variables from local buffer overrun because optimizations are disabled in function
+  Finished generating code
+  apex_tests.vcxproj -> C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\vs14\Release\apex_tests.exe

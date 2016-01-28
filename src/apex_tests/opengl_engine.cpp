@@ -81,7 +81,6 @@ void GLEngine::createContext(Game *game, int width, int height)
 	{
 		if (event.type == sf::Event::Closed)
         {
-            
             globalMutex.lock();
             if (game != NULL)
             {
@@ -445,7 +444,7 @@ void GLEngine::setBlend(bool blend)
 
 void GLEngine::setBlendMode(BlendMode blendMode)
 {
-	if (blendMode == BlendMode::AlphaBlend)
+	if (blendMode == BlendMode::AlphaBlended)
 	{
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}

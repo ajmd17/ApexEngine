@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1920E1B31C55898A0087D330 /* liblua53.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1920E1B21C55898A0087D330 /* liblua53.dylib */; };
-		196FC5181C4D9D7900F9AEC4 /* glrenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FC47B1C4D9D7900F9AEC4 /* glrenderer.cpp */; };
+		1961674D1C59A03B00D54BF8 /* opengl_engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1961674B1C59A03B00D54BF8 /* opengl_engine.cpp */; };
 		196FC5431C4D9D7900F9AEC4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 196FC5171C4D9D7900F9AEC4 /* main.cpp */; };
 		196FC5451C4D9DAE00F9AEC4 /* libapexengine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196FC5441C4D9DAE00F9AEC4 /* libapexengine.a */; };
 		196FC5471C4D9FB100F9AEC4 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196FC5461C4D9FB100F9AEC4 /* OpenGL.framework */; };
@@ -29,9 +29,9 @@
 
 /* Begin PBXFileReference section */
 		1920E1B21C55898A0087D330 /* liblua53.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua53.dylib; path = ../../libs/osx/liblua53.dylib; sourceTree = "<group>"; };
+		1961674B1C59A03B00D54BF8 /* opengl_engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = opengl_engine.cpp; sourceTree = "<group>"; };
+		1961674C1C59A03B00D54BF8 /* opengl_engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opengl_engine.h; sourceTree = "<group>"; };
 		196FC4621C4D9BDB00F9AEC4 /* apextests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apextests.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		196FC47B1C4D9D7900F9AEC4 /* glrenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glrenderer.cpp; sourceTree = "<group>"; };
-		196FC47C1C4D9D7900F9AEC4 /* glrenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glrenderer.h; sourceTree = "<group>"; };
 		196FC5171C4D9D7900F9AEC4 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		196FC5441C4D9DAE00F9AEC4 /* libapexengine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libapexengine.a; path = "../../../../Library/Developer/Xcode/DerivedData/workspace-dckxrmzhmsteloeotfahbvvuxggl/Build/Products/Debug/libapexengine.a"; sourceTree = "<group>"; };
 		196FC5461C4D9FB100F9AEC4 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -112,8 +112,8 @@
 		196FC47A1C4D9D7900F9AEC4 /* apex_tests */ = {
 			isa = PBXGroup;
 			children = (
-				196FC47B1C4D9D7900F9AEC4 /* glrenderer.cpp */,
-				196FC47C1C4D9D7900F9AEC4 /* glrenderer.h */,
+				1961674B1C59A03B00D54BF8 /* opengl_engine.cpp */,
+				1961674C1C59A03B00D54BF8 /* opengl_engine.h */,
 				196FC5171C4D9D7900F9AEC4 /* main.cpp */,
 			);
 			name = apex_tests;
@@ -203,7 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				196FC5181C4D9D7900F9AEC4 /* glrenderer.cpp in Sources */,
+				1961674D1C59A03B00D54BF8 /* opengl_engine.cpp in Sources */,
 				196FC5431C4D9D7900F9AEC4 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

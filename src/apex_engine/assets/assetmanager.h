@@ -38,7 +38,7 @@ public:
 
 	static ILoadableObject *load(char *filepath)
 	{
-
+        return 0;
 	}
 
 	/*template <typename ObjectType>

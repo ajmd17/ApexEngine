@@ -63,7 +63,6 @@ void TestGame::init()
 	mytex = astMgr.loadTexture("tex.png");
 
 	this->renderManager.getEngine()->clearColor(1, 0, 0, 1);
-
     
 	Node *n = new Node("root");
 	Node *n2 = new Node();
@@ -78,8 +77,6 @@ void TestGame::init()
 
 	delete n;
 	delete n2;
-
-
 	
 	rot = 0;
 

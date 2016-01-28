@@ -6,15 +6,15 @@
 
 enum TextureWrapMode
 {
-	Repeat,
+	ClampToEdge,
 	ClampToBorder,
-	ClampToEdge
+	Repeat
 };
 
 enum TextureFilterMode
 {
-	Linear,
 	Nearest,
+	Linear,
 	Mipmap
 };
 
@@ -36,8 +36,8 @@ enum Face { Back, Front };
 
 enum FaceDirection { Cw, Ccw };
 
-enum BlendMode { AlphaBlend, Opaque };
+enum BlendMode { Opaque, AlphaBlended };
 
-enum AudioPlayState { Playing, Paused, Stopped };
+enum AudioPlayState { Stopped, Paused, Playing };
 
 #endif

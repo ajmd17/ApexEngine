@@ -10,6 +10,7 @@ public:
 					 M10 = 4, M11 = 5, M12 = 6, M13 = 7,
 					 M20 = 8, M21 = 9, M22 = 10, M23 = 11,
 					 M30 = 12, M31 = 13, M32 = 14, M33 = 15;
+
 	float values[MATRIX_SIZE];
 
 	Matrix4f()
@@ -32,7 +33,10 @@ public:
              float m20, float m21, float m22, float m23,
              float m30, float m31, float m32, float m33)
 	{
-		this->set(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33);
+		this->set(m00, m01, m02, m03, 
+				  m10, m11, m12, m13, 
+				  m20, m21, m22, m23, 
+				  m30, m31, m32, m33);
 	}
 
 	~Matrix4f()
