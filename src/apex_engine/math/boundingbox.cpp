@@ -2,8 +2,8 @@
 
 BoundingBox BoundingBox::clear()
 {
-	Vector3f min_vec(0);
-	Vector3f max_vec(0);
+	Vector3f min_vec(MAX_SIZE); // Yes, these are reversed on purpose!
+	Vector3f max_vec(MIN_SIZE);
 	this->createBoundingBox(min_vec, max_vec);
 	return *this;
 }
@@ -15,10 +15,8 @@ BoundingBox BoundingBox::createBoundingBox(Vector3f &dimMin, Vector3f &dimMax)
 
 	center.set(min)->addStore(max)->scaleStore(0.5f);
 
-	extent.set(dimMax);
-	extent.subStore(dimMin);
-
-	dimensions.set(max)->subStore(min)->scaleStore(0.5f);
+	dimensions.set(dimMax);
+	dimensions.subStore(dimMin);
 
 	updateCorners();
 

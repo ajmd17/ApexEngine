@@ -1,6 +1,9 @@
 #ifndef MATRIX4F_H
 #define MATRIX4F_H
 
+#include <iostream>
+using std::ostream;
+
 class Matrix4f
 {
 private:
@@ -362,6 +365,21 @@ public:
         this->values[M33] = tmp[M33] * inv_det;
 
 		return this;
+	}
+
+	friend ostream& operator<<(ostream& out, const Matrix4f &mat) // output
+	{
+		out << "[";
+		for (int i = 0; i < Matrix4f::MATRIX_SIZE; i++)
+		{
+			out << mat.values[i];
+			if (i != Matrix4f::MATRIX_SIZE - 1)
+				out << ", ";
+			if ((i+1) % 4 == 0 && (i + 1) < Matrix4f::MATRIX_SIZE)
+				out << "\n";
+		}
+		out << "]";
+		return out;
 	}
 };
 #endif

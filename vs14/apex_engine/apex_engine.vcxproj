@@ -78,6 +78,8 @@
     <ClCompile Include="..\..\src\apex_engine\rendering\texture2d.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\vertexattributes.cpp" />
     <ClCompile Include="..\..\src\apex_engine\scene\geometry.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\scene\node.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\scene\spatial.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BDD7E864-88C3-4A79-AB61-9F799C833305}</ProjectGuid>

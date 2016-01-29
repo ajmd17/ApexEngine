@@ -39,6 +39,8 @@ public:
 
 	Node(char *name) : Spatial(name) {}
 
+	~Node();
+
 	void update()
 	{
 		Spatial::update();
@@ -156,6 +158,14 @@ public:
 		{
 			children.erase(std::find(children.begin(), children.end(), spatial));
 			spatial->setParent(0);
+		}
+	}
+
+	void removeSoft(Spatial *spatial)
+	{
+		if (contains(spatial))
+		{
+			children.erase(std::find(children.begin(), children.end(), spatial));
 		}
 	}
 

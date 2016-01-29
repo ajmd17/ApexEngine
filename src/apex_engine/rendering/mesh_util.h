@@ -1,6 +1,8 @@
 #ifndef MESHUTIL_H
 #define MESHUTIL_H
 
+#include "../math/boundingbox.h"
+#include "../math/matrix4f.h"
 #include "mesh.h"
 #include "vertex.h"
 
@@ -94,6 +96,27 @@ public:
 		}
 
 		return floatBuffer;
+	}
+
+	static BoundingBox createMeshBoundingBox(Mesh &mesh, BoundingBox &boundingBox, Matrix4f &transform)
+	{
+		boundingBox.clear();
+		for (int i = 0; i < mesh.indices.size(); i++)
+		{
+			Vector3f tmpPosition;
+			tmpPosition.set(mesh.vertices[mesh.indices[i]].getPosition());
+			tmpPosition.transformStore(transform);
+
+			boundingBox.extend(tmpPosition);
+		}
+		return boundingBox;
+	}
+
+	static BoundingBox createMeshBoundingBox(Mesh &mesh, BoundingBox &boundingBox)
+	{
+		Matrix4f tmpMat;
+		createMeshBoundingBox(mesh, boundingBox, tmpMat);
+		return boundingBox;
 	}
 };
 

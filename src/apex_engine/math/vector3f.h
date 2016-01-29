@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <iostream>
+
 #include "math_util.h"
 #include "matrix4f.h"
 
@@ -176,9 +177,10 @@ public:
 
 	Vector3f *transformStore(Matrix4f &mat)
 	{
-		return set(this->x * mat.values[Matrix4f::M00] + this->y * mat.values[Matrix4f::M01] + this->z * mat.values[Matrix4f::M02] + mat.values[Matrix4f::M03],
-				 this->x * mat.values[Matrix4f::M10] + this->y * mat.values[Matrix4f::M11] + this->z * mat.values[Matrix4f::M12] + mat.values[Matrix4f::M13],
-				 this->x * mat.values[Matrix4f::M20] + this->y * mat.values[Matrix4f::M21] + this->z * mat.values[Matrix4f::M22] + mat.values[Matrix4f::M23]);
+		set(this->x * mat.values[Matrix4f::M00] + this->y * mat.values[Matrix4f::M01] + this->z * mat.values[Matrix4f::M02] + mat.values[Matrix4f::M03],
+			this->x * mat.values[Matrix4f::M10] + this->y * mat.values[Matrix4f::M11] + this->z * mat.values[Matrix4f::M12] + mat.values[Matrix4f::M13],
+			this->x * mat.values[Matrix4f::M20] + this->y * mat.values[Matrix4f::M21] + this->z * mat.values[Matrix4f::M22] + mat.values[Matrix4f::M23]);
+		return this;
 	}
 
 	Vector3f *div(Vector3f &other)

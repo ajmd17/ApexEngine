@@ -81,13 +81,13 @@ void GLEngine::createContext(Game *game, int width, int height)
 	{
 		if (event.type == sf::Event::Closed)
         {
+			window.close();
             globalMutex.lock();
             if (game != NULL)
             {
                 game->exit();
                 game->setRunning(false);
             }
-            window.close();
             globalMutex.unlock();
 		}
 		else if (event.type == sf::Event::Resized)

@@ -44,6 +44,10 @@ public:
 		this->parent = 0;
 		this->updateNeeded = false;
 		this->attachedToRoot = false;
+
+		localTranslation.set(0, 0, 0);
+		localScale.set(1, 1, 1);
+		localRotation.setToIdentity();
 	}
 
 	Spatial(string name)
@@ -52,9 +56,13 @@ public:
 		this->parent = 0;
 		this->updateNeeded = false;
 		this->attachedToRoot = false;
+
+		localTranslation.set(0, 0, 0);
+		localScale.set(1, 1, 1);
+		localRotation.setToIdentity();
 	}
 
-	~Spatial() {}
+	virtual ~Spatial();
 
 	void setName(string name)
 	{
@@ -64,6 +72,14 @@ public:
 	string getName() const
 	{
 		return name;
+	}
+
+	void resetLocalTransforms()
+	{
+		localTranslation.set(0, 0, 0);
+		localScale.set(1, 1, 1);
+		localRotation.setToIdentity();
+		setUpdateNeeded();
 	}
 
 	Transform &getGlobalTransform()
@@ -190,7 +206,7 @@ public:
 	}
 
 	// Don't set this manually. Otherwise, bad things will happen.
-	void setParent(Spatial *parent)
+	virtual void setParent(Spatial *parent)
 	{
 		this->parent = parent;
 		setUpdateNeeded();

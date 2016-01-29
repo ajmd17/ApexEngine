@@ -1,19 +1,41 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
+#include "spatial.h"
+
 #include "../rendering/shader.h"
 #include "../rendering/mesh.h"
+#include "../rendering/mesh_util.h"
 #include "../rendering/material.h"
-#include "spatial.h"
+
+#include "../math/boundingbox.h"
+
+class RenderManager;
 
 class Camera;
 
 class Geometry : public Spatial
 {
 private:
+	RenderManager *renderManager; // Contains a list of all geometry that can be rendered (attached to the root node)
 	Shader *shader;
 	Mesh *mesh;
 	Material material;
+
+	BoundingBox localBoundingBox, globalBoundingBox;
+	bool localBoundingBoxCreated, globalBoundingBoxCreated;
+
+	void updateGlobalBoundingBox()
+	{
+		if (mesh != NULL)
+			MeshUtil::createMeshBoundingBox(*mesh, globalBoundingBox, getGlobalMatrix());
+	}
+
+	void updateLocalBoundingBox()
+	{
+		if (mesh != NULL)
+			MeshUtil::createMeshBoundingBox(*mesh, localBoundingBox);
+	}
 public:
 	Geometry() : Spatial() { this->mesh = 0;  }
 
@@ -22,6 +44,10 @@ public:
 	Geometry(Mesh *mesh) : Spatial() { this->mesh = mesh; }
 
 	Geometry(Mesh *mesh, char *name) : Spatial(name) { this->mesh = mesh; }
+
+	void render(Camera &cam);
+
+	void setParent(Spatial *parent);
 
 	Mesh *getMesh()
 	{
@@ -53,7 +79,25 @@ public:
 		this->shader = shader;
 	}
 
-	void render(Camera &cam);
+	BoundingBox &getGlobalBoundingBox()
+	{
+		if (!globalBoundingBoxCreated)
+		{
+			updateGlobalBoundingBox();
+			globalBoundingBoxCreated = true;
+		}
+		return globalBoundingBox;
+	}
+
+	BoundingBox &getLocalBoundingBox()
+	{
+		if (!localBoundingBoxCreated)
+		{
+			updateLocalBoundingBox();
+			localBoundingBoxCreated = true;
+		}
+		return localBoundingBox;
+	}
 };
 
 #endif

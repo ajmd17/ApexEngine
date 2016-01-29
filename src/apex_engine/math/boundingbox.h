@@ -9,19 +9,21 @@
 #include "transform.h"
 #include "ray.h"
 #include "math_util.h"
+
 #include <cmath>
+#include <climits>
 
 class BoundingBox
 {
 private:
-	const static int MAX_SIZE =  1000000;
-	const static int MIN_SIZE = -1000000;
+	const static int MAX_SIZE = INT_MAX;
+	const static int MIN_SIZE = INT_MIN;
 	const static int NUM_CORNERS = 8;
 
 	Vector3f corners[NUM_CORNERS];
 	Matrix4f matrix;
 
-	Vector3f max, min, center, extent, dimensions;
+	Vector3f max, min, center, dimensions;
 public:
 	BoundingBox clear();
 
@@ -49,24 +51,39 @@ public:
 		this->createBoundingBox(dimMin, dimMax);
 	}
 
-	Vector3f getMin()
+	const Vector3f getMin()
 	{
 		return min;
 	}
 
-	Vector3f getMax()
+	const Vector3f getMax()
 	{
 		return max;
 	}
 
-	Vector3f getCenter()
+	const Vector3f getCenter()
 	{
 		return center;
 	}
 
-	Vector3f getExtent()
+	const Vector3f getDimensions()
 	{
-		return extent;
+		return dimensions;
+	}
+
+	const float getWidth()
+	{
+		return dimensions.x;
+	}
+
+	const float getHeight()
+	{
+		return dimensions.y;
+	}
+
+	const float getLength()
+	{
+		return dimensions.z;
 	}
 };
 

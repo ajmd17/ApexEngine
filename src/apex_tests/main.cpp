@@ -10,6 +10,7 @@ using namespace std;
 #include <rendering/texture2d.h>
 #include <rendering/shadermanager.h>
 #include <scene/node.h>
+#include <scene/geometry.h>
 
 
 extern "C" {
@@ -49,6 +50,7 @@ public:
 const string MyShader::vscode = "attribute vec3 a_position;\nattribute vec2 a_texcoord0;\nuniform mat4 u_mat;\nvarying vec2 v_texCoord0;\nvoid main() {\ngl_Position =u_mat * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\n}";
 const string MyShader::fscode = "uniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvoid main() {\ngl_FragColor = texture2D(u_texture, v_texCoord0);\n}";
 
+Geometry *mygeom;
 Mesh *mesh;
 Shader *shader; 
 lua_State *lua;
@@ -67,16 +69,15 @@ void TestGame::init()
 	Node *n = new Node("root");
 	Node *n2 = new Node();
 
+
 	n2->setLocalTranslation(Vector3f(4, 7, 1));
 	n->setLocalTranslation(Vector3f(9, 9, 9));
 
 	n->add(n2);
 	n->update();
 
-	cout << n->getAt<Node>(0)->getGlobalTranslation() << "\n";
+	//cout << n->getAt<Node>(0)->getGlobalTranslation() << "\n";
 
-	delete n;
-	delete n2;
 	
 	rot = 0;
 
@@ -85,17 +86,29 @@ void TestGame::init()
 	mat->setTexture(Material::TEXTURE_DIFFUSE, *mytex);
 	mat->getVector4f(Material::COLOR_DIFFUSE, col);
 
-
+	mygeom = new Geometry();
+//	mygeom->renderManager = &(this->renderManager);
+	n->add(mygeom);
+	mygeom->setLocalTranslation(Vector3f(1, 1, 1));
 	vector<Vertex> myVerts;
 	mesh = new Mesh();
 	myVerts.push_back(Vertex(Vector3f(-1, 0, 3), Vector2f(0, 0)));
 	myVerts.push_back(Vertex(Vector3f(0, 1, 3), Vector2f(0.5, 1)));
 	myVerts.push_back(Vertex(Vector3f(1, 0, 3), Vector2f(1, 0)));
 	mesh->setVertices(myVerts);
+	mygeom->setMesh(mesh);
+
+	mygeom->update();
+
     
     ShaderProperties props;
 	shader = ShaderManager::getShader<MyShader> (props);
-	cout << props << "\n";
+	mygeom->setShader(shader);
+//	cout << props << "\n";
+
+	cout << mygeom->getLocalBoundingBox().getCenter() << "\n";
+	cout << mygeom->getGlobalBoundingBox().getCenter() << "\n";
+
 	
 	// Test Lua
 	lua = luaL_newstate();
@@ -259,13 +272,13 @@ void TestGame::init()
 
 		.endNamespace();
 
-	LuaRef lua_init = getGlobal(lua, "main");
-	lua_init();
+	//LuaRef lua_init = getGlobal(lua, "main");
+	//lua_init();
 }
 
 void TestGame::exit()
 {
-    cout << "Exit!\n";
+	delete mygeom;
 	delete mat;
 	delete mytex;
 	delete mesh;
@@ -274,9 +287,9 @@ void TestGame::exit()
 
 void TestGame::update()
 {
-	LuaRef lua_logic = getGlobal(lua, "logic");
+	/*LuaRef lua_logic = getGlobal(lua, "logic");
 	lua_logic();
-
+	*/
 	rot += 1;
 	Matrix4f proj, tmp;
 	MatrixUtil::setToRotation(myMatrix, *Quaternion().setFromAxis(Vector3f(0,1,0), rot));
@@ -299,6 +312,7 @@ void TestGame::render()
 
 		shader->setUniform("u_mat", myMatrix);
 
+		//mygeom->render(&renderManager);
 		mesh->render();
 		shader->end();
 	}

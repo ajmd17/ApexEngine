@@ -9,12 +9,12 @@ function keypress(key, released)
 end
 
 function logic()
-	--[[x = x + 0.5
+	x = x + 0.5
 	if x > 100 then
 		bob = bob - 1
 		print (bob, " bottles of beer on the wall")
 		x = 0
-	end]]--
+	end
 end
 
 function main()
@@ -41,10 +41,5 @@ function main()
 	myRoot:update()
 	print ("is", myspat:getName(), " attached to root?", myspat:isAttachedToRoot())
 	print ("Size of root:", myRoot:size())
-	myRoot:add(myspat)
-	
-	print ("Child #0 name: ", myRoot:getAt(0):getName())
-	print ("Child #0 global trans Y: ", myRoot:getAt(0):getGlobalTranslation().y)
-	
 	
 end

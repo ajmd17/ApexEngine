@@ -1,1 +1,42 @@
-﻿  apex_tests.vcxproj -> C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\vs14\Debug\apex_tests.exe
+﻿  main.cpp
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\vector3f.h(286): warning C4521: 'Vector3f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertex.h(159): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh.h(102): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\quaternion.h(300): warning C4521: 'Quaternion' : multiple copy constructors specified
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\quaternion.h(187): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\quaternion.h(193): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(47): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(46): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(84): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(85): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(86): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(87): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(104): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\shader_util.h(120): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(27): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(34): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(48): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(58): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\node.h(138): warning C4018: '<' : signed/unsigned mismatch
+c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_tests\main.cpp(90): error C2248: 'Geometry::renderManager' : cannot access private member declared in class 'Geometry'
+          c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\geometry.h(20) : see declaration of 'Geometry::renderManager'
+          c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\scene\geometry.h(17) : see declaration of 'Geometry'
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  opengl_engine.cpp
