@@ -14,6 +14,8 @@
 #include <string>
 using std::string;
 
+class RenderManager;
+
 class Spatial : public ILoadableObject // A spatial is loadable as a resource
 {
 protected:
@@ -164,7 +166,7 @@ public:
 		return this->attachedToRoot;
 	}
 
-	void updateParents()
+	virtual void updateParents()
 	{
 		this->calcAttachedToRoot();
 	}
@@ -190,7 +192,7 @@ public:
 		globalMatrix = globalTransform.getMatrix();
 	}
 
-	virtual void update()
+	virtual void update(RenderManager *renderMgr)
 	{
 		if (updateNeeded)
 		{
@@ -206,7 +208,7 @@ public:
 	}
 
 	// Don't set this manually. Otherwise, bad things will happen.
-	virtual void setParent(Spatial *parent)
+	void setParent(Spatial *parent)
 	{
 		this->parent = parent;
 		setUpdateNeeded();

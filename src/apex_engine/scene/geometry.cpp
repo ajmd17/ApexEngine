@@ -5,7 +5,6 @@
 
 void Geometry::render(Camera &cam)
 {
-
 	if (this->shader != 0 && this->mesh != 0)
 	{
 		shader->use();
@@ -18,12 +17,19 @@ void Geometry::render(Camera &cam)
 	}
 }
 
-void Geometry::setParent(Spatial *parent)
+void Geometry::updateParents()
 {
-	Spatial::setParent(parent);
-
-	if (this->getParent() != NULL)
-		this->renderManager->addGeometry(this);
+	Spatial::updateParents();
+	
+	if (renderMgr != NULL && this->isAttachedToRoot())
+		this->renderMgr->addGeometry(this);
 	else
-		this->renderManager->removeGeometry(this);
+		this->renderMgr->removeGeometry(this);
+}
+
+void Geometry::update(RenderManager *renderMgr)
+{
+	this->renderMgr = renderMgr;
+
+	Spatial::update(renderMgr);
 }

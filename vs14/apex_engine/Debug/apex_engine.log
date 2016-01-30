@@ -1,35 +1,4 @@
-﻿  geometry.cpp
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\vector3f.h(286): warning C4521: 'Vector3f' : multiple copy constructors specified
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\quaternion.h(300): warning C4521: 'Quaternion' : multiple copy constructors specified
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\quaternion.h(187): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\quaternion.h(193): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(41): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(42): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(47): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\matrix_util.h(79): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\shader_util.h(120): warning C4018: '<' : signed/unsigned mismatch
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\vector4f.h(295): warning C4521: 'Vector4f' : multiple copy constructors specified
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\vector2f.h(222): warning C4521: 'Vector2f' : multiple copy constructors specified
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertex.h(159): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(84): warning C4018: '<' : signed/unsigned mismatch
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(97): warning C4018: '<' : signed/unsigned mismatch
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\vertexattributes.h(122): warning C4018: '<' : signed/unsigned mismatch
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh.h(102): warning C4018: '<' : signed/unsigned mismatch
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(46): warning C4018: '<' : signed/unsigned mismatch
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(84): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(85): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(86): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(87): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
-c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(104): warning C4018: '<' : signed/unsigned mismatch
-  rendermanager.cpp
+﻿  rendermanager.cpp
 c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(11): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
 c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\math_util.h(16): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
 c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\math\vector3f.h(286): warning C4521: 'Vector3f' : multiple copy constructors specified
@@ -60,13 +29,4 @@ c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_uti
 c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(86): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
 c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(87): warning C4244: 'argument' : conversion from 'int' to 'const float', possible loss of data
 c:\users\andrew\desktop\apexengine_cpp_012716\src\apex_engine\rendering\mesh_util.h(104): warning C4018: '<' : signed/unsigned mismatch
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  texture2d.cpp
-  shadermanager.cpp
-  shader.cpp
-  mesh.cpp
-  material.cpp
-  pointlight.cpp
-  assetmanager.cpp
   apex_engine.vcxproj -> C:\Users\andrew\Desktop\ApexEngine_Cpp_012716\vs14\Debug\apex_engine_lib.lib

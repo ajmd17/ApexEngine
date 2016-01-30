@@ -17,7 +17,7 @@ class Camera;
 class Geometry : public Spatial
 {
 private:
-	RenderManager *renderManager; // Contains a list of all geometry that can be rendered (attached to the root node)
+	RenderManager *renderMgr; // Contains a list of all geometry that can be rendered (attached to the root node)
 	Shader *shader;
 	Mesh *mesh;
 	Material material;
@@ -45,9 +45,11 @@ public:
 
 	Geometry(Mesh *mesh, char *name) : Spatial(name) { this->mesh = mesh; }
 
+	void update(RenderManager *renderMgr);
+
 	void render(Camera &cam);
 
-	void setParent(Spatial *parent);
+	void updateParents();
 
 	Mesh *getMesh()
 	{

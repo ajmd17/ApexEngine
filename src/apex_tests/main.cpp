@@ -74,9 +74,7 @@ void TestGame::init()
 	n->setLocalTranslation(Vector3f(9, 9, 9));
 
 	n->add(n2);
-	n->update();
-
-	//cout << n->getAt<Node>(0)->getGlobalTranslation() << "\n";
+	n->update(&renderManager);
 
 	
 	rot = 0;
@@ -87,7 +85,6 @@ void TestGame::init()
 	mat->getVector4f(Material::COLOR_DIFFUSE, col);
 
 	mygeom = new Geometry();
-//	mygeom->renderManager = &(this->renderManager);
 	n->add(mygeom);
 	mygeom->setLocalTranslation(Vector3f(1, 1, 1));
 	vector<Vertex> myVerts;
@@ -98,13 +95,12 @@ void TestGame::init()
 	mesh->setVertices(myVerts);
 	mygeom->setMesh(mesh);
 
-	mygeom->update();
+	mygeom->update(&renderManager);
 
     
     ShaderProperties props;
 	shader = ShaderManager::getShader<MyShader> (props);
 	mygeom->setShader(shader);
-//	cout << props << "\n";
 
 	cout << mygeom->getLocalBoundingBox().getCenter() << "\n";
 	cout << mygeom->getGlobalBoundingBox().getCenter() << "\n";
@@ -251,7 +247,7 @@ void TestGame::init()
 			.addFunction("getGlobalRotation", &Spatial::getGlobalRotation)
 			.addFunction("getGlobalScale", &Spatial::getGlobalScale)
 
-			.addFunction("update", &Spatial::update)
+			//.addFunction("update", &Spatial::update(&renderManager))
 			.addFunction("setUpdateNeeded", &Spatial::setUpdateNeeded)
 			.addFunction("isAttachedToRoot", &Spatial::isAttachedToRoot)
 

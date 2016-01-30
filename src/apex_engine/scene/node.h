@@ -41,13 +41,13 @@ public:
 
 	~Node();
 
-	void update()
+	void update(RenderManager *renderMgr)
 	{
-		Spatial::update();
+		Spatial::update(renderMgr);
 
 		for (int i = 0; i < children.size(); i++)
 		{
-			children[i]->update();
+			children[i]->update(renderMgr);
 		}
 	}
 
