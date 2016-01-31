@@ -4,10 +4,11 @@
 using std::getline;
 using std::cout;
 
+#include <string>
+
 #include <fstream>
 using std::ifstream;
 
-#include "../rendering/texture2d.h"
 #include "../util/strutil.h"
 
 AssetManager::AssetManager()
@@ -16,6 +17,12 @@ AssetManager::AssetManager()
 	this->textureLoader = std::make_shared<TextureLoader>();
 	this->registerExt("png", this->textureLoader);
 	this->registerExt("jpg", this->textureLoader);
+	this->registerExt("bmp", this->textureLoader);
+	this->registerExt("tga", this->textureLoader);
+	this->registerExt("gif", this->textureLoader);
+
+	this->objLoader = std::make_shared<ObjLoader>();
+	this->registerExt("obj", this->objLoader);
 }
 
 AssetManager::~AssetManager()
@@ -27,11 +34,39 @@ AssetManager::~AssetManager()
 	}
 }
 
+std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath, std::shared_ptr<IAssetLoader> loader)
+{
+	ifstream filestream(filepath);
+	if (!filestream.is_open())
+	{
+		throw std::exception("File stream is not valid");
+		return 0;
+	}
+
+	AssetInfo assetInfo;
+	assetInfo.setFilePath(filepath);
+	assetInfo.setStream(&filestream);
+	std::shared_ptr<ILoadableObject> obj = loader->load(assetInfo);
+
+	filestream.close();
+	
+	loadedAssets[filepath] = obj;
+
+	return obj;
+}
+
 std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath)
 {
+	for (auto iterator = loadedAssets.begin(); iterator != loadedAssets.end(); iterator++)
+	{
+		if (strcmp(iterator->first, filepath) == 0)
+		{
+			return iterator->second;
+		}
+	}
+
 	std::shared_ptr<IAssetLoader> finalLoader;
 
-	unordered_map<char *, std::shared_ptr<IAssetLoader> >::iterator it;
 	for (auto iterator = loaders.begin(); iterator != loaders.end(); iterator++) 
 	{
 		char *ext = iterator->first;
@@ -50,23 +85,8 @@ std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath)
 		return 0;
 	}
 
-	ifstream filestream(filepath);
-	if (!filestream.is_open())
-	{
-		throw std::exception("File stream is not valid");
-		return 0;
-	}
-
-	AssetInfo assetInfo;
-	assetInfo.setFilePath(filepath);
-	assetInfo.setStream(&filestream);
-	std::shared_ptr<ILoadableObject> obj = finalLoader->load(assetInfo);
-
-	filestream.close();
-
-	return obj;
+	return load(filepath, finalLoader);
 }
-
 
 void AssetManager::registerExt(char *ext, std::shared_ptr<IAssetLoader> loader)
 {
@@ -87,41 +107,3 @@ std::shared_ptr<IAssetLoader> AssetManager::getLoader(char *ext)
 	else
 		return it->second;
 }
-
-Texture2D *AssetManager::loadTexture(char *filepath)
-{
-	AssetInfo asset;
-	asset.setFilePath(filepath);
-
-	Texture2D *res = new Texture2D();
-	RenderManager::getEngine()->loadTexture2D(asset, *res);
-
-	return res;
-}
-
-void AssetManager::loadModel(char *filepath)
-{
-	AssetInfo asset;
-
-	ifstream filestream(filepath);
-
-	asset.setStream(&filestream);
-	asset.setFilePath(filepath);
-
-	string line;
-	if (filestream.is_open())
-	{
-		//while (getline(filestream, line))
-		//{
-		//	cout << line << '\n';
-		//}
-		// assetLoader.loadAsset(asset, outModel);
-
-		filestream.close();
-	}
-	else cout << "Unable to load model '" << filepath << "'\n";
-
-	
-
-	// return outModel;
-} 

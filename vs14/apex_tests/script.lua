@@ -1,4 +1,3 @@
-myvec = nil
 x = 99
 bob = 100
 
@@ -20,26 +19,18 @@ end
 function main()
 	print ("Hello from Lua!")
 	
-	local tmpVec = Math.Vector3f()
+	local vec0 = Math.Vector3f():new(3.0, 9.0, 9.1)
+	print (vec0.x, vec0.y, vec0.z)
 	
-	local myRoot = Scene.Node()
-	myRoot:setName("root")
+	local node0 = Scene.Node()
+	local node1 = Scene.Node()
 	
-	local myspat = Scene.Node()
-	myspat:setName("MySpat")
+	node0:setName("Hello")
+	node1:setName("World")
 	
-	myRoot:add(myspat)
-	
-	myspat:setLocalTranslation(tmpVec:set(7.0, 1.0, 1.0))
-	myspat:update()
-	
-	print (myspat:getLocalTranslation().x, myspat:getLocalTranslation().y, myspat:getLocalTranslation().z)
-	print (myspat:getGlobalTranslation().x)
-	print ("is", myspat:getName(), " attached to root?", myspat:isAttachedToRoot())
-	print ("Size of root:", myRoot:size())
-	myRoot:removeAt(0)
-	myRoot:update()
-	print ("is", myspat:getName(), " attached to root?", myspat:isAttachedToRoot())
-	print ("Size of root:", myRoot:size())
+	node0:add(node1)
+	print (node1:getName())
+	print (node1:getParent():getName())
+	print (node0:size())
 	
 end

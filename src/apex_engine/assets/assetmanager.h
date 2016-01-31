@@ -24,16 +24,17 @@ using std::map;
 
 // Default loaders
 #include "textureloader.h"
-
-class Texture2D;
+#include "modelloaders/objloader.h"
 
 class AssetManager
 {
 private:
-	unordered_map<AssetInfo, ILoadableObject*> loadedAssets;
+	unordered_map<char*, std::shared_ptr<ILoadableObject>> loadedAssets;
 	unordered_map<char*, std::shared_ptr<IAssetLoader>> loaders;
 
+	// Default loaders
 	std::shared_ptr<TextureLoader> textureLoader;
+	std::shared_ptr<ObjLoader> objLoader;
 public:
 	AssetManager();
 
@@ -43,18 +44,9 @@ public:
 
 	std::shared_ptr<IAssetLoader> getLoader(char *ext);
 
+	std::shared_ptr<ILoadableObject> load(char *filepath, std::shared_ptr<IAssetLoader> loader);
+
 	std::shared_ptr<ILoadableObject> load(char *filepath);
-
-	/*template <typename T>
-	typename std::enable_if<std::is_base_of<ILoadableObject, T>::value, T*>::type
-		load(char *filepath)
-	{
-		return static_cast<T*> (load(filepath));
-	}*/
-
-	void loadModel(char *filepath);
-
-	Texture2D *loadTexture(char *filepath);
 };
 
 #endif

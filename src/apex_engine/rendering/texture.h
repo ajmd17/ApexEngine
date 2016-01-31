@@ -26,7 +26,7 @@ public:
 	{
 		if (id != 0 && RenderManager::getEngine() != NULL)
 		{
-			RenderManager::getEngine()->deleteTexture(id);
+			//RenderManager::getEngine()->deleteTexture(id);
 		}
 	}
 

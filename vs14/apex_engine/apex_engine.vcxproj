@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\apex_engine\assets\assetmanager.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\assets\modelloaders\objloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\assets\textureloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\boundingbox.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\math_util.cpp" />

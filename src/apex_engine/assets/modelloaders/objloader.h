@@ -3,23 +3,19 @@
 
 #include "../assetloader.h"
 #include "../assetinfo.h"
-#include "../assetmanager.h"
-#include "../../scene/spatial.h"
 
 class ObjLoader : public IAssetLoader
 {
 public:
 	ObjLoader() 
 	{
-	//	AssetManager::registerExt<this>("obj");
 	}
 
 	~ObjLoader() {}
 
-	ILoadableObject *load(AssetInfo &asset)
-	{
-		return 0;
-	}
+	void resetLoader();
+
+	std::shared_ptr<ILoadableObject> load(AssetInfo &asset);
 };
 
 #endif

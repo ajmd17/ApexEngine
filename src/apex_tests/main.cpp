@@ -56,14 +56,17 @@ lua_State *lua;
 Matrix4f myMatrix;
 std::shared_ptr<Texture2D> mytex;
 
+AssetManager *astMgr;
 
 float rot;
 void TestGame::init()
 {
-	AssetManager astMgr;
-	mytex = std::dynamic_pointer_cast<Texture2D>(astMgr.load("tex.png"));
+	astMgr = new AssetManager();
+	mytex = std::dynamic_pointer_cast<Texture2D>(astMgr->load("test.png"));
 	RenderManager::getEngine()->clearColor(1, 1, 1, 1);
     
+	
+	std::shared_ptr<Texture2D> mytex2 = std::dynamic_pointer_cast<Texture2D>(astMgr->load("test.jpg"));
 	
 	this->camera = new PerspectiveCamera(45, 512, 512, 1.0, 100.0);
 
@@ -71,7 +74,7 @@ void TestGame::init()
 	
 
 	mygeom = new Geometry();
-	mygeom->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex.get());
+	mygeom->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex2.get());
 	mygeom->setLocalTranslation(Vector3f(0, -0.5f, 3.0f));
 	this->scene->getRootNode()->add(mygeom);
 
@@ -222,6 +225,8 @@ void TestGame::init()
 			.addFunction("setName", &Spatial::setName)
 			.addFunction("getName", &Spatial::getName)
 
+			.addFunction("getParent", &Spatial::getParent)
+
 			.addFunction("setLocalTranslation", &Spatial::setLocalTranslation)
 			.addFunction("setLocalRotation", &Spatial::setLocalRotation)
 			.addFunction("setLocalScale", &Spatial::setLocalScale)
@@ -237,6 +242,7 @@ void TestGame::init()
 			//.addFunction("update", &Spatial::update(&renderManager))
 			.addFunction("setNeedsTransformUpdate", &Spatial::setNeedsTransformUpdate)
 			.addFunction("setNeedsParentUpdate", &Spatial::setNeedsParentUpdate)
+
 			.addFunction("isAttachedToRoot", &Spatial::isAttachedToRoot)
 
 			.endClass()
@@ -256,8 +262,8 @@ void TestGame::init()
 
 		.endNamespace();
 
-	//LuaRef lua_init = getGlobal(lua, "main");
-	//lua_init();
+	LuaRef lua_init = getGlobal(lua, "main");
+	lua_init();
 }
 
 void TestGame::exit()
@@ -270,9 +276,9 @@ void TestGame::exit()
 
 void TestGame::logic()
 {
-	/*LuaRef lua_logic = getGlobal(lua, "logic");
+	LuaRef lua_logic = getGlobal(lua, "logic");
 	lua_logic();
-	*/
+	
 	rot += 1;
 	mygeom->setLocalRotation(Quaternion().setFromAxis(Vector3f(0, 1, 0), rot));
 

@@ -16,7 +16,6 @@ public:
 
 	~Texture2D()
 	{
-		cout << "Delete texture\n";
 	}
 
 	virtual void use();

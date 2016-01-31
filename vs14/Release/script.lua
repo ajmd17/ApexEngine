@@ -20,7 +20,7 @@ end
 function main()
 	print ("Hello from Lua!")
 	
-	local tmpVec = Math.Vector3f()
+	--[[local tmpVec = Math.Vector3f()
 	
 	local myRoot = Scene.Node()
 	myRoot:setName("root")
@@ -40,6 +40,6 @@ function main()
 	myRoot:removeAt(0)
 	myRoot:update()
 	print ("is", myspat:getName(), " attached to root?", myspat:isAttachedToRoot())
-	print ("Size of root:", myRoot:size())
+	print ("Size of root:", myRoot:size())]]--
 	
 end
