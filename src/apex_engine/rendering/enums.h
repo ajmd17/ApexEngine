@@ -1,8 +1,16 @@
-#ifndef SHADERENUMS_H
-#define SHADERENUMS_H
+#ifndef ENUMS_H
+#define ENUMS_H
 
 // Common enums that are used in the rendering engine.
 // Author: Andrew MacDonald
+
+enum RenderBucket
+{
+	OpaqueBucket,
+	TransparentBucket,
+	SkyboxBucket,
+	ParticleBucket
+};
 
 enum TextureWrapMode
 {

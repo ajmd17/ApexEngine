@@ -11,6 +11,7 @@ using namespace std;
 #include <rendering/shadermanager.h>
 #include <scene/node.h>
 #include <scene/geometry.h>
+#include <rendering/cameras/perspective_camera.h>
 
 
 extern "C" {
@@ -26,14 +27,11 @@ using namespace luabridge;
 class TestGame : public Game
 {
 public:
-	Material *mat;
-	RenderManager renderManager;
 	TestGame()
 	{
 	}
 	void init();
-	void update();
-	void render();
+	void logic();
 	void exit();
 };
 
@@ -47,9 +45,10 @@ public:
 	}
 };
 
-const string MyShader::vscode = "attribute vec3 a_position;\nattribute vec2 a_texcoord0;\nuniform mat4 u_mat;\nvarying vec2 v_texCoord0;\nvoid main() {\ngl_Position =u_mat * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\n}";
+const string MyShader::vscode = "attribute vec3 a_position;\nattribute vec2 a_texcoord0;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;uniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\n}";
 const string MyShader::fscode = "uniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvoid main() {\ngl_FragColor = texture2D(u_texture, v_texCoord0);\n}";
 
+Material *mat;
 Geometry *mygeom;
 Mesh *mesh;
 Shader *shader; 
@@ -64,17 +63,10 @@ void TestGame::init()
 	AssetManager astMgr;
 	mytex = astMgr.loadTexture("tex.png");
 
-	this->renderManager.getEngine()->clearColor(1, 0, 0, 1);
+	RenderManager::getEngine()->clearColor(1, 1, 1, 1);
     
-	Node *n = new Node("root");
-	Node *n2 = new Node();
-
-
-	n2->setLocalTranslation(Vector3f(4, 7, 1));
-	n->setLocalTranslation(Vector3f(9, 9, 9));
-
-	n->add(n2);
-	n->update(&renderManager);
+	
+	this->camera = new PerspectiveCamera(45, 512, 512, 1.0, 100.0);
 
 	
 	rot = 0;
@@ -85,25 +77,25 @@ void TestGame::init()
 	mat->getVector4f(Material::COLOR_DIFFUSE, col);
 
 	mygeom = new Geometry();
-	n->add(mygeom);
-	mygeom->setLocalTranslation(Vector3f(1, 1, 1));
+	mygeom->setLocalTranslation(Vector3f(0, -0.5f, 3.0f));
+	this->scene->getRootNode()->add(mygeom);
+
+
+
 	vector<Vertex> myVerts;
 	mesh = new Mesh();
-	myVerts.push_back(Vertex(Vector3f(-1, 0, 3), Vector2f(0, 0)));
-	myVerts.push_back(Vertex(Vector3f(0, 1, 3), Vector2f(0.5, 1)));
-	myVerts.push_back(Vertex(Vector3f(1, 0, 3), Vector2f(1, 0)));
+	myVerts.push_back(Vertex(Vector3f(-1, 0, 0), Vector2f(0, 0)));
+	myVerts.push_back(Vertex(Vector3f(0, 1, 0), Vector2f(0.5, 1)));
+	myVerts.push_back(Vertex(Vector3f(1, 0, 0), Vector2f(1, 0)));
 	mesh->setVertices(myVerts);
 	mygeom->setMesh(mesh);
-
-	mygeom->update(&renderManager);
 
     
     ShaderProperties props;
 	shader = ShaderManager::getShader<MyShader> (props);
 	mygeom->setShader(shader);
 
-	cout << mygeom->getLocalBoundingBox().getCenter() << "\n";
-	cout << mygeom->getGlobalBoundingBox().getCenter() << "\n";
+
 
 	
 	// Test Lua
@@ -120,8 +112,8 @@ void TestGame::init()
 			.addConstructor <void(*) (void)>()
 
 			// constructor things
-			.addFunction("copy", (Matrix4f *(Matrix4f::*) (Matrix4f &)) &Matrix4f::set)
-			.addFunction("new", (Matrix4f *(Matrix4f::*) ()) &Matrix4f::setToIdentity)
+			.addFunction("copy", (Matrix4f &(Matrix4f::*) (Matrix4f &)) &Matrix4f::set)
+			.addFunction("new", (Matrix4f &(Matrix4f::*) ()) &Matrix4f::setToIdentity)
 			
 			.addProperty("m00", &Matrix4f::getM <Matrix4f::M00>, &Matrix4f::setM <Matrix4f::M00>)
 			.addProperty("m01", &Matrix4f::getM <Matrix4f::M01>, &Matrix4f::setM <Matrix4f::M01>)
@@ -144,8 +136,8 @@ void TestGame::init()
 			.addProperty("m33", &Matrix4f::getM <Matrix4f::M33>, &Matrix4f::setM <Matrix4f::M33>)
 
 			.addFunction("identity", &Matrix4f::setToIdentity)
-			.addFunction("invert", &Matrix4f::invertStore)
-			.addFunction("transpose", &Matrix4f::transposeStore)
+			.addFunction("invert", &Matrix4f::invert)
+			.addFunction("transpose", &Matrix4f::transpose)
 
 			.endClass()
 		
@@ -157,17 +149,17 @@ void TestGame::init()
 			.addProperty("y", &Vector2f::getY, &Vector2f::setY)
 
 			// constructor things
-			.addFunction("copy", (Vector2f *(Vector2f::*) (Vector2f &)) &Vector2f::set)
-			.addFunction("new", (Vector2f *(Vector2f::*) (float, float)) &Vector2f::set)
-			.addFunction("set", (Vector2f *(Vector2f::*) (float, float)) &Vector2f::set)
+			.addFunction("copy", (Vector2f &(Vector2f::*) (Vector2f &)) &Vector2f::set)
+			.addFunction("new", (Vector2f &(Vector2f::*) (float, float)) &Vector2f::set)
+			.addFunction("set", (Vector2f &(Vector2f::*) (float, float)) &Vector2f::set)
 
 			// standard vector functions
-			.addFunction("add", &Vector2f::addStore)
-			.addFunction("sub", &Vector2f::subStore)
-			.addFunction("mult", &Vector2f::multStore)
-			.addFunction("scale", &Vector2f::scaleStore)
-			.addFunction("divide", &Vector2f::divStore)
-			.addFunction("normalize", &Vector2f::normalizeStore)
+			.addFunction("add", &Vector2f::add)
+			.addFunction("subtract", &Vector2f::subtract)
+			.addFunction("multiply", &Vector2f::multiply)
+			.addFunction("scale", &Vector2f::scale)
+			.addFunction("divide", &Vector2f::divide)
+			.addFunction("normalize", &Vector2f::normalize)
 			.addFunction("dot", &Vector2f::dot)
 			.addFunction("length", &Vector2f::length)
 			.addFunction("distance", &Vector2f::distance)
@@ -183,19 +175,19 @@ void TestGame::init()
 			.addProperty("z", &Vector3f::getZ, &Vector3f::setZ)
 
 			// constructor things
-			.addFunction("copy", (Vector3f *(Vector3f::*) (Vector3f &)) &Vector3f::set)
-			.addFunction("new", (Vector3f *(Vector3f::*) (float, float, float)) &Vector3f::set)
-			.addFunction("set", (Vector3f *(Vector3f::*) (float, float, float)) &Vector3f::set)
+			.addFunction("copy", (Vector3f &(Vector3f::*) (Vector3f &)) &Vector3f::set)
+			.addFunction("new", (Vector3f &(Vector3f::*) (float, float, float)) &Vector3f::set)
+			.addFunction("set", (Vector3f &(Vector3f::*) (float, float, float)) &Vector3f::set)
 
 			// standard vector functions
-			.addFunction("add", &Vector3f::addStore)
-			.addFunction("sub", &Vector3f::subStore)
-			.addFunction("mult", &Vector3f::multStore)
-			.addFunction("scale", &Vector3f::scaleStore)
-			.addFunction("transform", &Vector3f::transformStore)
-			.addFunction("divide", &Vector3f::divStore)
-			.addFunction("cross", &Vector3f::crossStore)
-			.addFunction("normalize", &Vector3f::normalizeStore)
+			.addFunction("add", &Vector3f::add)
+			.addFunction("subtract", &Vector3f::subtract)
+			.addFunction("multiply", &Vector3f::multiply)
+			.addFunction("scale", &Vector3f::scale)
+			.addFunction("transform", &Vector3f::transform)
+			.addFunction("divide", &Vector3f::divide)
+			.addFunction("cross", &Vector3f::cross)
+			.addFunction("normalize", &Vector3f::normalize)
 			.addFunction("dot", &Vector3f::dot)
 			.addFunction("length", &Vector3f::length)
 			.addFunction("distance", &Vector3f::distance)
@@ -211,18 +203,18 @@ void TestGame::init()
 			.addProperty("w", &Vector4f::getW, &Vector4f::setW)
 
 			// constructor things
-			.addFunction("copy", (Vector4f *(Vector4f::*) (Vector4f &)) &Vector4f::set)
-			.addFunction("new", (Vector4f *(Vector4f::*) (float, float, float, float)) &Vector4f::set)
-			.addFunction("set", (Vector4f *(Vector4f::*) (float, float, float, float)) &Vector4f::set)
+			.addFunction("copy", (Vector4f &(Vector4f::*) (Vector4f &)) &Vector4f::set)
+			.addFunction("new", (Vector4f &(Vector4f::*) (float, float, float, float)) &Vector4f::set)
+			.addFunction("set", (Vector4f &(Vector4f::*) (float, float, float, float)) &Vector4f::set)
 
 			// standard vector functions
-			.addFunction("add", &Vector4f::addStore)
-			.addFunction("sub", &Vector4f::subStore)
-			.addFunction("mult", &Vector4f::multStore)
-			.addFunction("scale", &Vector4f::scaleStore)
-			.addFunction("transform", &Vector4f::transformStore)
-			.addFunction("divide", &Vector4f::divStore)
-			.addFunction("normalize", &Vector4f::normalizeStore)
+			.addFunction("add", &Vector4f::add)
+			.addFunction("subtract", &Vector4f::subtract)
+			.addFunction("multiple", &Vector4f::multiply)
+			.addFunction("scale", &Vector4f::scale)
+			.addFunction("transform", &Vector4f::transform)
+			.addFunction("divide", &Vector4f::divide)
+			.addFunction("normalize", &Vector4f::normalize)
 			.addFunction("dot", &Vector4f::dot)
 			.addFunction("length", &Vector4f::length)
 			.addFunction("distance", &Vector4f::distance)
@@ -248,7 +240,8 @@ void TestGame::init()
 			.addFunction("getGlobalScale", &Spatial::getGlobalScale)
 
 			//.addFunction("update", &Spatial::update(&renderManager))
-			.addFunction("setUpdateNeeded", &Spatial::setUpdateNeeded)
+			.addFunction("setNeedsTransformUpdate", &Spatial::setNeedsTransformUpdate)
+			.addFunction("setNeedsParentUpdate", &Spatial::setNeedsParentUpdate)
 			.addFunction("isAttachedToRoot", &Spatial::isAttachedToRoot)
 
 			.endClass()
@@ -274,6 +267,7 @@ void TestGame::init()
 
 void TestGame::exit()
 {
+	delete camera;
 	delete mygeom;
 	delete mat;
 	delete mytex;
@@ -281,36 +275,18 @@ void TestGame::exit()
 	delete shader;
 }
 
-void TestGame::update()
+void TestGame::logic()
 {
 	/*LuaRef lua_logic = getGlobal(lua, "logic");
 	lua_logic();
 	*/
 	rot += 1;
-	Matrix4f proj, tmp;
-	MatrixUtil::setToRotation(myMatrix, *Quaternion().setFromAxis(Vector3f(0,1,0), rot));
-	MatrixUtil::setToProjection(proj, 45, 512, 512, 0.5, 100.0);
-	tmp.set(myMatrix);
-	myMatrix.set(proj);
-	myMatrix.multStore(tmp);
-}
+	mygeom->setLocalRotation(Quaternion().setFromAxis(Vector3f(0, 1, 0), rot));
+	
 
-void TestGame::render()
-{
-	if (this->renderManager.getEngine() != NULL) {
-		this->renderManager.getEngine()->clear(true, true, false);
-
-		shader->use();
-
-		mytex->activeTextureSlot(0);
-        mytex->use();
-		shader->setUniform("u_texture", 0);
-
-		shader->setUniform("u_mat", myMatrix);
-
-		//mygeom->render(&renderManager);
-		mesh->render();
-		shader->end();
+	if (rot > 100 && this->scene->getRootNode()->size() > 0)
+	{
+		mygeom->setBucket(TransparentBucket);
 	}
 }
 
@@ -318,6 +294,7 @@ int main()
 {
 	IEngine *pEngine = new GLEngine();
 	RenderManager::setEngine(pEngine);
+
 	Game *game = new TestGame();
 
 	pEngine->createContext(game, 300, 150);

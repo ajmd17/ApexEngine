@@ -2,8 +2,8 @@
 
 BoundingBox BoundingBox::clear()
 {
-	Vector3f min_vec(MAX_SIZE); // Yes, these are reversed on purpose!
-	Vector3f max_vec(MIN_SIZE);
+	Vector3f min_vec(static_cast<float>(MAX_SIZE)); // Yes, these are reversed on purpose!
+	Vector3f max_vec(static_cast<float>(MIN_SIZE));
 	this->createBoundingBox(min_vec, max_vec);
 	return *this;
 }
@@ -13,10 +13,10 @@ BoundingBox BoundingBox::createBoundingBox(Vector3f &dimMin, Vector3f &dimMax)
 	min.set(dimMin);
 	max.set(dimMax);
 
-	center.set(min)->addStore(max)->scaleStore(0.5f);
+	center.set(min).add(max).scale(0.5f);
 
 	dimensions.set(dimMax);
-	dimensions.subStore(dimMin);
+	dimensions.subtract(dimMin);
 
 	updateCorners();
 
@@ -52,7 +52,9 @@ void BoundingBox::extend(Vector3f &point)
 bool BoundingBox::intersect(Ray &ray, Vector3f &outVec)
 {
 	const float epsilon = 1e-6f;
-	float tMin = MIN_SIZE, tMax = MAX_SIZE;
+
+	float tMin = static_cast<float>(MIN_SIZE), 
+		  tMax = static_cast<float>(MAX_SIZE);
 
 	if (fabs(ray.getDirection().x) < epsilon)
 	{
@@ -136,8 +138,8 @@ bool BoundingBox::intersect(Ray &ray, Vector3f &outVec)
 
 	outVec.set(ray.getPosition());
 	Vector3f tmpVec = Vector3f(ray.getDirection());
-	tmpVec.scaleStore(tMin);
-	outVec.addStore(tmpVec);
+	tmpVec.scale(tMin);
+	outVec.add(tmpVec);
 
 	return true;
 }

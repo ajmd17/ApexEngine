@@ -19,11 +19,6 @@ public:
 		set(0.0f);
 	}
 
-	Vector2f(Vector2f &other)
-	{
-		set(other);
-	}
-
 	Vector2f(float x, float y)
 	{
 		set(x, y);
@@ -33,8 +28,7 @@ public:
 	{
 		set(xy);
 	}
-
-	// Required copy constructor
+	
 	Vector2f(const Vector2f &other)
 	{
 		this->x = other.x;
@@ -61,100 +55,60 @@ public:
 		this->y = y;
 	}
 
-	Vector2f *set(Vector2f &other)
+	Vector2f &set(Vector2f &other)
 	{
 		this->x = other.x;
 		this->y = other.y;
-		return this;
+		return *this;
 	}
 
-	Vector2f *set(float x, float y)
+	Vector2f &set(float x, float y)
 	{
 		this->x = x;
 		this->y = y;
-		return this;
+		return *this;
 	}
 
-	Vector2f *set(float xy)
+	Vector2f &set(float xy)
 	{
 		this->x = xy;
 		this->y = xy;
-		return this;
+		return *this;
 	}
 
-	Vector2f *add(Vector2f &other)
-	{
-		Vector2f *res = new Vector2f(*this);
-		res->x += other.x;
-		res->y += other.y;
-		return res;
-	}
-
-	Vector2f *addStore(Vector2f &other)
+	Vector2f &add(Vector2f &other)
 	{
 		this->x += other.x;
 		this->y += other.y;
-		return this;
+		return *this;
 	}
 
-	Vector2f *sub(Vector2f &other)
-	{
-		Vector2f *res = new Vector2f(*this);
-		res->x -= other.x;
-		res->y -= other.y;
-		return res;
-	}
-
-	Vector2f *subStore(Vector2f &other)
+	Vector2f &subtract(Vector2f &other)
 	{
 		this->x -= other.x;
 		this->y -= other.y;
-		return this;
+		return *this;
 	}
 
-	Vector2f *mult(Vector2f &other)
-	{
-		Vector2f *res = new Vector2f(*this);
-		res->x *= other.x;
-		res->y *= other.y;
-		return res;
-	}
-
-	Vector2f *multStore(Vector2f &other)
+	Vector2f &multiply(Vector2f &other)
 	{
 		this->x *= other.x;
 		this->y *= other.y;
-		return this;
+		return *this;
 	}
 
-	Vector2f *scale(float scalar)
-	{
-		Vector2f *res = new Vector2f(*this);
-		res->x *= scalar;
-		res->y *= scalar;
-		return res;
-	}
-
-	Vector2f *scaleStore(float scalar)
+	Vector2f &scale(float scalar)
 	{
 		this->x *= scalar;
 		this->y *= scalar;
-		return this;
+		return *this;
 	}
 
-	Vector2f *div(Vector2f &other)
-	{
-		Vector2f *res = new Vector2f(*this);
-		res->x /= other.x;
-		res->y /= other.y;
-		return res;
-	}
-
-	Vector2f *divStore(Vector2f &other)
+	Vector2f &divide(Vector2f &other)
 	{
 		this->x /= other.x;
 		this->y /= other.y;
-		return this;
+		return *this;
 	}
 
 	float length()
@@ -162,25 +116,14 @@ public:
 		return sqrt(x * x + y * y);
 	}
 
-	Vector2f *normalize()
-	{
-		Vector2f *res = new Vector2f(*this);
-		float len = length();
-		float len2 = len*len;
-		if (len2 == 0 || len2 == 1)
-			return res;
-		res->scaleStore(1.0f / len);
-		return res;
-	}
-
-	Vector2f *normalizeStore()
+	Vector2f &normalize()
 	{
 		float len = length();
 		float len2 = len*len;
 		if (len2 == 0 || len2 == 1)
-			return this;
-		this->scaleStore(1.0f / len);
-		return this;
+			return *this;
+		this->scale(1.0f / len);
+		return *this;
 	}
 
 	float dot(Vector2f &other)

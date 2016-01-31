@@ -5,41 +5,58 @@
 // Author: Andrew MacDonald
 
 #include "../scene/scene.h"
+#include "../rendering/rendermanager.h"
+#include "../rendering/camera.h"
 
 class Game
 {
 private:
+protected:
 	Scene *scene;
-	bool running;
+	RenderManager *renderMgr;
+
+	Camera *camera;
 public:
 	Game() 
-	{ 
-		running = false; 
+	{
 		scene = new Scene();
+		renderMgr = new RenderManager();
 	}
     
     ~Game() 
 	{
 		delete scene;
+		delete renderMgr;
+	}
+
+	void update()
+	{
+		if (this->camera != NULL)
+		{
+			this->camera->update();
+		}
+
+		this->scene->getRootNode()->update(this->renderMgr);
+
+		this->logic();
+	}
+
+	void render()
+	{
+		if (this->renderMgr != NULL)
+		{
+			this->renderMgr->getEngine()->clear(true, true, false);
+			this->renderMgr->render(*camera);
+		}
+		else
+			throw std::runtime_error("RenderManager should not be null");
 	}
     
     virtual void init() = 0;
 
-    virtual void update() = 0;
-
-    virtual void render() = 0;
+    virtual void logic() = 0;
 
     virtual void exit() = 0;
-
-	void setRunning(bool running) 
-	{ 
-		this->running = running; 
-	}
-
-	bool isRunning() const
-	{
-		return running;
-	}
 
 	Scene *getScene()
 	{

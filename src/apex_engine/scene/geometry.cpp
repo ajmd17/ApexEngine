@@ -10,6 +10,8 @@ void Geometry::render(Camera &cam)
 		shader->use();
 		shader->applyTransforms(this->getGlobalMatrix(), cam.getViewMatrix(), cam.getProjectionMatrix());
 		shader->applyMaterial(this->material);
+
+		shader->update(cam, *mesh);
 		
 		this->mesh->render();
 
@@ -32,4 +34,31 @@ void Geometry::update(RenderManager *renderMgr)
 	this->renderMgr = renderMgr;
 
 	Spatial::update(renderMgr);
+}
+
+void Geometry::setBucket(RenderBucket bucket)
+{
+	if (bucket != this->bucket)
+	{
+		if (renderMgr != NULL && this->isAttachedToRoot())
+		{
+			this->renderMgr->removeGeometry(this);
+			this->bucket = bucket;
+			this->renderMgr->addGeometry(this);
+		}
+		else
+			this->bucket = bucket;
+	}
+}
+
+void Geometry::updateGlobalBoundingBox()
+{
+	if (mesh != NULL)
+		MeshUtil::createMeshBoundingBox(*mesh, globalBoundingBox, getGlobalMatrix());
+}
+
+void Geometry::updateLocalBoundingBox()
+{
+	if (mesh != NULL)
+		MeshUtil::createMeshBoundingBox(*mesh, localBoundingBox);
 }

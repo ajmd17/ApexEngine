@@ -7,6 +7,7 @@
 #include "../rendering/mesh.h"
 #include "../rendering/mesh_util.h"
 #include "../rendering/material.h"
+#include "../rendering/enums.h"
 
 #include "../math/boundingbox.h"
 
@@ -20,30 +21,40 @@ private:
 	RenderManager *renderMgr; // Contains a list of all geometry that can be rendered (attached to the root node)
 	Shader *shader;
 	Mesh *mesh;
+
 	Material material;
+	RenderBucket bucket;
 
 	BoundingBox localBoundingBox, globalBoundingBox;
 	bool localBoundingBoxCreated, globalBoundingBoxCreated;
 
-	void updateGlobalBoundingBox()
-	{
-		if (mesh != NULL)
-			MeshUtil::createMeshBoundingBox(*mesh, globalBoundingBox, getGlobalMatrix());
-	}
+	void updateGlobalBoundingBox();
 
-	void updateLocalBoundingBox()
-	{
-		if (mesh != NULL)
-			MeshUtil::createMeshBoundingBox(*mesh, localBoundingBox);
-	}
+	void updateLocalBoundingBox();
 public:
-	Geometry() : Spatial() { this->mesh = 0;  }
+	Geometry() : Spatial() 
+	{ 
+		this->mesh = 0;
+		this->bucket = OpaqueBucket;
+	}
 
-	Geometry(char *name) : Spatial(name) { this->mesh = 0; }
+	Geometry(char *name) : Spatial(name) 
+	{ 
+		this->mesh = 0;
+		this->bucket = OpaqueBucket;
+	}
 
-	Geometry(Mesh *mesh) : Spatial() { this->mesh = mesh; }
+	Geometry(Mesh *mesh) : Spatial() 
+	{ 
+		this->mesh = mesh;
+		this->bucket = OpaqueBucket;
+	}
 
-	Geometry(Mesh *mesh, char *name) : Spatial(name) { this->mesh = mesh; }
+	Geometry(Mesh *mesh, char *name) : Spatial(name) 
+	{ 
+		this->mesh = mesh; 
+		this->bucket = OpaqueBucket;
+	}
 
 	void update(RenderManager *renderMgr);
 
@@ -80,6 +91,13 @@ public:
 	{
 		this->shader = shader;
 	}
+
+	RenderBucket getBucket()
+	{
+		return bucket;
+	}
+
+	void setBucket(RenderBucket bucket);
 
 	BoundingBox &getGlobalBoundingBox()
 	{

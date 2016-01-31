@@ -75,25 +75,25 @@ void Shader::setDefaultValues()
 
 void Shader::applyMaterial(Material &material)
 {
-	this->currentMaterial = material;
+	this->currentMaterial = &material;
 
 	bool outDepthTest;
-	currentMaterial.getBool(Material::BOOL_DEPTHTEST, outDepthTest);
+	currentMaterial->getBool(Material::BOOL_DEPTHTEST, outDepthTest);
 	RenderManager::getEngine()->setDepthTest(outDepthTest);
 
 	bool outDepthMask;
-	currentMaterial.getBool(Material::BOOL_DEPTHMASK, outDepthMask);
+	currentMaterial->getBool(Material::BOOL_DEPTHMASK, outDepthMask);
 	RenderManager::getEngine()->setDepthMask(outDepthMask);
 
 	bool cullEnabled;
-	currentMaterial.getBool(Material::BOOL_CULLENABLED, cullEnabled);
+	currentMaterial->getBool(Material::BOOL_CULLENABLED, cullEnabled);
 
 	if (cullEnabled)
 	{
 		RenderManager::getEngine()->setCullFace(true);
 
 		int faceToCull;
-		currentMaterial.getInt(Material::INT_FACETOCULL, faceToCull);
+		currentMaterial->getInt(Material::INT_FACETOCULL, faceToCull);
 
 		if (faceToCull == 0)
 			RenderManager::getEngine()->setFaceToCull(Back);
@@ -104,7 +104,7 @@ void Shader::applyMaterial(Material &material)
 		RenderManager::getEngine()->setCullFace(false);
 
 	float alphaDiscard;
-	currentMaterial.getFloat(Material::FLOAT_ALPHADISCARD, alphaDiscard);
+	currentMaterial->getFloat(Material::FLOAT_ALPHADISCARD, alphaDiscard);
 	this->setUniform(MATERIAL_ALPHADISCARD, alphaDiscard);
 
 	RenderManager::getEngine()->setCullFace(false);
@@ -117,7 +117,7 @@ void Shader::applyTransforms(Matrix4f &modelMatrix, Matrix4f &viewMatrix, Matrix
 	this->projectionMatrix = projectionMatrix;
 }
 
-void Shader::update(Environment &environment, Camera &cam, Mesh &mesh)
+void Shader::update(Camera &cam, Mesh &mesh)
 {
 	this->setDefaultValues();
 	this->setUniform(APEX_MODELMATRIX, modelMatrix);

@@ -20,13 +20,15 @@ using std::ostream;
 #include "../math/matrix4f.h"
 
 class Environment;
+
 class Mesh;
+
 class Camera;
 
 class Shader
 {
 protected:
-	Material currentMaterial;
+	Material *currentMaterial;
 	int id;
 private:
 	ShaderProperties properties;
@@ -52,12 +54,14 @@ public:
 	void create();
 
     void use();
-    
-    virtual void end();
 
 	void compileShader();
 
 	void addProgram(ShaderType type, string &code);
+    
+    virtual void end();
+
+	virtual void update(Camera &cam, Mesh &mesh);
 
 	virtual void applyMaterial(Material &material);
 
@@ -65,7 +69,15 @@ public:
 
 	void setDefaultValues();
 
-	virtual void update(Environment &environment, Camera &cam, Mesh &mesh);
+	void addVertexProgram(string &code)
+	{
+		addProgram(VertexShader, code);
+	}
+
+	void addFragmentProgram(string &code)
+	{
+		addProgram(FragmentShader, code);
+	}
 
 	void setUniform(string name, int i);
 
@@ -92,16 +104,6 @@ public:
 	void setUniform(string name, Vector4f &vec)
 	{
 		this->setUniform(name, vec.x, vec.y, vec.z, vec.w);
-	}
-
-	void addVertexProgram(string &code)
-	{
-		addProgram(VertexShader, code);
-	}
-
-	void addFragmentProgram(string &code)
-	{
-		addProgram(FragmentShader, code);
 	}
 
 	ShaderProperties &getProperties()

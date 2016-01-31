@@ -58,7 +58,7 @@ public:
 		this->values[index] = value;
 	}
 
-	Matrix4f *setToIdentity()
+	Matrix4f &setToIdentity()
 	{
 		this->values[M00] = 1;
         this->values[M01] = 0;
@@ -80,19 +80,19 @@ public:
         this->values[M32] = 0;
         this->values[M33] = 1;
 
-        return this;
+        return *this;
 	}
 
-	Matrix4f *set(Matrix4f &other)
+	Matrix4f &set(Matrix4f &other)
 	{
 		for (int i = 0; i < MATRIX_SIZE; i++)
 		{
 			this->values[i] = other.values[i];
 		}
-		return this;
+		return *this;
 	}
 
-	Matrix4f *set(float m00, float m01, float m02, float m03,
+	Matrix4f &set(float m00, float m01, float m02, float m03,
              float m10, float m11, float m12, float m13,
              float m20, float m21, float m22, float m23,
              float m30, float m31, float m32, float m33)
@@ -117,63 +117,19 @@ public:
          this->values[M32] = m32;
          this->values[M33] = m33;
 
-         return this;
+         return *this;
 	}
 
-	Matrix4f *set(float values[])
+	Matrix4f &set(float values[])
 	{
 		for (int i = 0; i < MATRIX_SIZE; i++)
 		{
 			this->values[i] = values[i];
 		}
-		return this;
+		return *this;
 	}
 
-	Matrix4f *mult(Matrix4f &other)
-	{ 
-		Matrix4f *res = new Matrix4f();
-
-		float _M00 = this->values[M00] * other.values[M00] + this->values[M10] * other.values[M01] + this->values[M20] * other.values[M02] + this->values[M30] * other.values[M03];
-		float _M01 = this->values[M01] * other.values[M00] + this->values[M11] * other.values[M01] + this->values[M21] * other.values[M02] + this->values[M31] * other.values[M03];
-		float _M02 = this->values[M02] * other.values[M00] + this->values[M12] * other.values[M01] + this->values[M22] * other.values[M02] + this->values[M32] * other.values[M03];
-		float _M03 = this->values[M03] * other.values[M00] + this->values[M13] * other.values[M01] + this->values[M23] * other.values[M02] + this->values[M33] * other.values[M03];
-		float _M10 = this->values[M00] * other.values[M10] + this->values[M10] * other.values[M11] + this->values[M20] * other.values[M12] + this->values[M30] * other.values[M13];
-		float _M11 = this->values[M01] * other.values[M10] + this->values[M11] * other.values[M11] + this->values[M21] * other.values[M12] + this->values[M31] * other.values[M13];
-		float _M12 = this->values[M02] * other.values[M10] + this->values[M12] * other.values[M11] + this->values[M22] * other.values[M12] + this->values[M32] * other.values[M13];
-		float _M13 = this->values[M03] * other.values[M10] + this->values[M13] * other.values[M11] + this->values[M23] * other.values[M12] + this->values[M33] * other.values[M13];
-		float _M20 = this->values[M00] * other.values[M20] + this->values[M10] * other.values[M21] + this->values[M20] * other.values[M22] + this->values[M30] * other.values[M23];
-		float _M21 = this->values[M01] * other.values[M20] + this->values[M11] * other.values[M21] + this->values[M21] * other.values[M22] + this->values[M31] * other.values[M23];
-		float _M22 = this->values[M02] * other.values[M20] + this->values[M12] * other.values[M21] + this->values[M22] * other.values[M22] + this->values[M32] * other.values[M23];
-		float _M23 = this->values[M03] * other.values[M20] + this->values[M13] * other.values[M21] + this->values[M23] * other.values[M22] + this->values[M33] * other.values[M23];
-		float _M30 = this->values[M00] * other.values[M30] + this->values[M10] * other.values[M31] + this->values[M20] * other.values[M32] + this->values[M30] * other.values[M33];
-		float _M31 = this->values[M01] * other.values[M30] + this->values[M11] * other.values[M31] + this->values[M21] * other.values[M32] + this->values[M31] * other.values[M33];
-		float _M32 = this->values[M02] * other.values[M30] + this->values[M12] * other.values[M31] + this->values[M22] * other.values[M32] + this->values[M32] * other.values[M33];
-		float _M33 = this->values[M03] * other.values[M30] + this->values[M13] * other.values[M31] + this->values[M23] * other.values[M32] + this->values[M33] * other.values[M33];
-
-		res->values[M00] = _M00;
-		res->values[M01] = _M01;
-		res->values[M02] = _M02;
-		res->values[M03] = _M03;
-
-		res->values[M10] = _M10;
-		res->values[M11] = _M11;
-		res->values[M12] = _M12;
-		res->values[M13] = _M13;
-
-		res->values[M20] = _M20;
-		res->values[M21] = _M21;
-		res->values[M22] = _M22;
-		res->values[M23] = _M23;
-
-		res->values[M30] = _M30;
-		res->values[M31] = _M31;
-		res->values[M32] = _M32;
-		res->values[M33] = _M33;
-
-		return res;
-	}
-
-	Matrix4f *multStore(Matrix4f &other)
+	Matrix4f &multiply(Matrix4f &other)
 	{
 
 		float _M00 = this->values[M00] * other.values[M00] + this->values[M10] * other.values[M01] + this->values[M20] * other.values[M02] + this->values[M30] * other.values[M03];
@@ -213,56 +169,19 @@ public:
 		this->values[M32] = _M32;
 		this->values[M33] = _M33;
 
-		return this;
+		return *this;
 	}
 
-	Matrix4f *scale(float scalar)
-	{
-		Matrix4f *res = new Matrix4f();
-		for (int i = 0; i < MATRIX_SIZE; i++)
-		{
-			res->values[i] = this->values[i] * scalar;
-		}
-		return res;
-	}
-
-	Matrix4f *scaleStore(float scalar)
+	Matrix4f &scale(float scalar)
 	{
 		for (int i = 0; i < MATRIX_SIZE; i++)
 		{
 			this->values[i] = this->values[i] * scalar;
 		}
-		return this;
+		return *this;
 	}
 
-	Matrix4f *transpose()
-	{
-		Matrix4f *res = new Matrix4f();
-		
-		res->values[M00] = this->values[M00];
-        res->values[M01] = this->values[M10];
-        res->values[M02] = this->values[M20];
-        res->values[M03] = this->values[M30];
-
-        res->values[M10] = this->values[M01];
-        res->values[M11] = this->values[M11];
-        res->values[M12] = this->values[M21];
-        res->values[M13] = this->values[M31];
-
-        res->values[M20] = this->values[M02];
-        res->values[M21] = this->values[M12];
-        res->values[M22] = this->values[M22];
-        res->values[M23] = this->values[M32];
-
-        res->values[M30] = this->values[M03];
-        res->values[M31] = this->values[M13];
-        res->values[M32] = this->values[M23];
-        res->values[M33] = this->values[M33];
-
-		return res;
-	}
-
-	Matrix4f *transposeStore()
+	Matrix4f &transpose()
 	{
 		Matrix4f tmp;
 		
@@ -288,16 +207,10 @@ public:
 
 		this->set(tmp);
 
-		return this;
+		return *this;
 	}
 
-	Matrix4f *invert()
-	{
-		Matrix4f *res = new Matrix4f(*this);
-		return res->invertStore();
-	}
-
-	Matrix4f *invertStore()
+	Matrix4f &invert()
 	{
 		float tmp[16];
 		float l_det = this->values[M30] * this->values[M21] * this->values[M12] * this->values[M03] - this->values[M20] * this->values[M31] * this->values[M12] * this->values[M03] - this->values[M30] * this->values[M11]
@@ -310,7 +223,7 @@ public:
             + this->values[M10] * this->values[M21] * this->values[M02] * this->values[M33] + this->values[M20] * this->values[M01] * this->values[M12] * this->values[M33] - this->values[M00] * this->values[M21] * this->values[M12]
             * this->values[M33] - this->values[M10] * this->values[M01] * this->values[M22] * this->values[M33] + this->values[M00] * this->values[M11] * this->values[M22] * this->values[M33];
 
-		if (l_det == 0) return this;
+		if (l_det == 0) return *this;
 
         float inv_det = 1.0f / l_det;
 
@@ -364,7 +277,7 @@ public:
         this->values[M32] = tmp[M32] * inv_det;
         this->values[M33] = tmp[M33] * inv_det;
 
-		return this;
+		return *this;
 	}
 
 	friend ostream& operator<<(ostream& out, const Matrix4f &mat) // output

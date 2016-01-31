@@ -28,6 +28,11 @@ protected:
 	Transform globalTransform;
 	Matrix4f globalMatrix;
 private:
+	static const unsigned char updateParentFlag = 0x01,
+		updateTransformFlag = 0x02;
+
+	unsigned char updateFlags;
+
 	Vector3f tmpGlobalTrans, tmpGlobalScale;
 	Quaternion tmpGlobalRot;
 
@@ -40,12 +45,15 @@ private:
 
 	virtual void updateLocalBoundingBox() = 0;
 public:
+
 	Spatial() 
 	{
 		this->name = "";
 		this->parent = 0;
 		this->updateNeeded = false;
 		this->attachedToRoot = false;
+
+		this->updateFlags = 0;
 
 		localTranslation.set(0, 0, 0);
 		localScale.set(1, 1, 1);
@@ -58,6 +66,8 @@ public:
 		this->parent = 0;
 		this->updateNeeded = false;
 		this->attachedToRoot = false;
+
+		this->updateFlags = 0;
 
 		localTranslation.set(0, 0, 0);
 		localScale.set(1, 1, 1);
@@ -81,7 +91,7 @@ public:
 		localTranslation.set(0, 0, 0);
 		localScale.set(1, 1, 1);
 		localRotation.setToIdentity();
-		setUpdateNeeded();
+		this->setNeedsTransformUpdate();
 	}
 
 	Transform &getGlobalTransform()
@@ -96,23 +106,23 @@ public:
 
 	void updateGlobalRotation(Quaternion &out)
 	{
-		out.multStore(localScale);
+		out.multiply(localRotation);
 		if (parent != 0)
 		{
 			parent->updateGlobalRotation(out);
 		}
 	}
 
-	Quaternion getUpdatedGlobalRotation ()
+	Quaternion getUpdatedGlobalRotation()
 	{
-		tmpGlobalRot.set(0.0, 0.0, 0.0, 1.0);
+		tmpGlobalRot.setToIdentity();
 		updateGlobalRotation(tmpGlobalRot);
 		return tmpGlobalRot;
 	}
 
 	void updateGlobalScale(Vector3f &out)
 	{
-		out.multStore(localScale);
+		out.multiply(localScale);
 		if (parent != 0)
 		{
 			parent->updateGlobalScale(out);
@@ -128,7 +138,7 @@ public:
 
 	void updateGlobalTranslation(Vector3f &out)
 	{
-		out.addStore(localTranslation);
+		out.add(localTranslation);
 		if (parent != 0)
 		{
 			parent->updateGlobalTranslation(out);
@@ -161,7 +171,7 @@ public:
 
 	virtual BoundingBox &getLocalBoundingBox() = 0;
 
-	bool isAttachedToRoot() const
+	bool isAttachedToRoot()
 	{
 		return this->attachedToRoot;
 	}
@@ -171,47 +181,15 @@ public:
 		this->calcAttachedToRoot();
 	}
 
-	void updateTransform()
-	{
-		Vector3f globalTrans = getUpdatedGlobalTranslation();
-		Vector3f globalScale = getUpdatedGlobalScale();
-		Quaternion globalRot = getUpdatedGlobalRotation();
+	void updateTransform();
 
-		bool hasPhysics = false;
-
-		if (!hasPhysics)
-			globalTransform.setTranslation(globalTrans);
-		else
-		{
-			// get physics origin, set physics translation etc
-		}
-
-		globalTransform.setRotation(globalRot);
-		globalTransform.setScale(globalScale);
-
-		globalMatrix = globalTransform.getMatrix();
-	}
-
-	virtual void update(RenderManager *renderMgr)
-	{
-		if (updateNeeded)
-		{
-			updateTransform();
-			updateParents();
-			updateGlobalBoundingBox();
-			updateLocalBoundingBox();
-
-			updateNeeded = false;
-		}
-
-		//TODO: Update controllers
-	}
+	virtual void update(RenderManager *renderMgr);
 
 	// Don't set this manually. Otherwise, bad things will happen.
 	void setParent(Spatial *parent)
 	{
 		this->parent = parent;
-		setUpdateNeeded();
+		this->setNeedsParentUpdate();
 
 		if (parent == 0)
 			updateParents();
@@ -222,9 +200,14 @@ public:
 		return parent;
 	}
 
-	virtual void setUpdateNeeded()
+	virtual void setNeedsTransformUpdate()
 	{
-		updateNeeded = true;
+		this->updateFlags |= updateTransformFlag;
+	}
+
+	virtual void setNeedsParentUpdate()
+	{
+		this->updateFlags |= updateParentFlag;
 	}
 
 	Vector3f &getLocalTranslation()
@@ -235,7 +218,7 @@ public:
 	void setLocalTranslation(Vector3f vec)
 	{
 		localTranslation.set(vec);
-		setUpdateNeeded();
+		this->setNeedsTransformUpdate();
 	}
 
 	Vector3f &getLocalScale()
@@ -246,7 +229,7 @@ public:
 	void setLocalScale(Vector3f vec)
 	{
 		localScale.set(vec);
-		setUpdateNeeded();
+		this->setNeedsTransformUpdate();
 	}
 
 	Quaternion &getLocalRotation()
@@ -257,40 +240,10 @@ public:
 	void setLocalRotation(Quaternion rot)
 	{
 		localRotation.set(rot);
-		setUpdateNeeded();
+		this->setNeedsTransformUpdate();
 	}
 protected:
-	void calcAttachedToRoot()
-	{
-		const char *ROOT_NAME = "root";
-		if (strcmp(this->name.c_str(), ROOT_NAME) == 0)
-		{
-			attachedToRoot = true;
-			return;
-		}
-		if (parent == 0)
-		{
-			attachedToRoot = false;
-			return;
-		}
-		else
-		{
-			Spatial &par = *parent;
-			
-			while (strcmp(par.getName().c_str(), ROOT_NAME) != 0)
-			{
-				Spatial *ppar = par.getParent();
-				if (ppar != 0)
-					par = *ppar;
-				else
-				{
-					attachedToRoot = false;
-					return;
-				}
-			}
-		}
-		attachedToRoot = true;
-	}
+	void calcAttachedToRoot();
 
 };
 

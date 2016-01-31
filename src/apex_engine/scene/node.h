@@ -24,14 +24,14 @@ private:
 	void updateGlobalBoundingBox()
 	{
 		globalBoundingBox.clear();
-		for (int i = 0; i < children.size(); i++)
+		for (size_t i = 0; i < children.size(); i++)
 			globalBoundingBox.extend(children[i]->getGlobalBoundingBox());
 	}
 
 	void updateLocalBoundingBox()
 	{
 		localBoundingBox.clear();
-		for (int i = 0; i < children.size(); i++)
+		for (size_t i = 0; i < children.size(); i++)
 			localBoundingBox.extend(children[i]->getLocalBoundingBox());
 	}
 public:
@@ -45,19 +45,29 @@ public:
 	{
 		Spatial::update(renderMgr);
 
-		for (int i = 0; i < children.size(); i++)
+		for (size_t i = 0; i < children.size(); i++)
 		{
 			children[i]->update(renderMgr);
 		}
 	}
 
-	void setUpdateNeeded()
+	void setNeedsTransformUpdate()
 	{
-		Spatial::setUpdateNeeded();
+		Spatial::setNeedsTransformUpdate();
 
-		for (int i = 0; i < children.size(); i++)
+		for (size_t i = 0; i < children.size(); i++)
 		{
-			children[i]->setUpdateNeeded();
+			children[i]->setNeedsTransformUpdate();
+		}
+	}
+
+	void setNeedsParentUpdate()
+	{
+		Spatial::setNeedsParentUpdate();
+
+		for (size_t i = 0; i < children.size(); i++)
+		{
+			children[i]->setNeedsParentUpdate();
 		}
 	}
 
@@ -88,7 +98,7 @@ public:
 
 	template <class SpatialType>
 	typename std::enable_if<std::is_base_of<Spatial, SpatialType>::value, SpatialType*>::type
-	getAt(int index)
+	getAt(size_t index)
 	{
 		if (children.size() > index)
 		{
@@ -111,7 +121,7 @@ public:
 	typename std::enable_if<std::is_base_of<Spatial, SpatialType>::value, SpatialType*>::type
 	getByName(char *name)
 	{
-		for (int i = 0; i < children.size(); i++)
+		for (size_t i = 0; i < children.size(); i++)
 		{
 			Spatial *child_at = children[i];
 			if (child_at != 0)
@@ -135,7 +145,7 @@ public:
 
 	bool contains(Spatial *spatial)
 	{
-		for (int i = 0; i < children.size(); i++)
+		for (size_t i = 0; i < children.size(); i++)
 		{
 			if (children[i] == spatial)
 				return true;

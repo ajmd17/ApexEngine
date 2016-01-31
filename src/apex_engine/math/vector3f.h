@@ -21,11 +21,6 @@ public:
 		set(0.0f);
 	}
 
-	Vector3f(Vector3f &other)
-	{
-		set(other);
-	}
-
 	Vector3f(float x, float y, float z)
 	{
 		set(x, y, z);
@@ -36,7 +31,6 @@ public:
 		set(xyz);
 	}
 
-	// Required copy constructor
 	Vector3f(const Vector3f &other)
 	{
 		this->x = other.x;
@@ -74,148 +68,85 @@ public:
 		this->z = z;
 	}
 
-	Vector3f *set(Vector3f &other)
+	Vector3f &set(Vector3f &other)
 	{
 		this->x = other.x;
 		this->y = other.y;
 		this->z = other.z;
-		return this;
+		return *this;
 	}
 
-	Vector3f *set(float x, float y, float z)
+	Vector3f &set(float x, float y, float z)
 	{
 		this->x = x;
 		this->y = y;
 		this->z = z;
-		return this;
+		return *this;
 	}
 
-	Vector3f *set(float xyz)
+	Vector3f &set(float xyz)
 	{
 		this->x = xyz;
 		this->y = xyz;
 		this->z = xyz;
-		return this;
+		return *this;
 	}
 
-	Vector3f *add(Vector3f &other)
-	{
-		Vector3f *res = new Vector3f(*this);
-		res->x += other.x;
-		res->y += other.y;
-		res->z += other.z;
-		return res;
-	}
-
-	Vector3f *addStore(Vector3f &other)
+	Vector3f &add(Vector3f &other)
 	{
 		this->x += other.x;
 		this->y += other.y;
 		this->z += other.z;
-		return this;
+		return *this;
 	}
 
-	Vector3f *sub(Vector3f &other)
-	{
-		Vector3f *res = new Vector3f(*this);
-		res->x -= other.x;
-		res->y -= other.y;
-		res->z -= other.z;
-		return res;
-	}
-
-	Vector3f *subStore(Vector3f &other)
+	Vector3f &subtract(Vector3f &other)
 	{
 		this->x -= other.x;
 		this->y -= other.y;
 		this->z -= other.z;
-		return this;
+		return *this;
 	}
 
-	Vector3f *mult(Vector3f &other)
-	{
-		Vector3f *res = new Vector3f(*this);
-		res->x *= other.x;
-		res->y *= other.y;
-		res->z *= other.z;
-		return res;
-	}
-
-	Vector3f *multStore(Vector3f &other)
+	Vector3f &multiply(Vector3f &other)
 	{
 		this->x *= other.x;
 		this->y *= other.y;
 		this->z *= other.z;
-		return this;
+		return *this;
 	}
 
-	Vector3f *scale(float scalar)
-	{
-		Vector3f *res = new Vector3f(*this);
-		res->x *= scalar;
-		res->y *= scalar;
-		res->z *= scalar;
-		return res;
-	}
-
-	Vector3f *scaleStore(float scalar)
+	Vector3f &scale(float scalar)
 	{
 		this->x *= scalar;
 		this->y *= scalar;
 		this->z *= scalar;
-		return this;
+		return *this;
 	}
 
-	Vector3f *transform(Matrix4f &mat)
-	{
-		Vector3f *res = new Vector3f();
-		res->set(this->x * mat.values[Matrix4f::M00] + this->y * mat.values[Matrix4f::M01] + this->z * mat.values[Matrix4f::M02] + mat.values[Matrix4f::M03],
-				 this->x * mat.values[Matrix4f::M10] + this->y * mat.values[Matrix4f::M11] + this->z * mat.values[Matrix4f::M12] + mat.values[Matrix4f::M13],
-				 this->x * mat.values[Matrix4f::M20] + this->y * mat.values[Matrix4f::M21] + this->z * mat.values[Matrix4f::M22] + mat.values[Matrix4f::M23]);
-		return res;
-	}
-
-	Vector3f *transformStore(Matrix4f &mat)
+	Vector3f &transform(Matrix4f &mat)
 	{
 		set(this->x * mat.values[Matrix4f::M00] + this->y * mat.values[Matrix4f::M01] + this->z * mat.values[Matrix4f::M02] + mat.values[Matrix4f::M03],
 			this->x * mat.values[Matrix4f::M10] + this->y * mat.values[Matrix4f::M11] + this->z * mat.values[Matrix4f::M12] + mat.values[Matrix4f::M13],
 			this->x * mat.values[Matrix4f::M20] + this->y * mat.values[Matrix4f::M21] + this->z * mat.values[Matrix4f::M22] + mat.values[Matrix4f::M23]);
-		return this;
+		return *this;
 	}
 
-	Vector3f *div(Vector3f &other)
-	{
-		Vector3f *res = new Vector3f(*this);
-		res->x /= other.x;
-		res->y /= other.y;
-		res->z /= other.z;
-		return res;
-	}
-
-	Vector3f *divStore(Vector3f &other)
+	Vector3f &divide(Vector3f &other)
 	{
 		this->x /= other.x;
 		this->y /= other.y;
 		this->z /= other.z;
-		return this;
+		return *this;
 	}
 
-	Vector3f *cross(Vector3f &other)
-	{
-		Vector3f *res = new Vector3f(*this);
-		float x1 = (res->y * other.z) - (res->z * other.y);
-        float y1 = (res->z * other.x) - (res->x * other.z);
-        float z1 = (res->x * other.y) - (res->y * other.x);
-        res->set(x1, y1, z1);
-        return res;
-	}
-
-	Vector3f *crossStore(Vector3f &other)
+	Vector3f &cross(Vector3f &other)
 	{
 		float x1 = (this->y * other.z) - (this->z * other.y);
         float y1 = (this->z * other.x) - (this->x * other.z);
         float z1 = (this->x * other.y) - (this->y * other.x);
-        return set(x1, y1, z1);
+        set(x1, y1, z1);
+		return *this;
 	}
 
 	float length()
@@ -223,25 +154,14 @@ public:
 		return sqrt(x * x + y * y + z * z);
 	}
 
-	Vector3f *normalize()
-	{
-		Vector3f *res = new Vector3f(*this);
-		float len = length();
-		float len2 = len*len;
-		if (len2 == 0 || len2 == 1)
-			return res;
-		res->scaleStore(1.0f / len);
-		return res;
-	}
-
-	Vector3f *normalizeStore()
+	Vector3f &normalize()
 	{
 		float len = length();
 		float len2 = len*len;
 		if (len2 == 0 || len2 == 1)
-			return this;
-		this->scaleStore(1.0f / len);
-		return this;
+			return *this;
+		this->scale(1.0f / len);
+		return *this;
 	}
 
 	float dot(Vector3f &other)

@@ -117,7 +117,7 @@ public:
 		string verString = "";
 		string ver = "#version";
 		vector<string> lines = split(code, '\n');
-		for (int i = 0; i < lines.size(); i++)
+		for (size_t i = 0; i < lines.size(); i++)
 		{
 			string line = lines[i];
 			if (startswith(ltrim(line), ver))

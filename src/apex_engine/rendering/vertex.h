@@ -22,7 +22,7 @@ private:
 			 texCoord1;
 
 	float boneWeights[4];
-	int boneIndices[4];
+	unsigned int boneIndices[4];
 
 public:
 	Vertex() {}
@@ -139,7 +139,7 @@ public:
 		boneIndices[i] = val;
 	}
 
-	int &getBoneIndex(int i)
+	unsigned int &getBoneIndex(int i)
 	{
 		return boneIndices[i];
 	}
@@ -152,7 +152,7 @@ public:
 		}
 	}
 
-	void addBoneIndex(float &index)
+	void addBoneIndex(unsigned int &index)
 	{
 		if (count_bone_indices < MAX_BONE_INDICES)
 		{

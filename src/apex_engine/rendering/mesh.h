@@ -41,20 +41,7 @@ public:
 		this->primitiveType = Triangles;
 	}
 
-	void render()
-	{
-		if (!created)
-		{
-			RenderManager::getEngine()->createMesh(*this);
-			created = true;
-		}
-		if (!uploaded)
-		{
-			RenderManager::getEngine()->uploadMesh(*this);
-			uploaded = true;
-		}
-		RenderManager::getEngine()->renderMesh(*this);
-	}
+	void render();
 
 	BoundingBox createBoundingBox(vector<Vertex> &vertices, vector<int> &indices);
 
@@ -92,35 +79,9 @@ public:
 		this->getAttributes().setAttribute(VertexAttributes::BONEWEIGHTS);
 	}
 
-	void setVertices(vector<Vertex> &vertices)
-	{
-		this->vertices.clear();
-		this->indices.clear();
+	void setVertices(vector<Vertex> &vertices);
 
-		this->vertices = vertices;
-
-		for (int i = 0; i < vertices.size(); i++)
-		{
-			indices.push_back(i);
-		}
-
-		setAttributes();
-
-		uploaded = false;
-	}
-
-	void setVertices(vector<Vertex> &vertices, vector<int> &indices)
-	{
-		this->vertices.clear();
-		this->indices.clear();
-
-		this->vertices = vertices;
-		this->indices = indices;
-
-		setAttributes();
-
-		uploaded = false;
-	}
+	void setVertices(vector<Vertex> &vertices, vector<int> &indices);
 };
 
 #endif

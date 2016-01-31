@@ -74,14 +74,14 @@ public:
 	{
 	}
 
-	int getNumAttributes()
+	size_t getNumAttributes()
 	{
 		return attribs.size();
 	}
 
 	bool hasAttribute(VertexAttribute &attr)
 	{
-		for (int i = 0; i < attribs.size(); i++)
+		for (size_t i = 0; i < attribs.size(); i++)
 		{
 			if (strcmp(attribs[i].getAttributeName(), attr.getAttributeName()) == 0)
 			{
@@ -94,7 +94,7 @@ public:
 
 	void setAttribute(VertexAttribute &val)
 	{
-		for (int i = 0; i < attribs.size(); i++)
+		for (size_t i = 0; i < attribs.size(); i++)
 		{
 			if (strcmp(attribs[i].getAttributeName(), val.getAttributeName()) == 0)
 			{
@@ -119,7 +119,7 @@ public:
 
 	bool getAttribute(const char *name, VertexAttribute &outAttr)
 	{
-		for (int i = 0; i < attribs.size(); i++)
+		for (size_t i = 0; i < attribs.size(); i++)
 		{
 			if (strcmp(attribs[i].getAttributeName(), name) == 0)
 			{

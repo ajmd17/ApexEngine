@@ -8,12 +8,12 @@ public:
 
 	static float toDegrees(float rad)
 	{
-		return rad * 180.0 / PI;
+		return rad * 180.0f / PI;
 	}
 
 	static float toRadians(float deg)
 	{
-		return deg * PI / 180.0;
+		return deg * PI / 180.0f;
 	}
 
 	static float clamp(float val, float min, float max)

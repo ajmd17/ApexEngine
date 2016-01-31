@@ -70,22 +70,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
     <IncludePath>..\..\src\apex_engine;..\..\includes\Lua;..\..\includes;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\libs\win32;..\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
     <IncludePath>..\..\src\apex_engine;..\..\includes\Lua;..\..\includes;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\libs\win32;..\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
     <LibraryPath>..\..\libs\win32;..\Release;$(LibraryPath)</LibraryPath>
     <IncludePath>..\..\src\apex_engine;..\..\includes\Lua;..\..\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
     <LibraryPath>..\..\libs\win32;..\Release;$(LibraryPath)</LibraryPath>
     <IncludePath>..\..\src\apex_engine;..\..\includes\Lua;..\..\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
@@ -126,7 +126,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;SFML_STATIC;</PreprocessorDefinitions>
@@ -145,7 +145,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;SFML_STATIC;</PreprocessorDefinitions>

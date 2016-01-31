@@ -14,6 +14,7 @@ protected:
 	Matrix4f viewMatrix, projectionMatrix, viewProjectionMatrix;
 public:
 	virtual void updateCameraLogic() = 0;
+
 	virtual void updateCameraMatrices() = 0;
 
 	Vector3f &getTranslation()

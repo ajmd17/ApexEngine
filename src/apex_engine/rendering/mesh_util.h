@@ -19,7 +19,7 @@ public:
 				prevSize = 0,
 				offset = 0;
 
-		for (int i = 0; i < mesh.getAttributes().getNumAttributes(); i++)
+		for (size_t i = 0; i < mesh.getAttributes().getNumAttributes(); i++)
 		{
 			offset += prevSize * sizeof(int);
 			mesh.getAttributes().getAttribute(i).setOffset(offset);
@@ -43,7 +43,7 @@ public:
 		boneIndices = mesh.getAttributes().hasAttribute(VertexAttributes::BONEINDICES);
 		boneWeights = mesh.getAttributes().hasAttribute(VertexAttributes::BONEWEIGHTS);
 
-		for (int i = 0; i < mesh.vertices.size(); i++)
+		for (size_t i = 0; i < mesh.vertices.size(); i++)
 		{
 			if (positions)
 			{
@@ -81,10 +81,10 @@ public:
 			}
 			if (boneIndices)
 			{
-				floatBuffer.push_back(mesh.vertices[i].getBoneIndex(0));
-				floatBuffer.push_back(mesh.vertices[i].getBoneIndex(1));
-				floatBuffer.push_back(mesh.vertices[i].getBoneIndex(2));
-				floatBuffer.push_back(mesh.vertices[i].getBoneIndex(3));
+				floatBuffer.push_back(static_cast<float>(mesh.vertices[i].getBoneIndex(0)));
+				floatBuffer.push_back(static_cast<float>(mesh.vertices[i].getBoneIndex(1)));
+				floatBuffer.push_back(static_cast<float>(mesh.vertices[i].getBoneIndex(2)));
+				floatBuffer.push_back(static_cast<float>(mesh.vertices[i].getBoneIndex(3)));
 			}
 			if (boneWeights)
 			{
@@ -101,14 +101,16 @@ public:
 	static BoundingBox createMeshBoundingBox(Mesh &mesh, BoundingBox &boundingBox, Matrix4f &transform)
 	{
 		boundingBox.clear();
-		for (int i = 0; i < mesh.indices.size(); i++)
+
+		for (size_t i = 0; i < mesh.indices.size(); i++)
 		{
 			Vector3f tmpPosition;
 			tmpPosition.set(mesh.vertices[mesh.indices[i]].getPosition());
-			tmpPosition.transformStore(transform);
+			tmpPosition.transform(transform);
 
 			boundingBox.extend(tmpPosition);
 		}
+
 		return boundingBox;
 	}
 
@@ -116,6 +118,7 @@ public:
 	{
 		Matrix4f tmpMat;
 		createMeshBoundingBox(mesh, boundingBox, tmpMat);
+
 		return boundingBox;
 	}
 };

@@ -36,21 +36,19 @@ void GLEngine::renderThread(WindowGamePair &pair)
 	window->setActive(true);
 
 	game->init();
-	game->setRunning(true);
 
 	while (window->isOpen())
 	{
 		globalMutex.lock();
 
-		if (game != NULL && game->isRunning())
+		if (game != NULL)
 		{
 			game->update();
 			game->render();
 		}
 		
 		window->display();
-		globalMutex.unlock();
-        
+		globalMutex.unlock();   
 	}
 
 	window->setActive(false);
@@ -59,8 +57,14 @@ void GLEngine::renderThread(WindowGamePair &pair)
 
 void GLEngine::createContext(Game *game, int width, int height)
 {
-	sf::RenderWindow window;
-	window.create(sf::VideoMode(width, height), "Apex Engine");
+	sf::RenderWindow window; 
+	sf::ContextSettings settings;
+	settings.depthBits = 24;
+	settings.stencilBits = 8;
+	settings.antialiasingLevel = 4;
+	settings.majorVersion = 3;
+	settings.minorVersion = 0;
+	window.create(sf::VideoMode(width, height), "Apex Engine", sf::Style::Default, settings);
 	window.setVerticalSyncEnabled(true);
     
     bool canCloseWindow = false;
@@ -69,6 +73,11 @@ void GLEngine::createContext(Game *game, int width, int height)
 #ifndef __APPLE__
 	glewInit();
 #endif
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(GL_TRUE);
+	glDepthFunc(GL_LEQUAL);
+	glDepthRange(0.0, 1.0);
 
 	sf::Thread render_thread(std::bind(&GLEngine::renderThread, this, WindowGamePair(&window, game)));
 	sf::Event event;
@@ -86,7 +95,6 @@ void GLEngine::createContext(Game *game, int width, int height)
             if (game != NULL)
             {
                 game->exit();
-                game->setRunning(false);
             }
             globalMutex.unlock();
 		}
@@ -174,6 +182,8 @@ void GLEngine::loadTexture2D(AssetInfo &asset, Texture2D &outTex)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, img_data.getPixelsPtr());
 #endif
 	outTex.genMipmap();
+
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 int GLEngine::genTexture()
@@ -274,25 +284,25 @@ void GLEngine::addShader(Shader &program, string code, ShaderType type)
 	string str_type = "Undefined";
 	switch (type)
 	{
-	case ShaderType::VertexShader:
+	case VertexShader:
 		i_type = GL_VERTEX_SHADER;
 		str_type = "Vertex Shader";
 		break;
-	case ShaderType::FragmentShader:
+	case FragmentShader:
 		i_type = GL_FRAGMENT_SHADER;
 		str_type = "Fragment Shader";
 		break;
 #ifndef __APPLE__
 #ifndef GL_ES
-	case ShaderType::GeometryShader:
+	case GeometryShader:
 		i_type = GL_GEOMETRY_SHADER;
 		str_type = "Geomsetry Shader";
 		break;
-	case ShaderType::TessEvalShader:
+	case TessEvalShader:
 		i_type = GL_TESS_EVALUATION_SHADER;
 		str_type = "Tessellation Evaluation Shader";
 		break;
-	case ShaderType::TessControlShader:
+	case TessControlShader:
 		i_type = GL_TESS_CONTROL_SHADER;
 		str_type = "Tessellation Control Shader";
 		break;
@@ -394,7 +404,7 @@ void GLEngine::renderMesh(Mesh &mesh)
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glBindBuffer(GL_ARRAY_BUFFER, mesh.vbo);
 
-	for (int i = 0; i < mesh.getAttributes().getNumAttributes(); i++)
+	for (size_t i = 0; i < mesh.getAttributes().getNumAttributes(); i++)
 	{
 		glEnableVertexAttribArray(i);
 		glVertexAttribPointer(i, mesh.getAttributes().getAttribute(i).getSize(), GL_FLOAT, false, mesh.getVertexSize() * sizeof(GL_FLOAT), (void*)mesh.getAttributes().getAttribute(i).getOffset());
@@ -403,7 +413,7 @@ void GLEngine::renderMesh(Mesh &mesh)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.ibo);
 	glDrawElements(GL_TRIANGLES, mesh.size, GL_UNSIGNED_INT, 0);
 
-	for (int i = 0; i < mesh.getAttributes().getNumAttributes(); i++)
+	for (size_t i = 0; i < mesh.getAttributes().getNumAttributes(); i++)
 	{
 		glDisableVertexAttribArray(i);
 	}
@@ -444,7 +454,7 @@ void GLEngine::setBlend(bool blend)
 
 void GLEngine::setBlendMode(BlendMode blendMode)
 {
-	if (blendMode == BlendMode::AlphaBlended)
+	if (blendMode == AlphaBlended)
 	{
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
@@ -462,9 +472,9 @@ void GLEngine::setFaceToCull(Face face)
 {
 	switch (face)
 	{
-	case Face::Back:
+	case Back:
 		glCullFace(GL_BACK);
-	case Face::Front:
+	case Front:
 		glCullFace(GL_FRONT);
 	}
 }
@@ -473,9 +483,9 @@ void GLEngine::setFaceDirection(FaceDirection faceDirection)
 {
 	switch (faceDirection)
 	{
-	case FaceDirection::Ccw:
+	case Ccw:
 		glFrontFace(GL_CCW);
-	case FaceDirection::Cw:
+	case Cw:
 		glFrontFace(GL_CW);
 	}
 }

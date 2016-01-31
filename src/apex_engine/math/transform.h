@@ -23,10 +23,10 @@ private:
 		MatrixUtil::setToScaling(scaleMat, scale);
 
 		rotScaleTrans.set(rotMat);
-		rotScaleTrans.multStore(scaleMat);
-		rotScaleTrans.multStore(transMat);
+		rotScaleTrans.multiply(scaleMat);
+		rotScaleTrans.multiply(transMat);
 
-		this->matrix = rotScaleTrans;
+		this->matrix.set(rotScaleTrans);
 	}
 
 public:

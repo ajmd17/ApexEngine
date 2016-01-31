@@ -18,17 +18,11 @@ public:
 		this->setToIdentity();
 	}
 
-	Quaternion(Quaternion &other)
-	{
-		this->set(other);
-	}
-
 	Quaternion(float x, float y, float z, float w)
 	{
 		this->set(x, y, z, w);
 	}
 
-	// Required copy constructor
 	Quaternion(const Quaternion &other)
 	{
 		this->x = other.x;
@@ -57,48 +51,34 @@ public:
 		return w;
 	}
 
-	Quaternion *set(Quaternion &other)
+	Quaternion &set(Quaternion &other)
 	{
 		this->x = other.x;
 		this->y = other.y;
 		this->z = other.z;
 		this->w = other.w;
-		return this;
+		return *this;
 	}
 
-	Quaternion *set(float x, float y, float z, float w)
+	Quaternion &set(float x, float y, float z, float w)
 	{
 		this->x = x;
 		this->y = y;
 		this->z = z;
 		this->w = w;
-		return this;
+		return *this;
 	}
 
-	Quaternion *setToIdentity()
+	Quaternion &setToIdentity()
 	{
 		this->x = 0.0;
 		this->y = 0.0;
 		this->z = 0.0;
 		this->w = 1.0;
-		return this;
+		return *this;
 	}
 
-	Quaternion *mult(Quaternion &other)
-	{
-		Quaternion *res = new Quaternion();
-        float x1 = x * other.w + y * other.z - z * other.y + w * other.x;
-        float y1 = -x * other.z + y * other.w + z * other.x + w * other.y;
-        float z1 = x * other.y - y * other.x + z * other.w + w * other.z;
-        float w1 = -x * other.x - y * other.y - z * other.z + w * other.w;
-        res->x = x1;
-        res->y = y1;
-        res->z = z1;
-        res->w = w1;
-        return res;
-	}
-
-	Quaternion *multStore(Quaternion &other)
+	Quaternion &multiply(Quaternion &other)
 	{
         float x1 = x * other.w + y * other.z - z * other.y + w * other.x;
         float y1 = -x * other.z + y * other.w + z * other.x + w * other.y;
@@ -108,28 +88,10 @@ public:
         this->y = y1;
         this->z = z1;
         this->w = w1;
-        return this;
+        return *this;
 	}
 
-	Vector3f *mult(Vector3f vec)
-	{
-		Vector3f *res = new Vector3f();
-
-		float vx = vec.x, vy = vec.y, vz = vec.z;
-		res->x = w * w * vx + 2 * y * w * vz - 2 * z * w * vy + x * x
-		* vx + 2 * y * x * vy + 2 * z * x * vz - z * z * vx - y
-		* y * vx;
-		res->y = 2 * x * y * vx + y * y * vy + 2 * z * y * vz + 2 * w
-		* z * vx - z * z * vy + w * w * vy - 2 * x * w * vz - x
-		* x * vy;
-		res->z = 2 * x * z * vx + 2 * y * z * vy + z * z * vz - 2 * w
-		* y * vx - y * y * vz + 2 * w * x * vy - x * x * vz + w
-		* w * vz;
-
-		return res;
-	}
-
-	Vector3f *multStore(Vector3f &vec)
+	Vector3f &multiply(Vector3f &vec)
 	{
 		float tempX, tempY;
 		tempX = w * w * vec.x + 2 * y * w * vec.z - 2 * z * w * vec.y + x * x * vec.x
@@ -141,7 +103,7 @@ public:
 		- y * y * vec.z + 2 * w * x * vec.y - x * x * vec.z + w * w * vec.z;
 		vec.x = tempX;
 		vec.y = tempY;
-		return &vec;
+		return vec;
 	}
 
 	float normalize()
@@ -149,19 +111,7 @@ public:
 		return w * w + x * x + y * y + z * z;
 	}
 
-	Quaternion *inverse()
-	{
-		float n = normalize();
-		Quaternion *res = new Quaternion();
-		if (n > 0)
-		{
-			float invN = 1.0f / n;
-			res->set(-x * invN, -y * invN, -z * invN, w * invN);
-		}
-		return res;
-	}
-
-	Quaternion *inverseStore()
+	Quaternion &inverse()
 	{
 		float n = normalize();
         if (n > 0.0)
@@ -172,7 +122,7 @@ public:
             this->z = -z * invN;
             this->w = w * invN;
         }
-        return this;
+        return *this;
 	}
 
 	int getGimbalPole()
@@ -184,13 +134,13 @@ public:
 	float getRollRad()
 	{
 		int pole = getGimbalPole();
-		return pole == 0 ? atan2(2.0 * (w * z + y * x), 1.0 - 2.0 * (x * x + z * z)) : pole * 2.0 * atan2(y, w);
+		return pole == 0 ? atan2(2.0f * (w * z + y * x), 1.0f - 2.0f * (x * x + z * z)) : pole * 2.0f * atan2(y, w);
 	}
 
 	float getPitchRad()
 	{
 		int pole = getGimbalPole();
-		return pole == 0 ? asin(MathUtil::clamp(2.0f * (w * x - z * y), -1.0, 1.0)) : pole * MathUtil::PI * 0.5;
+		return pole == 0 ? asin(MathUtil::clamp(2.0f * (w * x - z * y), -1.0f, 1.0f)) : pole * MathUtil::PI * 0.5f;
 	}
 
     float getYawRad()
@@ -214,9 +164,9 @@ public:
 		return MathUtil::toDegrees(getYawRad());
 	}
 
-	Quaternion *setFromAxisRad(Vector3f axis, float rads)
+	Quaternion &setFromAxisRad(Vector3f axis, float rads)
 	{
-		axis.normalizeStore();
+		axis.normalize();
 
 		if (axis.x == 0 && axis.y == 0 && axis.z == 0)
 			return set(0, 0, 0, 1);
@@ -229,15 +179,15 @@ public:
             this->y = sinHalfAngle * axis.y;
             this->z = sinHalfAngle * axis.z; 
 		}
-		return this;
+		return *this;
 	}
 
-	Quaternion *setFromAxis(Vector3f axis, float degrees)
+	Quaternion &setFromAxis(Vector3f axis, float degrees)
 	{
 		return setFromAxisRad(axis, MathUtil::toRadians(degrees));
 	}
 
-	Quaternion *setFromAxes(float xx, float xy, float xz,
+	Quaternion &setFromAxes(float xx, float xy, float xz,
                             float yx, float yy, float yz,
                             float zx, float zy, float zz)
 	{
@@ -274,25 +224,25 @@ public:
 			this->y = (zy + yz) * (0.5f / s);
 			this->w = (yx - xy) * (0.5f / s);
 		}
-        return this;
+        return *this;
 	}
 
-	Quaternion *setFromMatrix(Matrix4f &mat)
+	Quaternion &setFromMatrix(Matrix4f &mat)
 	{
 		return setFromAxes(mat.values[Matrix4f::M00], mat.values[Matrix4f::M10], mat.values[Matrix4f::M20],
                     mat.values[Matrix4f::M01], mat.values[Matrix4f::M11], mat.values[Matrix4f::M21],
                     mat.values[Matrix4f::M02], mat.values[Matrix4f::M12], mat.values[Matrix4f::M22]);
 	}
 
-	Quaternion *setToLookAt(Vector3f &dir, Vector3f &up)
+	Quaternion &setToLookAt(Vector3f &dir, Vector3f &up)
 	{
 		tempZ.set(dir);
-		tempZ.normalizeStore();
+		tempZ.normalize();
 		tempX.set(up);
-		tempX.crossStore(dir);
+		tempX.cross(dir);
 		tempY.set(dir);
-		tempY.crossStore(tempX);
-		tempY.normalizeStore();
+		tempY.cross(tempX);
+		tempY.normalize();
 		return setFromAxes(tempX.x, tempX.y, tempX.z,
 					tempY.x, tempY.y, tempY.z,
 					tempZ.x, tempZ.y, tempZ.z);

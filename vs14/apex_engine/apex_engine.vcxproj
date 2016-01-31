@@ -38,6 +38,7 @@
     <ClInclude Include="..\..\src\apex_engine\math\vector4f.h" />
     <ClInclude Include="..\..\src\apex_engine\object.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\camera.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\cameras\perspective_camera.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\constants.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\enums.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\environment.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="..\..\src\apex_engine\assets\assetmanager.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\boundingbox.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\math_util.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\math\matrix_util.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\vector2f.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\vector3f.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\vector4f.cpp" />
