@@ -67,7 +67,7 @@ void GLEngine::createContext(Game *game, int width, int height)
 	window.create(sf::VideoMode(width, height), "Apex Engine", sf::Style::Default, settings);
 	window.setVerticalSyncEnabled(true);
     
-    bool canCloseWindow = false;
+	this->contextActive = true;
 
 	// Mac OS X / iOS don't need glew.
 #ifndef __APPLE__
@@ -158,7 +158,7 @@ void GLEngine::loadTexture2D(AssetInfo &asset, Texture2D &outTex)
 	// Create texture:
 
 	unsigned int m_texture = Texture::genTexture();
-	outTex = Texture2D(m_texture);
+	outTex.setID(m_texture);
 
 	outTex.use();
 

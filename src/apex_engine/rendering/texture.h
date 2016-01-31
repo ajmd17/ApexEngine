@@ -1,10 +1,13 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+// This object can be loaded
+#include "../assets/loadableobject.h"
+
 #include "enums.h"
 #include "rendermanager.h"
 
-class Texture
+class Texture : public ILoadableObject
 {
 protected:
 	int id;
@@ -19,14 +22,15 @@ public:
 		this->id = id;
 	}
 
-	~Texture()
+	virtual ~Texture()
 	{
-		if (id != 0 && RenderManager::getEngine() != 0)
+		if (id != 0 && RenderManager::getEngine() != NULL)
+		{
 			RenderManager::getEngine()->deleteTexture(id);
-		this->id = 0;
+		}
 	}
 
-	int getID()
+	const int &getID()
 	{
 		return id;
 	}

@@ -33,8 +33,8 @@ Shader::~Shader()
 	if (this->getProgramID() != 0)
 		RenderManager::getEngine()->deleteShaderProgram(*this);
 
-	int arraySize = sizeof(m_shaderIDs) / sizeof(m_shaderIDs[0]);
-	for (int i = 0; i < arraySize; i++)
+	const unsigned int arraySize = sizeof(m_shaderIDs) / sizeof(m_shaderIDs[0]);
+	for (unsigned int i = 0; i < arraySize; i++)
 	{
 		if (m_shaderIDs[i] != 0)
 			RenderManager::getEngine()->deleteShader(m_shaderIDs[i]);

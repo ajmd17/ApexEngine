@@ -14,18 +14,25 @@ using std::string;
 using std::cout;
 
 class Camera;
+
 class Game;
+
 class Shader;
+
 class Mesh;
+
 class Texture;
+
 class Texture2D;
 
 class IEngine
 {
+protected:
 public:
+	bool contextActive;
 
-	IEngine() {}
-    virtual ~IEngine() {}
+	IEngine() { }
+    virtual ~IEngine() { }
 
 	/* Rendering stuff */
 	virtual void createContext(Game *game, int width, int height) = 0;

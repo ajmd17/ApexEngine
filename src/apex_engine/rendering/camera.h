@@ -12,10 +12,32 @@ class Camera
 protected:
 	Vector3f translation, direction;
 	Matrix4f viewMatrix, projectionMatrix, viewProjectionMatrix;
+
+	unsigned int width, height;
 public:
 	virtual void updateCameraLogic() = 0;
 
 	virtual void updateCameraMatrices() = 0;
+
+	unsigned int getWidth()
+	{
+		return width;
+	}
+
+	void setWidth(unsigned int width)
+	{
+		this->width = width;
+	}
+
+	unsigned int getHeight()
+	{
+		return height;
+	}
+
+	void setHeight(unsigned int height)
+	{
+		this->height = height;
+	}
 
 	Vector3f &getTranslation()
 	{

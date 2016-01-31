@@ -11,6 +11,7 @@ using namespace std;
 #include <rendering/shadermanager.h>
 #include <scene/node.h>
 #include <scene/geometry.h>
+#include <util/strutil.h>
 #include <rendering/cameras/perspective_camera.h>
 
 
@@ -48,35 +49,29 @@ public:
 const string MyShader::vscode = "attribute vec3 a_position;\nattribute vec2 a_texcoord0;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;uniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\n}";
 const string MyShader::fscode = "uniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvoid main() {\ngl_FragColor = texture2D(u_texture, v_texCoord0);\n}";
 
-Material *mat;
 Geometry *mygeom;
 Mesh *mesh;
 Shader *shader; 
 lua_State *lua;
 Matrix4f myMatrix;
-Texture2D *mytex;
+std::shared_ptr<Texture2D> mytex;
 
 
 float rot;
 void TestGame::init()
 {
 	AssetManager astMgr;
-	mytex = astMgr.loadTexture("tex.png");
-
+	mytex = std::dynamic_pointer_cast<Texture2D>(astMgr.load("tex.png"));
 	RenderManager::getEngine()->clearColor(1, 1, 1, 1);
     
 	
 	this->camera = new PerspectiveCamera(45, 512, 512, 1.0, 100.0);
 
-	
 	rot = 0;
-
-	mat = new Material();
-	Vector4f col;
-	mat->setTexture(Material::TEXTURE_DIFFUSE, *mytex);
-	mat->getVector4f(Material::COLOR_DIFFUSE, col);
+	
 
 	mygeom = new Geometry();
+	mygeom->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex.get());
 	mygeom->setLocalTranslation(Vector3f(0, -0.5f, 3.0f));
 	this->scene->getRootNode()->add(mygeom);
 
@@ -269,8 +264,6 @@ void TestGame::exit()
 {
 	delete camera;
 	delete mygeom;
-	delete mat;
-	delete mytex;
 	delete mesh;
 	delete shader;
 }
@@ -282,7 +275,14 @@ void TestGame::logic()
 	*/
 	rot += 1;
 	mygeom->setLocalRotation(Quaternion().setFromAxis(Vector3f(0, 1, 0), rot));
-	
+
+
+	Texture *texPtr;
+	if (mygeom->getMaterial().getTexture(Material::TEXTURE_DIFFUSE, texPtr))
+	{
+		texPtr->use();
+	}
+
 
 	if (rot > 100 && this->scene->getRootNode()->size() > 0)
 	{
@@ -299,8 +299,8 @@ int main()
 
 	pEngine->createContext(game, 300, 150);
 
-	delete pEngine;
 	delete game;
+	//delete pEngine;
 
 	return 0;
 }

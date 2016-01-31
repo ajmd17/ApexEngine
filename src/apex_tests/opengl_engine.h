@@ -32,13 +32,14 @@ public:
 
 class GLEngine : public IEngine
 {
+private:
 public:
     sf::Mutex globalMutex;
     
     void renderThread(WindowGamePair &pair);
 
-    GLEngine() { }
-	~GLEngine() { }
+	GLEngine() { this->contextActive = false; }
+	~GLEngine() { this->contextActive = false; }
 
 	virtual void createContext(Game *game, int width, int height);
 	virtual void viewport(int x, int y, int width, int height);

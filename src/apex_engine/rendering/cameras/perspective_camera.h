@@ -11,7 +11,6 @@ class PerspectiveCamera : public Camera
 {
 private:
 	float fov, n, f;
-	int width, height;
 
 	Vector3f target, up;
 public:

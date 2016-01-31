@@ -1,8 +1,8 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
-#include <map>
-using std::map;
+#include <unordered_map>
+using std::unordered_map;
 
 #include <string>
 using std::string;
@@ -12,16 +12,13 @@ using std::string;
 
 class Material
 {
-public:
-	enum Bucket { Opaque, Transparent, Particle, Skybox };
 private:
-	Bucket bucket;
-	map<string, bool> booleans;
-	map<string, int> integers;
-	map<string, float> floats;
-	map<string, Vector4f> vector4fs;
-	map<string, string> strings;
-	map<string, Texture*> textures;
+	unordered_map<string, bool> booleans;
+	unordered_map<string, int> integers;
+	unordered_map<string, float> floats;
+	unordered_map<string, Vector4f> vector4fs;
+	unordered_map<string, string> strings;
+	unordered_map<string, Texture*> textures;
 public:
 	const static string 
 		STRING_NAME,
@@ -59,7 +56,7 @@ public:
 
 	bool hasBool(string name)
 	{
-		map<string, bool>::iterator it = booleans.find(name.c_str());
+		unordered_map<string, bool>::iterator it = booleans.find(name.c_str());
 		if (it != booleans.end())
 			return true;
 		return false;
@@ -67,7 +64,7 @@ public:
 
 	bool hasInt(string name)
 	{
-		map<string, int>::iterator it = integers.find(name.c_str());
+		unordered_map<string, int>::iterator it = integers.find(name.c_str());
 		if (it != integers.end())
 			return true;
 		return false;
@@ -75,7 +72,7 @@ public:
 
 	bool hasFloat(string name)
 	{
-		map<string, float>::iterator it = floats.find(name.c_str());
+		unordered_map<string, float>::iterator it = floats.find(name.c_str());
 		if (it != floats.end())
 			return true;
 		return false;
@@ -83,7 +80,7 @@ public:
 
 	bool hasVector4f(string name)
 	{
-		map<string, Vector4f>::iterator it = vector4fs.find(name.c_str());
+		unordered_map<string, Vector4f>::iterator it = vector4fs.find(name.c_str());
 		if (it != vector4fs.end())
 			return true;
 		return false;
@@ -91,7 +88,7 @@ public:
 
 	bool hasString(string name)
 	{
-		map<string, string>::iterator it = strings.find(name.c_str());
+		unordered_map<string, string>::iterator it = strings.find(name.c_str());
 		if (it != strings.end())
 			return true;
 		return false;
@@ -99,7 +96,7 @@ public:
 
 	bool hasTexture(string name)
 	{
-		map<string, Texture*>::iterator it = textures.find(name.c_str());
+		unordered_map<string, Texture*>::iterator it = textures.find(name.c_str());
 		if (it != textures.end())
 			return true;
 		return false;
@@ -111,9 +108,7 @@ public:
 	{
 		if (hasBool(name))
 		{
-			std::map<string, bool>::iterator it;
-			it = booleans.find(name);
-			outBool = it->second;
+			outBool = booleans[name];
 			return true;
 		}
 		else
@@ -124,9 +119,7 @@ public:
 	{
 		if (hasInt(name))
 		{
-			std::map<string, int>::iterator it;
-			it = integers.find(name);
-			outInt = it->second;
+			outInt = integers[name];
 			return true;
 		}
 		else
@@ -137,9 +130,7 @@ public:
 	{
 		if (hasFloat(name))
 		{
-			std::map<string, float>::iterator it;
-			it = floats.find(name);
-			outFloat = it->second;
+			outFloat = floats[name];
 			return true;
 		}
 		else
@@ -150,9 +141,7 @@ public:
 	{
 		if (hasVector4f(name))
 		{
-			std::map<string, Vector4f>::iterator it;
-			it = vector4fs.find(name);
-			outVec = it->second;
+			outVec = vector4fs[name];
 			return true;
 		}
 		else
@@ -163,22 +152,18 @@ public:
 	{
 		if (hasString(name))
 		{
-			std::map<string, string>::iterator it;
-			it = strings.find(name);
-			outStr = it->second;
+			outStr = strings[name];
 			return true;
 		}
 		else
 			return false;
 	}
 
-	bool getTexture(string name, Texture &outTex)
+	bool getTexture(string name, Texture *&outTex)
 	{
 		if (hasTexture(name))
 		{
-			std::map<string, Texture*>::iterator it;
-			it = textures.find(name);
-			outTex = *it->second;
+			outTex = textures[name];
 			return true;
 		}
 		else
@@ -189,96 +174,32 @@ public:
 
 	void setBool(string name, bool val)
 	{
-		bool hasVal = this->hasBool(name);
-
-		if (!hasVal)
-			booleans.insert(std::pair<string, bool>(name, val));
-		else
-		{
-			std::map<string, bool>::iterator it;
-			it = booleans.find(name);
-			it->second = val;
-		}
+		booleans[name] = val;
 	}
 
 	void setInt(string name, int val)
 	{
-		bool hasVal = this->hasInt(name);
-
-		if (!hasVal)
-			integers.insert(std::pair<string, int>(name, val));
-		else
-		{
-			std::map<string, int>::iterator it;
-			it = integers.find(name);
-			it->second = val;
-		}
+		integers[name] = val;
 	}
 
 	void setFloat(string name, float val)
 	{
-		bool hasVal = this->hasFloat(name);
-
-		if (!hasVal)
-			floats.insert(std::pair<string, float>(name, val));
-		else
-		{
-			std::map<string, float>::iterator it;
-			it = floats.find(name);
-			it->second = val;
-		}
+		floats[name] = val;
 	}
 
 	void setVector4f(string name, Vector4f val)
 	{
-		bool hasVal = this->hasVector4f(name);
-
-		if (!hasVal)
-			vector4fs.insert(std::pair<string, Vector4f>(name, val));
-		else
-		{
-			std::map<string, Vector4f>::iterator it;
-			it = vector4fs.find(name);
-			it->second = val;
-		}
+		vector4fs[name] = val;
 	}
 
 	void setString(string name, string val)
 	{
-		bool hasVal = this->hasString(name);
-
-		if (!hasVal)
-			strings.insert(std::pair<string, string>(name, val));
-		else
-		{
-			std::map<string, string>::iterator it;
-			it = strings.find(name);
-			it->second = val;
-		}
+		strings[name] = val;
 	}
 
-	void setTexture(string name, Texture &val)
+	void setTexture(string name, Texture *val)
 	{
-		bool hasVal = this->hasTexture(name);
-
-		if (!hasVal)
-			textures.insert(std::pair<string, Texture*>(name, &val));
-		else
-		{
-			std::map<string, Texture*>::iterator it;
-			it = textures.find(name);
-			it->second = &val;
-		}
-	}
-
-	Bucket &getBucket()
-	{
-		return this->bucket;
-	}
-
-	void setBucket(Bucket bucket)
-	{
-		this->bucket = bucket;
+		textures[name] = val;
 	}
 };
 

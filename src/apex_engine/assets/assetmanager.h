@@ -10,47 +10,51 @@
 #include <vector>
 using std::vector;
 
+#include <memory>
+
 #include <string>
 using std::string;
 
+#include <unordered_map>
+using std::unordered_map;
 #include <map>
 using std::map;
 
 #include "assetloader.h"
+
+// Default loaders
+#include "textureloader.h"
 
 class Texture2D;
 
 class AssetManager
 {
 private:
-	static map<AssetInfo, ILoadableObject*> loadedAssets;
-	static map<char*, IAssetLoader*> loaders;
+	unordered_map<AssetInfo, ILoadableObject*> loadedAssets;
+	unordered_map<char*, std::shared_ptr<IAssetLoader>> loaders;
 
+	std::shared_ptr<TextureLoader> textureLoader;
 public:
-	AssetManager() {}
+	AssetManager();
 
-	~AssetManager()
+	~AssetManager();
+
+	void registerExt(char *ext, std::shared_ptr<IAssetLoader> loader);
+
+	std::shared_ptr<IAssetLoader> getLoader(char *ext);
+
+	std::shared_ptr<ILoadableObject> load(char *filepath);
+
+	/*template <typename T>
+	typename std::enable_if<std::is_base_of<ILoadableObject, T>::value, T*>::type
+		load(char *filepath)
 	{
-	}
-
-	template <typename T>
-	static void registerExt(const char *ext);
-
-	static ILoadableObject *load(char *filepath)
-	{
-        return 0;
-	}
-
-	/*template <typename ObjectType>
-	typename std::enable_if<std::is_base_of<ObjectType, LoadableObject>::value, ObjectType*>::type
-	static load(char *filepath)
-	{
-		return static_cast<ObjectType>(load(filepath));
+		return static_cast<T*> (load(filepath));
 	}*/
 
-	static void loadModel(char *filepath);
+	void loadModel(char *filepath);
 
-	static Texture2D *loadTexture(char *filepath);
+	Texture2D *loadTexture(char *filepath);
 };
 
 #endif

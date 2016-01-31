@@ -7,6 +7,8 @@
 #include "assetinfo.h"
 #include "loadableobject.h"
 
+#include <memory>
+
 class IAssetLoader
 {
 public:
@@ -14,7 +16,7 @@ public:
 
 	virtual void resetLoader() = 0;
 
-	virtual ILoadableObject *load(AssetInfo &asset) = 0;
+	virtual std::shared_ptr<ILoadableObject> load(AssetInfo &asset) = 0;
 };
 
 #endif

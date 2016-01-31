@@ -21,8 +21,8 @@ private:
 	RenderManager *renderMgr; // Contains a list of all geometry that can be rendered (attached to the root node)
 	Shader *shader;
 	Mesh *mesh;
-
 	Material material;
+
 	RenderBucket bucket;
 
 	BoundingBox localBoundingBox, globalBoundingBox;
