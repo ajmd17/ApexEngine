@@ -9,8 +9,8 @@
 #include <vector>
 using std::vector;
 
-#include <map>
-using std::map;
+#include <unordered_map>
+using std::unordered_map;
 
 class Geometry;
 
@@ -24,7 +24,7 @@ private:
 					  bucket_skybox,
 					  bucket_particles;
 
-	map<RenderBucket, vector<Geometry*>> buckets;
+	unordered_map<RenderBucket, vector<Geometry*>> buckets;
 
 	static void addGeometry(vector<Geometry*> *bucket, Geometry *geom);
 
