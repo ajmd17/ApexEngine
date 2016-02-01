@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <SOLibPaths />
+  <OObjPaths />
+  <Configuration />
+  <Platform />
+  <AndroidArchitecture />
+  <!--links to other recipe files-->
+  <RecipeFiles>C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\libapex_engine_mobile.so.recipe</RecipeFiles>
+</project>

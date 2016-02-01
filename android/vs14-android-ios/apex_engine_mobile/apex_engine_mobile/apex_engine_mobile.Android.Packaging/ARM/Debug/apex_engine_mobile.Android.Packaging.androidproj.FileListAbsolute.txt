@@ -1,0 +1,12 @@
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\apex_engine_mobile.apk.recipe
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\apex_engine_mobile.apk.recipe.merged
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\Package\libs\armeabi-v7a\libapex_engine_mobile.so
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\Package\libs\armeabi-v7a\gdbserver
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\Package\libs\armeabi-v7a\libgnustl_static.a
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\Package\res\values\strings.xml
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\Package\AndroidManifest.xml
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\Package\project.properties
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\Package\build.xml
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\apex_engine_mobile.apk
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\ARM\Debug\apex_engine_mobile.lastsuccessfuldeploy
+C:\Users\User\Documents\Visual Studio 2015\Projects\lib_test\vs14-android-ios\apex_engine_mobile\apex_engine_mobile\apex_engine_mobile.Android.Packaging\ARM\Debug\FileStringReplace.incremental
