@@ -7,25 +7,31 @@
 #include "../scene/scene.h"
 #include "../rendering/rendermanager.h"
 #include "../rendering/camera.h"
+#include "../assets/assetmanager.h"
 
 class Game
 {
 private:
 protected:
 	Scene *scene;
+
 	RenderManager *renderMgr;
+	AssetManager *assetMgr;
 
 	Camera *camera;
 public:
 	Game() 
 	{
 		scene = new Scene();
+
 		renderMgr = new RenderManager();
+		assetMgr = new AssetManager();
 	}
     
     ~Game() 
 	{
-		delete scene;
+		//delete scene;
+		delete assetMgr;
 		delete renderMgr;
 	}
 
@@ -37,7 +43,6 @@ public:
 		}
 
 		this->scene->getRootNode()->update(this->renderMgr);
-
 		this->logic();
 	}
 
@@ -61,6 +66,16 @@ public:
 	Scene *getScene()
 	{
 		return scene;
+	}
+
+	AssetManager *getAssetManager()
+	{
+		return assetMgr;
+	}
+
+	RenderManager *getRenderManager()
+	{
+		return renderMgr;
 	}
 };
 

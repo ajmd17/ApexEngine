@@ -15,8 +15,8 @@ void Spatial::update(RenderManager *renderMgr)
 	if (this->updateFlags & Spatial::updateTransformFlag)
 	{
 		this->updateTransform();
-		this->updateLocalBoundingBox();
-		this->updateGlobalBoundingBox();
+		//this->updateLocalBoundingBox();
+		//this->updateGlobalBoundingBox();
 		this->updateFlags &= ~Spatial::updateTransformFlag;
 	}
 	if (this->updateFlags & Spatial::updateParentFlag)
@@ -64,13 +64,13 @@ void Spatial::calcAttachedToRoot()
 	}
 	else
 	{
-		Spatial &par = *parent;
+		Spatial *par = parent;
 
-		while (strcmp(par.getName().c_str(), ROOT_NAME) != 0)
+		while (strcmp(par->getName().c_str(), ROOT_NAME) != 0)
 		{
-			Spatial *ppar = par.getParent();
+			Spatial *ppar = par->getParent();
 			if (ppar != 0)
-				par = *ppar;
+				par = ppar;
 			else
 			{
 				attachedToRoot = false;

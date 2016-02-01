@@ -19,8 +19,6 @@ private:
 	BoundingBox localBoundingBox, globalBoundingBox;
 	bool localBoundingBoxCreated, globalBoundingBoxCreated;
 
-	vector<Spatial*> children;
-
 	void updateGlobalBoundingBox()
 	{
 		globalBoundingBox.clear();
@@ -35,6 +33,8 @@ private:
 			localBoundingBox.extend(children[i]->getLocalBoundingBox());
 	}
 public:
+
+	vector<Spatial*> children;
 	Node() : Spatial() {}
 
 	Node(char *name) : Spatial(name) {}
@@ -71,25 +71,9 @@ public:
 		}
 	}
 
-	BoundingBox &getGlobalBoundingBox()
-	{
-		if (!globalBoundingBoxCreated)
-		{
-			updateGlobalBoundingBox();
-			globalBoundingBoxCreated = true;
-		}
-		return globalBoundingBox;
-	}
+	BoundingBox &getGlobalBoundingBox();
 
-	BoundingBox &getLocalBoundingBox()
-	{
-		if (!localBoundingBoxCreated)
-		{
-			updateLocalBoundingBox();
-			localBoundingBoxCreated = true;
-		}
-		return localBoundingBox;
-	}
+	BoundingBox &getLocalBoundingBox();
 
 	unsigned int size() const
 	{

@@ -27,12 +27,14 @@ protected:
 
 	Transform globalTransform;
 	Matrix4f globalMatrix;
-private:
-	static const unsigned char updateParentFlag = 0x01,
-		updateTransformFlag = 0x02;
+
+	static const unsigned char	updateParentFlag = 0x01,
+		updateTransformFlag = 0x02,
+		updateLocalBoundingBoxFlag = 0x04,
+		updateGlobalBoundingBoxFlag = 0x08;
 
 	unsigned char updateFlags;
-
+private:
 	Vector3f tmpGlobalTrans, tmpGlobalScale;
 	Quaternion tmpGlobalRot;
 
@@ -189,7 +191,9 @@ public:
 	void setParent(Spatial *parent)
 	{
 		this->parent = parent;
+
 		this->setNeedsParentUpdate();
+		this->setNeedsTransformUpdate(); // will need to update global transforms
 
 		if (parent == 0)
 			updateParents();
@@ -203,6 +207,9 @@ public:
 	virtual void setNeedsTransformUpdate()
 	{
 		this->updateFlags |= updateTransformFlag;
+
+		this->updateFlags |= updateLocalBoundingBoxFlag;
+		this->updateFlags |= updateGlobalBoundingBoxFlag;
 	}
 
 	virtual void setNeedsParentUpdate()

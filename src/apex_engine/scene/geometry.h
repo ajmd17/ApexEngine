@@ -35,24 +35,28 @@ public:
 	Geometry() : Spatial() 
 	{ 
 		this->mesh = 0;
+		this->shader = 0;
 		this->bucket = OpaqueBucket;
 	}
 
 	Geometry(char *name) : Spatial(name) 
 	{ 
 		this->mesh = 0;
+		this->shader = 0;
 		this->bucket = OpaqueBucket;
 	}
 
 	Geometry(Mesh *mesh) : Spatial() 
 	{ 
 		this->mesh = mesh;
+		this->shader = 0;
 		this->bucket = OpaqueBucket;
 	}
 
 	Geometry(Mesh *mesh, char *name) : Spatial(name) 
 	{ 
-		this->mesh = mesh; 
+		this->mesh = mesh;
+		this->shader = 0;
 		this->bucket = OpaqueBucket;
 	}
 
@@ -99,25 +103,9 @@ public:
 
 	void setBucket(RenderBucket bucket);
 
-	BoundingBox &getGlobalBoundingBox()
-	{
-		if (!globalBoundingBoxCreated)
-		{
-			updateGlobalBoundingBox();
-			globalBoundingBoxCreated = true;
-		}
-		return globalBoundingBox;
-	}
+	BoundingBox &getGlobalBoundingBox();
 
-	BoundingBox &getLocalBoundingBox()
-	{
-		if (!localBoundingBoxCreated)
-		{
-			updateLocalBoundingBox();
-			localBoundingBoxCreated = true;
-		}
-		return localBoundingBox;
-	}
+	BoundingBox &getLocalBoundingBox();
 };
 
 #endif

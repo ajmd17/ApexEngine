@@ -62,3 +62,37 @@ void Geometry::updateLocalBoundingBox()
 	if (mesh != NULL)
 		MeshUtil::createMeshBoundingBox(*mesh, localBoundingBox);
 }
+
+BoundingBox &Geometry::getGlobalBoundingBox()
+{
+	if (!globalBoundingBoxCreated)
+	{
+		updateGlobalBoundingBox();
+		globalBoundingBoxCreated = true;
+	}
+
+	if (this->updateFlags & Spatial::updateGlobalBoundingBoxFlag)
+	{
+		updateGlobalBoundingBox();
+		this->updateFlags &= ~Spatial::updateGlobalBoundingBoxFlag;
+	}
+
+	return globalBoundingBox;
+}
+
+BoundingBox &Geometry::getLocalBoundingBox()
+{
+	if (!localBoundingBoxCreated)
+	{
+		updateLocalBoundingBox();
+		localBoundingBoxCreated = true;
+	}
+
+	if (this->updateFlags & Spatial::updateLocalBoundingBoxFlag)
+	{
+		updateLocalBoundingBox();
+		this->updateFlags &= ~Spatial::updateLocalBoundingBoxFlag;
+	}
+
+	return localBoundingBox;
+}

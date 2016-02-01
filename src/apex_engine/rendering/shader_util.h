@@ -1,10 +1,9 @@
 #ifndef SHADERUTIL_H
 #define SHADERUTIL_H
 
+#include "../util/strutil.h"
+
 #include <algorithm> 
-#include <functional> 
-#include <cctype>
-#include <locale>
 
 #include <vector>
 using std::vector;
@@ -85,30 +84,7 @@ public:
 class ShaderUtil
 {
 private:
-	static vector<string> split(const string &text, char sep) {
-		vector<string> tokens;
-		std::size_t start = 0, end = 0;
-		while ((end = text.find(sep, start)) != string::npos) {
-			tokens.push_back(text.substr(start, end - start));
-			start = end + 1;
-		}
-		tokens.push_back(text.substr(start));
-		return tokens;
-	}
-
-	static std::string &ltrim(std::string &s) {
-		s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
-		return s;
-	}
-
-	static bool startswith(string &str, string &startswith)
-	{
-		if (str.find(startswith.c_str()) == 0)
-		{
-			return true;
-		}
-		return false;
-	}
+	
 
 public:
 	static string formatShaderVersion(string &code)
@@ -120,7 +96,7 @@ public:
 		for (size_t i = 0; i < lines.size(); i++)
 		{
 			string line = lines[i];
-			if (startswith(ltrim(line), ver))
+			if (startsWith(ltrim(line), ver))
 			{
 				verString = ltrim(line);
 			}
