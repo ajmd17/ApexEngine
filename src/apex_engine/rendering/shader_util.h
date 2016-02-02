@@ -14,6 +14,9 @@ using std::map;
 #include <string>
 using std::string;
 
+#include <iostream>
+using std::ostream;
+
 class ShaderProperties
 {
 public:

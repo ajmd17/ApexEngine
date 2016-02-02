@@ -4,6 +4,7 @@
 #include "math_util.h"
 #include "vector3f.h"
 #include "matrix4f.h"
+
 #include <cmath>
 
 class Quaternion

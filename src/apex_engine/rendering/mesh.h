@@ -41,6 +41,8 @@ public:
 		this->primitiveType = Triangles;
 	}
 
+	~Mesh();
+
 	void render();
 
 	BoundingBox createBoundingBox(vector<Vertex> &vertices, vector<int> &indices);

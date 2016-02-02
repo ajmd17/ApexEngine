@@ -1,7 +1,14 @@
 #include "mesh.h"
 #include "../math/boundingbox.h"
 
+#include "../util/logutil.h"
+
 #include <climits>
+
+Mesh::~Mesh()
+{
+	engine_log << "Delete mesh\n";
+}
 
 void Mesh::setVertices(vector<Vertex> &vertices)
 {

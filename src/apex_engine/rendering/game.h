@@ -12,6 +12,7 @@
 class Game
 {
 private:
+	int width, height;
 protected:
 	Scene *scene;
 
@@ -30,9 +31,9 @@ public:
     
     ~Game() 
 	{
-		//delete scene;
 		delete assetMgr;
 		delete renderMgr;
+		delete scene;
 	}
 
 	void update()
@@ -50,6 +51,7 @@ public:
 	{
 		if (this->renderMgr != NULL)
 		{
+			this->renderMgr->getEngine()->viewport(0, 0, this->getWidth(), this->getHeight());
 			this->renderMgr->getEngine()->clear(true, true, false);
 			this->renderMgr->render(*camera);
 		}
@@ -62,6 +64,26 @@ public:
     virtual void logic() = 0;
 
     virtual void exit() = 0;
+
+	const int getWidth()
+	{
+		return width;
+	}
+
+	void setWidth(int width)
+	{
+		this->width = width;
+	}
+
+	const int getHeight()
+	{
+		return height;
+	}
+
+	void setHeight(int height)
+	{
+		this->height = height;
+	}
 
 	Scene *getScene()
 	{

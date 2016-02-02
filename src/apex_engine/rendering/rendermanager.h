@@ -24,7 +24,7 @@ private:
 					  bucket_skybox,
 					  bucket_particles;
 
-	unordered_map<RenderBucket, vector<Geometry*>> buckets;
+	unordered_map<int, vector<Geometry*>> buckets;
 
 	static void addGeometry(vector<Geometry*> *bucket, Geometry *geom);
 

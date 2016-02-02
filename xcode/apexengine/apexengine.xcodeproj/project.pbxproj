@@ -20,6 +20,16 @@
 		1920E1AF1C5589590087D330 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1920E1AC1C5589590087D330 /* texture.cpp */; };
 		1920E1B01C5589590087D330 /* texture2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1920E1AD1C5589590087D330 /* texture2d.cpp */; };
 		1920E1B11C5589590087D330 /* texture2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E1AE1C5589590087D330 /* texture2d.h */; };
+		192B26781C604D4000F532C7 /* perspective_camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 192B26771C604D4000F532C7 /* perspective_camera.h */; };
+		192B267B1C604D6700F532C7 /* textureloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 192B26791C604D6700F532C7 /* textureloader.cpp */; };
+		192B267C1C604D6700F532C7 /* textureloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 192B267A1C604D6700F532C7 /* textureloader.h */; };
+		192B267E1C604D7000F532C7 /* objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 192B267D1C604D7000F532C7 /* objloader.cpp */; };
+		192B26811C604D8100F532C7 /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 192B267F1C604D8100F532C7 /* node.cpp */; };
+		192B26821C604D8100F532C7 /* spatial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 192B26801C604D8100F532C7 /* spatial.cpp */; };
+		192B26861C604F9000F532C7 /* matrix_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 192B26851C604F9000F532C7 /* matrix_util.cpp */; };
+		192B26921C60503E00F532C7 /* logutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 192B268F1C60503E00F532C7 /* logutil.cpp */; };
+		192B26931C60503E00F532C7 /* logutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 192B26901C60503E00F532C7 /* logutil.h */; };
+		192B26941C60503E00F532C7 /* strutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 192B26911C60503E00F532C7 /* strutil.h */; };
 		1961673F1C599FC900D54BF8 /* engine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1961673E1C599FC900D54BF8 /* engine.h */; };
 		196167441C599FFB00D54BF8 /* assetinfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 196167401C599FFB00D54BF8 /* assetinfo.h */; };
 		196167451C599FFB00D54BF8 /* loadableobject.h in Headers */ = {isa = PBXBuildFile; fileRef = 196167411C599FFB00D54BF8 /* loadableobject.h */; };
@@ -81,6 +91,16 @@
 		1920E1AC1C5589590087D330 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		1920E1AD1C5589590087D330 /* texture2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture2d.cpp; sourceTree = "<group>"; };
 		1920E1AE1C5589590087D330 /* texture2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = texture2d.h; sourceTree = "<group>"; };
+		192B26771C604D4000F532C7 /* perspective_camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = perspective_camera.h; sourceTree = "<group>"; };
+		192B26791C604D6700F532C7 /* textureloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = textureloader.cpp; sourceTree = "<group>"; };
+		192B267A1C604D6700F532C7 /* textureloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textureloader.h; sourceTree = "<group>"; };
+		192B267D1C604D7000F532C7 /* objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objloader.cpp; sourceTree = "<group>"; };
+		192B267F1C604D8100F532C7 /* node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = node.cpp; sourceTree = "<group>"; };
+		192B26801C604D8100F532C7 /* spatial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spatial.cpp; sourceTree = "<group>"; };
+		192B26851C604F9000F532C7 /* matrix_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix_util.cpp; sourceTree = "<group>"; };
+		192B268F1C60503E00F532C7 /* logutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logutil.cpp; sourceTree = "<group>"; };
+		192B26901C60503E00F532C7 /* logutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logutil.h; sourceTree = "<group>"; };
+		192B26911C60503E00F532C7 /* strutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strutil.h; sourceTree = "<group>"; };
 		1961673E1C599FC900D54BF8 /* engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engine.h; sourceTree = "<group>"; };
 		196167401C599FFB00D54BF8 /* assetinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assetinfo.h; sourceTree = "<group>"; };
 		196167411C599FFB00D54BF8 /* loadableobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loadableobject.h; sourceTree = "<group>"; };
@@ -126,7 +146,7 @@
 		196FC3671C4D8FBE00F9AEC4 /* vertexattributes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vertexattributes.cpp; sourceTree = "<group>"; };
 		196FC3681C4D8FBE00F9AEC4 /* vertexattributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vertexattributes.h; sourceTree = "<group>"; };
 		19825E4A1C506E30007A68B7 /* liblua53.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblua53.dylib; path = ../../libs/osx/liblua53.dylib; sourceTree = "<group>"; };
-		19EEB6501C59991C00449333 /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = object.h; path = ../object.h; sourceTree = "<group>"; };
+		19EEB6501C59991C00449333 /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +166,8 @@
 			children = (
 				196167471C59A01400D54BF8 /* geometry.cpp */,
 				196167481C59A01400D54BF8 /* geometry.h */,
+				192B267F1C604D8100F532C7 /* node.cpp */,
+				192B26801C604D8100F532C7 /* spatial.cpp */,
 				1920E1981C55864F0087D330 /* node.h */,
 				1920E1991C55864F0087D330 /* scene.h */,
 				1920E19A1C55864F0087D330 /* spatial.h */,
@@ -158,6 +180,8 @@
 			children = (
 				196167401C599FFB00D54BF8 /* assetinfo.h */,
 				196167411C599FFB00D54BF8 /* loadableobject.h */,
+				192B26791C604D6700F532C7 /* textureloader.cpp */,
+				192B267A1C604D6700F532C7 /* textureloader.h */,
 				196167421C599FFB00D54BF8 /* modelloaders */,
 				1920E19F1C55867F0087D330 /* assetloader.h */,
 				1920E1A01C55867F0087D330 /* assetmanager.cpp */,
@@ -175,9 +199,28 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		192B26761C604D4000F532C7 /* cameras */ = {
+			isa = PBXGroup;
+			children = (
+				192B26771C604D4000F532C7 /* perspective_camera.h */,
+			);
+			path = cameras;
+			sourceTree = "<group>";
+		};
+		192B268E1C60503E00F532C7 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				192B268F1C60503E00F532C7 /* logutil.cpp */,
+				192B26901C60503E00F532C7 /* logutil.h */,
+				192B26911C60503E00F532C7 /* strutil.h */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		196167421C599FFB00D54BF8 /* modelloaders */ = {
 			isa = PBXGroup;
 			children = (
+				192B267D1C604D7000F532C7 /* objloader.cpp */,
 				196167431C599FFB00D54BF8 /* objloader.h */,
 			);
 			path = modelloaders;
@@ -203,6 +246,8 @@
 		196FC2F81C4D8E7300F9AEC4 /* apex_engine */ = {
 			isa = PBXGroup;
 			children = (
+				192B268E1C60503E00F532C7 /* util */,
+				19EEB6501C59991C00449333 /* object.h */,
 				1920E19E1C55867F0087D330 /* assets */,
 				1920E1971C55864F0087D330 /* scene */,
 				196FC34F1C4D8FBE00F9AEC4 /* rendering */,
@@ -233,6 +278,7 @@
 			children = (
 				196FC2FE1C4D8E7300F9AEC4 /* apexmath.h */,
 				196FC2FF1C4D8E7300F9AEC4 /* boundingbox.h */,
+				192B26851C604F9000F532C7 /* matrix_util.cpp */,
 				196FC3001C4D8E7300F9AEC4 /* math_util.cpp */,
 				196FC3011C4D8E7300F9AEC4 /* math_util.h */,
 				196FC3021C4D8E7300F9AEC4 /* matrix4f.h */,
@@ -254,8 +300,8 @@
 		196FC34F1C4D8FBE00F9AEC4 /* rendering */ = {
 			isa = PBXGroup;
 			children = (
+				192B26761C604D4000F532C7 /* cameras */,
 				1920E1931C55863A0087D330 /* shadermanager.cpp */,
-				19EEB6501C59991C00449333 /* object.h */,
 				1920E1941C55863A0087D330 /* shadermanager.h */,
 				196FC3501C4D8FBE00F9AEC4 /* camera.h */,
 				1961673E1C599FC900D54BF8 /* engine.h */,
@@ -302,6 +348,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				192B267C1C604D6700F532C7 /* textureloader.h in Headers */,
 				196FC37E1C4D8FBE00F9AEC4 /* vertex.h in Headers */,
 				1920E1A71C55867F0087D330 /* assetmanager.h in Headers */,
 				196FC3781C4D8FBE00F9AEC4 /* rendermanager.h in Headers */,
@@ -314,10 +361,13 @@
 				1920E1A51C55867F0087D330 /* assetloader.h in Headers */,
 				196FC32B1C4D8E7300F9AEC4 /* math_util.h in Headers */,
 				19EEB6511C59991C00449333 /* object.h in Headers */,
+				192B26781C604D4000F532C7 /* perspective_camera.h in Headers */,
 				1961674A1C59A01400D54BF8 /* geometry.h in Headers */,
+				192B26931C60503E00F532C7 /* logutil.h in Headers */,
 				196FC32E1C4D8E7300F9AEC4 /* quaternion.h in Headers */,
 				196FC37C1C4D8FBE00F9AEC4 /* texture.h in Headers */,
 				1920E19C1C55864F0087D330 /* scene.h in Headers */,
+				192B26941C60503E00F532C7 /* strutil.h in Headers */,
 				196FC3741C4D8FBE00F9AEC4 /* mesh.h in Headers */,
 				1920E19D1C55864F0087D330 /* spatial.h in Headers */,
 				1920E1B11C5589590087D330 /* texture2d.h in Headers */,
@@ -412,11 +462,17 @@
 				196FC37F1C4D8FBE00F9AEC4 /* vertexattributes.cpp in Sources */,
 				196FC3311C4D8E7300F9AEC4 /* vector2f.cpp in Sources */,
 				196167491C59A01400D54BF8 /* geometry.cpp in Sources */,
+				192B26861C604F9000F532C7 /* matrix_util.cpp in Sources */,
 				196FC3351C4D8E7300F9AEC4 /* vector4f.cpp in Sources */,
 				196FC3771C4D8FBE00F9AEC4 /* rendermanager.cpp in Sources */,
 				1920E1B01C5589590087D330 /* texture2d.cpp in Sources */,
+				192B26921C60503E00F532C7 /* logutil.cpp in Sources */,
+				192B26811C604D8100F532C7 /* node.cpp in Sources */,
+				192B26821C604D8100F532C7 /* spatial.cpp in Sources */,
+				192B267B1C604D6700F532C7 /* textureloader.cpp in Sources */,
 				1920E1AF1C5589590087D330 /* texture.cpp in Sources */,
 				196FC32A1C4D8E7300F9AEC4 /* math_util.cpp in Sources */,
+				192B267E1C604D7000F532C7 /* objloader.cpp in Sources */,
 				196FC3731C4D8FBE00F9AEC4 /* mesh.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

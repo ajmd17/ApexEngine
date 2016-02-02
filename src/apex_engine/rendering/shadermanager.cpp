@@ -1,5 +1,5 @@
 #include "shadermanager.h"
 
 // Define the static vector of shaders
-vector<Shader*> ShaderManager::shaders;
+vector<shared_ptr<Shader>> ShaderManager::shaders;
 

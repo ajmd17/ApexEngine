@@ -12,8 +12,6 @@
 #include <sstream>
 #include <string>
 
-#include <iostream>
-
 #include <algorithm>
 
 #include <memory>
@@ -166,23 +164,22 @@ std::shared_ptr<ILoadableObject> ObjLoader::load(AssetInfo &asset)
 
 		for (int j = 0; j < c_idx->size(); j++)
 		{
-			Vertex vert(positions[(*c_idx)[j].vertex_idx]);
-			vertices.push_back(vert);
+			Vertex vert(positions[(*c_idx)[j].vertex_idx],
+						(hasTexCoords ? texCoords[(*c_idx)[j].texcoord_idx] : Vector2f()),
+						(hasNormals ? normals[(*c_idx)[j].normal_idx] : Vector3f()));
 
-			/*cout << "Vert: " << vert.getPosition().x << ", " <<
-								vert.getPosition().y << ", " <<
-								vert.getPosition().z << "\n";*/
+			vertices.push_back(vert);
 		}
 
-		Mesh *mesh = new Mesh();
-		//shared_ptr<Mesh> mesh(new Mesh());
+		shared_ptr<Mesh> mesh(new Mesh());
 		mesh->setVertices(vertices);
 
 		Geometry *geom = new Geometry();
-		//shared_ptr<Geometry> geom(new Geometry());
 		geom->setName(names[i]);
 		geom->setMesh(mesh);
 		node->add(geom);
+
+		delete c_idx;
 	}
 
 	std::shared_ptr<ILoadableObject> resPtr (node);

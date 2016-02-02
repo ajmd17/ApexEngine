@@ -3,6 +3,8 @@
 #include "../rendering/camera.h"
 #include "../rendering/rendermanager.h"
 
+int Geometry::geom_count = 0;
+
 void Geometry::render(Camera &cam)
 {
 	if (this->shader != 0 && this->mesh != 0)

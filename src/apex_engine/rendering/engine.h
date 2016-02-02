@@ -10,9 +10,6 @@ using std::string;
 #include "enums.h"
 #include "../assets/assetinfo.h"
 
-#include <iostream>
-using std::cout;
-
 class Camera;
 
 class Game;

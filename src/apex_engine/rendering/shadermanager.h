@@ -11,19 +11,23 @@ using std::string;
 #include <vector>
 using std::vector;
 
+#include <memory>
+using std::shared_ptr;
+
 class ShaderManager
 {
 public:
-	static vector<Shader*> shaders;
+	static vector<shared_ptr<Shader>> shaders;
 
 	template<typename ShaderClass>
 	typename std::enable_if<std::is_base_of<Shader, ShaderClass>::value, Shader*>::type
 	static getShader(ShaderProperties properties)
 	{
 		// TODO: Iterate through current shaders and find ones with same class and properties before adding a new one
-		
-		shaders.push_back(new ShaderClass(properties));
-		return shaders.back();
+		shared_ptr<Shader> shaderPtr(new ShaderClass(properties));
+
+		shaders.push_back(shaderPtr);
+		return shaders.back().get();
 	}
 };
 

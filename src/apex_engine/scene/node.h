@@ -11,11 +11,15 @@
 using std::vector;
 
 #include <algorithm>
-#include <iostream>
+
+#include "../util/strutil.h"
+#include "../util/logutil.h"
 
 class Node : public Spatial
 {
 private:
+	static int node_count;
+
 	BoundingBox localBoundingBox, globalBoundingBox;
 	bool localBoundingBoxCreated, globalBoundingBoxCreated;
 
@@ -33,13 +37,16 @@ private:
 			localBoundingBox.extend(children[i]->getLocalBoundingBox());
 	}
 public:
-
-	vector<Spatial*> children;
-	Node() : Spatial() {}
+	Node() : Spatial() 
+	{ 
+		this->setName("node_" + to_str(node_count++));  
+	}
 
 	Node(char *name) : Spatial(name) {}
 
 	~Node();
+
+	vector<Spatial*> children;
 
 	void update(RenderManager *renderMgr)
 	{
@@ -90,7 +97,7 @@ public:
 		}
 		else
 		{
-			std::cout << "Index out of range. Size: " << children.size() << ", Index: " << index << "\n";
+			engine_log << "Index out of range. Size: " << children.size() << ", Index: " << index << "\n";
 		}
 		return 0;
 	}

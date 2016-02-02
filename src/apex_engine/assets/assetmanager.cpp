@@ -2,7 +2,6 @@
 
 #include <iostream>
 using std::getline;
-using std::cout;
 
 #include <string>
 
@@ -10,6 +9,7 @@ using std::cout;
 using std::ifstream;
 
 #include "../util/strutil.h"
+#include "../util/logutil.h"
 
 AssetManager::AssetManager()
 {
@@ -34,12 +34,12 @@ AssetManager::~AssetManager()
 	}
 }
 
-std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath, std::shared_ptr<IAssetLoader> loader)
+ILoadableObject *AssetManager::load(char *filepath, std::shared_ptr<IAssetLoader> loader)
 {
 	ifstream filestream(filepath);
 	if (!filestream.is_open())
 	{
-		throw std::exception("File stream is not valid");
+		throw std::runtime_error ("File stream is not valid");
 		return 0;
 	}
 
@@ -52,16 +52,17 @@ std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath, std::shared_
 	
 	loadedAssets[filepath] = obj;
 
-	return obj;
+	return obj.get();
 }
 
-std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath)
+ILoadableObject *AssetManager::load(char *filepath)
 {
 	for (auto iterator = loadedAssets.begin(); iterator != loadedAssets.end(); iterator++)
 	{
 		if (strcmp(iterator->first, filepath) == 0)
 		{
-			return iterator->second;
+			engine_log << "Re-using asset: " << filepath << "\n";
+			return iterator->second.get();
 		}
 	}
 

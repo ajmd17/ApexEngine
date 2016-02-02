@@ -17,6 +17,7 @@ using std::string;
 
 #include <unordered_map>
 using std::unordered_map;
+
 #include <map>
 using std::map;
 
@@ -44,9 +45,9 @@ public:
 
 	std::shared_ptr<IAssetLoader> getLoader(char *ext);
 
-	std::shared_ptr<ILoadableObject> load(char *filepath, std::shared_ptr<IAssetLoader> loader);
+	ILoadableObject *load(char *filepath, std::shared_ptr<IAssetLoader> loader);
 
-	std::shared_ptr<ILoadableObject> load(char *filepath);
+	ILoadableObject *load(char *filepath);
 };
 
 #endif

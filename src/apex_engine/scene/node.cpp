@@ -1,14 +1,14 @@
 #include "node.h"
-#include <iostream>
+
+int Node::node_count = 0;
+
 Node::~Node()
 {
-	std::cout << "deleted node named " << name << "\n";
-
-	Spatial::~Spatial();
-	for (int i = 0; i < children.size(); i++)
+	Spatial::~Spatial(); 
+	
+	for (size_t i = children.size(); i > 0; i--) 
 	{
-		if (children[i] != NULL)
-			delete children[i];
+		delete children[i-1];
 	}
 }
 

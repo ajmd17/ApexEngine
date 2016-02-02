@@ -7,9 +7,6 @@ using std::vector;
 #include <string>
 using std::string;
 
-#include <iostream>
-using std::ostream;
-
 #include "enums.h"
 #include "shader_util.h"
 #include "material.h"

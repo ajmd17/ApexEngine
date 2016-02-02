@@ -5,6 +5,8 @@
 #include "rendermanager.h"
 #include "constants.h"
 
+#include "../util/logutil.h"
+
 Shader::Shader(ShaderProperties properties, string vs_code, string fs_code)
 {
 	// 2 shaders. Create the space to store their IDs.
@@ -30,7 +32,9 @@ Shader::Shader(ShaderProperties properties, string vs_code, string fs_code)
 
 Shader::~Shader()
 {
-	if (this->getProgramID() != 0)
+	engine_log << "Deleting shader with ID: " << getProgramID() << "\n";
+
+	/*if (this->getProgramID() != 0)
 		RenderManager::getEngine()->deleteShaderProgram(*this);
 
 	const unsigned int arraySize = sizeof(m_shaderIDs) / sizeof(m_shaderIDs[0]);
@@ -38,7 +42,7 @@ Shader::~Shader()
 	{
 		if (m_shaderIDs[i] != 0)
 			RenderManager::getEngine()->deleteShader(m_shaderIDs[i]);
-	}
+	}*/ // causing an error
 	delete[] m_shaderIDs;
 }
 
@@ -106,8 +110,6 @@ void Shader::applyMaterial(Material &material)
 	float alphaDiscard;
 	currentMaterial->getFloat(Material::FLOAT_ALPHADISCARD, alphaDiscard);
 	this->setUniform(MATERIAL_ALPHADISCARD, alphaDiscard);
-
-	RenderManager::getEngine()->setCullFace(false);
 }
 
 void Shader::applyTransforms(Matrix4f &modelMatrix, Matrix4f &viewMatrix, Matrix4f &projectionMatrix)

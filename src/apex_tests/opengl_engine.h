@@ -6,9 +6,6 @@
 #include <rendering/mesh_util.h>
 #include <rendering/shader.h>
 
-#include <iostream>
-using std::cout;
-
 #ifndef __ANDROID__
 #define USE_SFML
 #include <SFML/Graphics.hpp>

@@ -8,10 +8,37 @@ using std::vector;
 using std::string;
 
 #include <sstream>
+using std::stringstream;
+
 #include <algorithm> 
 #include <functional> 
 #include <cctype>
 #include <locale>
+
+inline string to_str(int i)
+{
+	string str = std::to_string(static_cast<long long>(i));
+
+	return str;
+}
+
+inline string to_str(float f)
+{
+	stringstream ss(stringstream::in | stringstream::out);
+	ss << f;
+	string str = ss.str();
+
+	return str;
+}
+
+inline string to_str(double d)
+{
+	stringstream ss(stringstream::in | stringstream::out);
+	ss << d;
+	string str = ss.str();
+
+	return str;
+}
 
 inline vector<string> removeEmptyStrings(const vector<string> &strings)
 {

@@ -46,58 +46,57 @@ public:
 	}
 };
 
-const string MyShader::vscode = "attribute vec3 a_position;\nattribute vec2 a_texcoord0;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;uniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\n}";
-const string MyShader::fscode = "uniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvoid main() {\ngl_FragColor = vec4(0.8, 0.0, 0.0, 1.0);\n}";
+const string MyShader::vscode = "#version 120\nattribute vec3 a_position;\nattribute vec2 a_texcoord0;\nattribute vec3 a_normal;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;uniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\nv_normal = mat3(Apex_ModelMatrix) * a_normal * vec3(-1.0);\n}";
+const string MyShader::fscode = "#version 120\nuniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_FragColor = vec4(v_normal, 1.0);\n}";
 
 Geometry *mygeom;
 Mesh *mesh;
-Shader *shader; 
 lua_State *lua;
 Matrix4f myMatrix;
-std::shared_ptr<Texture2D> mytex;
+Texture2D *mytex;
 
 float rot;
 void TestGame::init()
 {
-	mytex = std::dynamic_pointer_cast<Texture2D>(getAssetManager()->load("test.png"));
+	mytex = static_cast<Texture2D*>(getAssetManager()->load("test.png"));
 	RenderManager::getEngine()->clearColor(1, 1, 1, 1);
     
 	
-	std::shared_ptr<Texture2D> mytex2 = std::dynamic_pointer_cast<Texture2D>(getAssetManager()->load("test.jpg"));
+	Texture2D *mytex2 = static_cast<Texture2D*>(getAssetManager()->load("test.jpg"));
 	
-	this->camera = new PerspectiveCamera(45, 512, 512, 1.0, 100.0);
+	this->camera = new PerspectiveCamera(45, 1024, 1024, 1.0, 100.0);
 
 	rot = 0;
 	
 
-	mygeom = new Geometry();
+	/*mygeom = new Geometry();
 	mygeom->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex2.get());
 	mygeom->setLocalTranslation(Vector3f(0, -0.5f, 5.0f));
-	//this->scene->getRootNode()->add(mygeom);
+	//this->scene->getRootNode()->add(mygeom);*/
 
 
 	ShaderProperties props;
-	shader = ShaderManager::getShader<MyShader>(props);
-	mygeom->setShader(shader);
+	Shader *shaderPtr = ShaderManager::getShader<MyShader>(props);
 
 
-	std::shared_ptr<Node> loadedmodel = std::dynamic_pointer_cast<Node>(getAssetManager()->load("data/models/logo.obj"));
-	loadedmodel->setLocalTranslation(Vector3f(0, 0, 4));
-	loadedmodel->getAt<Geometry>(0)->setShader(shader);
-	loadedmodel->getAt<Geometry>(1)->setShader(shader);
-	this->getScene()->getRootNode()->add(loadedmodel.get());
+	Node *loadedmodel = static_cast<Node*>(getAssetManager()->load("data/models/logo.obj"));
 
-	//cout << scene->getRootNode()->getAt(scene->getRootNode()->size() - 1)->getName() << " was loaded from an obj file\n";
-	cout << loadedmodel->getName() << " was loaded as an Obj\n";
+	loadedmodel->setLocalTranslation(Vector3f(0, 0, 3));
 
-	vector<Vertex> myVerts;
+    loadedmodel->getAt<Geometry>(0)->setShader(shaderPtr);
+    loadedmodel->getAt<Geometry>(0)->getMaterial().setBool(Material::BOOL_CULLENABLED, false);
+	loadedmodel->getAt<Geometry>(1)->setShader(shaderPtr);
+	this->getScene()->getRootNode()->add(loadedmodel);
+
+
+	/*vector<Vertex> myVerts;
 	mesh = new Mesh();
 	myVerts.push_back(Vertex(Vector3f(-1, 0, 0), Vector2f(0, 0)));
 	myVerts.push_back(Vertex(Vector3f(0, 1, 0), Vector2f(0.5, 1)));
 	myVerts.push_back(Vertex(Vector3f(1, 0, 0), Vector2f(1, 0)));
 	mesh->setVertices(myVerts);
 	mygeom->setMesh(mesh);
-	mygeom->setLocalTranslation(Vector3f(0, 0, 4));
+	mygeom->setLocalTranslation(Vector3f(0, 0, 4));*/
 
 
 	
@@ -275,7 +274,6 @@ void TestGame::exit()
 {
 	delete camera;
 	delete mesh;
-	delete shader;
 }
 
 void TestGame::logic()
@@ -284,20 +282,7 @@ void TestGame::logic()
 	//lua_logic();
 	
 	rot += 1;
-	/*mygeom->setLocalRotation(Quaternion().setFromAxis(Vector3f(0, 1, 0), rot));
 
-
-	Texture *texPtr;
-	if (mygeom->getMaterial().getTexture(Material::TEXTURE_DIFFUSE, texPtr))
-	{
-		texPtr->use();
-	}
-
-
-	if (rot > 100 && this->scene->getRootNode()->size() > 0)
-	{
-		mygeom->setBucket(TransparentBucket);
-	}*/
 	Quaternion &qr = scene->getRootNode()->getAt(0)->getLocalRotation();
 	qr.setFromAxis(Vector3f(0, 1, 0), rot);
 	scene->getRootNode()->getAt(0)->setNeedsTransformUpdate();
@@ -310,10 +295,12 @@ int main()
 
 	Game *game = new TestGame();
 
-	pEngine->createContext(game, 300, 150);
+	pEngine->createContext(game, 800, 480);
 
-	delete game;
+	//delete game;
 	//delete pEngine;
 
+	cout << "\nExited the engine test\n";
+	system("pause");
 	return 0;
 }

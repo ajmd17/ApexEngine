@@ -27,6 +27,8 @@
 #include <GLES/gl.h>
 #endif
 
+#include <util/logutil.h>
+
 #ifdef USE_SFML
 void GLEngine::renderThread(WindowGamePair &pair)
 {
@@ -35,7 +37,14 @@ void GLEngine::renderThread(WindowGamePair &pair)
 
 	window->setActive(true);
 
-	game->init();
+	if (game != NULL)
+	{
+		game->setWidth(window->getSize().x);
+		game->setHeight(window->getSize().y);
+	}
+
+	if (game != NULL)
+		game->init();
 
 	while (window->isOpen())
 	{
@@ -62,10 +71,11 @@ void GLEngine::createContext(Game *game, int width, int height)
 	settings.depthBits = 24;
 	settings.stencilBits = 8;
 	settings.antialiasingLevel = 4;
-	settings.majorVersion = 3;
-	settings.minorVersion = 0;
+    
 	window.create(sf::VideoMode(width, height), "Apex Engine", sf::Style::Default, settings);
 	window.setVerticalSyncEnabled(true);
+    
+    engine_log << "OpenGL version supported: " << glGetString(GL_VERSION) << "\n\n";
     
 	this->contextActive = true;
 
@@ -100,7 +110,11 @@ void GLEngine::createContext(Game *game, int width, int height)
 		}
 		else if (event.type == sf::Event::Resized)
 		{
-			glViewport(0, 0, window.getSize().x, window.getSize().y);
+			if (game != NULL)
+			{
+				game->setWidth(window.getSize().x);
+				game->setHeight(window.getSize().y);
+			}
 		}
 	}
     
@@ -190,7 +204,7 @@ int GLEngine::genTexture()
 {
 	unsigned int res[1];
 	glGenTextures(1, res);
-	cout << "Generated texture with ID: " << res[0] << "\n";
+	engine_log << "Generated texture with ID: " << res[0] << "\n";
 	return res[0];
 }
 
@@ -199,7 +213,7 @@ void GLEngine::deleteTexture(int id)
 	unsigned int res[1];
 	res[0] = id;
 	glDeleteTextures(1, res);
-	cout << "Deleted texture with ID: " << res[0] << "\n";
+	engine_log << "Deleted texture with ID: " << res[0] << "\n";
 }
 
 void GLEngine::bindTexture2D(int i)
@@ -263,7 +277,7 @@ void GLEngine::compileShaderProgram(int id)
 		char *log = new char[maxLength];
 		glGetProgramInfoLog(id, maxLength, &maxLength, log);
 		glDeleteProgram(id);
-		cout << "Log: \n " << log << "\n\n";
+		engine_log << "Log: \n " << log << "\n\n";
 		delete[] log;
 	}
 }
@@ -331,8 +345,8 @@ void GLEngine::addShader(Shader &program, string code, ShaderType type)
 		GLchar* log = new GLchar[len + 1];
 		glGetShaderInfoLog(shader, len, NULL, log);
 
-		cout << "Shader compile error! Shader type: " << str_type << "\n";
-		cout << "Compile log: \n" << log << "\n";
+		engine_log << "Shader compile error! Shader type: " << str_type << "\n";
+		engine_log << "Compile log: \n" << log << "\n";
 
 		delete[] log;
 	}

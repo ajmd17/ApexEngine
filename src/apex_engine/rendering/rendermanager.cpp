@@ -1,8 +1,8 @@
 #include "rendermanager.h"
 #include "../scene/geometry.h"
+#include "../util/logutil.h"
 
 #include <algorithm>
-#include <iostream>
 
 IEngine *RenderManager::m_engine = 0;
 
@@ -10,7 +10,7 @@ void RenderManager::addGeometry(vector<Geometry*> *bucket, Geometry *geom)
 {
 	if (std::find(bucket->begin(), bucket->end(), geom) != bucket->end())
 	{
-		std::cout << "Geometry '" << geom->getName() << "' already in render list.\n";
+		engine_log << "Geometry '" << geom->getName() << "' already in render list.\n";
 	}
 	else
 	{
@@ -25,7 +25,7 @@ void RenderManager::removeGeometry(vector<Geometry*> *bucket, Geometry *geom)
 		bucket->erase(std::find(bucket->begin(), bucket->end(), geom));
 	}
 	else {
-		std::cout << "Geometry '" << geom->getName() << "' not in in render list.\n";
+		engine_log << "Geometry '" << geom->getName() << "' not in in render list.\n";
 	}
 }
 

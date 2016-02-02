@@ -1,7 +1,7 @@
 #include "matrix_util.h"
 
-Matrix4f MatrixUtil::tmpMat = Matrix4f(), 
-MatrixUtil::tmpMat2 = Matrix4f();
+Matrix4f MatrixUtil::tmpMat;
+Matrix4f MatrixUtil::tmpMat2;
 
 Vector3f MatrixUtil::tempVec = Vector3f(), 
 MatrixUtil::tempVec2 = Vector3f(), 

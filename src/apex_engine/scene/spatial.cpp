@@ -1,8 +1,11 @@
 #include "spatial.h"
 #include "node.h"
 
+#include "../util/logutil.h"
+
 Spatial::~Spatial()
 {
+	engine_log << "Delete spatial: " << name << "\n";
 	if (this->parent != NULL)
 	{
 		Node *n = static_cast<Node*>(parent);

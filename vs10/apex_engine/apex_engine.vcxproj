@@ -63,6 +63,7 @@
     <ClInclude Include="..\..\src\apex_engine\scene\scene.h" />
     <ClInclude Include="..\..\src\apex_engine\scene\spatial.h" />
     <ClInclude Include="..\..\src\apex_engine\scripting\scriptutil.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\logutil.h" />
     <ClInclude Include="..\..\src\apex_engine\util\strutil.h" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +87,7 @@
     <ClCompile Include="..\..\src\apex_engine\scene\geometry.cpp" />
     <ClCompile Include="..\..\src\apex_engine\scene\node.cpp" />
     <ClCompile Include="..\..\src\apex_engine\scene\spatial.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\util\logutil.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BDD7E864-88C3-4A79-AB61-9F799C833305}</ProjectGuid>

@@ -11,6 +11,9 @@
 
 #include "../math/boundingbox.h"
 
+#include <memory>
+using std::shared_ptr;
+
 class RenderManager;
 
 class Camera;
@@ -18,9 +21,13 @@ class Camera;
 class Geometry : public Spatial
 {
 private:
+	static int geom_count;
+
 	RenderManager *renderMgr; // Contains a list of all geometry that can be rendered (attached to the root node)
 	Shader *shader;
-	Mesh *mesh;
+
+	shared_ptr<Mesh> mesh;
+
 	Material material;
 
 	RenderBucket bucket;
@@ -37,6 +44,7 @@ public:
 		this->mesh = 0;
 		this->shader = 0;
 		this->bucket = OpaqueBucket;
+		this->setName("geometry_" + to_str(geom_count++));
 	}
 
 	Geometry(char *name) : Spatial(name) 
@@ -46,14 +54,15 @@ public:
 		this->bucket = OpaqueBucket;
 	}
 
-	Geometry(Mesh *mesh) : Spatial() 
+	Geometry(shared_ptr<Mesh> mesh) : Spatial()
 	{ 
 		this->mesh = mesh;
 		this->shader = 0;
 		this->bucket = OpaqueBucket;
+		this->setName("geometry_" + to_str(geom_count++));
 	}
 
-	Geometry(Mesh *mesh, char *name) : Spatial(name) 
+	Geometry(shared_ptr<Mesh> mesh, char *name) : Spatial(name)
 	{ 
 		this->mesh = mesh;
 		this->shader = 0;
@@ -68,10 +77,10 @@ public:
 
 	Mesh *getMesh()
 	{
-		return this->mesh;
+		return this->mesh.get();
 	}
 
-	void setMesh(Mesh *mesh)
+	void setMesh(shared_ptr<Mesh> mesh)
 	{
 		this->mesh = mesh;
 	}
