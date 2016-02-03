@@ -46,23 +46,21 @@ public:
 	}
 };
 
-const string MyShader::vscode = "#version 120\nattribute vec3 a_position;\nattribute vec2 a_texcoord0;\nattribute vec3 a_normal;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;uniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\nv_normal = mat3(Apex_ModelMatrix) * a_normal * vec3(-1.0);\n}";
-const string MyShader::fscode = "#version 120\nuniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_FragColor = vec4(v_normal, 1.0);\n}";
+const string MyShader::vscode = "#version 120\nattribute vec3 a_position;\nattribute vec2 a_texcoord0;\nattribute vec3 a_normal;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;uniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\nv_normal = a_normal;\n}";
+const string MyShader::fscode = "#version 120\nuniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\nfloat ndotl = dot(v_normal, vec3(1.0));\ngl_FragColor = vec4(v_normal, 1.0);\n}";
 
 Geometry *mygeom;
 Mesh *mesh;
 lua_State *lua;
 Matrix4f myMatrix;
-Texture2D *mytex;
 
 float rot;
 void TestGame::init()
 {
-	mytex = static_cast<Texture2D*>(getAssetManager()->load("test.png"));
-	RenderManager::getEngine()->clearColor(1, 1, 1, 1);
+	RenderManager::getEngine()->clearColor(0.75, 0, 0, 1);
     
 	
-	Texture2D *mytex2 = static_cast<Texture2D*>(getAssetManager()->load("test.jpg"));
+	std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
 	
 	this->camera = new PerspectiveCamera(45, 1024, 1024, 1.0, 100.0);
 
@@ -78,16 +76,23 @@ void TestGame::init()
 	ShaderProperties props;
 	Shader *shaderPtr = ShaderManager::getShader<MyShader>(props);
 
+	std::shared_ptr<Node> cube = getAssetManager()->loadAs<Node>("data/models/cube.obj");
+	cube->setLocalTranslation(Vector3f(0, -1, 2.5f));
+	cube->setLocalScale(Vector3f(0.3f));
+	cube->getAt<Geometry>(0)->setShader(shaderPtr);
+	this->getScene()->getRootNode()->add(cube);
 
-	Node *loadedmodel = static_cast<Node*>(getAssetManager()->load("data/models/logo.obj"));
 
-	loadedmodel->setLocalTranslation(Vector3f(0, 0, 3));
+	std::shared_ptr<Node> loadedmodel = getAssetManager()->loadAs<Node>("data/models/logo.obj");
+
+	loadedmodel->setLocalTranslation(Vector3f(0, 1, 7));
 
     loadedmodel->getAt<Geometry>(0)->setShader(shaderPtr);
+	loadedmodel->getAt<Geometry>(0)->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex.get());
     loadedmodel->getAt<Geometry>(0)->getMaterial().setBool(Material::BOOL_CULLENABLED, false);
 	loadedmodel->getAt<Geometry>(1)->setShader(shaderPtr);
-	this->getScene()->getRootNode()->add(loadedmodel);
 
+	this->getScene()->getRootNode()->add(loadedmodel);
 
 	/*vector<Vertex> myVerts;
 	mesh = new Mesh();
@@ -253,7 +258,6 @@ void TestGame::init()
 
 			.deriveClass <Node, Spatial>("Node")
 			.addConstructor <void(*) (void)>()
-
 			.addFunction("size", &Node::size)
 			.addFunction("add", &Node::add)
 			.addFunction("getAt", &Node::getAt<Spatial>)
@@ -280,12 +284,12 @@ void TestGame::logic()
 {
 	//LuaRef lua_logic = getGlobal(lua, "logic");
 	//lua_logic();
-	
+
 	rot += 1;
 
-	Quaternion &qr = scene->getRootNode()->getAt(0)->getLocalRotation();
+	Quaternion &qr = scene->getRootNode()->getAt(1)->getLocalRotation();
 	qr.setFromAxis(Vector3f(0, 1, 0), rot);
-	scene->getRootNode()->getAt(0)->setNeedsTransformUpdate();
+	scene->getRootNode()->getAt(1)->setNeedsTransformUpdate();
 }
 
 int main()
@@ -297,7 +301,7 @@ int main()
 
 	pEngine->createContext(game, 800, 480);
 
-	//delete game;
+	delete game;
 	//delete pEngine;
 
 	cout << "\nExited the engine test\n";

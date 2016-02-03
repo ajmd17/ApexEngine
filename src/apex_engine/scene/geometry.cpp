@@ -3,7 +3,48 @@
 #include "../rendering/camera.h"
 #include "../rendering/rendermanager.h"
 
+#include "../util/logutil.h"
+
 int Geometry::geom_count = 0;
+
+Geometry::Geometry() : Spatial()
+{
+	this->mesh = 0;
+	this->shader = 0;
+	this->bucket = OpaqueBucket;
+	this->setName("geometry_" + to_str(geom_count++));
+}
+
+Geometry::Geometry(char *name) : Spatial(name)
+{
+	this->mesh = 0;
+	this->shader = 0;
+	this->bucket = OpaqueBucket;
+}
+
+Geometry::Geometry(shared_ptr<Mesh> mesh) : Spatial()
+{
+	this->mesh = mesh;
+	this->shader = 0;
+	this->bucket = OpaqueBucket;
+	this->setName("geometry_" + to_str(++geom_count));
+}
+
+Geometry::Geometry(shared_ptr<Mesh> mesh, char *name) : Spatial(name)
+{
+	this->mesh = mesh;
+	this->shader = 0;
+	this->bucket = OpaqueBucket;
+}
+
+Geometry::~Geometry()
+{
+	engine_log << "Deleting geometry: " << getName() << "\n";
+
+	Spatial::~Spatial();
+
+	// any deletion will go here
+}
 
 void Geometry::render(Camera &cam)
 {
@@ -24,11 +65,13 @@ void Geometry::render(Camera &cam)
 void Geometry::updateParents()
 {
 	Spatial::updateParents();
-	
-	if (renderMgr != NULL && this->isAttachedToRoot())
-		this->renderMgr->addGeometry(this);
-	else
-		this->renderMgr->removeGeometry(this);
+	if (renderMgr != NULL)
+	{
+		if (this->isAttachedToRoot())
+			this->renderMgr->addGeometry(this);
+		else
+			this->renderMgr->removeGeometry(this);
+	}
 }
 
 void Geometry::update(RenderManager *renderMgr)

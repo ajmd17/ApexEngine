@@ -32,8 +32,8 @@ public:
     ~Game() 
 	{
 		delete assetMgr;
-		delete renderMgr;
 		delete scene;
+		delete renderMgr;
 	}
 
 	void update()

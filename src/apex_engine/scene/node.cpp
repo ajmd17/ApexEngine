@@ -1,14 +1,28 @@
 #include "node.h"
+#include "../util/logutil.h"
 
 int Node::node_count = 0;
 
+Node::Node() : Spatial()
+{
+	this->setName("node_" + to_str(++node_count));
+}
+
+Node::Node(char *name) : Spatial(name) 
+{
+}
+
 Node::~Node()
 {
-	Spatial::~Spatial(); 
+	engine_log << "Deleting node: " << getName() << "\n";
+
+	Spatial::~Spatial();
+
+	int ch_size = children.size();
 	
-	for (size_t i = children.size(); i > 0; i--) 
+	for (size_t i = ch_size; i > 0; i--)
 	{
-		delete children[i-1];
+		this->removeAt(i-1);
 	}
 }
 

@@ -32,9 +32,11 @@ AssetManager::~AssetManager()
 	{
 		loaders.erase(iterator);
 	}
+
+	loadedAssets.clear();
 }
 
-ILoadableObject *AssetManager::load(char *filepath, std::shared_ptr<IAssetLoader> loader)
+std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath, std::shared_ptr<IAssetLoader> loader)
 {
 	ifstream filestream(filepath);
 	if (!filestream.is_open())
@@ -49,20 +51,22 @@ ILoadableObject *AssetManager::load(char *filepath, std::shared_ptr<IAssetLoader
 	std::shared_ptr<ILoadableObject> obj = loader->load(assetInfo);
 
 	filestream.close();
+
+	loader->resetLoader();
 	
 	loadedAssets[filepath] = obj;
 
-	return obj.get();
+	return obj;
 }
 
-ILoadableObject *AssetManager::load(char *filepath)
+std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath)
 {
 	for (auto iterator = loadedAssets.begin(); iterator != loadedAssets.end(); iterator++)
 	{
 		if (strcmp(iterator->first, filepath) == 0)
 		{
 			engine_log << "Re-using asset: " << filepath << "\n";
-			return iterator->second.get();
+			return iterator->second;
 		}
 	}
 

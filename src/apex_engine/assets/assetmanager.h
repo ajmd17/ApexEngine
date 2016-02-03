@@ -45,9 +45,17 @@ public:
 
 	std::shared_ptr<IAssetLoader> getLoader(char *ext);
 
-	ILoadableObject *load(char *filepath, std::shared_ptr<IAssetLoader> loader);
+	std::shared_ptr<ILoadableObject> load(char *filepath, std::shared_ptr<IAssetLoader> loader);
 
-	ILoadableObject *load(char *filepath);
+	std::shared_ptr<ILoadableObject> load(char *filepath);
+
+	template <typename T>
+	typename std::enable_if<std::is_base_of<ILoadableObject, T>::value, std::shared_ptr<T>>::type
+		loadAs(char *filepath)
+	{
+		std::shared_ptr<T> res = std::dynamic_pointer_cast<T> (load(filepath));
+		return res;
+	}
 };
 
 #endif

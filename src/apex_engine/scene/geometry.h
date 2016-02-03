@@ -39,35 +39,15 @@ private:
 
 	void updateLocalBoundingBox();
 public:
-	Geometry() : Spatial() 
-	{ 
-		this->mesh = 0;
-		this->shader = 0;
-		this->bucket = OpaqueBucket;
-		this->setName("geometry_" + to_str(geom_count++));
-	}
+	Geometry();
 
-	Geometry(char *name) : Spatial(name) 
-	{ 
-		this->mesh = 0;
-		this->shader = 0;
-		this->bucket = OpaqueBucket;
-	}
+	Geometry(char *name);
 
-	Geometry(shared_ptr<Mesh> mesh) : Spatial()
-	{ 
-		this->mesh = mesh;
-		this->shader = 0;
-		this->bucket = OpaqueBucket;
-		this->setName("geometry_" + to_str(geom_count++));
-	}
+	Geometry(shared_ptr<Mesh> mesh);
 
-	Geometry(shared_ptr<Mesh> mesh, char *name) : Spatial(name)
-	{ 
-		this->mesh = mesh;
-		this->shader = 0;
-		this->bucket = OpaqueBucket;
-	}
+	Geometry(shared_ptr<Mesh> mesh, char *name);
+
+	~Geometry();
 
 	void update(RenderManager *renderMgr);
 

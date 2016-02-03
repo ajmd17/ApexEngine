@@ -5,12 +5,6 @@
 
 Spatial::~Spatial()
 {
-	engine_log << "Delete spatial: " << name << "\n";
-	if (this->parent != NULL)
-	{
-		Node *n = static_cast<Node*>(parent);
-		n->removeSoft(this);
-	}
 }
 
 void Spatial::update(RenderManager *renderMgr)
@@ -55,6 +49,7 @@ void Spatial::updateTransform()
 void Spatial::calcAttachedToRoot()
 {
 	const char *ROOT_NAME = "root";
+
 	if (strcmp(this->name.c_str(), ROOT_NAME) == 0)
 	{
 		attachedToRoot = true;

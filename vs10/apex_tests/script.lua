@@ -17,7 +17,7 @@ function logic()
 end
 
 function main()
-	--[[print ("Hello from Lua!")
+	print ("Hello from Lua!")
 	
 	local vec0 = Math.Vector3f():new(3.0, 9.0, 9.1)
 	print (vec0.x, vec0.y, vec0.z)
@@ -27,8 +27,9 @@ function main()
 	
 	node0:setName("Hello")
 	node1:setName("World")
-	
-	node0:add(node1)
+	print (node1:getName())
+	print (node0:size())
+	--[[node0:add(node1)
 	print (node1:getName())
 	print (node1:getParent():getName())
 	print (node0:size())]]--

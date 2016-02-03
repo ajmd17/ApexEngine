@@ -112,7 +112,7 @@ public:
 		return w * w + x * x + y * y + z * z;
 	}
 
-	Quaternion &inverse()
+	Quaternion &invert()
 	{
 		float n = normalize();
         if (n > 0.0)

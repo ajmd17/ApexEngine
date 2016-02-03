@@ -47,7 +47,6 @@ private:
 
 	virtual void updateLocalBoundingBox() = 0;
 public:
-
 	Spatial() 
 	{
 		this->name = "";

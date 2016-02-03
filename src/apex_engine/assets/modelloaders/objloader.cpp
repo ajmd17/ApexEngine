@@ -174,7 +174,8 @@ std::shared_ptr<ILoadableObject> ObjLoader::load(AssetInfo &asset)
 		shared_ptr<Mesh> mesh(new Mesh());
 		mesh->setVertices(vertices);
 
-		Geometry *geom = new Geometry();
+		shared_ptr<Geometry> geom(new Geometry());
+		//Geometry *geom = new Geometry();
 		geom->setName(names[i]);
 		geom->setMesh(mesh);
 		node->add(geom);

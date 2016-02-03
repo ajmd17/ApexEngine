@@ -15,6 +15,9 @@ using std::vector;
 #include "../util/strutil.h"
 #include "../util/logutil.h"
 
+#include <memory>
+using std::shared_ptr;
+
 class Node : public Spatial
 {
 private:
@@ -37,16 +40,13 @@ private:
 			localBoundingBox.extend(children[i]->getLocalBoundingBox());
 	}
 public:
-	Node() : Spatial() 
-	{ 
-		this->setName("node_" + to_str(node_count++));  
-	}
+	Node();
 
-	Node(char *name) : Spatial(name) {}
+	Node(char *name);
 
 	~Node();
 
-	vector<Spatial*> children;
+	vector<shared_ptr<Spatial>> children;
 
 	void update(RenderManager *renderMgr)
 	{
@@ -93,11 +93,11 @@ public:
 	{
 		if (children.size() > index)
 		{
-			return static_cast<SpatialType*>(children[index]);
+			return static_cast<SpatialType*>(children[index].get());
 		}
 		else
 		{
-			engine_log << "Index out of range. Size: " << children.size() << ", Index: " << index << "\n";
+			throw std::out_of_range("Out of range.");
 		}
 		return 0;
 	}
@@ -114,7 +114,7 @@ public:
 	{
 		for (size_t i = 0; i < children.size(); i++)
 		{
-			Spatial *child_at = children[i];
+			Spatial *child_at = children[i].get();
 			if (child_at != 0)
 			{
 				if (strcmp(child_at->getName().c_str(), name) == 0)
@@ -138,15 +138,15 @@ public:
 	{
 		for (size_t i = 0; i < children.size(); i++)
 		{
-			if (children[i] == spatial)
+			if (children[i].get() == spatial)
 				return true;
 		}
 		return false;
 	}
 
-	void add(Spatial *spatial)
+	void add(shared_ptr<Spatial> spatial)
 	{
-		if (!contains(spatial))
+		if (!contains(spatial.get()))
 		{
 			children.push_back(spatial);
 			spatial->setParent(this);
@@ -155,25 +155,36 @@ public:
 
 	void remove(Spatial *spatial)
 	{
-		if (contains(spatial))
+		for (size_t i = 0; i < children.size(); i++)
 		{
-			children.erase(std::find(children.begin(), children.end(), spatial));
-			spatial->setParent(0);
+			if (children[i].get() == spatial)
+			{
+				spatial->setParent(0);
+				children.erase(children.begin() + i);
+			}
 		}
 	}
 
 	void removeSoft(Spatial *spatial)
 	{
-		if (contains(spatial))
+		for (size_t i = 0; i < children.size(); i++)
 		{
-			children.erase(std::find(children.begin(), children.end(), spatial));
+			if (children[i].get() == spatial)
+			{
+				children.erase(children.begin() + i);
+			}
 		}
 	}
 
 	void removeAt(int i)
 	{
-		Spatial *spatial = this->getAt<Spatial>(i);
-		this->remove(spatial);
+		if (i < size())
+		{
+			children[i]->setParent(0);
+			children.erase(children.begin() + i);
+		}
+		else 
+			throw std::out_of_range("Out of range.");
 	}
 };
 
