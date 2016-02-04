@@ -68,7 +68,7 @@ void TestGame::init()
 	
 	this->camera = new PerspectiveCamera(75, 1024, 1024, 1.0, 100.0);
 
-
+	cout << camera->getViewProjectionMatrix() << "\n";
 
 	std::shared_ptr<LoadedText> textFile = getAssetManager()->loadAs<LoadedText>("text.txt");
 	cout << textFile->getText() << "\n";

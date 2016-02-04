@@ -106,7 +106,7 @@ public:
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				values[i][j] = other.values[i][j];
+				this->values[i][j] = other.values[i][j];
 			}
 		}
 		return *this;
@@ -146,7 +146,7 @@ public:
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				values[i][j] = values[i][j];
+				this->values[i][j] = values[i][j];
 			}
 		}
 		return *this;
@@ -201,7 +201,7 @@ public:
 		{
 			for (int j = 0; j < 4; j++)
 			{
-				values[i][j] = values[i][j] * scalar;
+				values[i][j] *= scalar;
 			}
 		}
 		return *this;
@@ -324,12 +324,17 @@ public:
 	friend ostream& operator<<(ostream& out, const Matrix4f &mat) // output
 	{
 		out << "[";
-		for (int i = 0; i < Matrix4f::MATRIX_SIZE; i++)
+		for (int i = 0; i < 4; i++)
 		{
-			out << mat.values[i];
-			if (i != Matrix4f::MATRIX_SIZE - 1)
-				out << ", ";
-			if ((i+1) % 4 == 0 && (i + 1) < Matrix4f::MATRIX_SIZE)
+			for (int j = 0; j < 4; j++)
+			{
+				out << mat.values[i][j];
+
+				if (j != 3)
+					out << ", ";
+			}
+
+			if (i != 3)
 				out << "\n";
 		}
 		out << "]";
