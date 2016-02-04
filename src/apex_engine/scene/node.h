@@ -88,12 +88,12 @@ public:
 	}
 
 	template <class SpatialType>
-	typename std::enable_if<std::is_base_of<Spatial, SpatialType>::value, SpatialType*>::type
+	typename std::enable_if<std::is_base_of<Spatial, SpatialType>::value, shared_ptr<SpatialType>>::type
 	getAt(size_t index)
 	{
 		if (children.size() > index)
 		{
-			return static_cast<SpatialType*>(children[index].get());
+			return std::dynamic_pointer_cast<SpatialType>(children[index]);
 		}
 		else
 		{
@@ -102,23 +102,22 @@ public:
 		return 0;
 	}
 
-	Spatial *getAt(int index)
+	shared_ptr<Spatial> getAt(int index)
 	{
-		Spatial *res = getAt<Spatial> (index);
-		return res;
+		return getAt<Spatial> (index);
 	}
 
 	template <class SpatialType>
-	typename std::enable_if<std::is_base_of<Spatial, SpatialType>::value, SpatialType*>::type
+	typename std::enable_if<std::is_base_of<Spatial, SpatialType>::value, shared_ptr<SpatialType>>::type
 	getByName(char *name)
 	{
 		for (size_t i = 0; i < children.size(); i++)
 		{
-			Spatial *child_at = children[i].get();
+			shared_ptr<Spatial> child_at = children[i];
 			if (child_at != 0)
 			{
 				if (strcmp(child_at->getName().c_str(), name) == 0)
-					return static_cast<SpatialType*>(child_at);
+					return std::dynamic_pointer_cast<SpatialType>(child_at);
 			} 
 			else
 				// The object is null. Probably deleted before being removed from the node.
@@ -128,17 +127,16 @@ public:
 		return 0;
 	}
 
-	Spatial *getByName(char *name)
+	shared_ptr<Spatial> getByName(char *name)
 	{
-		Spatial *res = getByName<Spatial>(name);
-		return res;
+		return getByName<Spatial>(name);
 	}
 
-	bool contains(Spatial *spatial)
+	bool contains(shared_ptr<Spatial> spatial)
 	{
 		for (size_t i = 0; i < children.size(); i++)
 		{
-			if (children[i].get() == spatial)
+			if (children[i] == spatial)
 				return true;
 		}
 		return false;
@@ -146,18 +144,18 @@ public:
 
 	void add(shared_ptr<Spatial> spatial)
 	{
-		if (!contains(spatial.get()))
+		if (!contains(spatial))
 		{
 			children.push_back(spatial);
 			spatial->setParent(this);
 		}
 	}
 
-	void remove(Spatial *spatial)
+	void remove(shared_ptr<Spatial> spatial)
 	{
 		for (size_t i = 0; i < children.size(); i++)
 		{
-			if (children[i].get() == spatial)
+			if (children[i] == spatial)
 			{
 				spatial->setParent(0);
 				children.erase(children.begin() + i);
@@ -165,11 +163,11 @@ public:
 		}
 	}
 
-	void removeSoft(Spatial *spatial)
+	void removeSoft(shared_ptr<Spatial> spatial)
 	{
 		for (size_t i = 0; i < children.size(); i++)
 		{
-			if (children[i].get() == spatial)
+			if (children[i] == spatial)
 			{
 				children.erase(children.begin() + i);
 			}

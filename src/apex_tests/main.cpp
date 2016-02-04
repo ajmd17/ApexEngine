@@ -14,6 +14,8 @@ using namespace std;
 #include <util/strutil.h>
 #include <rendering/cameras/perspective_camera.h>
 
+#include <assets/loadedtext.h>
+
 
 extern "C" {
 # include <lua.h>
@@ -59,10 +61,18 @@ void TestGame::init()
 {
 	RenderManager::getEngine()->clearColor(0.75, 0, 0, 1);
     
+	shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test_shader.fs");
+//	engine_log << sc->getText() << "\n";
 	
 	std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
 	
 	this->camera = new PerspectiveCamera(45, 1024, 1024, 1.0, 100.0);
+
+
+
+	std::shared_ptr<LoadedText> textFile = getAssetManager()->loadAs<LoadedText>("text.txt");
+	cout << textFile->getText() << "\n";
+
 
 	rot = 0;
 	
@@ -74,7 +84,7 @@ void TestGame::init()
 
 
 	ShaderProperties props;
-	Shader *shaderPtr = ShaderManager::getShader<MyShader>(props);
+	shared_ptr<Shader> shaderPtr = ShaderManager::getShader<MyShader>(props);
 
 	std::shared_ptr<Node> cube = getAssetManager()->loadAs<Node>("data/models/cube.obj");
 	cube->setLocalTranslation(Vector3f(0, -1, 2.5f));
@@ -91,6 +101,8 @@ void TestGame::init()
 	loadedmodel->getAt<Geometry>(0)->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex.get());
     loadedmodel->getAt<Geometry>(0)->getMaterial().setBool(Material::BOOL_CULLENABLED, false);
 	loadedmodel->getAt<Geometry>(1)->setShader(shaderPtr);
+
+	loadedmodel->removeAt(0);
 
 	this->getScene()->getRootNode()->add(loadedmodel);
 

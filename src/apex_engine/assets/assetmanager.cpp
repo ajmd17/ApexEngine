@@ -11,6 +11,14 @@ using std::ifstream;
 #include "../util/strutil.h"
 #include "../util/logutil.h"
 
+
+#include "assetloader.h"
+// Default loaders
+#include "textureloader.h"
+#include "modelloaders/objloader.h"
+#include "shaderloader/shaderloader.h"
+#include "textfileloader.h"
+
 AssetManager::AssetManager()
 {
 	// Create and register default loaders
@@ -23,6 +31,18 @@ AssetManager::AssetManager()
 
 	this->objLoader = std::make_shared<ObjLoader>();
 	this->registerExt("obj", this->objLoader);
+
+	this->shaderLoader = std::make_shared<ShaderLoader>();
+	this->registerExt("frag", this->shaderLoader);
+	this->registerExt("vert", this->shaderLoader);
+	this->registerExt("geom", this->shaderLoader);
+	this->registerExt("vs", this->shaderLoader);
+	this->registerExt("fs", this->shaderLoader);
+	this->registerExt("gs", this->shaderLoader);
+	this->registerExt("glsl", this->shaderLoader);
+
+	this->textFileLoader = std::make_shared<TextFileLoader>();
+	this->registerExt("txt", this->textFileLoader);
 }
 
 AssetManager::~AssetManager()
@@ -36,7 +56,7 @@ AssetManager::~AssetManager()
 	loadedAssets.clear();
 }
 
-std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath, std::shared_ptr<IAssetLoader> loader)
+std::shared_ptr<ILoadableObject> AssetManager::load(const char *filepath, std::shared_ptr<IAssetLoader> loader)
 {
 	ifstream filestream(filepath);
 	if (!filestream.is_open())
@@ -48,7 +68,7 @@ std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath, std::shared_
 	AssetInfo assetInfo;
 	assetInfo.setFilePath(filepath);
 	assetInfo.setStream(&filestream);
-	std::shared_ptr<ILoadableObject> obj = loader->load(assetInfo);
+	std::shared_ptr<ILoadableObject> obj = loader->load(this, assetInfo);
 
 	filestream.close();
 
@@ -59,7 +79,7 @@ std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath, std::shared_
 	return obj;
 }
 
-std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath)
+std::shared_ptr<ILoadableObject> AssetManager::load(const char *filepath)
 {
 	for (auto iterator = loadedAssets.begin(); iterator != loadedAssets.end(); iterator++)
 	{
@@ -74,7 +94,7 @@ std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath)
 
 	for (auto iterator = loaders.begin(); iterator != loaders.end(); iterator++) 
 	{
-		char *ext = iterator->first;
+		const char *ext = iterator->first;
 		std::shared_ptr<IAssetLoader> loader = iterator->second;
 
 		if (endsWith(filepath, ext))
@@ -93,9 +113,9 @@ std::shared_ptr<ILoadableObject> AssetManager::load(char *filepath)
 	return load(filepath, finalLoader);
 }
 
-void AssetManager::registerExt(char *ext, std::shared_ptr<IAssetLoader> loader)
+void AssetManager::registerExt(const char *ext, std::shared_ptr<IAssetLoader> loader)
 {
-	unordered_map<char *, std::shared_ptr<IAssetLoader> >::iterator it = loaders.find(ext);
+	unordered_map<const char *, std::shared_ptr<IAssetLoader> >::iterator it = loaders.find(ext);
 	if (it != loaders.end())
 		throw std::runtime_error("A loader is already registered for this type");
 	else
@@ -104,9 +124,9 @@ void AssetManager::registerExt(char *ext, std::shared_ptr<IAssetLoader> loader)
 	}
 }
 
-std::shared_ptr<IAssetLoader> AssetManager::getLoader(char *ext)
+std::shared_ptr<IAssetLoader> AssetManager::getLoader(const char *ext)
 {
-	unordered_map<char *, std::shared_ptr<IAssetLoader> >::iterator it = loaders.find(ext);
+	unordered_map<const char *, std::shared_ptr<IAssetLoader> >::iterator it = loaders.find(ext);
 	if (it == loaders.end())
 		throw std::runtime_error("No suitable loader found");
 	else

@@ -24,8 +24,8 @@ private:
 	static int geom_count;
 
 	RenderManager *renderMgr; // Contains a list of all geometry that can be rendered (attached to the root node)
-	Shader *shader;
 
+	shared_ptr<Shader> shader;
 	shared_ptr<Mesh> mesh;
 
 	Material material;
@@ -75,12 +75,12 @@ public:
 		this->material = material;
 	}
 
-	Shader *getShader()
+	shared_ptr<Shader> getShader()
 	{
 		return shader;
 	}
 
-	void setShader(Shader *shader)
+	void setShader(shared_ptr<Shader> shader)
 	{
 		this->shader = shader;
 	}

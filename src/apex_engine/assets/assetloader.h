@@ -9,6 +9,8 @@
 
 #include <memory>
 
+class AssetManager;
+
 class IAssetLoader
 {
 public:
@@ -16,7 +18,7 @@ public:
 
 	virtual void resetLoader() = 0;
 
-	virtual std::shared_ptr<ILoadableObject> load(AssetInfo &asset) = 0;
+	virtual std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset) = 0;
 };
 
 #endif

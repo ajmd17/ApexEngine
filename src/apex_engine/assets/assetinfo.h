@@ -11,7 +11,7 @@ class AssetInfo
 {
 private:
 	istream *stream;
-	char *filepath;
+	const char *filepath;
 public:
 	AssetInfo()
 	{}
@@ -22,7 +22,7 @@ public:
 		this->filepath = asset.getFilePath();
 	}
 
-	AssetInfo(istream *stream, char *filepath)
+	AssetInfo(istream *stream, const char *filepath)
 	{
 		this->stream = stream;
 		this->filepath = filepath;
@@ -38,12 +38,12 @@ public:
 		this->stream = stream;
 	}
 
-	char *getFilePath()
+	const char *getFilePath()
 	{
 		return filepath;
 	}
 
-	void setFilePath(char *filepath)
+	void setFilePath(const char *filepath)
 	{
 		this->filepath = filepath;
 	}

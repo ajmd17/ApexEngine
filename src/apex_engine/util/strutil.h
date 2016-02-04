@@ -15,34 +15,33 @@ using std::stringstream;
 #include <cctype>
 #include <locale>
 
-inline string to_str(int i)
+inline bool contains(const std::string s1, const std::string s2)
 {
-	string str = std::to_string(static_cast<long long>(i));
-
-	return str;
+	return s1.find(s2) != std::string::npos;
 }
 
-inline string to_str(float f)
+template <typename T>
+inline std::string to_str(T val)
 {
 	stringstream ss(stringstream::in | stringstream::out);
-	ss << f;
-	string str = ss.str();
+	ss << val;
+	std::string str = ss.str();
 
 	return str;
 }
 
-inline string to_str(double d)
+template <typename T>
+inline T parse(const std::string &str)
 {
-	stringstream ss(stringstream::in | stringstream::out);
-	ss << d;
-	string str = ss.str();
-
-	return str;
+	T res;
+	if (!(std::istringstream(str) >> res))
+		res = 0;
+	return res;
 }
 
-inline vector<string> removeEmptyStrings(const vector<string> &strings)
+inline vector<std::string> removeEmptyStrings(const vector<std::string> &strings)
 {
-	vector<string> res;
+	vector<std::string> res;
 	for (int i = 0; i < strings.size(); i++)
 	{
 		if (strcmp(strings[i].c_str(), "") != 0)
@@ -53,27 +52,11 @@ inline vector<string> removeEmptyStrings(const vector<string> &strings)
 	return res;
 }
 
-inline int parseInt(const string &str)
+inline vector<std::string> split(const std::string &text, char sep)
 {
-	int res;
-	if (!(std::istringstream(str) >> res)) 
-		res = 0;
-	return res;
-}
-
-inline float parseFloat(const string &str)
-{
-	float res;
-	if (!(std::istringstream(str) >> res))
-		res = 0;
-	return res;
-}
-
-inline vector<string> split(const string &text, char sep) 
-{
-	vector<string> tokens;
+	vector<std::string> tokens;
 	std::size_t start = 0, end = 0;
-	while ((end = text.find(sep, start)) != string::npos) 
+	while ((end = text.find(sep, start)) != std::string::npos)
 	{
 		tokens.push_back(text.substr(start, end - start));
 		start = end + 1;
@@ -86,6 +69,17 @@ inline std::string &ltrim(std::string &s)
 {
 	s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
 	return s;
+}
+
+inline std::string &rtrim(std::string &s) 
+{
+	s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+	return s;
+}
+
+inline std::string &trim(std::string &s) 
+{
+	return ltrim(rtrim(s));
 }
 
 inline bool startsWith(string &str, string &startswith)

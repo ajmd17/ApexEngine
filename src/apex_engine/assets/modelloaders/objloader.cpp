@@ -65,20 +65,20 @@ ObjIndex ObjLoader::parseObjIndex(const string &token)
 
 	if (values.size() > 0)
 	{
-		res.vertex_idx = parseInt(values[0]) - 1;
+		res.vertex_idx = parse<int>(values[0]) - 1;
 		if (values.size() > 1)
 		{
 			if (strcmp(values[1].c_str(), "") != 0)
 			{
 				hasTexCoords = true;
-				res.texcoord_idx = parseInt(values[1]) - 1;
+				res.texcoord_idx = parse<int>(values[1]) - 1;
 			}
 			if (values.size() > 2)
 			{
 				if (strcmp(values[2].c_str(), "") != 0)
 				{
 					hasNormals = true;
-					res.normal_idx = parseInt(values[2]) - 1;
+					res.normal_idx = parse<int>(values[2]) - 1;
 				}
 			}
 		}
@@ -103,7 +103,7 @@ Material &ObjLoader::materialWithName(const string name)
 	return m;
 }
 
-std::shared_ptr<ILoadableObject> ObjLoader::load(AssetInfo &asset)
+std::shared_ptr<ILoadableObject> ObjLoader::load(AssetManager *assetMgr, AssetInfo &asset)
 {
 	Node *node = new Node();
 	node->setName("Objthing");
@@ -119,24 +119,24 @@ std::shared_ptr<ILoadableObject> ObjLoader::load(AssetInfo &asset)
 		}
 		else if (strcmp(tokens[0].c_str(), "v") == 0)
 		{
-			float x = parseFloat(tokens[1]);
-			float y = parseFloat(tokens[2]);
-			float z = parseFloat(tokens[3]);
+			float x = parse<float>(tokens[1]);
+			float y = parse<float>(tokens[2]);
+			float z = parse<float>(tokens[3]);
 			Vector3f vec(x, y, z);
 			positions.push_back(vec);
 		}
 		else if (strcmp(tokens[0].c_str(), "vn") == 0)
 		{
-			float x = parseFloat(tokens[1]);
-			float y = parseFloat(tokens[2]);
-			float z = parseFloat(tokens[3]);
+			float x = parse<float>(tokens[1]);
+			float y = parse<float>(tokens[2]);
+			float z = parse<float>(tokens[3]);
 			Vector3f vec(x, y, z);
 			normals.push_back(vec);
 		}
 		else if (strcmp(tokens[0].c_str(), "vt") == 0)
 		{
-			float x = parseFloat(tokens[1]);
-			float y = parseFloat(tokens[2]);
+			float x = parse<float>(tokens[1]);
+			float y = parse<float>(tokens[2]);
 			Vector2f vec(x, y);
 			texCoords.push_back(vec);
 		}
@@ -175,7 +175,6 @@ std::shared_ptr<ILoadableObject> ObjLoader::load(AssetInfo &asset)
 		mesh->setVertices(vertices);
 
 		shared_ptr<Geometry> geom(new Geometry());
-		//Geometry *geom = new Geometry();
 		geom->setName(names[i]);
 		geom->setMesh(mesh);
 		node->add(geom);

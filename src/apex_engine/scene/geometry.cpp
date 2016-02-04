@@ -9,6 +9,7 @@ int Geometry::geom_count = 0;
 
 Geometry::Geometry() : Spatial()
 {
+	this->renderMgr = 0;
 	this->mesh = 0;
 	this->shader = 0;
 	this->bucket = OpaqueBucket;
@@ -17,6 +18,7 @@ Geometry::Geometry() : Spatial()
 
 Geometry::Geometry(char *name) : Spatial(name)
 {
+	this->renderMgr = 0;
 	this->mesh = 0;
 	this->shader = 0;
 	this->bucket = OpaqueBucket;
@@ -24,6 +26,7 @@ Geometry::Geometry(char *name) : Spatial(name)
 
 Geometry::Geometry(shared_ptr<Mesh> mesh) : Spatial()
 {
+	this->renderMgr = 0;
 	this->mesh = mesh;
 	this->shader = 0;
 	this->bucket = OpaqueBucket;
@@ -32,6 +35,7 @@ Geometry::Geometry(shared_ptr<Mesh> mesh) : Spatial()
 
 Geometry::Geometry(shared_ptr<Mesh> mesh, char *name) : Spatial(name)
 {
+	this->renderMgr = 0;
 	this->mesh = mesh;
 	this->shader = 0;
 	this->bucket = OpaqueBucket;
@@ -65,7 +69,7 @@ void Geometry::render(Camera &cam)
 void Geometry::updateParents()
 {
 	Spatial::updateParents();
-	if (renderMgr != NULL)
+	if (renderMgr != 0)
 	{
 		if (this->isAttachedToRoot())
 			this->renderMgr->addGeometry(this);

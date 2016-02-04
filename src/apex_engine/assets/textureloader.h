@@ -12,7 +12,7 @@ public:
 
 	void resetLoader();
 
-	std::shared_ptr<ILoadableObject> load(AssetInfo &asset);
+	std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset);
 };
 
 #endif
