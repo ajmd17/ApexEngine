@@ -52,7 +52,7 @@ inline vector<std::string> removeEmptyStrings(const vector<std::string> &strings
 	return res;
 }
 
-inline vector<std::string> split(const std::string &text, char sep)
+inline vector<std::string> split(const std::string &text, const char sep)
 {
 	vector<std::string> tokens;
 	std::size_t start = 0, end = 0;
@@ -82,7 +82,7 @@ inline std::string &trim(std::string &s)
 	return ltrim(rtrim(s));
 }
 
-inline bool startsWith(string &str, string &startswith)
+inline bool startsWith(const string &str, const string &startswith)
 {
 	if (str.find(startswith.c_str()) == 0)
 	{
@@ -91,18 +91,19 @@ inline bool startsWith(string &str, string &startswith)
 	return false;
 }
 
-inline bool endsWith(const char *str, const char *suffix)
+inline bool endsWith(const string &str, const string &suffix)
 {
-	if (!str || !suffix)
-		return false;
+	const char *strC, *suffixC;
+	strC = str.c_str();
+	suffixC = suffix.c_str();
 
-	size_t lenstr = strlen(str);
-	size_t lensuffix = strlen(suffix);
+	size_t lenstr = strlen(strC);
+	size_t lensuffix = strlen(suffixC);
 
 	if (lensuffix >  lenstr)
 		return false;
 
-	return strncmp(str + lenstr - lensuffix, suffix, lensuffix) == 0;
+	return strncmp(strC + lenstr - lensuffix, suffixC, lensuffix) == 0;
 }
 
 #endif

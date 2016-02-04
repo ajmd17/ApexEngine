@@ -142,10 +142,11 @@ public:
 
 	Vector4f &transform(Matrix4f &mat)
 	{
-		return set(this->x * mat.values[Matrix4f::M00] + this->y * mat.values[Matrix4f::M01] + this->z * mat.values[Matrix4f::M02] + this->w * mat.values[Matrix4f::M03],
-			this->x * mat.values[Matrix4f::M10] + this->y * mat.values[Matrix4f::M11] + this->z * mat.values[Matrix4f::M12] + this->w * mat.values[Matrix4f::M13],
-			this->x * mat.values[Matrix4f::M20] + this->y * mat.values[Matrix4f::M21] + this->z * mat.values[Matrix4f::M22] + this->w * mat.values[Matrix4f::M23],
-			this->x * mat.values[Matrix4f::M30] + this->y * mat.values[Matrix4f::M31] + this->z * mat.values[Matrix4f::M32] + this->w * mat.values[Matrix4f::M33]);
+		this->set(this->x * mat.values[0][0] + this->y * mat.values[0][1] + this->z * mat.values[0][2] + this->w * mat.values[0][3],
+				  this->x * mat.values[1][0] + this->y * mat.values[1][1] + this->z * mat.values[1][2] + this->w * mat.values[1][3],
+				  this->x * mat.values[2][0] + this->y * mat.values[2][1] + this->z * mat.values[2][2] + this->w * mat.values[2][3],
+				  this->x * mat.values[3][0] + this->y * mat.values[3][1] + this->z * mat.values[3][2] + this->w * mat.values[3][3]);
+		return *this;
 	}
 
 	Vector4f &divide(Vector4f &other)

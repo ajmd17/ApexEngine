@@ -155,5 +155,5 @@ void Shader::setUniform(string name, float x, float y, float z, float w)
 	
 void Shader::setUniform(string name, Matrix4f &mat)
 {
-	RenderManager::getEngine()->setShaderUniform(this->id, name, mat.values);
+	RenderManager::getEngine()->setShaderUniform(this->id, name, mat.get1DArray());
 }

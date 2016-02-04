@@ -38,14 +38,38 @@ enum PrimitiveType
 	Patches
 };
 
-enum ShaderType { VertexShader, FragmentShader, GeometryShader, TessControlShader, TessEvalShader };
+enum ShaderType 
+{ 
+	VertexShader, 
+	FragmentShader, 
+	GeometryShader, 
+	TessControlShader, 
+	TessEvalShader 
+};
 
-enum Face { Back, Front };
+enum Face 
+{ 
+	Back, 
+	Front 
+};
 
-enum FaceDirection { Cw, Ccw };
+enum FaceDirection 
+{ 
+	Cw, 
+	Ccw 
+};
 
-enum BlendMode { Opaque, AlphaBlended };
+enum BlendMode 
+{ 
+	Opaque, 
+	AlphaBlended 
+};
 
-enum AudioPlayState { Stopped, Paused, Playing };
+enum AudioPlayState 
+{ 
+	Stopped, 
+	Paused, 
+	Playing 
+};
 
 #endif

@@ -66,7 +66,7 @@ void TestGame::init()
 	
 	std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
 	
-	this->camera = new PerspectiveCamera(45, 1024, 1024, 1.0, 100.0);
+	this->camera = new PerspectiveCamera(75, 1024, 1024, 1.0, 100.0);
 
 
 
@@ -98,12 +98,9 @@ void TestGame::init()
 	loadedmodel->setLocalTranslation(Vector3f(0, 1, 7));
 
     loadedmodel->getAt<Geometry>(0)->setShader(shaderPtr);
-	loadedmodel->getAt<Geometry>(0)->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex.get());
+	loadedmodel->getAt<Geometry>(0)->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex);
     loadedmodel->getAt<Geometry>(0)->getMaterial().setBool(Material::BOOL_CULLENABLED, false);
 	loadedmodel->getAt<Geometry>(1)->setShader(shaderPtr);
-
-	loadedmodel->removeAt(0);
-
 	this->getScene()->getRootNode()->add(loadedmodel);
 
 	/*vector<Vertex> myVerts;
@@ -134,25 +131,25 @@ void TestGame::init()
 			.addFunction("copy", (Matrix4f &(Matrix4f::*) (Matrix4f &)) &Matrix4f::set)
 			.addFunction("new", (Matrix4f &(Matrix4f::*) ()) &Matrix4f::setToIdentity)
 			
-			.addProperty("m00", &Matrix4f::getM <Matrix4f::M00>, &Matrix4f::setM <Matrix4f::M00>)
-			.addProperty("m01", &Matrix4f::getM <Matrix4f::M01>, &Matrix4f::setM <Matrix4f::M01>)
-			.addProperty("m02", &Matrix4f::getM <Matrix4f::M02>, &Matrix4f::setM <Matrix4f::M02>)
-			.addProperty("m03", &Matrix4f::getM <Matrix4f::M03>, &Matrix4f::setM <Matrix4f::M03>)
+			.addProperty("m00", &Matrix4f::getM <0, 0>, &Matrix4f::setM <0, 0>)
+			.addProperty("m01", &Matrix4f::getM <0, 1>, &Matrix4f::setM <0, 1>)
+			.addProperty("m02", &Matrix4f::getM <0, 2>, &Matrix4f::setM <0, 2>)
+			.addProperty("m03", &Matrix4f::getM <0, 3>, &Matrix4f::setM <0, 3>)
 
-			.addProperty("m10", &Matrix4f::getM <Matrix4f::M10>, &Matrix4f::setM <Matrix4f::M10>)
-			.addProperty("m11", &Matrix4f::getM <Matrix4f::M11>, &Matrix4f::setM <Matrix4f::M11>)
-			.addProperty("m12", &Matrix4f::getM <Matrix4f::M12>, &Matrix4f::setM <Matrix4f::M12>)
-			.addProperty("m13", &Matrix4f::getM <Matrix4f::M13>, &Matrix4f::setM <Matrix4f::M13>)
+			.addProperty("m10", &Matrix4f::getM <1, 0>, &Matrix4f::setM <1, 0>)
+			.addProperty("m11", &Matrix4f::getM <1, 1>, &Matrix4f::setM <1, 1>)
+			.addProperty("m12", &Matrix4f::getM <1, 2>, &Matrix4f::setM <1, 2>)
+			.addProperty("m13", &Matrix4f::getM <1, 3>, &Matrix4f::setM <1, 3>)
 
-			.addProperty("m20", &Matrix4f::getM <Matrix4f::M20>, &Matrix4f::setM <Matrix4f::M20>)
-			.addProperty("m21", &Matrix4f::getM <Matrix4f::M21>, &Matrix4f::setM <Matrix4f::M21>)
-			.addProperty("m22", &Matrix4f::getM <Matrix4f::M22>, &Matrix4f::setM <Matrix4f::M22>)
-			.addProperty("m23", &Matrix4f::getM <Matrix4f::M23>, &Matrix4f::setM <Matrix4f::M23>)
+			.addProperty("m20", &Matrix4f::getM <2, 0>, &Matrix4f::setM <2, 0>)
+			.addProperty("m21", &Matrix4f::getM <2, 1>, &Matrix4f::setM <2, 1>)
+			.addProperty("m22", &Matrix4f::getM <2, 2>, &Matrix4f::setM <2, 2>)
+			.addProperty("m23", &Matrix4f::getM <2, 3>, &Matrix4f::setM <2, 3>)
 
-			.addProperty("m30", &Matrix4f::getM <Matrix4f::M30>, &Matrix4f::setM <Matrix4f::M30>)
-			.addProperty("m31", &Matrix4f::getM <Matrix4f::M31>, &Matrix4f::setM <Matrix4f::M31>)
-			.addProperty("m32", &Matrix4f::getM <Matrix4f::M32>, &Matrix4f::setM <Matrix4f::M32>)
-			.addProperty("m33", &Matrix4f::getM <Matrix4f::M33>, &Matrix4f::setM <Matrix4f::M33>)
+			.addProperty("m30", &Matrix4f::getM <3, 0>, &Matrix4f::setM <3, 0>)
+			.addProperty("m31", &Matrix4f::getM <3, 1>, &Matrix4f::setM <3, 1>)
+			.addProperty("m32", &Matrix4f::getM <3, 2>, &Matrix4f::setM <3, 2>)
+			.addProperty("m33", &Matrix4f::getM <3, 3>, &Matrix4f::setM <3, 3>)
 
 			.addFunction("identity", &Matrix4f::setToIdentity)
 			.addFunction("invert", &Matrix4f::invert)
@@ -302,6 +299,10 @@ void TestGame::logic()
 	Quaternion &qr = scene->getRootNode()->getAt(1)->getLocalRotation();
 	qr.setFromAxis(Vector3f(0, 1, 0), rot);
 	scene->getRootNode()->getAt(1)->setNeedsTransformUpdate();
+
+	Quaternion &qr1 = scene->getRootNode()->getAt(0)->getLocalRotation();
+	qr1.setFromAxis(Vector3f(1, 0, 0), rot);
+	scene->getRootNode()->getAt(0)->setNeedsTransformUpdate();
 }
 
 int main()

@@ -126,9 +126,9 @@ public:
 
 	Vector3f &transform(Matrix4f &mat)
 	{
-		set(this->x * mat.values[Matrix4f::M00] + this->y * mat.values[Matrix4f::M01] + this->z * mat.values[Matrix4f::M02] + mat.values[Matrix4f::M03],
-			this->x * mat.values[Matrix4f::M10] + this->y * mat.values[Matrix4f::M11] + this->z * mat.values[Matrix4f::M12] + mat.values[Matrix4f::M13],
-			this->x * mat.values[Matrix4f::M20] + this->y * mat.values[Matrix4f::M21] + this->z * mat.values[Matrix4f::M22] + mat.values[Matrix4f::M23]);
+		set(this->x * mat.values[0][0] + this->y * mat.values[0][1] + this->z * mat.values[0][2] + mat.values[0][3],
+			this->x * mat.values[1][0] + this->y * mat.values[1][1] + this->z * mat.values[1][2] + mat.values[1][3],
+			this->x * mat.values[2][0] + this->y * mat.values[2][1] + this->z * mat.values[2][2] + mat.values[2][3]);
 		return *this;
 	}
 

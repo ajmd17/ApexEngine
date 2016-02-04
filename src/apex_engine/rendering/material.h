@@ -4,6 +4,9 @@
 #include <unordered_map>
 using std::unordered_map;
 
+#include <memory>
+using std::shared_ptr;
+
 #include <string>
 using std::string;
 
@@ -18,7 +21,7 @@ private:
 	unordered_map<string, float> floats;
 	unordered_map<string, Vector4f> vector4fs;
 	unordered_map<string, string> strings;
-	unordered_map<string, Texture*> textures;
+	unordered_map<string, shared_ptr<Texture>> textures;
 public:
 	const static string 
 		STRING_NAME,
@@ -96,7 +99,7 @@ public:
 
 	bool hasTexture(string name)
 	{
-		unordered_map<string, Texture*>::iterator it = textures.find(name.c_str());
+		unordered_map<string, shared_ptr<Texture>>::iterator it = textures.find(name.c_str());
 		if (it != textures.end())
 			return true;
 		return false;
@@ -159,7 +162,7 @@ public:
 			return false;
 	}
 
-	bool getTexture(string name, Texture *&outTex)
+	bool getTexture(string name, shared_ptr<Texture> &outTex)
 	{
 		if (hasTexture(name))
 		{
@@ -197,7 +200,7 @@ public:
 		strings[name] = val;
 	}
 
-	void setTexture(string name, Texture *val)
+	void setTexture(string name, shared_ptr<Texture> val)
 	{
 		textures[name] = val;
 	}

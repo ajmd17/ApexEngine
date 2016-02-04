@@ -8,27 +8,29 @@ class Matrix4f
 {
 private:
 	static const int MATRIX_SIZE = 16;
+
+	float _1dArray[16];
 public:
-	static const int M00 = 0, M01 = 1, M02 = 2, M03 = 3,
+	/*static const int M00 = 0, M01 = 1, M02 = 2, M03 = 3,
 					 M10 = 4, M11 = 5, M12 = 6, M13 = 7,
 					 M20 = 8, M21 = 9, M22 = 10, M23 = 11,
-					 M30 = 12, M31 = 13, M32 = 14, M33 = 15;
+					 M30 = 12, M31 = 13, M32 = 14, M33 = 15;*/
 
-	float values[MATRIX_SIZE];
+	float values[4][4];
 
 	Matrix4f()
 	{
-		this->setToIdentity();
+		setToIdentity();
 	}
 
-	Matrix4f(float values[])
+	Matrix4f(float values[][4])
 	{
-		this->set(values);
+		set(values);
 	}
 
 	Matrix4f(Matrix4f &other)
 	{
-		this->set(other);
+		set(other);
 	}
 
 	Matrix4f(float m00, float m01, float m02, float m03,
@@ -36,7 +38,7 @@ public:
              float m20, float m21, float m22, float m23,
              float m30, float m31, float m32, float m33)
 	{
-		this->set(m00, m01, m02, m03, 
+		set(m00, m01, m02, m03, 
 				  m10, m11, m12, m13, 
 				  m20, m21, m22, m23, 
 				  m30, m31, m32, m33);
@@ -46,48 +48,66 @@ public:
 	{
 	}
 
-	template <int index>
-	float getM() const
+	float *get1DArray()
 	{
-		return this->values[index];
+		// update 1D array before returning
+		int idx = 0;
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				idx = i * 4 + j;
+				_1dArray[idx] = values[i][j];
+			}
+		}
+		return _1dArray;
 	}
 
-	template <int index>
+	template <int i, int j>
+	float getM() const
+	{
+		return values[i][j];
+	}
+
+	template <int i, int j>
 	void setM(float value)
 	{
-		this->values[index] = value;
+		values[i][j] = value;
 	}
 
 	Matrix4f &setToIdentity()
 	{
-		this->values[M00] = 1;
-        this->values[M01] = 0;
-        this->values[M02] = 0;
-        this->values[M03] = 0;
+		values[0][0] = 1;
+        values[0][1] = 0;
+        values[0][2] = 0;
+        values[0][3] = 0;
 
-        this->values[M10] = 0;
-        this->values[M11] = 1;
-        this->values[M12] = 0;
-        this->values[M13] = 0;
+        values[1][0] = 0;
+        values[1][1] = 1;
+        values[1][2] = 0;
+        values[1][3] = 0;
 
-        this->values[M20] = 0;
-        this->values[M21] = 0;
-        this->values[M22] = 1;
-        this->values[M23] = 0;
+        values[2][0] = 0;
+        values[2][1] = 0;
+        values[2][2] = 1;
+        values[2][3] = 0;
 
-        this->values[M30] = 0;
-        this->values[M31] = 0;
-        this->values[M32] = 0;
-        this->values[M33] = 1;
+        values[3][0] = 0;
+        values[3][1] = 0;
+        values[3][2] = 0;
+        values[3][3] = 1;
 
         return *this;
 	}
 
 	Matrix4f &set(Matrix4f &other)
 	{
-		for (int i = 0; i < MATRIX_SIZE; i++)
+		for (int i = 0; i < 4; i++)
 		{
-			this->values[i] = other.values[i];
+			for (int j = 0; j < 4; j++)
+			{
+				values[i][j] = other.values[i][j];
+			}
 		}
 		return *this;
 	}
@@ -97,34 +117,37 @@ public:
              float m20, float m21, float m22, float m23,
              float m30, float m31, float m32, float m33)
 	{
-		 this->values[M00] = m00;
-         this->values[M01] = m01;
-         this->values[M02] = m02;
-         this->values[M03] = m03;
+		 values[0][0] = m00;
+         values[0][1] = m01;
+         values[0][2] = m02;
+         values[0][2] = m03;
 
-         this->values[M10] = m10;
-         this->values[M11] = m11;
-         this->values[M12] = m12;
-         this->values[M13] = m13;
+         values[1][0] = m10;
+         values[1][1] = m11;
+         values[1][2] = m12;
+         values[1][3] = m13;
 
-         this->values[M20] = m20;
-         this->values[M21] = m21;
-         this->values[M22] = m22;
-         this->values[M23] = m23;
+         values[2][0] = m20;
+         values[2][1] = m21;
+         values[2][2] = m22;
+         values[2][3] = m23;
 
-         this->values[M30] = m30;
-         this->values[M31] = m31;
-         this->values[M32] = m32;
-         this->values[M33] = m33;
+         values[3][0] = m30;
+         values[3][1] = m31;
+         values[3][2] = m32;
+         values[3][3] = m33;
 
          return *this;
 	}
 
-	Matrix4f &set(float values[])
+	Matrix4f &set(float values[][4])
 	{
-		for (int i = 0; i < MATRIX_SIZE; i++)
+		for (int i = 0; i < 4; i++)
 		{
-			this->values[i] = values[i];
+			for (int j = 0; j < 4; j++)
+			{
+				values[i][j] = values[i][j];
+			}
 		}
 		return *this;
 	}
@@ -132,51 +155,54 @@ public:
 	Matrix4f &multiply(Matrix4f &other)
 	{
 
-		float _M00 = this->values[M00] * other.values[M00] + this->values[M10] * other.values[M01] + this->values[M20] * other.values[M02] + this->values[M30] * other.values[M03];
-		float _M01 = this->values[M01] * other.values[M00] + this->values[M11] * other.values[M01] + this->values[M21] * other.values[M02] + this->values[M31] * other.values[M03];
-		float _M02 = this->values[M02] * other.values[M00] + this->values[M12] * other.values[M01] + this->values[M22] * other.values[M02] + this->values[M32] * other.values[M03];
-		float _M03 = this->values[M03] * other.values[M00] + this->values[M13] * other.values[M01] + this->values[M23] * other.values[M02] + this->values[M33] * other.values[M03];
-		float _M10 = this->values[M00] * other.values[M10] + this->values[M10] * other.values[M11] + this->values[M20] * other.values[M12] + this->values[M30] * other.values[M13];
-		float _M11 = this->values[M01] * other.values[M10] + this->values[M11] * other.values[M11] + this->values[M21] * other.values[M12] + this->values[M31] * other.values[M13];
-		float _M12 = this->values[M02] * other.values[M10] + this->values[M12] * other.values[M11] + this->values[M22] * other.values[M12] + this->values[M32] * other.values[M13];
-		float _M13 = this->values[M03] * other.values[M10] + this->values[M13] * other.values[M11] + this->values[M23] * other.values[M12] + this->values[M33] * other.values[M13];
-		float _M20 = this->values[M00] * other.values[M20] + this->values[M10] * other.values[M21] + this->values[M20] * other.values[M22] + this->values[M30] * other.values[M23];
-		float _M21 = this->values[M01] * other.values[M20] + this->values[M11] * other.values[M21] + this->values[M21] * other.values[M22] + this->values[M31] * other.values[M23];
-		float _M22 = this->values[M02] * other.values[M20] + this->values[M12] * other.values[M21] + this->values[M22] * other.values[M22] + this->values[M32] * other.values[M23];
-		float _M23 = this->values[M03] * other.values[M20] + this->values[M13] * other.values[M21] + this->values[M23] * other.values[M22] + this->values[M33] * other.values[M23];
-		float _M30 = this->values[M00] * other.values[M30] + this->values[M10] * other.values[M31] + this->values[M20] * other.values[M32] + this->values[M30] * other.values[M33];
-		float _M31 = this->values[M01] * other.values[M30] + this->values[M11] * other.values[M31] + this->values[M21] * other.values[M32] + this->values[M31] * other.values[M33];
-		float _M32 = this->values[M02] * other.values[M30] + this->values[M12] * other.values[M31] + this->values[M22] * other.values[M32] + this->values[M32] * other.values[M33];
-		float _M33 = this->values[M03] * other.values[M30] + this->values[M13] * other.values[M31] + this->values[M23] * other.values[M32] + this->values[M33] * other.values[M33];
+		float _M00 = values[0][0] * other.values[0][0] + values[1][0] * other.values[0][1] + values[2][0] * other.values[0][2] + values[3][0] * other.values[0][3];
+		float _M01 = values[0][1] * other.values[0][0] + values[1][1] * other.values[0][1] + values[2][1] * other.values[0][2] + values[3][1] * other.values[0][3];
+		float _M02 = values[0][2] * other.values[0][0] + values[1][2] * other.values[0][1] + values[2][2] * other.values[0][2] + values[3][2] * other.values[0][3];
+		float _M03 = values[0][3] * other.values[0][0] + values[1][3] * other.values[0][1] + values[2][3] * other.values[0][2] + values[3][3] * other.values[0][3];
+		float _M10 = values[0][0] * other.values[1][0] + values[1][0] * other.values[1][1] + values[2][0] * other.values[1][2] + values[3][0] * other.values[1][3];
+		float _M11 = values[0][1] * other.values[1][0] + values[1][1] * other.values[1][1] + values[2][1] * other.values[1][2] + values[3][1] * other.values[1][3];
+		float _M12 = values[0][2] * other.values[1][0] + values[1][2] * other.values[1][1] + values[2][2] * other.values[1][2] + values[3][2] * other.values[1][3];
+		float _M13 = values[0][3] * other.values[1][0] + values[1][3] * other.values[1][1] + values[2][3] * other.values[1][2] + values[3][3] * other.values[1][3];
+		float _M20 = values[0][0] * other.values[2][0] + values[1][0] * other.values[2][1] + values[2][0] * other.values[2][2] + values[3][0] * other.values[2][3];
+		float _M21 = values[0][1] * other.values[2][0] + values[1][1] * other.values[2][1] + values[2][1] * other.values[2][2] + values[3][1] * other.values[2][3];
+		float _M22 = values[0][2] * other.values[2][0] + values[1][2] * other.values[2][1] + values[2][2] * other.values[2][2] + values[3][2] * other.values[2][3];
+		float _M23 = values[0][3] * other.values[2][0] + values[1][3] * other.values[2][1] + values[2][3] * other.values[2][2] + values[3][3] * other.values[2][3];
+		float _M30 = values[0][0] * other.values[3][0] + values[1][0] * other.values[3][1] + values[2][0] * other.values[3][2] + values[3][0] * other.values[3][3];
+		float _M31 = values[0][1] * other.values[3][0] + values[1][1] * other.values[3][1] + values[2][1] * other.values[3][2] + values[3][1] * other.values[3][3];
+		float _M32 = values[0][2] * other.values[3][0] + values[1][2] * other.values[3][1] + values[2][2] * other.values[3][2] + values[3][2] * other.values[3][3];
+		float _M33 = values[0][3] * other.values[3][0] + values[1][3] * other.values[3][1] + values[2][3] * other.values[3][2] + values[3][3] * other.values[3][3];
 
-		this->values[M00] = _M00;
-		this->values[M01] = _M01;
-		this->values[M02] = _M02;
-		this->values[M03] = _M03;
+		values[0][0] = _M00;
+		values[0][1] = _M01;
+		values[0][2] = _M02;
+		values[0][3] = _M03;
 
-		this->values[M10] = _M10;
-		this->values[M11] = _M11;
-		this->values[M12] = _M12;
-		this->values[M13] = _M13;
+		values[1][0] = _M10;
+		values[1][1] = _M11;
+		values[1][2] = _M12;
+		values[1][3] = _M13;
 
-		this->values[M20] = _M20;
-		this->values[M21] = _M21;
-		this->values[M22] = _M22;
-		this->values[M23] = _M23;
+		values[2][0] = _M20;
+		values[2][1] = _M21;
+		values[2][2] = _M22;
+		values[2][3] = _M23;
 
-		this->values[M30] = _M30;
-		this->values[M31] = _M31;
-		this->values[M32] = _M32;
-		this->values[M33] = _M33;
+		values[3][0] = _M30;
+		values[3][1] = _M31;
+		values[3][2] = _M32;
+		values[3][3] = _M33;
 
 		return *this;
 	}
 
 	Matrix4f &scale(float scalar)
 	{
-		for (int i = 0; i < MATRIX_SIZE; i++)
+		for (int i = 0; i < 4; i++)
 		{
-			this->values[i] = this->values[i] * scalar;
+			for (int j = 0; j < 4; j++)
+			{
+				values[i][j] = values[i][j] * scalar;
+			}
 		}
 		return *this;
 	}
@@ -185,97 +211,112 @@ public:
 	{
 		Matrix4f tmp;
 		
-		tmp.values[M00] = this->values[M00];
-        tmp.values[M01] = this->values[M10];
-        tmp.values[M02] = this->values[M20];
-        tmp.values[M03] = this->values[M30];
+		tmp.values[0][0] = values[0][0];
+        tmp.values[0][1] = values[1][0];
+        tmp.values[0][2] = values[2][0];
+        tmp.values[0][3] = values[3][0];
 
-        tmp.values[M10] = this->values[M01];
-        tmp.values[M11] = this->values[M11];
-        tmp.values[M12] = this->values[M21];
-        tmp.values[M13] = this->values[M31];
+        tmp.values[1][0] = values[0][1];
+        tmp.values[1][1] = values[1][1];
+        tmp.values[1][2] = values[2][1];
+        tmp.values[1][3] = values[3][1];
 
-        tmp.values[M20] = this->values[M02];
-        tmp.values[M21] = this->values[M12];
-        tmp.values[M22] = this->values[M22];
-        tmp.values[M23] = this->values[M32];
+        tmp.values[2][0] = values[0][2];
+        tmp.values[2][1] = values[1][2];
+        tmp.values[2][2] = values[2][2];
+        tmp.values[2][3] = values[3][2];
 
-        tmp.values[M30] = this->values[M03];
-        tmp.values[M31] = this->values[M13];
-        tmp.values[M32] = this->values[M23];
-        tmp.values[M33] = this->values[M33];
+        tmp.values[3][0] = values[0][3];
+        tmp.values[3][1] = values[1][3];
+        tmp.values[3][2] = values[2][3];
+        tmp.values[3][3] = values[3][3];
 
-		this->set(tmp);
+		set(tmp);
 
 		return *this;
 	}
 
 	Matrix4f &invert()
 	{
-		float tmp[16];
-		float l_det = this->values[M30] * this->values[M21] * this->values[M12] * this->values[M03] - this->values[M20] * this->values[M31] * this->values[M12] * this->values[M03] - this->values[M30] * this->values[M11]
-            * this->values[M22] * this->values[M03] + this->values[M10] * this->values[M31] * this->values[M22] * this->values[M03] + this->values[M20] * this->values[M11] * this->values[M32] * this->values[M03] - this->values[M10]
-            * this->values[M21] * this->values[M32] * this->values[M03] - this->values[M30] * this->values[M21] * this->values[M02] * this->values[M13] + this->values[M20] * this->values[M31] * this->values[M02] * this->values[M13]
-            + this->values[M30] * this->values[M01] * this->values[M22] * this->values[M13] - this->values[M00] * this->values[M31] * this->values[M22] * this->values[M13] - this->values[M20] * this->values[M01] * this->values[M32]
-            * this->values[M13] + this->values[M00] * this->values[M21] * this->values[M32] * this->values[M13] + this->values[M30] * this->values[M11] * this->values[M02] * this->values[M23] - this->values[M10] * this->values[M31]
-            * this->values[M02] * this->values[M23] - this->values[M30] * this->values[M01] * this->values[M12] * this->values[M23] + this->values[M00] * this->values[M31] * this->values[M12] * this->values[M23] + this->values[M10]
-            * this->values[M01] * this->values[M32] * this->values[M23] - this->values[M00] * this->values[M11] * this->values[M32] * this->values[M23] - this->values[M20] * this->values[M11] * this->values[M02] * this->values[M33]
-            + this->values[M10] * this->values[M21] * this->values[M02] * this->values[M33] + this->values[M20] * this->values[M01] * this->values[M12] * this->values[M33] - this->values[M00] * this->values[M21] * this->values[M12]
-            * this->values[M33] - this->values[M10] * this->values[M01] * this->values[M22] * this->values[M33] + this->values[M00] * this->values[M11] * this->values[M22] * this->values[M33];
+		float tmp[4][4];
+		float l_det = values[3][0] * values[2][1] * values[1][2] * values[0][3] - values[2][0] * values[3][1] * values[1][2] * values[0][3] - values[3][0] * values[1][1]
+            * values[2][2] * values[0][3] + values[1][0] * values[3][1] * values[2][2] * values[0][3] + values[2][0] * values[1][1] * values[3][2] * values[0][3] - values[1][0]
+            * values[2][1] * values[3][2] * values[0][3] - values[3][0] * values[2][1] * values[0][2] * values[1][3] + values[2][0] * values[3][1] * values[0][2] * values[1][3]
+            + values[3][0] * values[0][1] * values[2][2] * values[1][3] - values[0][0] * values[3][1] * values[2][2] * values[1][3] - values[2][0] * values[0][1] * values[3][2]
+            * values[1][3] + values[0][0] * values[2][1] * values[3][2] * values[1][3] + values[3][0] * values[1][1] * values[0][2] * values[2][3] - values[1][0] * values[3][1]
+            * values[0][2] * values[2][3] - values[3][0] * values[0][1] * values[1][2] * values[2][3] + values[0][0] * values[3][1] * values[1][2] * values[2][3] + values[1][0]
+            * values[0][1] * values[3][2] * values[2][3] - values[0][0] * values[1][1] * values[3][2] * values[2][3] - values[2][0] * values[1][1] * values[0][2] * values[3][3]
+            + values[1][0] * values[2][1] * values[0][2] * values[3][3] + values[2][0] * values[0][1] * values[1][2] * values[3][3] - values[0][0] * values[2][1] * values[1][2]
+            * values[3][3] - values[1][0] * values[0][1] * values[2][2] * values[3][3] + values[0][0] * values[1][1] * values[2][2] * values[3][3];
 
 		if (l_det == 0) return *this;
 
         float inv_det = 1.0f / l_det;
 
-		tmp[M00] = this->values[M12] * this->values[M23] * this->values[M31] - this->values[M13] * this->values[M22] * this->values[M31] + this->values[M13] * this->values[M21] * this->values[M32] - this->values[M11]
-                * this->values[M23] * this->values[M32] - this->values[M12] * this->values[M21] * this->values[M33] + this->values[M11] * this->values[M22] * this->values[M33];
-            tmp[M01] = this->values[M03] * this->values[M22] * this->values[M31] - this->values[M02] * this->values[M23] * this->values[M31] - this->values[M03] * this->values[M21] * this->values[M32] + this->values[M01]
-                * this->values[M23] * this->values[M32] + this->values[M02] * this->values[M21] * this->values[M33] - this->values[M01] * this->values[M22] * this->values[M33];
-            tmp[M02] = this->values[M02] * this->values[M13] * this->values[M31] - this->values[M03] * this->values[M12] * this->values[M31] + this->values[M03] * this->values[M11] * this->values[M32] - this->values[M01]
-                * this->values[M13] * this->values[M32] - this->values[M02] * this->values[M11] * this->values[M33] + this->values[M01] * this->values[M12] * this->values[M33];
-            tmp[M03] = this->values[M03] * this->values[M12] * this->values[M21] - this->values[M02] * this->values[M13] * this->values[M21] - this->values[M03] * this->values[M11] * this->values[M22] + this->values[M01]
-                * this->values[M13] * this->values[M22] + this->values[M02] * this->values[M11] * this->values[M23] - this->values[M01] * this->values[M12] * this->values[M23];
-            tmp[M10] = this->values[M13] * this->values[M22] * this->values[M30] - this->values[M12] * this->values[M23] * this->values[M30] - this->values[M13] * this->values[M20] * this->values[M32] + this->values[M10]
-                * this->values[M23] * this->values[M32] + this->values[M12] * this->values[M20] * this->values[M33] - this->values[M10] * this->values[M22] * this->values[M33];
-            tmp[M11] = this->values[M02] * this->values[M23] * this->values[M30] - this->values[M03] * this->values[M22] * this->values[M30] + this->values[M03] * this->values[M20] * this->values[M32] - this->values[M00]
-                * this->values[M23] * this->values[M32] - this->values[M02] * this->values[M20] * this->values[M33] + this->values[M00] * this->values[M22] * this->values[M33];
-            tmp[M12] = this->values[M03] * this->values[M12] * this->values[M30] - this->values[M02] * this->values[M13] * this->values[M30] - this->values[M03] * this->values[M10] * this->values[M32] + this->values[M00]
-                * this->values[M13] * this->values[M32] + this->values[M02] * this->values[M10] * this->values[M33] - this->values[M00] * this->values[M12] * this->values[M33];
-            tmp[M13] = this->values[M02] * this->values[M13] * this->values[M20] - this->values[M03] * this->values[M12] * this->values[M20] + this->values[M03] * this->values[M10] * this->values[M22] - this->values[M00]
-                * this->values[M13] * this->values[M22] - this->values[M02] * this->values[M10] * this->values[M23] + this->values[M00] * this->values[M12] * this->values[M23];
-            tmp[M20] = this->values[M11] * this->values[M23] * this->values[M30] - this->values[M13] * this->values[M21] * this->values[M30] + this->values[M13] * this->values[M20] * this->values[M31] - this->values[M10]
-                * this->values[M23] * this->values[M31] - this->values[M11] * this->values[M20] * this->values[M33] + this->values[M10] * this->values[M21] * this->values[M33];
-            tmp[M21] = this->values[M03] * this->values[M21] * this->values[M30] - this->values[M01] * this->values[M23] * this->values[M30] - this->values[M03] * this->values[M20] * this->values[M31] + this->values[M00]
-                * this->values[M23] * this->values[M31] + this->values[M01] * this->values[M20] * this->values[M33] - this->values[M00] * this->values[M21] * this->values[M33];
-            tmp[M22] = this->values[M01] * this->values[M13] * this->values[M30] - this->values[M03] * this->values[M11] * this->values[M30] + this->values[M03] * this->values[M10] * this->values[M31] - this->values[M00]
-                * this->values[M13] * this->values[M31] - this->values[M01] * this->values[M10] * this->values[M33] + this->values[M00] * this->values[M11] * this->values[M33];
-            tmp[M23] = this->values[M03] * this->values[M11] * this->values[M20] - this->values[M01] * this->values[M13] * this->values[M20] - this->values[M03] * this->values[M10] * this->values[M21] + this->values[M00]
-                * this->values[M13] * this->values[M21] + this->values[M01] * this->values[M10] * this->values[M23] - this->values[M00] * this->values[M11] * this->values[M23];
-            tmp[M30] = this->values[M12] * this->values[M21] * this->values[M30] - this->values[M11] * this->values[M22] * this->values[M30] - this->values[M12] * this->values[M20] * this->values[M31] + this->values[M10]
-                * this->values[M22] * this->values[M31] + this->values[M11] * this->values[M20] * this->values[M32] - this->values[M10] * this->values[M21] * this->values[M32];
-            tmp[M31] = this->values[M01] * this->values[M22] * this->values[M30] - this->values[M02] * this->values[M21] * this->values[M30] + this->values[M02] * this->values[M20] * this->values[M31] - this->values[M00]
-                * this->values[M22] * this->values[M31] - this->values[M01] * this->values[M20] * this->values[M32] + this->values[M00] * this->values[M21] * this->values[M32];
-            tmp[M32] = this->values[M02] * this->values[M11] * this->values[M30] - this->values[M01] * this->values[M12] * this->values[M30] - this->values[M02] * this->values[M10] * this->values[M31] + this->values[M00]
-                * this->values[M12] * this->values[M31] + this->values[M01] * this->values[M10] * this->values[M32] - this->values[M00] * this->values[M11] * this->values[M32];
-            tmp[M33] = this->values[M01] * this->values[M12] * this->values[M20] - this->values[M02] * this->values[M11] * this->values[M20] + this->values[M02] * this->values[M10] * this->values[M21] - this->values[M00]
-                * this->values[M12] * this->values[M21] - this->values[M01] * this->values[M10] * this->values[M22] + this->values[M00] * this->values[M11] * this->values[M22];
+		tmp[0][0] = values[1][2] * values[2][3] * values[3][1] - values[1][3] * values[2][2] * values[3][1] + values[1][3] * values[2][1] * values[3][2] - values[1][1]
+                * values[2][3] * values[3][2] - values[1][2] * values[2][1] * values[3][3] + values[1][1] * values[2][2] * values[3][3];
+
+        tmp[0][1] = values[0][3] * values[2][2] * values[3][1] - values[0][2] * values[2][3] * values[3][1] - values[0][3] * values[2][1] * values[3][2] + values[0][1]
+                * values[2][3] * values[3][2] + values[0][2] * values[2][1] * values[3][3] - values[0][1] * values[2][2] * values[3][3];
+
+        tmp[0][2] = values[0][2] * values[1][3] * values[3][1] - values[0][3] * values[1][2] * values[3][1] + values[0][3] * values[1][1] * values[3][2] - values[0][1]
+                * values[1][3] * values[3][2] - values[0][2] * values[1][1] * values[3][3] + values[0][1] * values[1][2] * values[3][3];
+
+        tmp[0][3] = values[0][3] * values[1][2] * values[2][1] - values[0][2] * values[1][3] * values[2][1] - values[0][3] * values[1][1] * values[2][2] + values[0][1]
+                * values[1][3] * values[2][2] + values[0][2] * values[1][1] * values[2][3] - values[0][1] * values[1][2] * values[2][3];
+
+        tmp[1][0] = values[1][3] * values[2][2] * values[3][0] - values[1][2] * values[2][3] * values[3][0] - values[1][3] * values[2][0] * values[3][2] + values[1][0]
+                * values[2][3] * values[3][2] + values[1][2] * values[2][0] * values[3][3] - values[1][0] * values[2][2] * values[3][3];
+
+        tmp[1][1] = values[0][2] * values[2][3] * values[3][0] - values[0][3] * values[2][2] * values[3][0] + values[0][3] * values[2][0] * values[3][2] - values[0][0]
+                * values[2][3] * values[3][2] - values[0][2] * values[2][0] * values[3][3] + values[0][0] * values[2][2] * values[3][3];
+
+        tmp[1][2] = values[0][3] * values[1][2] * values[3][0] - values[0][2] * values[1][3] * values[3][0] - values[0][3] * values[1][0] * values[3][2] + values[0][0]
+                * values[1][3] * values[3][2] + values[0][2] * values[1][0] * values[3][3] - values[0][0] * values[1][2] * values[3][3];
+
+        tmp[1][3] = values[0][2] * values[1][3] * values[2][0] - values[0][3] * values[1][2] * values[2][0] + values[0][3] * values[1][0] * values[2][2] - values[0][0]
+                * values[1][3] * values[2][2] - values[0][2] * values[1][0] * values[2][3] + values[0][0] * values[1][2] * values[2][3];
+
+        tmp[2][0] = values[1][1] * values[2][3] * values[3][0] - values[1][3] * values[2][1] * values[3][0] + values[1][3] * values[2][0] * values[3][1] - values[1][0]
+                * values[2][3] * values[3][1] - values[1][1] * values[2][0] * values[3][3] + values[1][0] * values[2][1] * values[3][3];
+
+        tmp[2][1] = values[0][3] * values[2][1] * values[3][0] - values[0][1] * values[2][3] * values[3][0] - values[0][3] * values[2][0] * values[3][1] + values[0][0]
+                * values[2][3] * values[3][1] + values[0][1] * values[2][0] * values[3][3] - values[0][0] * values[2][1] * values[3][3];
+
+        tmp[2][2] = values[0][1] * values[1][3] * values[3][0] - values[0][3] * values[1][1] * values[3][0] + values[0][3] * values[1][0] * values[3][1] - values[0][0]
+                * values[1][3] * values[3][1] - values[0][1] * values[1][0] * values[3][3] + values[0][0] * values[1][1] * values[3][3];
+
+        tmp[2][3] = values[0][3] * values[1][1] * values[2][0] - values[0][1] * values[1][3] * values[2][0] - values[0][3] * values[1][0] * values[2][1] + values[0][0]
+                * values[1][3] * values[2][1] + values[0][1] * values[1][0] * values[2][3] - values[0][0] * values[1][1] * values[2][3];
+
+        tmp[3][0] = values[1][2] * values[2][1] * values[3][0] - values[1][1] * values[2][2] * values[3][0] - values[1][2] * values[2][0] * values[3][1] + values[1][0]
+                * values[2][2] * values[3][1] + values[1][1] * values[2][0] * values[3][2] - values[1][0] * values[2][1] * values[3][2];
+
+        tmp[3][1] = values[0][1] * values[2][2] * values[3][0] - values[0][2] * values[2][1] * values[3][0] + values[0][2] * values[2][0] * values[3][1] - values[0][0]
+                * values[2][2] * values[3][1] - values[0][1] * values[2][0] * values[3][2] + values[0][0] * values[2][1] * values[3][2];
+
+        tmp[3][2] = values[0][2] * values[1][1] * values[3][0] - values[0][1] * values[1][2] * values[3][0] - values[0][2] * values[1][0] * values[3][1] + values[0][0]
+                * values[1][2] * values[3][1] + values[0][1] * values[1][0] * values[3][2] - values[0][0] * values[1][1] * values[3][2];
+
+        tmp[3][3] = values[0][1] * values[1][2] * values[2][0] - values[0][2] * values[1][1] * values[2][0] + values[0][2] * values[1][0] * values[2][1] - values[0][0]
+                * values[1][2] * values[2][1] - values[0][1] * values[1][0] * values[2][2] + values[0][0] * values[1][1] * values[2][2];
         
-		this->values[M00] = tmp[M00] * inv_det;
-        this->values[M01] = tmp[M01] * inv_det;
-        this->values[M02] = tmp[M02] * inv_det;
-        this->values[M03] = tmp[M03] * inv_det;
-        this->values[M10] = tmp[M10] * inv_det;
-        this->values[M11] = tmp[M11] * inv_det;
-        this->values[M12] = tmp[M12] * inv_det;
-        this->values[M13] = tmp[M13] * inv_det;
-        this->values[M20] = tmp[M20] * inv_det;
-        this->values[M21] = tmp[M21] * inv_det;
-        this->values[M22] = tmp[M22] * inv_det;
-        this->values[M23] = tmp[M23] * inv_det;
-        this->values[M30] = tmp[M30] * inv_det;
-        this->values[M31] = tmp[M31] * inv_det;
-        this->values[M32] = tmp[M32] * inv_det;
-        this->values[M33] = tmp[M33] * inv_det;
+		values[0][0] = tmp[0][0] * inv_det;
+        values[0][1] = tmp[0][1] * inv_det;
+        values[0][2] = tmp[0][2] * inv_det;
+        values[0][3] = tmp[0][3] * inv_det;
+        values[1][0] = tmp[1][0] * inv_det;
+        values[1][1] = tmp[1][1] * inv_det;
+        values[1][2] = tmp[1][2] * inv_det;
+        values[1][3] = tmp[1][3] * inv_det;
+        values[2][0] = tmp[2][0] * inv_det;
+        values[2][1] = tmp[2][1] * inv_det;
+        values[2][2] = tmp[2][2] * inv_det;
+        values[2][3] = tmp[2][3] * inv_det;
+        values[3][0] = tmp[3][0] * inv_det;
+        values[3][1] = tmp[3][1] * inv_det;
+        values[3][2] = tmp[3][2] * inv_det;
+        values[3][3] = tmp[3][3] * inv_det;
 
 		return *this;
 	}
