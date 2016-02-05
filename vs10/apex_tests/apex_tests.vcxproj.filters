@@ -26,5 +26,8 @@
     <ClInclude Include="..\..\src\apex_tests\opengl_engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\apex_tests\sharedptr_conv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

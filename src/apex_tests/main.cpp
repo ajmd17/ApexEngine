@@ -16,15 +16,19 @@ using namespace std;
 
 #include <assets/loadedtext.h>
 
+#include "sharedptr_conv.h"
 
 extern "C" {
-# include <lua.h>
-# include <lauxlib.h>
-# include <lualib.h>
+#include <lua.h>
+#include <lauxlib.h>
+#include <lualib.h>
 }
-#include <LuaBridge.h>
 
-using namespace luabridge;
+#include <luabind/luabind.hpp>
+
+//#include <LuaBridge.h>
+
+//using namespace luabridge;
 
 
 class TestGame : public Game
@@ -48,13 +52,23 @@ public:
 	}
 };
 
+class testclass
+{
+public:
+	testclass(const std::string& s) : m_string(s) {}
+	void print_string() { std::cout << m_string << "\n"; }
+
+private:
+	std::string m_string;
+};
+
 const string MyShader::vscode = "#version 120\nattribute vec3 a_position;\nattribute vec2 a_texcoord0;\nattribute vec3 a_normal;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;uniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\nv_normal = a_normal;\n}";
 const string MyShader::fscode = "#version 120\nuniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\nfloat ndotl = dot(v_normal, vec3(1.0));\ngl_FragColor = vec4(v_normal, 1.0);\n}";
 
 Geometry *mygeom;
 Mesh *mesh;
-lua_State *lua;
 Matrix4f myMatrix;
+
 
 float rot;
 void TestGame::init()
@@ -68,14 +82,160 @@ void TestGame::init()
 	
 	this->camera = new PerspectiveCamera(75, 1024, 1024, 1.0, 100.0);
 
-	cout << camera->getViewProjectionMatrix() << "\n";
-
-	std::shared_ptr<LoadedText> textFile = getAssetManager()->loadAs<LoadedText>("text.txt");
-	cout << textFile->getText() << "\n";
-
 
 	rot = 0;
 	
+
+	// Create a new lua state
+	lua_State *myLuaState = luaL_newstate(); 
+	luaL_openlibs(myLuaState);
+
+	// Connect LuaBind to this lua state
+	luabind::open(myLuaState);
+
+
+	luabind::module(myLuaState)
+	[
+		luabind::class_<Matrix4f>("Matrix4f")
+
+		.def(luabind::constructor<>())
+
+		.property("m00", &Matrix4f::getM<0, 0>, &Matrix4f::setM<0, 0>)
+		.property("m01", &Matrix4f::getM<0, 1>, &Matrix4f::setM<0, 1>)
+		.property("m02", &Matrix4f::getM<0, 2>, &Matrix4f::setM<0, 2>)
+		.property("m03", &Matrix4f::getM<0, 3>, &Matrix4f::setM<0, 3>)
+
+		.property("m10", &Matrix4f::getM<1, 0>, &Matrix4f::setM<1, 0>)
+		.property("m11", &Matrix4f::getM<1, 1>, &Matrix4f::setM<1, 1>)
+		.property("m12", &Matrix4f::getM<1, 2>, &Matrix4f::setM<1, 2>)
+		.property("m13", &Matrix4f::getM<1, 3>, &Matrix4f::setM<1, 3>)
+
+		.property("m20", &Matrix4f::getM<2, 0>, &Matrix4f::setM<2, 0>)
+		.property("m21", &Matrix4f::getM<2, 1>, &Matrix4f::setM<2, 1>)
+		.property("m22", &Matrix4f::getM<2, 2>, &Matrix4f::setM<2, 2>)
+		.property("m23", &Matrix4f::getM<2, 3>, &Matrix4f::setM<2, 3>)
+
+		.property("m30", &Matrix4f::getM<3, 0>, &Matrix4f::setM<3, 0>)
+		.property("m31", &Matrix4f::getM<3, 1>, &Matrix4f::setM<3, 1>)
+		.property("m32", &Matrix4f::getM<3, 2>, &Matrix4f::setM<3, 2>)
+		.property("m33", &Matrix4f::getM<3, 3>, &Matrix4f::setM<3, 3>)
+
+		.def("setToIdentity", &Matrix4f::setToIdentity)
+		.def("invert", &Matrix4f::invert)
+		.def("transpose", &Matrix4f::transpose)
+		.def("multiply", &Matrix4f::multiply)
+		.def("scale", &Matrix4f::scale)
+
+		,
+
+		luabind::class_<Quaternion>("Quaternion")
+
+		.def(luabind::constructor<>()) // don't let a user directly set the	
+									   // values of a quaternion.
+		.property("w", &Quaternion::getW)
+		.property("x", &Quaternion::getX)
+		.property("y", &Quaternion::getY)
+		.property("z", &Quaternion::getZ)
+
+		.def("new", &Quaternion::setToIdentity)
+		.def("copy", (Quaternion &(Quaternion::*) (Quaternion &)) &Quaternion::set)
+
+		.def("setFromAxis", &Quaternion::setFromAxis)
+		.def("multiply", (Quaternion &(Quaternion::*) (Quaternion &)) &Quaternion::multiply)
+
+		.def("getPitch", &Quaternion::getPitch)
+		.def("getRoll", &Quaternion::getRoll)
+		.def("getYaw", &Quaternion::getYaw)
+		,
+
+		luabind::class_<Vector3f>("Vector3f")
+
+		.def(luabind::constructor<float, float, float>())
+
+		.property("x", &Vector3f::getX, &Vector3f::setX)
+		.property("y", &Vector3f::getY, &Vector3f::setY)
+		.property("z", &Vector3f::getZ, &Vector3f::setZ)
+
+		.def("new", (Vector3f &(Vector3f::*) (float, float, float)) &Vector3f::set)
+		.def("set", (Vector3f &(Vector3f::*) (float, float, float)) &Vector3f::set)
+		.def("copy", (Vector3f &(Vector3f::*) (Vector3f &)) &Vector3f::set)
+
+		.def("add", &Vector3f::add)
+		.def("subtract", &Vector3f::subtract)
+		.def("multiply", &Vector3f::multiply)
+		.def("divide", &Vector3f::divide)
+		.def("scale", &Vector3f::scale)
+		.def("transform", &Vector3f::transform)
+		.def("distance", &Vector3f::distance)
+		.def("distanceSqr", &Vector3f::distanceSqr)
+		.def("normalize", &Vector3f::normalize)
+		.def("dot", &Vector3f::dot)
+		.def("cross", &Vector3f::cross)
+		.def("length", &Vector3f::length)
+
+		,
+
+		luabind::class_<Spatial, std::shared_ptr<Spatial>>("Spatial")
+		
+		.def("getName", &Spatial::getName)
+		.def("setName", &Spatial::setName)
+
+		.def("getParent", &Spatial::getParent)
+		
+		.def("setLocalTranslation", &Spatial::setLocalTranslation)
+		.def("setLocalScale", &Spatial::setLocalScale)
+		.def("setLocalRotation", &Spatial::setLocalRotation)
+
+		.def("getLocalTranslation", &Spatial::getLocalTranslation)
+		.def("getLocalScale", &Spatial::getLocalScale)
+		.def("getLocalRotation", &Spatial::getLocalRotation)
+
+		.def("getGlobalTranslation", &Spatial::getGlobalTranslation)
+		.def("getGlobalScale", &Spatial::getGlobalScale)
+		.def("getGlobalRotation", &Spatial::getGlobalRotation)
+
+		.def("setNeedsTransformUpdate", &Spatial::setNeedsTransformUpdate)
+		.def("setNeedsParentUpdate", &Spatial::setNeedsParentUpdate)
+		,
+
+		luabind::class_<Node, Spatial, std::shared_ptr<Spatial>>("Node")
+		
+		.def(luabind::constructor<std::string>())
+
+		.def("size", &Node::size)
+		.def("add", &Node::add)
+		.def("getAt", &Node::getAt<Spatial>)
+		.def("getNodeAt", &Node::getAt<Node>)
+		.def("getGeomAt", &Node::getAt<Geometry>)
+		.def("getByName", &Node::getByName)
+		.def("contains", &Node::contains)
+		.def("remove", &Node::remove)
+		.def("removeAt", &Node::removeAt)
+	];
+
+
+	// Define a lua function that we can call
+	luaL_dostring(
+		myLuaState,
+		""
+		"n = Node('parent')\n"
+		"n2 = Node('child')\n"
+		"n3 = Node('sub')\n"
+		"n2:add(n3)\n"
+		"n:add(n2)\n"
+		"quat = Quaternion()\n"
+		"vec0 = Vector3f(1.0, 2.0, 3.0)\n"
+		"quat:setFromAxis(vec0, 90)\n"
+		"print (vec0.x, vec0.y, vec0.z)\n"
+		"print (quat.w, quat.x, quat.y, quat.z)\n"
+		"print (\"size:\", n:size())\n"
+		"print (\"bye, \", n:getAt(0):getName())\n"
+		"n:removeAt(0);\n"
+		"print (\"size:\", n:size())\n"
+		"print (\"bye!\")\n"
+		);
+
+	lua_close(myLuaState);
 
 	/*mygeom = new Geometry();
 	mygeom->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex2.get());
@@ -115,172 +275,11 @@ void TestGame::init()
 
 	
 	// Test Lua
-	lua = luaL_newstate();
-	luaL_dofile(lua, "script.lua");
-	luaL_openlibs(lua);
+	//lua = luaL_newstate();
+	//luaL_dofile(lua, "script.lua");
+	//luaL_openlibs(lua);
 
 
-	// Note: we don't expose any of the functions from C++ that create new objects.
-	// Users will have to create temporary values in scripts in order to achieve this.
-	getGlobalNamespace(lua)
-		.beginNamespace("Math")
-			.beginClass <Matrix4f>("Matrix4f")
-			.addConstructor <void(*) (void)>()
-
-			// constructor things
-			.addFunction("copy", (Matrix4f &(Matrix4f::*) (Matrix4f &)) &Matrix4f::set)
-			.addFunction("new", (Matrix4f &(Matrix4f::*) ()) &Matrix4f::setToIdentity)
-			
-			.addProperty("m00", &Matrix4f::getM <0, 0>, &Matrix4f::setM <0, 0>)
-			.addProperty("m01", &Matrix4f::getM <0, 1>, &Matrix4f::setM <0, 1>)
-			.addProperty("m02", &Matrix4f::getM <0, 2>, &Matrix4f::setM <0, 2>)
-			.addProperty("m03", &Matrix4f::getM <0, 3>, &Matrix4f::setM <0, 3>)
-
-			.addProperty("m10", &Matrix4f::getM <1, 0>, &Matrix4f::setM <1, 0>)
-			.addProperty("m11", &Matrix4f::getM <1, 1>, &Matrix4f::setM <1, 1>)
-			.addProperty("m12", &Matrix4f::getM <1, 2>, &Matrix4f::setM <1, 2>)
-			.addProperty("m13", &Matrix4f::getM <1, 3>, &Matrix4f::setM <1, 3>)
-
-			.addProperty("m20", &Matrix4f::getM <2, 0>, &Matrix4f::setM <2, 0>)
-			.addProperty("m21", &Matrix4f::getM <2, 1>, &Matrix4f::setM <2, 1>)
-			.addProperty("m22", &Matrix4f::getM <2, 2>, &Matrix4f::setM <2, 2>)
-			.addProperty("m23", &Matrix4f::getM <2, 3>, &Matrix4f::setM <2, 3>)
-
-			.addProperty("m30", &Matrix4f::getM <3, 0>, &Matrix4f::setM <3, 0>)
-			.addProperty("m31", &Matrix4f::getM <3, 1>, &Matrix4f::setM <3, 1>)
-			.addProperty("m32", &Matrix4f::getM <3, 2>, &Matrix4f::setM <3, 2>)
-			.addProperty("m33", &Matrix4f::getM <3, 3>, &Matrix4f::setM <3, 3>)
-
-			.addFunction("identity", &Matrix4f::setToIdentity)
-			.addFunction("invert", &Matrix4f::invert)
-			.addFunction("transpose", &Matrix4f::transpose)
-
-			.endClass()
-		
-
-			.beginClass <Vector2f>("Vector2f")
-			.addConstructor <void(*) (void)>()
-
-			.addProperty("x", &Vector2f::getX, &Vector2f::setX)
-			.addProperty("y", &Vector2f::getY, &Vector2f::setY)
-
-			// constructor things
-			.addFunction("copy", (Vector2f &(Vector2f::*) (Vector2f &)) &Vector2f::set)
-			.addFunction("new", (Vector2f &(Vector2f::*) (float, float)) &Vector2f::set)
-			.addFunction("set", (Vector2f &(Vector2f::*) (float, float)) &Vector2f::set)
-
-			// standard vector functions
-			.addFunction("add", &Vector2f::add)
-			.addFunction("subtract", &Vector2f::subtract)
-			.addFunction("multiply", &Vector2f::multiply)
-			.addFunction("scale", &Vector2f::scale)
-			.addFunction("divide", &Vector2f::divide)
-			.addFunction("normalize", &Vector2f::normalize)
-			.addFunction("dot", &Vector2f::dot)
-			.addFunction("length", &Vector2f::length)
-			.addFunction("distance", &Vector2f::distance)
-			.addFunction("distanceSqr", &Vector2f::distanceSqr)
-			.endClass()
-
-
-			.beginClass <Vector3f>("Vector3f")
-			.addConstructor <void(*) (void)>()
-
-			.addProperty("x", &Vector3f::getX, &Vector3f::setX)
-			.addProperty("y", &Vector3f::getY, &Vector3f::setY)
-			.addProperty("z", &Vector3f::getZ, &Vector3f::setZ)
-
-			// constructor things
-			.addFunction("copy", (Vector3f &(Vector3f::*) (Vector3f &)) &Vector3f::set)
-			.addFunction("new", (Vector3f &(Vector3f::*) (float, float, float)) &Vector3f::set)
-			.addFunction("set", (Vector3f &(Vector3f::*) (float, float, float)) &Vector3f::set)
-
-			// standard vector functions
-			.addFunction("add", &Vector3f::add)
-			.addFunction("subtract", &Vector3f::subtract)
-			.addFunction("multiply", &Vector3f::multiply)
-			.addFunction("scale", &Vector3f::scale)
-			.addFunction("transform", &Vector3f::transform)
-			.addFunction("divide", &Vector3f::divide)
-			.addFunction("cross", &Vector3f::cross)
-			.addFunction("normalize", &Vector3f::normalize)
-			.addFunction("dot", &Vector3f::dot)
-			.addFunction("length", &Vector3f::length)
-			.addFunction("distance", &Vector3f::distance)
-			.addFunction("distanceSqr", &Vector3f::distanceSqr)
-			.endClass()
-
-			.beginClass <Vector4f>("Vector4f")
-			.addConstructor <void(*) (void)>()
-
-			.addProperty("x", &Vector4f::getX, &Vector4f::setX)
-			.addProperty("y", &Vector4f::getY, &Vector4f::setY)
-			.addProperty("z", &Vector4f::getZ, &Vector4f::setZ)
-			.addProperty("w", &Vector4f::getW, &Vector4f::setW)
-
-			// constructor things
-			.addFunction("copy", (Vector4f &(Vector4f::*) (Vector4f &)) &Vector4f::set)
-			.addFunction("new", (Vector4f &(Vector4f::*) (float, float, float, float)) &Vector4f::set)
-			.addFunction("set", (Vector4f &(Vector4f::*) (float, float, float, float)) &Vector4f::set)
-
-			// standard vector functions
-			.addFunction("add", &Vector4f::add)
-			.addFunction("subtract", &Vector4f::subtract)
-			.addFunction("multiple", &Vector4f::multiply)
-			.addFunction("scale", &Vector4f::scale)
-			.addFunction("transform", &Vector4f::transform)
-			.addFunction("divide", &Vector4f::divide)
-			.addFunction("normalize", &Vector4f::normalize)
-			.addFunction("dot", &Vector4f::dot)
-			.addFunction("length", &Vector4f::length)
-			.addFunction("distance", &Vector4f::distance)
-			.addFunction("distanceSqr", &Vector4f::distanceSqr)
-			.endClass()
-		.endNamespace()
-		.beginNamespace("Scene")
-			.beginClass <Spatial>("Spatial")
-
-			.addFunction("setName", &Spatial::setName)
-			.addFunction("getName", &Spatial::getName)
-
-			.addFunction("getParent", &Spatial::getParent)
-
-			.addFunction("setLocalTranslation", &Spatial::setLocalTranslation)
-			.addFunction("setLocalRotation", &Spatial::setLocalRotation)
-			.addFunction("setLocalScale", &Spatial::setLocalScale)
-
-			.addFunction("getLocalTranslation", &Spatial::getLocalTranslation)
-			.addFunction("getLocalRotation", &Spatial::getLocalRotation)
-			.addFunction("getLocalScale", &Spatial::getLocalScale)
-
-			.addFunction("getGlobalTranslation", &Spatial::getGlobalTranslation)
-			.addFunction("getGlobalRotation", &Spatial::getGlobalRotation)
-			.addFunction("getGlobalScale", &Spatial::getGlobalScale)
-
-			//.addFunction("update", &Spatial::update(&renderManager))
-			.addFunction("setNeedsTransformUpdate", &Spatial::setNeedsTransformUpdate)
-			.addFunction("setNeedsParentUpdate", &Spatial::setNeedsParentUpdate)
-
-			.addFunction("isAttachedToRoot", &Spatial::isAttachedToRoot)
-
-			.endClass()
-
-			.deriveClass <Node, Spatial>("Node")
-			.addConstructor <void(*) (void)>()
-			.addFunction("size", &Node::size)
-			.addFunction("add", &Node::add)
-			.addFunction("getAt", &Node::getAt<Spatial>)
-			.addFunction("getByName", &Node::getByName<Spatial>)
-			.addFunction("contains", &Node::contains)
-			.addFunction("remove", &Node::remove)
-			.addFunction("removeAt", &Node::removeAt)
-
-			.endClass()
-
-		.endNamespace();
-
-	LuaRef lua_init = getGlobal(lua, "main");
-	lua_init();
 }
 
 void TestGame::exit()
@@ -296,13 +295,13 @@ void TestGame::logic()
 
 	rot += 1;
 
-	Quaternion &qr = scene->getRootNode()->getAt(1)->getLocalRotation();
+	Quaternion &qr = scene->getRootNode()->getAt<Spatial>(1)->getLocalRotation();
 	qr.setFromAxis(Vector3f(0, 1, 0), rot);
-	scene->getRootNode()->getAt(1)->setNeedsTransformUpdate();
+	scene->getRootNode()->getAt<Spatial>(1)->setNeedsTransformUpdate();
 
-	Quaternion &qr1 = scene->getRootNode()->getAt(0)->getLocalRotation();
+	Quaternion &qr1 = scene->getRootNode()->getAt<Spatial>(0)->getLocalRotation();
 	qr1.setFromAxis(Vector3f(1, 0, 0), rot);
-	scene->getRootNode()->getAt(0)->setNeedsTransformUpdate();
+	scene->getRootNode()->getAt<Spatial>(0)->setNeedsTransformUpdate();
 }
 
 int main()

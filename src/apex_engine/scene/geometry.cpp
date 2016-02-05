@@ -16,7 +16,7 @@ Geometry::Geometry() : Spatial()
 	this->setName("geometry_" + to_str(geom_count++));
 }
 
-Geometry::Geometry(char *name) : Spatial(name)
+Geometry::Geometry(string name) : Spatial(name)
 {
 	this->renderMgr = 0;
 	this->mesh = 0;
@@ -33,7 +33,7 @@ Geometry::Geometry(shared_ptr<Mesh> mesh) : Spatial()
 	this->setName("geometry_" + to_str(++geom_count));
 }
 
-Geometry::Geometry(shared_ptr<Mesh> mesh, char *name) : Spatial(name)
+Geometry::Geometry(shared_ptr<Mesh> mesh, string name) : Spatial(name)
 {
 	this->renderMgr = 0;
 	this->mesh = mesh;

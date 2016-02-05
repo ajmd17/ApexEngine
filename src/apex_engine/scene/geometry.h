@@ -41,11 +41,11 @@ private:
 public:
 	Geometry();
 
-	Geometry(char *name);
+	Geometry(string name);
 
 	Geometry(shared_ptr<Mesh> mesh);
 
-	Geometry(shared_ptr<Mesh> mesh, char *name);
+	Geometry(shared_ptr<Mesh> mesh, string name);
 
 	~Geometry();
 

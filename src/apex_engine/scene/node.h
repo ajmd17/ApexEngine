@@ -42,7 +42,7 @@ private:
 public:
 	Node();
 
-	Node(char *name);
+	Node(string name);
 
 	~Node();
 
@@ -102,14 +102,9 @@ public:
 		return 0;
 	}
 
-	shared_ptr<Spatial> getAt(int index)
-	{
-		return getAt<Spatial> (index);
-	}
-
 	template <class SpatialType>
 	typename std::enable_if<std::is_base_of<Spatial, SpatialType>::value, shared_ptr<SpatialType>>::type
-	getByName(char *name)
+	getByName(const char *name)
 	{
 		for (size_t i = 0; i < children.size(); i++)
 		{
@@ -127,7 +122,7 @@ public:
 		return 0;
 	}
 
-	shared_ptr<Spatial> getByName(char *name)
+	shared_ptr<Spatial> getByName(const char *name)
 	{
 		return getByName<Spatial>(name);
 	}

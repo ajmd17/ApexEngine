@@ -29,7 +29,7 @@ protected:
 	int id;
 private:
 	ShaderProperties properties;
-	Matrix4f modelMatrix, viewMatrix, projectionMatrix;
+	Matrix4f modelMatrix, viewMatrix, projectionMatrix, normalMatrix;
 public:
 	int *m_shaderIDs, m_shaderCounter; 
 	// don't mess with this, used by the OpenGL renderer to count up and properly store shader IDs in the shader

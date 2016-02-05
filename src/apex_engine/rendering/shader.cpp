@@ -117,6 +117,9 @@ void Shader::applyTransforms(Matrix4f &modelMatrix, Matrix4f &viewMatrix, Matrix
 	this->modelMatrix = modelMatrix;
 	this->viewMatrix = viewMatrix;
 	this->projectionMatrix = projectionMatrix;
+	this->normalMatrix.set(modelMatrix);
+	normalMatrix.invert();
+	normalMatrix.transpose();
 }
 
 void Shader::update(Camera &cam, Mesh &mesh)
@@ -125,6 +128,7 @@ void Shader::update(Camera &cam, Mesh &mesh)
 	this->setUniform(APEX_MODELMATRIX, modelMatrix);
 	this->setUniform(APEX_VIEWMATRIX, viewMatrix);
 	this->setUniform(APEX_PROJECTIONMATRIX, projectionMatrix);
+	this->setUniform(APEX_NORMALMATRIX, normalMatrix);
 	this->setUniform(APEX_CAMERAPOSITION, cam.getTranslation());
 }
 

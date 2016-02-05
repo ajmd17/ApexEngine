@@ -8,7 +8,7 @@ Node::Node() : Spatial()
 	this->setName("node_" + to_str(++node_count));
 }
 
-Node::Node(char *name) : Spatial(name) 
+Node::Node(string name) : Spatial(name) 
 {
 }
 

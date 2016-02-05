@@ -21,6 +21,7 @@ const string A_BONEINDICES = "a_boneindices";
 const string APEX_MODELMATRIX = "Apex_ModelMatrix";
 const string APEX_VIEWMATRIX = "Apex_ViewMatrix";
 const string APEX_PROJECTIONMATRIX = "Apex_ProjectionMatrix";
+const string APEX_NORMALMATRIX = "Apex_NormalMatrix";
 const string APEX_CAMERAPOSITION = "Apex_CameraPosition";
 const string APEX_ELAPSEDTIME = "Apex_ElapsedTime";
 
