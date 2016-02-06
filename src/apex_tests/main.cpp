@@ -17,7 +17,6 @@ using namespace std;
 #include <assets/loadedtext.h>
 
 #include "sharedptr_conv.h"
-
 extern "C" {
 #include <lua.h>
 #include <lauxlib.h>
@@ -75,7 +74,7 @@ void TestGame::init()
 {
 	RenderManager::getEngine()->clearColor(0.75, 0, 0, 1);
     
-	shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test_shader.fs");
+	//shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test_shader.fs");
 //	engine_log << sc->getText() << "\n";
 	
 	std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
@@ -207,7 +206,7 @@ void TestGame::init()
 		.def("getAt", &Node::getAt<Spatial>)
 		.def("getNodeAt", &Node::getAt<Node>)
 		.def("getGeomAt", &Node::getAt<Geometry>)
-		.def("getByName", &Node::getByName)
+		.def("getByName", &Node::getByName<Spatial>)
 		.def("contains", &Node::contains)
 		.def("remove", &Node::remove)
 		.def("removeAt", &Node::removeAt)
@@ -246,14 +245,14 @@ void TestGame::init()
 	ShaderProperties props;
 	shared_ptr<Shader> shaderPtr = ShaderManager::getShader<MyShader>(props);
 
-	std::shared_ptr<Node> cube = getAssetManager()->loadAs<Node>("data/models/cube.obj");
+	std::shared_ptr<Node> cube = getAssetManager()->loadAs<Node>("./data/models/cube.obj");
 	cube->setLocalTranslation(Vector3f(0, -1, 2.5f));
 	cube->setLocalScale(Vector3f(0.3f));
 	cube->getAt<Geometry>(0)->setShader(shaderPtr);
 	this->getScene()->getRootNode()->add(cube);
 
 
-	std::shared_ptr<Node> loadedmodel = getAssetManager()->loadAs<Node>("data/models/logo.obj");
+	std::shared_ptr<Node> loadedmodel = getAssetManager()->loadAs<Node>("./data/models/logo.obj");
 
 	loadedmodel->setLocalTranslation(Vector3f(0, 1, 7));
 

@@ -7,6 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1907FB831C659A420039D01B /* class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB711C659A420039D01B /* class.cpp */; };
+		1907FB841C659A420039D01B /* class_info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB721C659A420039D01B /* class_info.cpp */; };
+		1907FB851C659A420039D01B /* class_registry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB731C659A420039D01B /* class_registry.cpp */; };
+		1907FB861C659A420039D01B /* class_rep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB741C659A420039D01B /* class_rep.cpp */; };
+		1907FB871C659A420039D01B /* create_class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB751C659A420039D01B /* create_class.cpp */; };
+		1907FB881C659A420039D01B /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB761C659A420039D01B /* error.cpp */; };
+		1907FB891C659A420039D01B /* exception_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB771C659A420039D01B /* exception_handler.cpp */; };
+		1907FB8A1C659A420039D01B /* function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB781C659A420039D01B /* function.cpp */; };
+		1907FB8B1C659A420039D01B /* inheritance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB791C659A420039D01B /* inheritance.cpp */; };
+		1907FB8C1C659A420039D01B /* link_compatibility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB7A1C659A420039D01B /* link_compatibility.cpp */; };
+		1907FB8D1C659A420039D01B /* object_rep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB7B1C659A420039D01B /* object_rep.cpp */; };
+		1907FB8E1C659A420039D01B /* open.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB7C1C659A420039D01B /* open.cpp */; };
+		1907FB8F1C659A420039D01B /* pcall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB7D1C659A420039D01B /* pcall.cpp */; };
+		1907FB901C659A420039D01B /* scope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB7E1C659A420039D01B /* scope.cpp */; };
+		1907FB911C659A420039D01B /* stack_content_by_name.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB7F1C659A420039D01B /* stack_content_by_name.cpp */; };
+		1907FB921C659A420039D01B /* weak_ref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB801C659A420039D01B /* weak_ref.cpp */; };
+		1907FB931C659A420039D01B /* wrapper_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB811C659A420039D01B /* wrapper_base.cpp */; };
+		1907FB941C659A420039D01B /* scriptutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 1907FB821C659A420039D01B /* scriptutil.h */; };
+		1907FB9A1C659A5B0039D01B /* loadedtext.h in Headers */ = {isa = PBXBuildFile; fileRef = 1907FB951C659A5B0039D01B /* loadedtext.h */; };
+		1907FB9B1C659A5B0039D01B /* shaderloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB971C659A5B0039D01B /* shaderloader.cpp */; };
+		1907FB9C1C659A5B0039D01B /* shaderloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1907FB981C659A5B0039D01B /* shaderloader.h */; };
+		1907FB9D1C659A5B0039D01B /* textfileloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1907FB991C659A5B0039D01B /* textfileloader.h */; };
+		1907FBA01C659C780039D01B /* shaderlib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1907FB9E1C659C780039D01B /* shaderlib.cpp */; };
+		1907FBA11C659C780039D01B /* shaderlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 1907FB9F1C659C780039D01B /* shaderlib.h */; };
 		1920E1951C55863A0087D330 /* shadermanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1920E1931C55863A0087D330 /* shadermanager.cpp */; };
 		1920E1961C55863A0087D330 /* shadermanager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E1941C55863A0087D330 /* shadermanager.h */; };
 		1920E19B1C55864F0087D330 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 1920E1981C55864F0087D330 /* node.h */; };
@@ -78,6 +102,30 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1907FB711C659A420039D01B /* class.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class.cpp; sourceTree = "<group>"; };
+		1907FB721C659A420039D01B /* class_info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class_info.cpp; sourceTree = "<group>"; };
+		1907FB731C659A420039D01B /* class_registry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class_registry.cpp; sourceTree = "<group>"; };
+		1907FB741C659A420039D01B /* class_rep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = class_rep.cpp; sourceTree = "<group>"; };
+		1907FB751C659A420039D01B /* create_class.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = create_class.cpp; sourceTree = "<group>"; };
+		1907FB761C659A420039D01B /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
+		1907FB771C659A420039D01B /* exception_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_handler.cpp; sourceTree = "<group>"; };
+		1907FB781C659A420039D01B /* function.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = function.cpp; sourceTree = "<group>"; };
+		1907FB791C659A420039D01B /* inheritance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = inheritance.cpp; sourceTree = "<group>"; };
+		1907FB7A1C659A420039D01B /* link_compatibility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = link_compatibility.cpp; sourceTree = "<group>"; };
+		1907FB7B1C659A420039D01B /* object_rep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = object_rep.cpp; sourceTree = "<group>"; };
+		1907FB7C1C659A420039D01B /* open.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = open.cpp; sourceTree = "<group>"; };
+		1907FB7D1C659A420039D01B /* pcall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pcall.cpp; sourceTree = "<group>"; };
+		1907FB7E1C659A420039D01B /* scope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scope.cpp; sourceTree = "<group>"; };
+		1907FB7F1C659A420039D01B /* stack_content_by_name.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stack_content_by_name.cpp; sourceTree = "<group>"; };
+		1907FB801C659A420039D01B /* weak_ref.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = weak_ref.cpp; sourceTree = "<group>"; };
+		1907FB811C659A420039D01B /* wrapper_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wrapper_base.cpp; sourceTree = "<group>"; };
+		1907FB821C659A420039D01B /* scriptutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scriptutil.h; sourceTree = "<group>"; };
+		1907FB951C659A5B0039D01B /* loadedtext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loadedtext.h; sourceTree = "<group>"; };
+		1907FB971C659A5B0039D01B /* shaderloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shaderloader.cpp; sourceTree = "<group>"; };
+		1907FB981C659A5B0039D01B /* shaderloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shaderloader.h; sourceTree = "<group>"; };
+		1907FB991C659A5B0039D01B /* textfileloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textfileloader.h; sourceTree = "<group>"; };
+		1907FB9E1C659C780039D01B /* shaderlib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shaderlib.cpp; sourceTree = "<group>"; };
+		1907FB9F1C659C780039D01B /* shaderlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shaderlib.h; sourceTree = "<group>"; };
 		1920E1931C55863A0087D330 /* shadermanager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shadermanager.cpp; sourceTree = "<group>"; };
 		1920E1941C55863A0087D330 /* shadermanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shadermanager.h; sourceTree = "<group>"; };
 		1920E1981C55864F0087D330 /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
@@ -161,6 +209,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1907FB6F1C659A420039D01B /* scripting */ = {
+			isa = PBXGroup;
+			children = (
+				1907FB701C659A420039D01B /* luabind */,
+				1907FB821C659A420039D01B /* scriptutil.h */,
+			);
+			path = scripting;
+			sourceTree = "<group>";
+		};
+		1907FB701C659A420039D01B /* luabind */ = {
+			isa = PBXGroup;
+			children = (
+				1907FB711C659A420039D01B /* class.cpp */,
+				1907FB721C659A420039D01B /* class_info.cpp */,
+				1907FB731C659A420039D01B /* class_registry.cpp */,
+				1907FB741C659A420039D01B /* class_rep.cpp */,
+				1907FB751C659A420039D01B /* create_class.cpp */,
+				1907FB761C659A420039D01B /* error.cpp */,
+				1907FB771C659A420039D01B /* exception_handler.cpp */,
+				1907FB781C659A420039D01B /* function.cpp */,
+				1907FB791C659A420039D01B /* inheritance.cpp */,
+				1907FB7A1C659A420039D01B /* link_compatibility.cpp */,
+				1907FB7B1C659A420039D01B /* object_rep.cpp */,
+				1907FB7C1C659A420039D01B /* open.cpp */,
+				1907FB7D1C659A420039D01B /* pcall.cpp */,
+				1907FB7E1C659A420039D01B /* scope.cpp */,
+				1907FB7F1C659A420039D01B /* stack_content_by_name.cpp */,
+				1907FB801C659A420039D01B /* weak_ref.cpp */,
+				1907FB811C659A420039D01B /* wrapper_base.cpp */,
+			);
+			path = luabind;
+			sourceTree = "<group>";
+		};
+		1907FB961C659A5B0039D01B /* shaderloader */ = {
+			isa = PBXGroup;
+			children = (
+				1907FB971C659A5B0039D01B /* shaderloader.cpp */,
+				1907FB981C659A5B0039D01B /* shaderloader.h */,
+			);
+			path = shaderloader;
+			sourceTree = "<group>";
+		};
 		1920E1971C55864F0087D330 /* scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +272,9 @@
 				196167411C599FFB00D54BF8 /* loadableobject.h */,
 				192B26791C604D6700F532C7 /* textureloader.cpp */,
 				192B267A1C604D6700F532C7 /* textureloader.h */,
+				1907FB951C659A5B0039D01B /* loadedtext.h */,
+				1907FB961C659A5B0039D01B /* shaderloader */,
+				1907FB991C659A5B0039D01B /* textfileloader.h */,
 				196167421C599FFB00D54BF8 /* modelloaders */,
 				1920E19F1C55867F0087D330 /* assetloader.h */,
 				1920E1A01C55867F0087D330 /* assetmanager.cpp */,
@@ -248,6 +341,7 @@
 			children = (
 				192B268E1C60503E00F532C7 /* util */,
 				19EEB6501C59991C00449333 /* object.h */,
+				1907FB6F1C659A420039D01B /* scripting */,
 				1920E19E1C55867F0087D330 /* assets */,
 				1920E1971C55864F0087D330 /* scene */,
 				196FC34F1C4D8FBE00F9AEC4 /* rendering */,
@@ -300,6 +394,8 @@
 		196FC34F1C4D8FBE00F9AEC4 /* rendering */ = {
 			isa = PBXGroup;
 			children = (
+				1907FB9E1C659C780039D01B /* shaderlib.cpp */,
+				1907FB9F1C659C780039D01B /* shaderlib.h */,
 				192B26761C604D4000F532C7 /* cameras */,
 				1920E1931C55863A0087D330 /* shadermanager.cpp */,
 				1920E1941C55863A0087D330 /* shadermanager.h */,
@@ -348,6 +444,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1907FB9D1C659A5B0039D01B /* textfileloader.h in Headers */,
 				192B267C1C604D6700F532C7 /* textureloader.h in Headers */,
 				196FC37E1C4D8FBE00F9AEC4 /* vertex.h in Headers */,
 				1920E1A71C55867F0087D330 /* assetmanager.h in Headers */,
@@ -358,12 +455,15 @@
 				1920E19B1C55864F0087D330 /* node.h in Headers */,
 				196FC32D1C4D8E7300F9AEC4 /* matrix_util.h in Headers */,
 				196FC36D1C4D8FBE00F9AEC4 /* game.h in Headers */,
+				1907FB9A1C659A5B0039D01B /* loadedtext.h in Headers */,
 				1920E1A51C55867F0087D330 /* assetloader.h in Headers */,
 				196FC32B1C4D8E7300F9AEC4 /* math_util.h in Headers */,
 				19EEB6511C59991C00449333 /* object.h in Headers */,
+				1907FB941C659A420039D01B /* scriptutil.h in Headers */,
 				192B26781C604D4000F532C7 /* perspective_camera.h in Headers */,
 				1961674A1C59A01400D54BF8 /* geometry.h in Headers */,
 				192B26931C60503E00F532C7 /* logutil.h in Headers */,
+				1907FB9C1C659A5B0039D01B /* shaderloader.h in Headers */,
 				196FC32E1C4D8E7300F9AEC4 /* quaternion.h in Headers */,
 				196FC37C1C4D8FBE00F9AEC4 /* texture.h in Headers */,
 				1920E19C1C55864F0087D330 /* scene.h in Headers */,
@@ -385,6 +485,7 @@
 				196FC3291C4D8E7300F9AEC4 /* boundingbox.h in Headers */,
 				1920E1A91C55867F0087D330 /* stb_image.h in Headers */,
 				1961673F1C599FC900D54BF8 /* engine.h in Headers */,
+				1907FBA11C659C780039D01B /* shaderlib.h in Headers */,
 				196FC37B1C4D8FBE00F9AEC4 /* shader_util.h in Headers */,
 				1920E1961C55863A0087D330 /* shadermanager.h in Headers */,
 				196FC3721C4D8FBE00F9AEC4 /* material.h in Headers */,
@@ -457,17 +558,36 @@
 				196FC3711C4D8FBE00F9AEC4 /* material.cpp in Sources */,
 				196FC3331C4D8E7300F9AEC4 /* vector3f.cpp in Sources */,
 				196FC36F1C4D8FBE00F9AEC4 /* pointlight.cpp in Sources */,
+				1907FB8E1C659A420039D01B /* open.cpp in Sources */,
+				1907FB8F1C659A420039D01B /* pcall.cpp in Sources */,
+				1907FB9B1C659A5B0039D01B /* shaderloader.cpp in Sources */,
 				1920E1A61C55867F0087D330 /* assetmanager.cpp in Sources */,
+				1907FB8B1C659A420039D01B /* inheritance.cpp in Sources */,
 				196FC3791C4D8FBE00F9AEC4 /* shader.cpp in Sources */,
 				196FC37F1C4D8FBE00F9AEC4 /* vertexattributes.cpp in Sources */,
 				196FC3311C4D8E7300F9AEC4 /* vector2f.cpp in Sources */,
 				196167491C59A01400D54BF8 /* geometry.cpp in Sources */,
+				1907FB851C659A420039D01B /* class_registry.cpp in Sources */,
+				1907FB891C659A420039D01B /* exception_handler.cpp in Sources */,
+				1907FBA01C659C780039D01B /* shaderlib.cpp in Sources */,
 				192B26861C604F9000F532C7 /* matrix_util.cpp in Sources */,
+				1907FB8C1C659A420039D01B /* link_compatibility.cpp in Sources */,
+				1907FB921C659A420039D01B /* weak_ref.cpp in Sources */,
+				1907FB881C659A420039D01B /* error.cpp in Sources */,
 				196FC3351C4D8E7300F9AEC4 /* vector4f.cpp in Sources */,
 				196FC3771C4D8FBE00F9AEC4 /* rendermanager.cpp in Sources */,
+				1907FB931C659A420039D01B /* wrapper_base.cpp in Sources */,
+				1907FB8D1C659A420039D01B /* object_rep.cpp in Sources */,
 				1920E1B01C5589590087D330 /* texture2d.cpp in Sources */,
 				192B26921C60503E00F532C7 /* logutil.cpp in Sources */,
+				1907FB871C659A420039D01B /* create_class.cpp in Sources */,
+				1907FB861C659A420039D01B /* class_rep.cpp in Sources */,
 				192B26811C604D8100F532C7 /* node.cpp in Sources */,
+				1907FB841C659A420039D01B /* class_info.cpp in Sources */,
+				1907FB831C659A420039D01B /* class.cpp in Sources */,
+				1907FB901C659A420039D01B /* scope.cpp in Sources */,
+				1907FB8A1C659A420039D01B /* function.cpp in Sources */,
+				1907FB911C659A420039D01B /* stack_content_by_name.cpp in Sources */,
 				192B26821C604D8100F532C7 /* spatial.cpp in Sources */,
 				192B267B1C604D6700F532C7 /* textureloader.cpp in Sources */,
 				1920E1AF1C5589590087D330 /* texture.cpp in Sources */,
@@ -567,7 +687,10 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../includes/Lua/**";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../includes/Lua/**",
+					"$(SRCROOT)/../../includes/**",
+				);
 				LIBRARY_SEARCH_PATHS = ../libs/osx/;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -583,7 +706,10 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../includes/Lua/**";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/../../includes/Lua/**",
+					"$(SRCROOT)/../../includes/**",
+				);
 				LIBRARY_SEARCH_PATHS = ../libs/osx/;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
