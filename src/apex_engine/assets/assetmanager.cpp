@@ -47,12 +47,6 @@ AssetManager::AssetManager()
 
 AssetManager::~AssetManager()
 {
-	/*unordered_map<char *, std::shared_ptr<IAssetLoader> >::iterator it;
-	for (auto iterator = loaders.begin(); iterator != loaders.end(); iterator++)
-	{
-		loaders.erase(iterator);
-	}*/
-    
     loaders.clear();
 	loadedAssets.clear();
 }
