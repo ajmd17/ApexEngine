@@ -14,243 +14,245 @@
 #include <string>
 using std::string;
 
-class RenderManager;
-
-class Spatial : public ILoadableObject // A spatial is loadable as a resource
+namespace apex
 {
-protected:
-	string name;
+	class RenderManager;
 
-	Vector3f localTranslation;
-	Vector3f localScale;
-	Quaternion localRotation;
-
-	Transform globalTransform;
-	Matrix4f globalMatrix;
-
-	static const unsigned char	updateParentFlag = 0x01,
-		updateTransformFlag = 0x02,
-		updateLocalBoundingBoxFlag = 0x04,
-		updateGlobalBoundingBoxFlag = 0x08;
-
-	unsigned char updateFlags;
-private:
-	Vector3f tmpGlobalTrans, tmpGlobalScale;
-	Quaternion tmpGlobalRot;
-
-	Spatial *parent;
-
-	bool attachedToRoot;
-	bool updateNeeded;
-
-	virtual void updateGlobalBoundingBox() = 0;
-
-	virtual void updateLocalBoundingBox() = 0;
-public:
-	Spatial() 
+	class Spatial : public ILoadableObject // A spatial is loadable as a resource
 	{
-		this->name = "";
-		this->parent = 0;
-		this->updateNeeded = false;
-		this->attachedToRoot = false;
+	protected:
+		string name;
 
-		this->updateFlags = 0;
+		Vector3f localTranslation;
+		Vector3f localScale;
+		Quaternion localRotation;
 
-		localTranslation.set(0, 0, 0);
-		localScale.set(1, 1, 1);
-		localRotation.setToIdentity();
-	}
+		Transform globalTransform;
+		Matrix4f globalMatrix;
 
-	Spatial(string name)
-	{
-		this->name = name;
-		this->parent = 0;
-		this->updateNeeded = false;
-		this->attachedToRoot = false;
+		static const unsigned char	updateParentFlag = 0x01,
+			updateTransformFlag = 0x02,
+			updateLocalBoundingBoxFlag = 0x04,
+			updateGlobalBoundingBoxFlag = 0x08;
 
-		this->updateFlags = 0;
+		unsigned char updateFlags;
+	private:
+		Vector3f tmpGlobalTrans, tmpGlobalScale;
+		Quaternion tmpGlobalRot;
 
-		localTranslation.set(0, 0, 0);
-		localScale.set(1, 1, 1);
-		localRotation.setToIdentity();
-	}
+		Spatial *parent;
 
-	virtual ~Spatial();
+		bool attachedToRoot;
+		bool updateNeeded;
 
-	void setName(string name)
-	{
-		this->name = name;
-	}
+		virtual void updateGlobalBoundingBox() = 0;
 
-	string getName() const
-	{
-		return name;
-	}
-
-	void resetLocalTransforms()
-	{
-		localTranslation.set(0, 0, 0);
-		localScale.set(1, 1, 1);
-		localRotation.setToIdentity();
-		this->setNeedsTransformUpdate();
-	}
-
-	Transform &getGlobalTransform()
-	{
-		return globalTransform;
-	}
-
-	Matrix4f &getGlobalMatrix()
-	{
-		return globalMatrix;
-	}
-
-	void updateGlobalRotation(Quaternion &out)
-	{
-		out.multiply(localRotation);
-		if (parent != 0)
+		virtual void updateLocalBoundingBox() = 0;
+	public:
+		Spatial()
 		{
-			parent->updateGlobalRotation(out);
+			this->name = "";
+			this->parent = 0;
+			this->updateNeeded = false;
+			this->attachedToRoot = false;
+
+			this->updateFlags = 0;
+
+			localTranslation.set(0, 0, 0);
+			localScale.set(1, 1, 1);
+			localRotation.setToIdentity();
 		}
-	}
 
-	Quaternion getUpdatedGlobalRotation()
-	{
-		tmpGlobalRot.setToIdentity();
-		updateGlobalRotation(tmpGlobalRot);
-		return tmpGlobalRot;
-	}
-
-	void updateGlobalScale(Vector3f &out)
-	{
-		out.multiply(localScale);
-		if (parent != 0)
+		Spatial(string name)
 		{
-			parent->updateGlobalScale(out);
+			this->name = name;
+			this->parent = 0;
+			this->updateNeeded = false;
+			this->attachedToRoot = false;
+
+			this->updateFlags = 0;
+
+			localTranslation.set(0, 0, 0);
+			localScale.set(1, 1, 1);
+			localRotation.setToIdentity();
 		}
-	}
 
-	Vector3f getUpdatedGlobalScale()
-	{
-		tmpGlobalScale.set(1.0, 1.0, 1.0);
-		updateGlobalScale(tmpGlobalScale);
-		return tmpGlobalScale;
-	}
+		virtual ~Spatial();
 
-	void updateGlobalTranslation(Vector3f &out)
-	{
-		out.add(localTranslation);
-		if (parent != 0)
+		void setName(string name)
 		{
-			parent->updateGlobalTranslation(out);
+			this->name = name;
 		}
-	}
 
-	Vector3f getUpdatedGlobalTranslation()
-	{
-		tmpGlobalTrans.set(0.0, 0.0, 0.0);
-		updateGlobalTranslation(tmpGlobalTrans);
-		return tmpGlobalTrans;
-	}
+		string getName() const
+		{
+			return name;
+		}
 
-	Vector3f &getGlobalTranslation()
-	{
-		return globalTransform.getTranslation();
-	}
+		void resetLocalTransforms()
+		{
+			localTranslation.set(0, 0, 0);
+			localScale.set(1, 1, 1);
+			localRotation.setToIdentity();
+			this->setNeedsTransformUpdate();
+		}
 
-	Vector3f &getGlobalScale()
-	{
-		return globalTransform.getScale();
-	}
+		Transform &getGlobalTransform()
+		{
+			return globalTransform;
+		}
 
-	Quaternion &getGlobalRotation()
-	{
-		return globalTransform.getRotation();
-	}
+		Matrix4f &getGlobalMatrix()
+		{
+			return globalMatrix;
+		}
 
-	virtual BoundingBox &getGlobalBoundingBox() = 0;
+		void updateGlobalRotation(Quaternion &out)
+		{
+			out.multiply(localRotation);
+			if (parent != 0)
+			{
+				parent->updateGlobalRotation(out);
+			}
+		}
 
-	virtual BoundingBox &getLocalBoundingBox() = 0;
+		Quaternion getUpdatedGlobalRotation()
+		{
+			tmpGlobalRot.setToIdentity();
+			updateGlobalRotation(tmpGlobalRot);
+			return tmpGlobalRot;
+		}
 
-	bool isAttachedToRoot()
-	{
-		return this->attachedToRoot;
-	}
+		void updateGlobalScale(Vector3f &out)
+		{
+			out.multiply(localScale);
+			if (parent != 0)
+			{
+				parent->updateGlobalScale(out);
+			}
+		}
 
-	virtual void updateParents()
-	{
-		this->calcAttachedToRoot();
-	}
+		Vector3f getUpdatedGlobalScale()
+		{
+			tmpGlobalScale.set(1.0, 1.0, 1.0);
+			updateGlobalScale(tmpGlobalScale);
+			return tmpGlobalScale;
+		}
 
-	void updateTransform();
+		void updateGlobalTranslation(Vector3f &out)
+		{
+			out.add(localTranslation);
+			if (parent != 0)
+			{
+				parent->updateGlobalTranslation(out);
+			}
+		}
 
-	virtual void update(RenderManager *renderMgr);
+		Vector3f getUpdatedGlobalTranslation()
+		{
+			tmpGlobalTrans.set(0.0, 0.0, 0.0);
+			updateGlobalTranslation(tmpGlobalTrans);
+			return tmpGlobalTrans;
+		}
 
-	// Don't set this manually. Otherwise, bad things will happen.
-	void setParent(Spatial *parent)
-	{
-		this->parent = parent;
+		Vector3f &getGlobalTranslation()
+		{
+			return globalTransform.getTranslation();
+		}
 
-		this->setNeedsParentUpdate();
-		this->setNeedsTransformUpdate(); // will need to update global transforms
+		Vector3f &getGlobalScale()
+		{
+			return globalTransform.getScale();
+		}
 
-		if (parent == 0)
-			updateParents();
-	}
+		Quaternion &getGlobalRotation()
+		{
+			return globalTransform.getRotation();
+		}
 
-	Spatial *getParent() const
-	{
-		return parent;
-	}
+		virtual BoundingBox &getGlobalBoundingBox() = 0;
 
-	virtual void setNeedsTransformUpdate()
-	{
-		this->updateFlags |= updateTransformFlag;
+		virtual BoundingBox &getLocalBoundingBox() = 0;
 
-		this->updateFlags |= updateLocalBoundingBoxFlag;
-		this->updateFlags |= updateGlobalBoundingBoxFlag;
-	}
+		bool isAttachedToRoot()
+		{
+			return this->attachedToRoot;
+		}
 
-	virtual void setNeedsParentUpdate()
-	{
-		this->updateFlags |= updateParentFlag;
-	}
+		virtual void updateParents()
+		{
+			this->calcAttachedToRoot();
+		}
 
-	Vector3f &getLocalTranslation()
-	{
-		return localTranslation;
-	}
+		void updateTransform();
 
-	void setLocalTranslation(Vector3f vec)
-	{
-		localTranslation.set(vec);
-		this->setNeedsTransformUpdate();
-	}
+		virtual void update(RenderManager *renderMgr);
 
-	Vector3f &getLocalScale()
-	{
-		return localScale;
-	}
+		// Don't set this manually. Otherwise, bad things will happen.
+		void setParent(Spatial *parent)
+		{
+			this->parent = parent;
 
-	void setLocalScale(Vector3f vec)
-	{
-		localScale.set(vec);
-		this->setNeedsTransformUpdate();
-	}
+			this->setNeedsParentUpdate();
+			this->setNeedsTransformUpdate(); // will need to update global transforms
 
-	Quaternion &getLocalRotation()
-	{
-		return localRotation;
-	}
+			if (parent == 0)
+				updateParents();
+		}
 
-	void setLocalRotation(Quaternion rot)
-	{
-		localRotation.set(rot);
-		this->setNeedsTransformUpdate();
-	}
-protected:
-	void calcAttachedToRoot();
+		Spatial *getParent() const
+		{
+			return parent;
+		}
 
-};
+		virtual void setNeedsTransformUpdate()
+		{
+			this->updateFlags |= updateTransformFlag;
 
+			this->updateFlags |= updateLocalBoundingBoxFlag;
+			this->updateFlags |= updateGlobalBoundingBoxFlag;
+		}
+
+		virtual void setNeedsParentUpdate()
+		{
+			this->updateFlags |= updateParentFlag;
+		}
+
+		Vector3f &getLocalTranslation()
+		{
+			return localTranslation;
+		}
+
+		void setLocalTranslation(Vector3f vec)
+		{
+			localTranslation.set(vec);
+			this->setNeedsTransformUpdate();
+		}
+
+		Vector3f &getLocalScale()
+		{
+			return localScale;
+		}
+
+		void setLocalScale(Vector3f vec)
+		{
+			localScale.set(vec);
+			this->setNeedsTransformUpdate();
+		}
+
+		Quaternion &getLocalRotation()
+		{
+			return localRotation;
+		}
+
+		void setLocalRotation(Quaternion rot)
+		{
+			localRotation.set(rot);
+			this->setNeedsTransformUpdate();
+		}
+	protected:
+		void calcAttachedToRoot();
+
+	};
+}
 #endif

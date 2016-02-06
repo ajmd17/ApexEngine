@@ -3,43 +3,45 @@
 
 #include "vector3f.h"
 
-class Ray
+namespace apex
 {
-private:
-	Vector3f direction, position;
-public:
-
-	Ray(Vector3f &position, Vector3f &direction)
+	class Ray
 	{
-		this->position.set(position);
-		this->direction.set(direction);
-	}
+	private:
+		Vector3f direction, position;
+	public:
 
-	Ray(Ray &other)
-	{
-		this->position = other.getPosition();
-		this->direction = other.getDirection();
-	}
+		Ray(Vector3f &position, Vector3f &direction)
+		{
+			this->position.set(position);
+			this->direction.set(direction);
+		}
 
-	Vector3f &getDirection()
-	{
-		return direction;
-	}
+		Ray(Ray &other)
+		{
+			this->position = other.getPosition();
+			this->direction = other.getDirection();
+		}
 
-	void setDirection(Vector3f &direction)
-	{
-		this->direction.set(direction);
-	}
+		Vector3f &getDirection()
+		{
+			return direction;
+		}
 
-	Vector3f &getPosition()
-	{
-		return position;
-	}
+		void setDirection(Vector3f &direction)
+		{
+			this->direction.set(direction);
+		}
 
-	void setPosition(Vector3f &position)
-	{
-		this->position.set(position);
-	}
-};
+		Vector3f &getPosition()
+		{
+			return position;
+		}
 
+		void setPosition(Vector3f &position)
+		{
+			this->position.set(position);
+		}
+	};
+}
 #endif

@@ -15,75 +15,77 @@ using std::vector;
 #include <string>
 using std::string;
 
-class BoundingBox;
-
-class Mesh
+namespace apex
 {
-private:
-	bool uploaded, created;
-	int vertexSize;
-public:
+	class BoundingBox;
 
-	unsigned int vbo, ibo, size;
-
-	vector<Vertex> vertices;
-	vector<int> indices;
-
-	PrimitiveType primitiveType;
-	VertexAttributes attribs;
-
-	Mesh()
+	class Mesh
 	{
-		uploaded = false;
-		created = false;
-		vbo = 0;
-		ibo = 0;
-		this->primitiveType = Triangles;
-	}
+	private:
+		bool uploaded, created;
+		int vertexSize;
+	public:
 
-	~Mesh();
+		unsigned int vbo, ibo, size;
 
-	void render();
+		vector<Vertex> vertices;
+		vector<int> indices;
 
-	BoundingBox createBoundingBox(vector<Vertex> &vertices, vector<int> &indices);
+		PrimitiveType primitiveType;
+		VertexAttributes attribs;
 
-	BoundingBox createBoundingBox(vector<Vertex> &vertices, vector<int> &indices, Matrix4f &worldTransform);
+		Mesh()
+		{
+			uploaded = false;
+			created = false;
+			vbo = 0;
+			ibo = 0;
+			this->primitiveType = Triangles;
+		}
 
-	BoundingBox createBoundingBox(Matrix4f &worldTransform);
+		~Mesh();
 
-	BoundingBox createBoundingBox();
+		void render();
 
-	VertexAttributes &getAttributes()
-	{
-		return attribs;
-	}
+		BoundingBox createBoundingBox(vector<Vertex> &vertices, vector<int> &indices);
 
-	int &getVertexSize()
-	{
-		return vertexSize;
-	}
+		BoundingBox createBoundingBox(vector<Vertex> &vertices, vector<int> &indices, Matrix4f &worldTransform);
 
-	void setVertexSize(int vertSize)
-	{
-		this->vertexSize = vertSize;
-	}
+		BoundingBox createBoundingBox(Matrix4f &worldTransform);
 
-	void setAttributes()
-	{
-		//TODO: Automatically detect what attributes to set instead of just assuming everything
-		this->getAttributes().setAttribute(VertexAttributes::POSITIONS);
-		this->getAttributes().setAttribute(VertexAttributes::TEXCOORDS0);
-		this->getAttributes().setAttribute(VertexAttributes::TEXCOORDS1);
-		this->getAttributes().setAttribute(VertexAttributes::NORMALS);
-		this->getAttributes().setAttribute(VertexAttributes::TANGENTS);
-		this->getAttributes().setAttribute(VertexAttributes::BITANGENTS);
-		this->getAttributes().setAttribute(VertexAttributes::BONEINDICES);
-		this->getAttributes().setAttribute(VertexAttributes::BONEWEIGHTS);
-	}
+		BoundingBox createBoundingBox();
 
-	void setVertices(vector<Vertex> &vertices);
+		VertexAttributes &getAttributes()
+		{
+			return attribs;
+		}
 
-	void setVertices(vector<Vertex> &vertices, vector<int> &indices);
-};
+		int &getVertexSize()
+		{
+			return vertexSize;
+		}
 
+		void setVertexSize(int vertSize)
+		{
+			this->vertexSize = vertSize;
+		}
+
+		void setAttributes()
+		{
+			//TODO: Automatically detect what attributes to set instead of just assuming everything
+			this->getAttributes().setAttribute(VertexAttributes::POSITIONS);
+			this->getAttributes().setAttribute(VertexAttributes::TEXCOORDS0);
+			this->getAttributes().setAttribute(VertexAttributes::TEXCOORDS1);
+			this->getAttributes().setAttribute(VertexAttributes::NORMALS);
+			this->getAttributes().setAttribute(VertexAttributes::TANGENTS);
+			this->getAttributes().setAttribute(VertexAttributes::BITANGENTS);
+			this->getAttributes().setAttribute(VertexAttributes::BONEINDICES);
+			this->getAttributes().setAttribute(VertexAttributes::BONEWEIGHTS);
+		}
+
+		void setVertices(vector<Vertex> &vertices);
+
+		void setVertices(vector<Vertex> &vertices, vector<int> &indices);
+	};
+}
 #endif

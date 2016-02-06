@@ -3,23 +3,25 @@
 
 #include <iostream>
 
-extern bool display_logs;
-
-class Logger
+namespace apex
 {
-public:
-	template<typename T>
-	Logger& operator << (T&& out)
+	extern bool display_logs;
+
+	class Logger
 	{
-		if (display_logs)
+	public:
+		template<typename T>
+		Logger& operator << (T&& out)
 		{
-			std::cout << out;
-		}
-		return *this;
+			if (display_logs)
+			{
+				std::cout << out;
+			}
+			return *this;
+		};
 	};
-};
 
-// Global logger
-extern Logger engine_log;
-
+	// Global logger
+	extern Logger engine_log;
+}
 #endif

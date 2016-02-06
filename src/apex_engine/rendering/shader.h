@@ -16,99 +16,101 @@ using std::string;
 #include "../math/vector4f.h"
 #include "../math/matrix4f.h"
 
-class Environment;
-
-class Mesh;
-
-class Camera;
-
-class Shader
+namespace apex
 {
-protected:
-	Material *currentMaterial;
-	int id;
-private:
-	ShaderProperties properties;
-	Matrix4f modelMatrix, viewMatrix, projectionMatrix, normalMatrix;
-public:
-	int *m_shaderIDs, m_shaderCounter; 
-	// don't mess with this, used by the OpenGL renderer to count up and properly store shader IDs in the shader
+	class Environment;
 
-	Shader(ShaderProperties properties, string vs_code, string fs_code);
+	class Mesh;
 
-	~Shader();
+	class Camera;
 
-	const int &getProgramID()
+	class Shader
 	{
-		return this->id;
-	}
+	protected:
+		Material *currentMaterial;
+		int id;
+	private:
+		ShaderProperties properties;
+		Matrix4f modelMatrix, viewMatrix, projectionMatrix, normalMatrix;
+	public:
+		int *m_shaderIDs, m_shaderCounter;
+		// don't mess with this, used by the OpenGL renderer to count up and properly store shader IDs in the shader
 
-	void setProgramID(int id)
-	{
-		this->id = id;
-	}
+		Shader(ShaderProperties properties, string vs_code, string fs_code);
 
-	void create();
+		~Shader();
 
-    void use();
+		const int &getProgramID()
+		{
+			return this->id;
+		}
 
-	void compileShader();
+		void setProgramID(int id)
+		{
+			this->id = id;
+		}
 
-	void addProgram(ShaderType type, string &code);
-    
-    virtual void end();
+		void create();
 
-	virtual void update(Camera &cam, Mesh &mesh);
+		void use();
 
-	virtual void applyMaterial(Material &material);
+		void compileShader();
 
-	void applyTransforms(Matrix4f &modelMatrix, Matrix4f &viewMatrix, Matrix4f &projectionMatrix);
+		void addProgram(ShaderType type, string &code);
 
-	void setDefaultValues();
+		virtual void end();
 
-	void addVertexProgram(string &code)
-	{
-		addProgram(VertexShader, code);
-	}
+		virtual void update(Camera &cam, Mesh &mesh);
 
-	void addFragmentProgram(string &code)
-	{
-		addProgram(FragmentShader, code);
-	}
+		virtual void applyMaterial(Material &material);
 
-	void setUniform(string name, int i);
+		void applyTransforms(Matrix4f &modelMatrix, Matrix4f &viewMatrix, Matrix4f &projectionMatrix);
 
-	void setUniform(string name, float f);
+		void setDefaultValues();
 
-	void setUniform(string name, float x, float y);
+		void addVertexProgram(string &code)
+		{
+			addProgram(VertexShader, code);
+		}
 
-	void setUniform(string name, float x, float y, float z);
+		void addFragmentProgram(string &code)
+		{
+			addProgram(FragmentShader, code);
+		}
 
-	void setUniform(string name, float x, float y, float z, float w);
-	
-	void setUniform(string name, Matrix4f &mat);
+		void setUniform(string name, int i);
 
-	void setUniform(string name, Vector2f &vec)
-	{
-		this->setUniform(name, vec.x, vec.y);
-	}
-	
-	void setUniform(string name, Vector3f &vec)
-	{
-		this->setUniform(name, vec.x, vec.y, vec.z);
-	}
+		void setUniform(string name, float f);
 
-	void setUniform(string name, Vector4f &vec)
-	{
-		this->setUniform(name, vec.x, vec.y, vec.z, vec.w);
-	}
+		void setUniform(string name, float x, float y);
 
-	ShaderProperties &getProperties()
-	{
-		return this->properties;
-	}
+		void setUniform(string name, float x, float y, float z);
 
-};
+		void setUniform(string name, float x, float y, float z, float w);
 
+		void setUniform(string name, Matrix4f &mat);
+
+		void setUniform(string name, Vector2f &vec)
+		{
+			this->setUniform(name, vec.x, vec.y);
+		}
+
+		void setUniform(string name, Vector3f &vec)
+		{
+			this->setUniform(name, vec.x, vec.y, vec.z);
+		}
+
+		void setUniform(string name, Vector4f &vec)
+		{
+			this->setUniform(name, vec.x, vec.y, vec.z, vec.w);
+		}
+
+		ShaderProperties &getProperties()
+		{
+			return this->properties;
+		}
+
+	};
+}
 
 #endif

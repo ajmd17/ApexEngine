@@ -7,55 +7,57 @@
 #include "enums.h"
 #include "rendermanager.h"
 
-class Texture : public ILoadableObject
+namespace apex
 {
-protected:
-	int id;
-public:
-	Texture()
+	class Texture : public ILoadableObject
 	{
-		this->id = 0;
-	}
-
-	Texture(int id)
-	{
-		this->id = id;
-	}
-
-	virtual ~Texture()
-	{
-		if (id != 0 && RenderManager::getEngine() != NULL)
+	protected:
+		int id;
+	public:
+		Texture()
 		{
-			//RenderManager::getEngine()->deleteTexture(id);
+			this->id = 0;
 		}
-	}
 
-	const int &getID()
-	{
-		return id;
-	}
+		Texture(int id)
+		{
+			this->id = id;
+		}
 
-	void setID(int id)
-	{
-		this->id = id;
-	}
+		virtual ~Texture()
+		{
+			if (id != 0 && RenderManager::getEngine() != NULL)
+			{
+				//RenderManager::getEngine()->deleteTexture(id);
+			}
+		}
 
-	static int genTexture()
-	{
-		int res = RenderManager::getEngine()->genTexture();
-		return res;
-	}
+		const int &getID()
+		{
+			return id;
+		}
 
-	static void activeTextureSlot(int slot)
-	{
-		RenderManager::getEngine()->activeTextureSlot(slot);
-	}
+		void setID(int id)
+		{
+			this->id = id;
+		}
 
-	virtual void use() = 0;
+		static int genTexture()
+		{
+			int res = RenderManager::getEngine()->genTexture();
+			return res;
+		}
 
-	virtual void setFilter(TextureFilterMode min, TextureFilterMode mag) = 0;
+		static void activeTextureSlot(int slot)
+		{
+			RenderManager::getEngine()->activeTextureSlot(slot);
+		}
 
-	virtual void genMipmap() = 0;
-};
+		virtual void use() = 0;
 
+		virtual void setFilter(TextureFilterMode min, TextureFilterMode mag) = 0;
+
+		virtual void genMipmap() = 0;
+	};
+}
 #endif

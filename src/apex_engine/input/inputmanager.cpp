@@ -2,28 +2,41 @@
 
 #include "../util/logutil.h"
 
-vector<int> InputManager::keysdown;
-
-void InputManager::keyDown(int key)
+namespace apex
 {
-	engine_log << "Key down: " << key << "\n";
-	for (int i = 0; i < keysdown.size(); i++)
+	void InputManager::keyDown(int key)
 	{
-		if (keysdown[i] == key)
-			return;
-	}
-	keysdown.push_back(key);
-}
-
-void InputManager::keyUp(int key)
-{
-	engine_log << "Key up: " << key << "\n";
-	for (int i = 0; i < keysdown.size(); i++)
-	{
-		if (keysdown[i] == key)
+		engine_log << "Key down: " << key << "\n";
+		for (int i = 0; i < keysdown.size(); i++)
 		{
-			keysdown.erase(keysdown.begin() + i);
-			return;
+			if (keysdown[i] == key)
+				return;
 		}
+		keysdown.push_back(key);
+	}
+
+	void InputManager::keyUp(int key)
+	{
+		engine_log << "Key up: " << key << "\n";
+		for (int i = 0; i < keysdown.size(); i++)
+		{
+			if (keysdown[i] == key)
+			{
+				keysdown.erase(keysdown.begin() + i);
+				return;
+			}
+		}
+	}
+
+	bool InputManager::isKeyDown(int key)
+	{
+		for (int i = 0; i < keysdown.size(); i++)
+		{
+			if (keysdown[i] == key)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }

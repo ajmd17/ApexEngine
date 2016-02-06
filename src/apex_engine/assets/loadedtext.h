@@ -6,20 +6,22 @@
 #include <string>
 #include <vector>
 
-class LoadedText : public ILoadableObject 
+namespace apex
 {
-private:
-	std::string text;
-public:
-	LoadedText(std::string text)
+	class LoadedText : public ILoadableObject
 	{
-		this->text = text;
-	}
+	private:
+		std::string text;
+	public:
+		LoadedText(std::string text)
+		{
+			this->text = text;
+		}
 
-	std::string getText()
-	{
-		return text;
-	}
-};
-
+		std::string getText()
+		{
+			return text;
+		}
+	};
+}
 #endif

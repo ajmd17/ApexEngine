@@ -11,31 +11,33 @@
 
 #include "../rendering/environment.h"
 
-class Scene
+namespace apex
 {
-private:
-	Environment environment;
-	Node *rootNode;
-public:
-	Scene() 
+	class Scene
 	{
-		rootNode = new Node("root");
-	}
+	private:
+		Environment environment;
+		Node *rootNode;
+	public:
+		Scene()
+		{
+			rootNode = new Node("root");
+		}
 
-	~Scene()
-	{
-		delete rootNode;
-	}
+		~Scene()
+		{
+			delete rootNode;
+		}
 
-	Node *getRootNode() const
-	{
-		return rootNode;
-	}
+		Node *getRootNode() const
+		{
+			return rootNode;
+		}
 
-	Environment &getEnvironment()
-	{
-		return environment;
-	}
-};
-
+		Environment &getEnvironment()
+		{
+			return environment;
+		}
+	};
+}
 #endif

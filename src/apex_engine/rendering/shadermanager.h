@@ -14,21 +14,23 @@ using std::vector;
 #include <memory>
 using std::shared_ptr;
 
-class ShaderManager
+namespace apex
 {
-public:
-	static vector<shared_ptr<Shader>> shaders;
-
-	template<typename ShaderClass>
-	typename std::enable_if<std::is_base_of<Shader, ShaderClass>::value, shared_ptr<Shader>>::type
-	static getShader(ShaderProperties properties)
+	class ShaderManager
 	{
-		// TODO: Iterate through current shaders and find ones with same class and properties before adding a new one
-		shared_ptr<Shader> shaderPtr(new ShaderClass(properties));
+	public:
+		static vector<shared_ptr<Shader>> shaders;
 
-		shaders.push_back(shaderPtr);
-		return shaders.back();
-	}
-};
+		template<typename ShaderClass>
+		typename std::enable_if<std::is_base_of<Shader, ShaderClass>::value, shared_ptr<Shader>>::type
+			static getShader(ShaderProperties properties)
+		{
+			// TODO: Iterate through current shaders and find ones with same class and properties before adding a new one
+			shared_ptr<Shader> shaderPtr(new ShaderClass(properties));
 
+			shaders.push_back(shaderPtr);
+			return shaders.back();
+		}
+	};
+}
 #endif

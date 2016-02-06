@@ -7,10 +7,12 @@
 #include "light/lightsource.h"
 #include "light/pointlight.h"
 
-class Environment
+namespace apex
 {
-public:
-	void addPointLight(PointLight &pl);
-};
-
+	class Environment
+	{
+	public:
+		void addPointLight(PointLight &pl);
+	};
+}
 #endif

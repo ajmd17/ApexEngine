@@ -3,16 +3,18 @@
 
 #include "../assetloader.h"
 
-class ShaderLoader : public IAssetLoader
+namespace apex
 {
-public:
-	ShaderLoader();
+	class ShaderLoader : public IAssetLoader
+	{
+	public:
+		ShaderLoader();
 
-	~ShaderLoader() {}
+		~ShaderLoader() {}
 
-	void resetLoader();
+		void resetLoader();
 
-	std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset);
-};
-
+		std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset);
+	};
+}
 #endif

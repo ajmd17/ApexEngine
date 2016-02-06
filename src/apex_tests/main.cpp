@@ -12,7 +12,7 @@ using namespace std;
 #include <scene/node.h>
 #include <scene/geometry.h>
 #include <util/strutil.h>
-#include <rendering/cameras/perspective_camera.h>
+#include <rendering/cameras/fps_camera.h>
 #include <input/inputmanager.h>
 #include <assets/loadedtext.h>
 
@@ -29,6 +29,7 @@ extern "C" {
 
 //using namespace luabridge;
 
+using namespace apex;
 
 class TestGame : public Game
 {
@@ -79,7 +80,7 @@ void TestGame::init()
 	
 	std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
 	
-	this->camera = new PerspectiveCamera(75, 1024, 1024, 1.0, 100.0);
+	this->camera = new FPSCamera(inputMgr, 45, 1.0, 100.0);
 
 
 	rot = 0;
@@ -299,8 +300,10 @@ void TestGame::logic()
 	scene->getRootNode()->getAt<Spatial>(1)->setNeedsTransformUpdate();
 
 	Quaternion &qr1 = scene->getRootNode()->getAt<Spatial>(0)->getLocalRotation();
-	qr1.setFromAxis(Vector3f(1, 0, 0), rot);
+	qr1.setFromAxis(Vector3f(1, 1, 0), rot);
 	scene->getRootNode()->getAt<Spatial>(0)->setNeedsTransformUpdate();
+
+
 }
 
 int main()

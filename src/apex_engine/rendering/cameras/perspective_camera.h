@@ -6,53 +6,74 @@
 #include "../camera.h"
 #include "../../math/matrix_util.h"
 #include "../../math/vector3f.h"
+#include "../../math/quaternion.h"
 
-class PerspectiveCamera : public Camera
+namespace apex
 {
-private:
-	float fov, n, f;
-
-	Vector3f target, up;
-public:
-	PerspectiveCamera(float fov, int width, int height, float n, float f) 
+	class PerspectiveCamera : public Camera
 	{
-		this->translation = Vector3f(0, 0, 0);
-		this->direction = Vector3f(0, 0, 1);
-		this->up = Vector3f(0, 1, 0);
-		this->target = Vector3f(0, 0, 0);
+	protected:
+		float pitch, roll, yaw;
+	private:
+		float fov, n, f;
+		Quaternion rotation;
+		Vector3f target, up;
+	public:
+		PerspectiveCamera(float fov, int width, int height, float n, float f)
+		{
+			this->translation = Vector3f(0, 0, 0);
+			this->direction = Vector3f(0, 0, 1);
+			this->up = Vector3f(0, 1, 0);
+			this->target = Vector3f(0, 0, 0);
 
-		this->fov = fov;
-		this->n = n;
-		this->f = f;
-		this->width = width;
-		this->height = height;
-	}
+			this->fov = fov;
+			this->n = n;
+			this->f = f;
+			this->width = width;
+			this->height = height;
+		}
 
-	Vector3f getUpVector()
-	{
-		return up;
-	}
+		Vector3f getUpVector()
+		{
+			return up;
+		}
 
-	void setUpVector(Vector3f up)
-	{
-		this->up.set(up);
-	}
+		void setUpVector(Vector3f up)
+		{
+			this->up.set(up);
+		}
 
-	virtual void updateCameraLogic()
-	{
-	}
+		virtual void updateCameraLogic()
+		{
+		}
 
-	void updateCameraMatrices()
-	{
-		target.set(translation);
-		target.add(direction);
+		void updateCameraMatrices()
+		{
+			rotation.setToLookAt(direction, up);
+			pitch = rotation.getPitch();
+			roll = rotation.getRoll();
+			yaw = rotation.getYaw();
 
-		MatrixUtil::setToLookAt(viewMatrix, this->translation, this->target, this->up);
-		MatrixUtil::setToProjection(projectionMatrix, this->fov, this->width, this->height, this->n, this->f);
+			target.set(translation);
+			target.add(direction);
 
-		viewProjectionMatrix.set(viewMatrix);
-		viewProjectionMatrix.multiply(projectionMatrix);
-	}
-};
+			MatrixUtil::setToLookAt(viewMatrix, this->translation, this->target, this->up);
+			MatrixUtil::setToProjection(projectionMatrix, this->fov, this->width, this->height, this->n, this->f);
 
+			viewProjectionMatrix.set(viewMatrix);
+			viewProjectionMatrix.multiply(projectionMatrix);
+		}
+
+		const float getPitch() { return pitch; }
+
+		const float getRoll() { return roll; }
+
+		const float getYaw() { return yaw; }
+
+		const Quaternion getRotation()
+		{
+			return rotation;
+		}
+	};
+}
 #endif

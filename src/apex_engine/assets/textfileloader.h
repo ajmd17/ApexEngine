@@ -7,28 +7,30 @@
 #include "assetloader.h"
 #include "loadedtext.h"
 
-class TextFileLoader : public IAssetLoader
+namespace apex
 {
-public:
-	TextFileLoader() {}
-
-	~TextFileLoader() {}
-
-	void resetLoader() {}
-
-	std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset)
+	class TextFileLoader : public IAssetLoader
 	{
-		std::string finalString = "";
+	public:
+		TextFileLoader() {}
 
-		std::string line;
-		while (std::getline(*asset.getStream(), line))
+		~TextFileLoader() {}
+
+		void resetLoader() {}
+
+		std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset)
 		{
-			finalString += line + "\n";
+			std::string finalString = "";
+
+			std::string line;
+			while (std::getline(*asset.getStream(), line))
+			{
+				finalString += line + "\n";
+			}
+
+			std::shared_ptr<ILoadableObject> loadedTextFile(new LoadedText(finalString));
+			return loadedTextFile;
 		}
-
-		std::shared_ptr<ILoadableObject> loadedTextFile(new LoadedText(finalString));
-		return loadedTextFile;
-	}
-};
-
+	};
+}
 #endif

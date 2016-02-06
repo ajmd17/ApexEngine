@@ -15,61 +15,63 @@ using std::vector;
 #include <string>
 using std::string;
 
-class ObjIndex
+namespace apex
 {
-public:
-	int vertex_idx, normal_idx, texcoord_idx;
-
-	ObjIndex(int v, int n, int t)
+	class ObjIndex
 	{
-		this->vertex_idx = v;
-		this->normal_idx = n;
-		this->texcoord_idx = t;
-	}
+	public:
+		int vertex_idx, normal_idx, texcoord_idx;
 
-	ObjIndex()
+		ObjIndex(int v, int n, int t)
+		{
+			this->vertex_idx = v;
+			this->normal_idx = n;
+			this->texcoord_idx = t;
+		}
+
+		ObjIndex()
+		{
+			this->vertex_idx = 0;
+			this->normal_idx = 0;
+			this->texcoord_idx = 0;
+		}
+	};
+
+	class ObjLoader : public IAssetLoader
 	{
-		this->vertex_idx = 0;
-		this->normal_idx = 0;
-		this->texcoord_idx = 0;
-	}
-};
+	private:
+		vector<string> names;
+		vector<string> namesMtl;
 
-class ObjLoader : public IAssetLoader
-{
-private:
-	vector<string> names;
-	vector<string> namesMtl;
+		vector<vector<ObjIndex>*> objIndices;
+		vector<Vector3f> positions;
+		vector<Vector3f> normals;
+		vector<Vector2f> texCoords;
 
-	vector<vector<ObjIndex>*> objIndices;
-	vector<Vector3f> positions;
-	vector<Vector3f> normals;
-	vector<Vector2f> texCoords;
+		vector<Material> materials;
+		vector<Material> mtlOrder;
 
-	vector<Material> materials;
-	vector<Material> mtlOrder;
+		bool hasTexCoords, hasNormals;
 
-	bool hasTexCoords, hasNormals;
+		vector<ObjIndex> *currentList();
 
-	vector<ObjIndex> *currentList();
+		void newMesh(const string &name);
 
-	void newMesh(const string &name);
+		ObjIndex parseObjIndex(const string &token);
 
-	ObjIndex parseObjIndex(const string &token);
+		Material &materialWithName(const string name);
+	public:
+		ObjLoader()
+		{
+			this->hasTexCoords = false;
+			this->hasNormals = false;
+		}
 
-	Material &materialWithName(const string name);
-public:
-	ObjLoader() 
-	{
-		this->hasTexCoords = false;
-		this->hasNormals = false;
-	}
+		~ObjLoader() {}
 
-	~ObjLoader() {}
+		void resetLoader();
 
-	void resetLoader();
-
-	std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset);
-};
-
+		std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset);
+	};
+}
 #endif

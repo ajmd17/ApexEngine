@@ -3,16 +3,18 @@
 
 #include "assetloader.h"
 
-class TextureLoader : public IAssetLoader
+namespace apex
 {
-public:
-	TextureLoader();
+	class TextureLoader : public IAssetLoader
+	{
+	public:
+		TextureLoader();
 
-	~TextureLoader() {}
+		~TextureLoader() {}
 
-	void resetLoader();
+		void resetLoader();
 
-	std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset);
-};
-
+		std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset);
+	};
+}
 #endif

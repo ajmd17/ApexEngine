@@ -8,17 +8,19 @@
 
 // Contains code that can be #included in GLSL shaders
 
-class ShaderLib
+namespace apex
 {
-private:
-	static std::unordered_map<std::string, std::string> strMap;
-public:
-	static void init();
+	class ShaderLib
+	{
+	private:
+		static std::unordered_map<std::string, std::string> strMap;
+	public:
+		static void init();
 
-	static void registerInclude(std::string name, std::string code);
+		static void registerInclude(std::string name, std::string code);
 
-	static const std::string getCode(std::string name);
-};
-
+		static const std::string getCode(std::string name);
+	};
+}
 
 #endif

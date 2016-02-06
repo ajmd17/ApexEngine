@@ -1,61 +1,64 @@
 #include "node.h"
 #include "../util/logutil.h"
 
-int Node::node_count = 0;
-
-Node::Node() : Spatial()
+namespace apex
 {
-	this->setName("node_" + to_str(++node_count));
-}
+	int Node::node_count = 0;
 
-Node::Node(string name) : Spatial(name) 
-{
-}
-
-Node::~Node()
-{
-	engine_log << "Deleting node: " << getName() << "\n";
-
-	Spatial::~Spatial();
-
-	int ch_size = children.size();
-	
-	for (size_t i = ch_size; i > 0; i--)
+	Node::Node() : Spatial()
 	{
-		this->removeAt(i-1);
-	}
-}
-
-BoundingBox &Node::getGlobalBoundingBox()
-{
-	if (!globalBoundingBoxCreated)
-	{
-		updateGlobalBoundingBox();
-		globalBoundingBoxCreated = true;
+		this->setName("node_" + to_str(++node_count));
 	}
 
-	if (this->updateFlags & Spatial::updateGlobalBoundingBoxFlag)
+	Node::Node(string name) : Spatial(name)
 	{
-		updateGlobalBoundingBox();
-		this->updateFlags &= ~Spatial::updateGlobalBoundingBoxFlag;
 	}
 
-	return globalBoundingBox;
-}
-
-BoundingBox &Node::getLocalBoundingBox()
-{
-	if (!localBoundingBoxCreated)
+	Node::~Node()
 	{
-		updateLocalBoundingBox();
-		localBoundingBoxCreated = true;
+		engine_log << "Deleting node: " << getName() << "\n";
+
+		Spatial::~Spatial();
+
+		int ch_size = children.size();
+
+		for (size_t i = ch_size; i > 0; i--)
+		{
+			this->removeAt(i - 1);
+		}
 	}
 
-	if (this->updateFlags & Spatial::updateLocalBoundingBoxFlag)
+	BoundingBox &Node::getGlobalBoundingBox()
 	{
-		updateLocalBoundingBox();
-		this->updateFlags &= ~Spatial::updateLocalBoundingBoxFlag;
+		if (!globalBoundingBoxCreated)
+		{
+			updateGlobalBoundingBox();
+			globalBoundingBoxCreated = true;
+		}
+
+		if (this->updateFlags & Spatial::updateGlobalBoundingBoxFlag)
+		{
+			updateGlobalBoundingBox();
+			this->updateFlags &= ~Spatial::updateGlobalBoundingBoxFlag;
+		}
+
+		return globalBoundingBox;
 	}
 
-	return localBoundingBox;
+	BoundingBox &Node::getLocalBoundingBox()
+	{
+		if (!localBoundingBoxCreated)
+		{
+			updateLocalBoundingBox();
+			localBoundingBoxCreated = true;
+		}
+
+		if (this->updateFlags & Spatial::updateLocalBoundingBoxFlag)
+		{
+			updateLocalBoundingBox();
+			this->updateFlags &= ~Spatial::updateLocalBoundingBoxFlag;
+		}
+
+		return localBoundingBox;
+	}
 }

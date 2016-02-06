@@ -9,16 +9,18 @@
 
 #include <memory>
 
-class AssetManager;
-
-class IAssetLoader
+namespace apex
 {
-public:
-	IAssetLoader() {}
+	class AssetManager;
 
-	virtual void resetLoader() = 0;
+	class IAssetLoader
+	{
+	public:
+		IAssetLoader() {}
 
-	virtual std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset) = 0;
-};
+		virtual void resetLoader() = 0;
 
+		virtual std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset) = 0;
+	};
+}
 #endif

@@ -5,143 +5,144 @@
 
 #include "../util/logutil.h"
 
-int Geometry::geom_count = 0;
-
-Geometry::Geometry() : Spatial()
+namespace apex
 {
-	this->renderMgr = 0;
-	this->mesh = 0;
-	this->shader = 0;
-	this->bucket = OpaqueBucket;
-	this->setName("geometry_" + to_str(geom_count++));
-}
+	int Geometry::geom_count = 0;
 
-Geometry::Geometry(string name) : Spatial(name)
-{
-	this->renderMgr = 0;
-	this->mesh = 0;
-	this->shader = 0;
-	this->bucket = OpaqueBucket;
-}
-
-Geometry::Geometry(shared_ptr<Mesh> mesh) : Spatial()
-{
-	this->renderMgr = 0;
-	this->mesh = mesh;
-	this->shader = 0;
-	this->bucket = OpaqueBucket;
-	this->setName("geometry_" + to_str(++geom_count));
-}
-
-Geometry::Geometry(shared_ptr<Mesh> mesh, string name) : Spatial(name)
-{
-	this->renderMgr = 0;
-	this->mesh = mesh;
-	this->shader = 0;
-	this->bucket = OpaqueBucket;
-}
-
-Geometry::~Geometry()
-{
-	engine_log << "Deleting geometry: " << getName() << "\n";
-
-	Spatial::~Spatial();
-
-	// any deletion will go here
-}
-
-void Geometry::render(Camera &cam)
-{
-	if (this->shader != 0 && this->mesh != 0)
+	Geometry::Geometry() : Spatial()
 	{
-		shader->use();
-		shader->applyTransforms(this->getGlobalMatrix(), cam.getViewMatrix(), cam.getProjectionMatrix());
-		shader->applyMaterial(this->material);
-
-		shader->update(cam, *mesh);
-		
-		this->mesh->render();
-
-		shader->end();
+		this->renderMgr = 0;
+		this->mesh = 0;
+		this->shader = 0;
+		this->bucket = OpaqueBucket;
+		this->setName("geometry_" + to_str(geom_count++));
 	}
-}
 
-void Geometry::updateParents()
-{
-	Spatial::updateParents();
-	if (renderMgr != 0)
+	Geometry::Geometry(string name) : Spatial(name)
 	{
-		if (this->isAttachedToRoot())
-			this->renderMgr->addGeometry(this);
-		else
-			this->renderMgr->removeGeometry(this);
+		this->renderMgr = 0;
+		this->mesh = 0;
+		this->shader = 0;
+		this->bucket = OpaqueBucket;
 	}
-}
 
-void Geometry::update(RenderManager *renderMgr)
-{
-	this->renderMgr = renderMgr;
-
-	Spatial::update(renderMgr);
-}
-
-void Geometry::setBucket(RenderBucket bucket)
-{
-	if (bucket != this->bucket)
+	Geometry::Geometry(shared_ptr<Mesh> mesh) : Spatial()
 	{
-		if (renderMgr != NULL && this->isAttachedToRoot())
+		this->renderMgr = 0;
+		this->mesh = mesh;
+		this->shader = 0;
+		this->bucket = OpaqueBucket;
+		this->setName("geometry_" + to_str(++geom_count));
+	}
+
+	Geometry::Geometry(shared_ptr<Mesh> mesh, string name) : Spatial(name)
+	{
+		this->renderMgr = 0;
+		this->mesh = mesh;
+		this->shader = 0;
+		this->bucket = OpaqueBucket;
+	}
+
+	Geometry::~Geometry()
+	{
+		engine_log << "Deleting geometry: " << getName() << "\n";
+
+		Spatial::~Spatial();
+	}
+
+	void Geometry::render(Camera &cam)
+	{
+		if (this->shader != 0 && this->mesh != 0)
 		{
-			this->renderMgr->removeGeometry(this);
-			this->bucket = bucket;
-			this->renderMgr->addGeometry(this);
+			shader->use();
+			shader->applyTransforms(this->getGlobalMatrix(), cam.getViewMatrix(), cam.getProjectionMatrix());
+			shader->applyMaterial(this->material);
+
+			shader->update(cam, *mesh);
+
+			this->mesh->render();
+
+			shader->end();
 		}
-		else
-			this->bucket = bucket;
 	}
-}
 
-void Geometry::updateGlobalBoundingBox()
-{
-	if (mesh != NULL)
-		MeshUtil::createMeshBoundingBox(*mesh, globalBoundingBox, getGlobalMatrix());
-}
-
-void Geometry::updateLocalBoundingBox()
-{
-	if (mesh != NULL)
-		MeshUtil::createMeshBoundingBox(*mesh, localBoundingBox);
-}
-
-BoundingBox &Geometry::getGlobalBoundingBox()
-{
-	if (!globalBoundingBoxCreated)
+	void Geometry::updateParents()
 	{
-		updateGlobalBoundingBox();
-		globalBoundingBoxCreated = true;
+		Spatial::updateParents();
+		if (renderMgr != 0)
+		{
+			if (this->isAttachedToRoot())
+				this->renderMgr->addGeometry(this);
+			else
+				this->renderMgr->removeGeometry(this);
+		}
 	}
 
-	if (this->updateFlags & Spatial::updateGlobalBoundingBoxFlag)
+	void Geometry::update(RenderManager *renderMgr)
 	{
-		updateGlobalBoundingBox();
-		this->updateFlags &= ~Spatial::updateGlobalBoundingBoxFlag;
+		this->renderMgr = renderMgr;
+
+		Spatial::update(renderMgr);
 	}
 
-	return globalBoundingBox;
-}
-
-BoundingBox &Geometry::getLocalBoundingBox()
-{
-	if (!localBoundingBoxCreated)
+	void Geometry::setBucket(RenderBucket bucket)
 	{
-		updateLocalBoundingBox();
-		localBoundingBoxCreated = true;
+		if (bucket != this->bucket)
+		{
+			if (renderMgr != NULL && this->isAttachedToRoot())
+			{
+				this->renderMgr->removeGeometry(this);
+				this->bucket = bucket;
+				this->renderMgr->addGeometry(this);
+			}
+			else
+				this->bucket = bucket;
+		}
 	}
 
-	if (this->updateFlags & Spatial::updateLocalBoundingBoxFlag)
+	void Geometry::updateGlobalBoundingBox()
 	{
-		updateLocalBoundingBox();
-		this->updateFlags &= ~Spatial::updateLocalBoundingBoxFlag;
+		if (mesh != NULL)
+			MeshUtil::createMeshBoundingBox(*mesh, globalBoundingBox, getGlobalMatrix());
 	}
 
-	return localBoundingBox;
+	void Geometry::updateLocalBoundingBox()
+	{
+		if (mesh != NULL)
+			MeshUtil::createMeshBoundingBox(*mesh, localBoundingBox);
+	}
+
+	BoundingBox &Geometry::getGlobalBoundingBox()
+	{
+		if (!globalBoundingBoxCreated)
+		{
+			updateGlobalBoundingBox();
+			globalBoundingBoxCreated = true;
+		}
+
+		if (this->updateFlags & Spatial::updateGlobalBoundingBoxFlag)
+		{
+			updateGlobalBoundingBox();
+			this->updateFlags &= ~Spatial::updateGlobalBoundingBoxFlag;
+		}
+
+		return globalBoundingBox;
+	}
+
+	BoundingBox &Geometry::getLocalBoundingBox()
+	{
+		if (!localBoundingBoxCreated)
+		{
+			updateLocalBoundingBox();
+			localBoundingBoxCreated = true;
+		}
+
+		if (this->updateFlags & Spatial::updateLocalBoundingBoxFlag)
+		{
+			updateLocalBoundingBox();
+			this->updateFlags &= ~Spatial::updateLocalBoundingBoxFlag;
+		}
+
+		return localBoundingBox;
+	}
 }

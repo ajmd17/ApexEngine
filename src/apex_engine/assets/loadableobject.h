@@ -6,10 +6,12 @@
 
 #include "../object.h"
 
-class ILoadableObject : public IObject
+namespace apex
 {
-public:
-	virtual ~ILoadableObject() {}
-};
-
+	class ILoadableObject : public IObject
+	{
+	public:
+		virtual ~ILoadableObject() {}
+	};
+}
 #endif

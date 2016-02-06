@@ -4,10 +4,12 @@
 // Interface for anything that could be considered an object in the engine.
 // Author: Andrew MacDonald
 
-class IObject
+namespace apex
 {
-public:
-	virtual ~IObject() {}
-};
-
+	class IObject
+	{
+	public:
+		virtual ~IObject() {}
+	};
+}
 #endif

@@ -13,78 +13,80 @@
 #include <cmath>
 #include <climits>
 
-class BoundingBox
+namespace apex
 {
-private:
-	const static int MAX_SIZE = INT_MAX;
-	const static int MIN_SIZE = INT_MIN;
-	const static int NUM_CORNERS = 8;
-
-	Vector3f corners[NUM_CORNERS];
-	Matrix4f matrix;
-
-	Vector3f max, min, center, dimensions;
-public:
-	BoundingBox clear();
-
-	BoundingBox createBoundingBox(Vector3f &, Vector3f &);
-
-	void extend(BoundingBox &b);
-
-	void extend(Vector3f &point);
-
-	void updateCorners();
-
-	/**
-		Intersect this BoundingBox with a Ray. Returns true if intersected. 
-		The hit point will be stored in outVec.
-	*/
-	bool intersect(Ray &ray, Vector3f &outVec);
-
-	BoundingBox()
+	class BoundingBox
 	{
-		this->clear();
-	}
+	private:
+		const static int MAX_SIZE = INT_MAX;
+		const static int MIN_SIZE = INT_MIN;
+		const static int NUM_CORNERS = 8;
 
-	BoundingBox(Vector3f &dimMin, Vector3f &dimMax)
-	{
-		this->createBoundingBox(dimMin, dimMax);
-	}
+		Vector3f corners[NUM_CORNERS];
+		Matrix4f matrix;
 
-	const Vector3f getMin()
-	{
-		return min;
-	}
+		Vector3f max, min, center, dimensions;
+	public:
+		BoundingBox clear();
 
-	const Vector3f getMax()
-	{
-		return max;
-	}
+		BoundingBox createBoundingBox(Vector3f &, Vector3f &);
 
-	const Vector3f getCenter()
-	{
-		return center;
-	}
+		void extend(BoundingBox &b);
 
-	const Vector3f getDimensions()
-	{
-		return dimensions;
-	}
+		void extend(Vector3f &point);
 
-	const float getWidth()
-	{
-		return dimensions.x;
-	}
+		void updateCorners();
 
-	const float getHeight()
-	{
-		return dimensions.y;
-	}
+		/**
+			Intersect this BoundingBox with a Ray. Returns true if intersected.
+			The hit point will be stored in outVec.
+		*/
+		bool intersect(Ray &ray, Vector3f &outVec);
 
-	const float getLength()
-	{
-		return dimensions.z;
-	}
-};
+		BoundingBox()
+		{
+			this->clear();
+		}
 
+		BoundingBox(Vector3f &dimMin, Vector3f &dimMax)
+		{
+			this->createBoundingBox(dimMin, dimMax);
+		}
+
+		const Vector3f getMin()
+		{
+			return min;
+		}
+
+		const Vector3f getMax()
+		{
+			return max;
+		}
+
+		const Vector3f getCenter()
+		{
+			return center;
+		}
+
+		const Vector3f getDimensions()
+		{
+			return dimensions;
+		}
+
+		const float getWidth()
+		{
+			return dimensions.x;
+		}
+
+		const float getHeight()
+		{
+			return dimensions.y;
+		}
+
+		const float getLength()
+		{
+			return dimensions.z;
+		}
+	};
+}
 #endif

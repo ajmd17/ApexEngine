@@ -21,47 +21,49 @@ using std::unordered_map;
 #include <map>
 using std::map;
 
-class IAssetLoader;
-
-class AssetManager
+namespace apex
 {
-private:
-	unordered_map<const char*, std::shared_ptr<ILoadableObject>> loadedAssets;
-	unordered_map<const char*, std::shared_ptr<IAssetLoader>> loaders;
+	class IAssetLoader;
 
-	// Default loaders
-	std::shared_ptr<IAssetLoader> textureLoader;
-	std::shared_ptr<IAssetLoader> objLoader;
-	std::shared_ptr<IAssetLoader> shaderLoader;
-	std::shared_ptr<IAssetLoader> textFileLoader;
-public:
-	AssetManager();
-
-	~AssetManager();
-
-	void registerExt(const char *ext, std::shared_ptr<IAssetLoader> loader);
-
-	std::shared_ptr<IAssetLoader> getLoader(const char *ext);
-
-	std::shared_ptr<ILoadableObject> load(const char *filepath, std::shared_ptr<IAssetLoader> loader);
-
-	std::shared_ptr<ILoadableObject> load(const char *filepath);
-
-	template <typename T>
-	typename std::enable_if<std::is_base_of<ILoadableObject, T>::value, std::shared_ptr<T>>::type
-		loadAs(const char *filepath)
+	class AssetManager
 	{
-		std::shared_ptr<T> res = std::dynamic_pointer_cast<T> (load(filepath));
-		return res;
-	}
+	private:
+		unordered_map<const char*, std::shared_ptr<ILoadableObject>> loadedAssets;
+		unordered_map<const char*, std::shared_ptr<IAssetLoader>> loaders;
 
-	template <typename T>
-	typename std::enable_if<std::is_base_of<ILoadableObject, T>::value, std::shared_ptr<T>>::type
-		loadAs(const char *filepath, std::shared_ptr<IAssetLoader> loader)
-	{
-		std::shared_ptr<T> res = std::dynamic_pointer_cast<T> (load(filepath, loader));
-		return res;
-	}
-};
+		// Default loaders
+		std::shared_ptr<IAssetLoader> textureLoader;
+		std::shared_ptr<IAssetLoader> objLoader;
+		std::shared_ptr<IAssetLoader> shaderLoader;
+		std::shared_ptr<IAssetLoader> textFileLoader;
+	public:
+		AssetManager();
 
+		~AssetManager();
+
+		void registerExt(const char *ext, std::shared_ptr<IAssetLoader> loader);
+
+		std::shared_ptr<IAssetLoader> getLoader(const char *ext);
+
+		std::shared_ptr<ILoadableObject> load(const char *filepath, std::shared_ptr<IAssetLoader> loader);
+
+		std::shared_ptr<ILoadableObject> load(const char *filepath);
+
+		template <typename T>
+		typename std::enable_if<std::is_base_of<ILoadableObject, T>::value, std::shared_ptr<T>>::type
+			loadAs(const char *filepath)
+		{
+			std::shared_ptr<T> res = std::dynamic_pointer_cast<T> (load(filepath));
+			return res;
+		}
+
+		template <typename T>
+		typename std::enable_if<std::is_base_of<ILoadableObject, T>::value, std::shared_ptr<T>>::type
+			loadAs(const char *filepath, std::shared_ptr<IAssetLoader> loader)
+		{
+			std::shared_ptr<T> res = std::dynamic_pointer_cast<T> (load(filepath, loader));
+			return res;
+		}
+	};
+}
 #endif

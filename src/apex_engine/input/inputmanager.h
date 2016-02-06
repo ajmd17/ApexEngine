@@ -6,16 +6,30 @@
 #include <vector>
 using std::vector;
 
-class InputManager
+namespace apex
 {
-private:
-	static vector<int> keysdown;
-public:
-	InputManager() {}
+	class InputManager
+	{
+	private:
+		vector<int> keysdown;
 
-	static void keyDown(int key);
+		int width, height;
+	public:
+		InputManager() {}
 
-	static void keyUp(int key);
-};
+		void setWidth(int w) { this->width = w; }
 
+		void setHeight(int h) { this->height = h; }
+
+		int getWidth() { return width; }
+
+		int getHeight() { return height; }
+
+		void keyDown(int key);
+
+		void keyUp(int key);
+
+		bool isKeyDown(int key);
+	};
+}
 #endif

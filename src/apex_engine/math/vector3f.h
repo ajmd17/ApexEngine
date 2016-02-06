@@ -9,200 +9,202 @@
 
 using std::ostream;
 
-class Vector3f
+namespace apex
 {
-public:
-	static Vector3f Zero, One, UnitX, UnitY, UnitZ;
-
-	float x, y, z;
-
-	Vector3f()
+	class Vector3f
 	{
-		set(0.0f);
-	}
+	public:
+		static Vector3f Zero, One, UnitX, UnitY, UnitZ;
 
-	Vector3f(float x, float y, float z)
-	{
-		set(x, y, z);
-	}
+		float x, y, z;
 
-	Vector3f(float xyz)
-	{
-		set(xyz);
-	}
+		Vector3f()
+		{
+			set(0.0f);
+		}
 
-	Vector3f(const Vector3f &other)
-	{
-		this->x = other.x;
-		this->y = other.y;
-		this->z = other.z;
-	}
+		Vector3f(float x, float y, float z)
+		{
+			set(x, y, z);
+		}
 
-	float getX() const
-	{
-		return x;
-	}
+		Vector3f(float xyz)
+		{
+			set(xyz);
+		}
 
-	float getY() const
-	{
-		return y;
-	}
+		Vector3f(const Vector3f &other)
+		{
+			this->x = other.x;
+			this->y = other.y;
+			this->z = other.z;
+		}
 
-	float getZ() const
-	{
-		return z;
-	}
+		float getX() const
+		{
+			return x;
+		}
 
-	void setX(float x)
-	{
-		this->x = x;
-	}
+		float getY() const
+		{
+			return y;
+		}
 
-	void setY(float y)
-	{
-		this->y = y;
-	}
+		float getZ() const
+		{
+			return z;
+		}
 
-	void setZ(float z)
-	{
-		this->z = z;
-	}
+		void setX(float x)
+		{
+			this->x = x;
+		}
 
-	Vector3f &set(Vector3f &other)
-	{
-		this->x = other.x;
-		this->y = other.y;
-		this->z = other.z;
-		return *this;
-	}
+		void setY(float y)
+		{
+			this->y = y;
+		}
 
-	Vector3f &set(float x, float y, float z)
-	{
-		this->x = x;
-		this->y = y;
-		this->z = z;
-		return *this;
-	}
+		void setZ(float z)
+		{
+			this->z = z;
+		}
 
-	Vector3f &set(float xyz)
-	{
-		this->x = xyz;
-		this->y = xyz;
-		this->z = xyz;
-		return *this;
-	}
-
-	Vector3f &add(Vector3f &other)
-	{
-		this->x += other.x;
-		this->y += other.y;
-		this->z += other.z;
-		return *this;
-	}
-
-	Vector3f &subtract(Vector3f &other)
-	{
-		this->x -= other.x;
-		this->y -= other.y;
-		this->z -= other.z;
-		return *this;
-	}
-
-	Vector3f &multiply(Vector3f &other)
-	{
-		this->x *= other.x;
-		this->y *= other.y;
-		this->z *= other.z;
-		return *this;
-	}
-
-	Vector3f &scale(float scalar)
-	{
-		this->x *= scalar;
-		this->y *= scalar;
-		this->z *= scalar;
-		return *this;
-	}
-
-	Vector3f &transform(Matrix4f &mat)
-	{
-		set(this->x * mat.values[0][0] + this->y * mat.values[0][1] + this->z * mat.values[0][2] + mat.values[0][3],
-			this->x * mat.values[1][0] + this->y * mat.values[1][1] + this->z * mat.values[1][2] + mat.values[1][3],
-			this->x * mat.values[2][0] + this->y * mat.values[2][1] + this->z * mat.values[2][2] + mat.values[2][3]);
-		return *this;
-	}
-
-	Vector3f &divide(Vector3f &other)
-	{
-		this->x /= other.x;
-		this->y /= other.y;
-		this->z /= other.z;
-		return *this;
-	}
-
-	Vector3f &cross(Vector3f &other)
-	{
-		float x1 = (this->y * other.z) - (this->z * other.y);
-        float y1 = (this->z * other.x) - (this->x * other.z);
-        float z1 = (this->x * other.y) - (this->y * other.x);
-        set(x1, y1, z1);
-		return *this;
-	}
-
-	float length()
-	{
-		return sqrt(x * x + y * y + z * z);
-	}
-
-	Vector3f &normalize()
-	{
-		float len = length();
-		float len2 = len*len;
-		if (len2 == 0 || len2 == 1)
+		Vector3f &set(Vector3f &other)
+		{
+			this->x = other.x;
+			this->y = other.y;
+			this->z = other.z;
 			return *this;
-		this->scale(1.0f / len);
-		return *this;
-	}
+		}
 
-	float dot(Vector3f &other)
-	{
-		return this->x * other.x + this->y * other.y + this->z * other.z;
-	}
+		Vector3f &set(float x, float y, float z)
+		{
+			this->x = x;
+			this->y = y;
+			this->z = z;
+			return *this;
+		}
 
-	float distanceSqr(Vector3f &other)
-	{
-		float dx = this->x - other.x;
-		float dy = this->y - other.y;
-		float dz = this->z - other.z;
-		return dx * dx + dy * dy + dz * dz;
-	}
+		Vector3f &set(float xyz)
+		{
+			this->x = xyz;
+			this->y = xyz;
+			this->z = xyz;
+			return *this;
+		}
 
-	float distance(Vector3f &other)
-	{
-		return sqrt(distanceSqr(other));
-	}
+		Vector3f &add(Vector3f &other)
+		{
+			this->x += other.x;
+			this->y += other.y;
+			this->z += other.z;
+			return *this;
+		}
 
-	static Vector3f min(Vector3f &a, Vector3f &b, Vector3f &outVec)
-	{
-		outVec.x = MathUtil::min(a.x, b.x);
-		outVec.y = MathUtil::min(a.y, b.y);
-		outVec.z = MathUtil::min(a.z, b.z);
-		return outVec;
-	}
+		Vector3f &subtract(Vector3f &other)
+		{
+			this->x -= other.x;
+			this->y -= other.y;
+			this->z -= other.z;
+			return *this;
+		}
 
-	static Vector3f max(Vector3f &a, Vector3f &b, Vector3f &outVec)
-	{
-		outVec.x = MathUtil::max(a.x, b.x);
-		outVec.y = MathUtil::max(a.y, b.y);
-		outVec.z = MathUtil::max(a.z, b.z);
-		return outVec;
-	}
+		Vector3f &multiply(Vector3f &other)
+		{
+			this->x *= other.x;
+			this->y *= other.y;
+			this->z *= other.z;
+			return *this;
+		}
 
-	friend ostream& operator<<(ostream& out, const Vector3f &vec) // output
-	{
-		out << "[" << vec.x << ", " << vec.y << ", " << vec.z << "]";
-		return out;
-	}
-};
+		Vector3f &scale(float scalar)
+		{
+			this->x *= scalar;
+			this->y *= scalar;
+			this->z *= scalar;
+			return *this;
+		}
 
+		Vector3f &transform(Matrix4f &mat)
+		{
+			set(this->x * mat.values[0][0] + this->y * mat.values[0][1] + this->z * mat.values[0][2] + mat.values[0][3],
+				this->x * mat.values[1][0] + this->y * mat.values[1][1] + this->z * mat.values[1][2] + mat.values[1][3],
+				this->x * mat.values[2][0] + this->y * mat.values[2][1] + this->z * mat.values[2][2] + mat.values[2][3]);
+			return *this;
+		}
+
+		Vector3f &divide(Vector3f &other)
+		{
+			this->x /= other.x;
+			this->y /= other.y;
+			this->z /= other.z;
+			return *this;
+		}
+
+		Vector3f &cross(Vector3f &other)
+		{
+			float x1 = (this->y * other.z) - (this->z * other.y);
+			float y1 = (this->z * other.x) - (this->x * other.z);
+			float z1 = (this->x * other.y) - (this->y * other.x);
+			set(x1, y1, z1);
+			return *this;
+		}
+
+		float length()
+		{
+			return sqrt(x * x + y * y + z * z);
+		}
+
+		Vector3f &normalize()
+		{
+			float len = length();
+			float len2 = len*len;
+			if (len2 == 0 || len2 == 1)
+				return *this;
+			this->scale(1.0f / len);
+			return *this;
+		}
+
+		float dot(Vector3f &other)
+		{
+			return this->x * other.x + this->y * other.y + this->z * other.z;
+		}
+
+		float distanceSqr(Vector3f &other)
+		{
+			float dx = this->x - other.x;
+			float dy = this->y - other.y;
+			float dz = this->z - other.z;
+			return dx * dx + dy * dy + dz * dz;
+		}
+
+		float distance(Vector3f &other)
+		{
+			return sqrt(distanceSqr(other));
+		}
+
+		static Vector3f min(Vector3f &a, Vector3f &b, Vector3f &outVec)
+		{
+			outVec.x = MathUtil::min(a.x, b.x);
+			outVec.y = MathUtil::min(a.y, b.y);
+			outVec.z = MathUtil::min(a.z, b.z);
+			return outVec;
+		}
+
+		static Vector3f max(Vector3f &a, Vector3f &b, Vector3f &outVec)
+		{
+			outVec.x = MathUtil::max(a.x, b.x);
+			outVec.y = MathUtil::max(a.y, b.y);
+			outVec.z = MathUtil::max(a.z, b.z);
+			return outVec;
+		}
+
+		friend ostream& operator<<(ostream& out, const Vector3f &vec) // output
+		{
+			out << "[" << vec.x << ", " << vec.y << ", " << vec.z << "]";
+			return out;
+		}
+	};
+}
 #endif

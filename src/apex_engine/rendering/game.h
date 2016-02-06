@@ -8,97 +8,87 @@
 #include "../rendering/rendermanager.h"
 #include "../rendering/camera.h"
 #include "../assets/assetmanager.h"
+#include "../input/inputmanager.h"
 
-class Game
+namespace apex
 {
-private:
-	int width, height;
-protected:
-	Scene *scene;
-
-	RenderManager *renderMgr;
-	AssetManager *assetMgr;
-
-	Camera *camera;
-public:
-	Game() 
+	class Game
 	{
-		scene = new Scene();
+	private:
+	protected:
+		Scene *scene;
 
-		renderMgr = new RenderManager();
-		assetMgr = new AssetManager();
-	}
-    
-    ~Game() 
-	{
-		delete assetMgr;
-		delete scene;
-		delete renderMgr;
-	}
+		RenderManager *renderMgr;
+		AssetManager *assetMgr;
+		InputManager *inputMgr;
 
-	void update()
-	{
-		if (this->camera != NULL)
+		Camera *camera;
+	public:
+		Game()
 		{
-			this->camera->update();
+			scene = new Scene();
+
+			renderMgr = new RenderManager();
+			assetMgr = new AssetManager();
+			inputMgr = new InputManager();
 		}
 
-		this->scene->getRootNode()->update(this->renderMgr);
-		this->logic();
-	}
-
-	void render()
-	{
-		if (this->renderMgr != NULL)
+		~Game()
 		{
-			this->renderMgr->getEngine()->viewport(0, 0, this->getWidth(), this->getHeight());
-			this->renderMgr->getEngine()->clear(true, true, false);
-			this->renderMgr->render(*camera);
+			delete inputMgr;
+			delete assetMgr;
+			delete scene;
+			delete renderMgr;
 		}
-		else
-			throw std::runtime_error("RenderManager should not be null");
-	}
-    
-    virtual void init() = 0;
 
-    virtual void logic() = 0;
+		void update()
+		{
+			if (this->camera != NULL)
+			{
+				this->camera->update();
+			}
 
-    virtual void exit() = 0;
+			this->scene->getRootNode()->update(this->renderMgr);
+			this->logic();
+		}
 
-	const int getWidth()
-	{
-		return width;
-	}
+		void render()
+		{
+			if (this->renderMgr != NULL)
+			{
+				this->renderMgr->getEngine()->viewport(0, 0, this->camera->getWidth(), this->camera->getHeight());
+				this->renderMgr->getEngine()->clear(true, true, false);
+				this->renderMgr->render(*camera);
+			}
+			else
+				throw std::runtime_error("RenderManager should not be null");
+		}
 
-	void setWidth(int width)
-	{
-		this->width = width;
-	}
+		virtual void init() = 0;
 
-	const int getHeight()
-	{
-		return height;
-	}
+		virtual void logic() = 0;
 
-	void setHeight(int height)
-	{
-		this->height = height;
-	}
+		virtual void exit() = 0;
 
-	Scene *getScene()
-	{
-		return scene;
-	}
+		Scene *getScene()
+		{
+			return scene;
+		}
 
-	AssetManager *getAssetManager()
-	{
-		return assetMgr;
-	}
+		AssetManager *getAssetManager()
+		{
+			return assetMgr;
+		}
 
-	RenderManager *getRenderManager()
-	{
-		return renderMgr;
-	}
-};
+		RenderManager *getRenderManager()
+		{
+			return renderMgr;
+		}
 
+		InputManager *getInputManager()
+		{
+			return inputMgr;
+		}
+	};
+}
 #endif

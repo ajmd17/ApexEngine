@@ -1,5 +1,8 @@
 #include "logutil.h"
 
-bool display_logs = true; 
+namespace apex
+{
+	bool display_logs = true;
 
-Logger engine_log = Logger();
+	Logger engine_log = Logger();
+}

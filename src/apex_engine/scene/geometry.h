@@ -14,87 +14,89 @@
 #include <memory>
 using std::shared_ptr;
 
-class RenderManager;
-
-class Camera;
-
-class Geometry : public Spatial
+namespace apex
 {
-private:
-	static int geom_count;
+	class RenderManager;
 
-	RenderManager *renderMgr; // Contains a list of all geometry that can be rendered (attached to the root node)
+	class Camera;
 
-	shared_ptr<Shader> shader;
-	shared_ptr<Mesh> mesh;
-
-	Material material;
-
-	RenderBucket bucket;
-
-	BoundingBox localBoundingBox, globalBoundingBox;
-	bool localBoundingBoxCreated, globalBoundingBoxCreated;
-
-	void updateGlobalBoundingBox();
-
-	void updateLocalBoundingBox();
-public:
-	Geometry();
-
-	Geometry(string name);
-
-	Geometry(shared_ptr<Mesh> mesh);
-
-	Geometry(shared_ptr<Mesh> mesh, string name);
-
-	~Geometry();
-
-	void update(RenderManager *renderMgr);
-
-	void render(Camera &cam);
-
-	void updateParents();
-
-	Mesh *getMesh()
+	class Geometry : public Spatial
 	{
-		return this->mesh.get();
-	}
+	private:
+		static int geom_count;
 
-	void setMesh(shared_ptr<Mesh> mesh)
-	{
-		this->mesh = mesh;
-	}
+		RenderManager *renderMgr; // Contains a list of all geometry that can be rendered (attached to the root node)
 
-	Material &getMaterial() 
-	{ 
-		return material; 
-	}
+		shared_ptr<Shader> shader;
+		shared_ptr<Mesh> mesh;
 
-	void setMaterial(Material material)
-	{
-		this->material = material;
-	}
+		Material material;
 
-	shared_ptr<Shader> getShader()
-	{
-		return shader;
-	}
+		RenderBucket bucket;
 
-	void setShader(shared_ptr<Shader> shader)
-	{
-		this->shader = shader;
-	}
+		BoundingBox localBoundingBox, globalBoundingBox;
+		bool localBoundingBoxCreated, globalBoundingBoxCreated;
 
-	RenderBucket getBucket()
-	{
-		return bucket;
-	}
+		void updateGlobalBoundingBox();
 
-	void setBucket(RenderBucket bucket);
+		void updateLocalBoundingBox();
+	public:
+		Geometry();
 
-	BoundingBox &getGlobalBoundingBox();
+		Geometry(string name);
 
-	BoundingBox &getLocalBoundingBox();
-};
+		Geometry(shared_ptr<Mesh> mesh);
 
+		Geometry(shared_ptr<Mesh> mesh, string name);
+
+		~Geometry();
+
+		void update(RenderManager *renderMgr);
+
+		void render(Camera &cam);
+
+		void updateParents();
+
+		Mesh *getMesh()
+		{
+			return this->mesh.get();
+		}
+
+		void setMesh(shared_ptr<Mesh> mesh)
+		{
+			this->mesh = mesh;
+		}
+
+		Material &getMaterial()
+		{
+			return material;
+		}
+
+		void setMaterial(Material material)
+		{
+			this->material = material;
+		}
+
+		shared_ptr<Shader> getShader()
+		{
+			return shader;
+		}
+
+		void setShader(shared_ptr<Shader> shader)
+		{
+			this->shader = shader;
+		}
+
+		RenderBucket getBucket()
+		{
+			return bucket;
+		}
+
+		void setBucket(RenderBucket bucket);
+
+		BoundingBox &getGlobalBoundingBox();
+
+		BoundingBox &getLocalBoundingBox();
+	};
+}
 #endif
