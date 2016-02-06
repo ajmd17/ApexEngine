@@ -41,6 +41,8 @@ project.lock.json
 artifacts/
 
 ._*
+.DS_Store
+
 *_i.c
 *_p.c
 *_i.h
