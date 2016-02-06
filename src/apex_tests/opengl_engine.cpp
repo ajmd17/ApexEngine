@@ -3,6 +3,8 @@
 #include <rendering/texture2d.h>
 #include <rendering/game.h>
 
+#include <input/inputmanager.h>
+
 #ifndef USE_SFML // SFML comes with its own image utilities, use this if we aren't using SFML
 #ifndef STB_IMAGE_IMPLEMENTATION
 // For loading textures.
@@ -30,6 +32,123 @@
 #include <util/logutil.h>
 
 #ifdef USE_SFML
+
+// todo: add more
+int convertSFMLKeyCode(int keyCode)
+{
+	switch (keyCode)
+	{
+	case sf::Keyboard::A:
+			return KeyboardKey::A;
+			break;
+	case sf::Keyboard::B:
+		return KeyboardKey::B;
+		break;
+	case sf::Keyboard::C:
+		return KeyboardKey::C;
+		break;
+	case sf::Keyboard::D:
+		return KeyboardKey::D;
+		break;
+	case sf::Keyboard::E:
+		return KeyboardKey::E;
+		break;
+	case sf::Keyboard::F:
+		return KeyboardKey::F;
+		break;
+	case sf::Keyboard::G:
+		return KeyboardKey::G;
+		break;
+	case sf::Keyboard::H:
+		return KeyboardKey::H;
+		break;
+	case sf::Keyboard::I:
+		return KeyboardKey::I;
+		break;
+	case sf::Keyboard::J:
+		return KeyboardKey::J;
+		break;
+	case sf::Keyboard::K:
+		return KeyboardKey::K;
+		break;
+	case sf::Keyboard::L:
+		return KeyboardKey::L;
+		break;
+	case sf::Keyboard::M:
+		return KeyboardKey::M;
+		break;
+	case sf::Keyboard::N:
+		return KeyboardKey::N;
+		break;
+	case sf::Keyboard::O:
+		return KeyboardKey::O;
+		break;
+	case sf::Keyboard::P:
+		return KeyboardKey::P;
+		break;
+	case sf::Keyboard::Q:
+		return KeyboardKey::Q;
+		break;
+	case sf::Keyboard::R:
+		return KeyboardKey::R;
+		break;
+	case sf::Keyboard::S:
+		return KeyboardKey::S;
+		break;
+	case sf::Keyboard::T:
+		return KeyboardKey::T;
+		break;
+	case sf::Keyboard::U:
+		return KeyboardKey::U;
+		break;
+	case sf::Keyboard::V:
+		return KeyboardKey::V;
+		break;
+	case sf::Keyboard::W:
+		return KeyboardKey::W;
+		break;
+	case sf::Keyboard::X:
+		return KeyboardKey::X;
+		break;
+	case sf::Keyboard::Y:
+		return KeyboardKey::Y;
+		break;
+	case sf::Keyboard::Z:
+		return KeyboardKey::Z;
+		break;
+	case sf::Keyboard::Num0:
+		return KeyboardKey::Num0;
+		break;
+	case sf::Keyboard::Num1:
+		return KeyboardKey::Num1;
+		break;
+	case sf::Keyboard::Num2:
+		return KeyboardKey::Num2;
+		break;
+	case sf::Keyboard::Num3:
+		return KeyboardKey::Num3;
+		break;
+	case sf::Keyboard::Num4:
+		return KeyboardKey::Num4;
+		break;
+	case sf::Keyboard::Num5:
+		return KeyboardKey::Num5;
+		break;
+	case sf::Keyboard::Num6:
+		return KeyboardKey::Num6;
+		break;
+	case sf::Keyboard::Num7:
+		return KeyboardKey::Num7;
+		break;
+	case sf::Keyboard::Num8:
+		return KeyboardKey::Num8;
+		break;
+	case sf::Keyboard::Num9:
+		return KeyboardKey::Num9;
+		break;
+	}
+}
+
 void GLEngine::renderThread(WindowGamePair &pair)
 {
 	sf::RenderWindow *window = pair.window;
@@ -74,6 +193,7 @@ void GLEngine::createContext(Game *game, int width, int height)
     
 	window.create(sf::VideoMode(width, height), "Apex Engine", sf::Style::Default, settings);
 	window.setVerticalSyncEnabled(true);
+	window.setKeyRepeatEnabled(false);
     
     engine_log << "OpenGL version supported: " << glGetString(GL_VERSION) << "\n\n";
     
@@ -115,6 +235,18 @@ void GLEngine::createContext(Game *game, int width, int height)
 				game->setWidth(window.getSize().x);
 				game->setHeight(window.getSize().y);
 			}
+		}
+		else if (event.type == sf::Event::KeyPressed)
+		{
+			int code = event.key.code;
+			int codeConv = convertSFMLKeyCode(code);
+			InputManager::keyDown(codeConv);
+		}
+		else if (event.type == sf::Event::KeyReleased)
+		{
+			int code = event.key.code;
+			int codeConv = convertSFMLKeyCode(code);
+			InputManager::keyUp(codeConv);
 		}
 	}
     

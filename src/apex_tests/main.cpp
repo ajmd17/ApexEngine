@@ -13,7 +13,7 @@ using namespace std;
 #include <scene/geometry.h>
 #include <util/strutil.h>
 #include <rendering/cameras/perspective_camera.h>
-
+#include <input/inputmanager.h>
 #include <assets/loadedtext.h>
 
 #include "sharedptr_conv.h"

@@ -29,6 +29,8 @@
     <ClInclude Include="..\..\src\apex_engine\assets\textfileloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\textureloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\util\stb_image.h" />
+    <ClInclude Include="..\..\src\apex_engine\input\inputmanager.h" />
+    <ClInclude Include="..\..\src\apex_engine\input\input_enums.h" />
     <ClInclude Include="..\..\src\apex_engine\math\apexmath.h" />
     <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
     <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
@@ -75,6 +77,7 @@
     <ClCompile Include="..\..\src\apex_engine\assets\modelloaders\objloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\assets\shaderloader\shaderloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\assets\textureloader.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\input\inputmanager.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\boundingbox.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\math_util.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\matrix_util.cpp" />
