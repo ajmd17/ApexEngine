@@ -76,6 +76,12 @@ namespace apex
 			return viewProjectionMatrix;
 		}
 
+		void rotate(const Vector3f &axis, float angle)
+		{
+			direction.rotate(axis, angle);
+			direction.normalize();
+		}
+
 		void update()
 		{
 			updateCameraLogic();

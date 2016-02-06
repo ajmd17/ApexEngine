@@ -75,7 +75,6 @@ namespace apex
 
 	void Shader::setDefaultValues()
 	{
-		RenderManager::getEngine()->setDepthClamp(true);
 		RenderManager::getEngine()->setFaceDirection(Ccw);
 	}
 

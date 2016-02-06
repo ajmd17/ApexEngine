@@ -13,8 +13,10 @@ namespace apex
 {
 	class Vector3f
 	{
+	private:
+		Matrix4f tmpRot;
 	public:
-		static Vector3f Zero, One, UnitX, UnitY, UnitZ;
+		static const Vector3f Zero, One, UnitX, UnitY, UnitZ;
 
 		float x, y, z;
 
@@ -70,7 +72,7 @@ namespace apex
 			this->z = z;
 		}
 
-		Vector3f &set(Vector3f &other)
+		Vector3f &set(const Vector3f &other)
 		{
 			this->x = other.x;
 			this->y = other.y;
@@ -94,7 +96,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector3f &add(Vector3f &other)
+		Vector3f &add(const Vector3f &other)
 		{
 			this->x += other.x;
 			this->y += other.y;
@@ -102,7 +104,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector3f &subtract(Vector3f &other)
+		Vector3f &subtract(const Vector3f &other)
 		{
 			this->x -= other.x;
 			this->y -= other.y;
@@ -110,7 +112,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector3f &multiply(Vector3f &other)
+		Vector3f &multiply(const Vector3f &other)
 		{
 			this->x *= other.x;
 			this->y *= other.y;
@@ -126,7 +128,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector3f &transform(Matrix4f &mat)
+		Vector3f &transform(const Matrix4f &mat)
 		{
 			set(this->x * mat.values[0][0] + this->y * mat.values[0][1] + this->z * mat.values[0][2] + mat.values[0][3],
 				this->x * mat.values[1][0] + this->y * mat.values[1][1] + this->z * mat.values[1][2] + mat.values[1][3],
@@ -134,7 +136,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector3f &divide(Vector3f &other)
+		Vector3f &divide(const Vector3f &other)
 		{
 			this->x /= other.x;
 			this->y /= other.y;
@@ -142,7 +144,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector3f &cross(Vector3f &other)
+		Vector3f &cross(const Vector3f &other)
 		{
 			float x1 = (this->y * other.z) - (this->z * other.y);
 			float y1 = (this->z * other.x) - (this->x * other.z);
@@ -151,7 +153,9 @@ namespace apex
 			return *this;
 		}
 
-		float length()
+		Vector3f &rotate(const Vector3f &axis, float angle);
+
+		float length() const
 		{
 			return sqrt(x * x + y * y + z * z);
 		}
@@ -171,7 +175,7 @@ namespace apex
 			return this->x * other.x + this->y * other.y + this->z * other.z;
 		}
 
-		float distanceSqr(Vector3f &other)
+		float distanceSqr(Vector3f &other) const
 		{
 			float dx = this->x - other.x;
 			float dy = this->y - other.y;
@@ -179,12 +183,12 @@ namespace apex
 			return dx * dx + dy * dy + dz * dz;
 		}
 
-		float distance(Vector3f &other)
+		float distance(Vector3f &other) const
 		{
 			return sqrt(distanceSqr(other));
 		}
 
-		static Vector3f min(Vector3f &a, Vector3f &b, Vector3f &outVec)
+		static Vector3f min(const Vector3f &a, const Vector3f &b, Vector3f &outVec)
 		{
 			outVec.x = MathUtil::min(a.x, b.x);
 			outVec.y = MathUtil::min(a.y, b.y);
@@ -192,7 +196,7 @@ namespace apex
 			return outVec;
 		}
 
-		static Vector3f max(Vector3f &a, Vector3f &b, Vector3f &outVec)
+		static Vector3f max(const Vector3f &a, const Vector3f &b, Vector3f &outVec)
 		{
 			outVec.x = MathUtil::max(a.x, b.x);
 			outVec.y = MathUtil::max(a.y, b.y);

@@ -2,9 +2,9 @@
 
 namespace apex
 {
-	Vector4f Vector4f::Zero = Vector4f(0.0);
-	Vector4f Vector4f::One = Vector4f(1.0);
-	Vector4f Vector4f::UnitX = Vector4f(1.0, 0.0, 0.0, 0.0);
-	Vector4f Vector4f::UnitY = Vector4f(0.0, 1.0, 0.0, 0.0);
-	Vector4f Vector4f::UnitZ = Vector4f(0.0, 0.0, 1.0, 0.0);
+	const Vector4f Vector4f::Zero(0.0);
+	const Vector4f Vector4f::One(1.0);
+	const Vector4f Vector4f::UnitX(1.0, 0.0, 0.0, 0.0);
+	const Vector4f Vector4f::UnitY(0.0, 1.0, 0.0, 0.0);
+	const Vector4f Vector4f::UnitZ(0.0, 0.0, 1.0, 0.0);
 }

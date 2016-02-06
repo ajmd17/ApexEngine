@@ -35,6 +35,26 @@ namespace apex
 
 #ifdef USE_SFML
 
+	int convertSFMLMouseCode(int btn)
+	{
+		switch (btn)
+		{
+		case sf::Mouse::Left:
+			return apex::MouseButton::Left;
+			break;
+		case sf::Mouse::Right:
+			return apex::MouseButton::Right;
+			break;
+		case sf::Mouse::Middle:
+			return apex::MouseButton::Middle;
+			break;
+
+		default:
+			return apex::MouseButton::UndefinedButton;
+			break;
+		}
+	}
+
 // todo: add more
 	int convertSFMLKeyCode(int keyCode)
 	{
@@ -191,14 +211,14 @@ namespace apex
 
 
 		default:
-			return apex::Undefined;
+			return apex::UndefinedKey;
 			break;
 		}
 	}
 
 	void GLEngine::renderThread(WindowGamePair &pair)
 	{
-		sf::RenderWindow *window = pair.window;
+		sf::Window *window = pair.window;
 		Game *game = pair.game;
 
 		window->setActive(true);
@@ -218,6 +238,9 @@ namespace apex
 
 			if (game != NULL)
 			{
+				game->getInputManager()->_setMousePos(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+				game->getInputManager()->_setWindowPos(window->getPosition().x, window->getPosition().y);
+
 				game->update();
 				game->render();
 			}
@@ -228,33 +251,29 @@ namespace apex
 
 		window->setActive(false);
 	}
-#endif
 
 	void GLEngine::createContext(Game *game, int width, int height)
 	{
-		sf::RenderWindow window;
+		sf::Window window;
 		sf::ContextSettings settings;
 		settings.depthBits = 24;
-		settings.stencilBits = 8;
 		settings.antialiasingLevel = 4;
 
-		window.create(sf::VideoMode(width, height), "Apex Engine", sf::Style::Default, settings);
+		window.create(sf::VideoMode(width, height, 32), "Apex Engine", sf::Style::Default, settings);
 		window.setVerticalSyncEnabled(true);
 		window.setKeyRepeatEnabled(false);
 
 		engine_log << "OpenGL version supported: " << glGetString(GL_VERSION) << "\n\n";
 
 		this->contextActive = true;
-
+		
 		// Mac OS X / iOS don't need glew.
 #ifndef __APPLE__
 		glewInit();
 #endif
-
 		glEnable(GL_DEPTH_TEST);
 		glDepthMask(GL_TRUE);
 		glDepthFunc(GL_LEQUAL);
-		glDepthRange(0.0, 1.0);
 
 		sf::Thread render_thread(std::bind(&GLEngine::renderThread, this, WindowGamePair(&window, game)));
 		sf::Event event;
@@ -301,10 +320,34 @@ namespace apex
 					game->getInputManager()->keyUp(codeConv);
 				}
 			}
+			else if (event.type == sf::Event::MouseButtonPressed)
+			{
+				if (game != NULL)
+				{
+					int code = event.mouseButton.button;
+					int codeConv = convertSFMLMouseCode(code);
+					game->getInputManager()->mouseButtonDown(codeConv);
+				}
+			}
+			else if (event.type == sf::Event::MouseButtonReleased)
+			{
+				if (game != NULL)
+				{
+					int code = event.mouseButton.button;
+					int codeConv = convertSFMLMouseCode(code);
+					game->getInputManager()->mouseButtonReleased(codeConv);
+				}
+			}
 		}
-
 		render_thread.wait();
 	}
+
+	void GLEngine::setMousePosition(int x, int y)
+	{
+		sf::Mouse::setPosition(sf::Vector2i(x, y));
+	}
+
+#endif // USE_SFML
 
 	void GLEngine::viewport(int x, int y, int width, int height)
 	{
@@ -600,7 +643,6 @@ namespace apex
 
 	void GLEngine::renderMesh(Mesh &mesh)
 	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		glBindBuffer(GL_ARRAY_BUFFER, mesh.vbo);
 
 		for (size_t i = 0; i < mesh.getAttributes().getNumAttributes(); i++)
@@ -632,7 +674,7 @@ namespace apex
 
 	void GLEngine::setDepthMask(bool depthMask)
 	{
-		glDepthMask(depthMask);
+		glDepthMask((depthMask ? GL_TRUE : GL_FALSE));
 	}
 
 	void GLEngine::setDepthClamp(bool depthClamp)

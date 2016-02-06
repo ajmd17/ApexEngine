@@ -57,7 +57,7 @@ namespace apex
 			this->y = y;
 		}
 
-		Vector2f &set(Vector2f &other)
+		Vector2f &set(const Vector2f &other)
 		{
 			this->x = other.x;
 			this->y = other.y;
@@ -78,21 +78,21 @@ namespace apex
 			return *this;
 		}
 
-		Vector2f &add(Vector2f &other)
+		Vector2f &add(const Vector2f &other)
 		{
 			this->x += other.x;
 			this->y += other.y;
 			return *this;
 		}
 
-		Vector2f &subtract(Vector2f &other)
+		Vector2f &subtract(const Vector2f &other)
 		{
 			this->x -= other.x;
 			this->y -= other.y;
 			return *this;
 		}
 
-		Vector2f &multiply(Vector2f &other)
+		Vector2f &multiply(const Vector2f &other)
 		{
 			this->x *= other.x;
 			this->y *= other.y;
@@ -106,14 +106,14 @@ namespace apex
 			return *this;
 		}
 
-		Vector2f &divide(Vector2f &other)
+		Vector2f &divide(const Vector2f &other)
 		{
 			this->x /= other.x;
 			this->y /= other.y;
 			return *this;
 		}
 
-		float length()
+		float length() const
 		{
 			return sqrt(x * x + y * y);
 		}
@@ -128,31 +128,31 @@ namespace apex
 			return *this;
 		}
 
-		float dot(Vector2f &other)
+		float dot(const Vector2f &other)
 		{
 			return this->x * other.x + this->y * other.y;
 		}
 
-		float distanceSqr(Vector2f &other)
+		float distanceSqr(const Vector2f &other) const
 		{
 			float dx = this->x - other.x;
 			float dy = this->y - other.y;
 			return dx * dx + dy * dy;
 		}
 
-		float distance(Vector2f &other)
+		float distance(const Vector2f &other) const
 		{
 			return sqrt(distanceSqr(other));
 		}
 
-		static Vector2f min(Vector2f &a, Vector2f &b, Vector2f &outVec)
+		static Vector2f min(const Vector2f &a, const Vector2f &b, Vector2f &outVec)
 		{
 			outVec.x = MathUtil::min(a.x, b.x);
 			outVec.y = MathUtil::min(a.y, b.y);
 			return outVec;
 		}
 
-		static Vector2f max(Vector2f &a, Vector2f &b, Vector2f &outVec)
+		static Vector2f max(const Vector2f &a, const Vector2f &b, Vector2f &outVec)
 		{
 			outVec.x = MathUtil::max(a.x, b.x);
 			outVec.y = MathUtil::max(a.y, b.y);

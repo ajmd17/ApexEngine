@@ -56,7 +56,6 @@ namespace apex
 		{
 			if (this->renderMgr != NULL)
 			{
-				this->renderMgr->getEngine()->viewport(0, 0, this->camera->getWidth(), this->camera->getHeight());
 				this->renderMgr->getEngine()->clear(true, true, false);
 				this->renderMgr->render(*camera);
 			}

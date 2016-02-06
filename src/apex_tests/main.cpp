@@ -52,17 +52,7 @@ public:
 	}
 };
 
-class testclass
-{
-public:
-	testclass(const std::string& s) : m_string(s) {}
-	void print_string() { std::cout << m_string << "\n"; }
-
-private:
-	std::string m_string;
-};
-
-const string MyShader::vscode = "#version 120\nattribute vec3 a_position;\nattribute vec2 a_texcoord0;\nattribute vec3 a_normal;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;uniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\nv_normal = a_normal;\n}";
+const string MyShader::vscode = "#version 120\nattribute vec3 a_position;\nattribute vec2 a_texcoord0;\nattribute vec3 a_normal;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;\nuniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\nv_normal = a_normal;\n}";
 const string MyShader::fscode = "#version 120\nuniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\nfloat ndotl = dot(v_normal, vec3(1.0));\ngl_FragColor = vec4(v_normal, 1.0);\n}";
 
 Geometry *mygeom;
@@ -73,14 +63,14 @@ Matrix4f myMatrix;
 float rot;
 void TestGame::init()
 {
-	RenderManager::getEngine()->clearColor(0.75, 0, 0, 1);
+	RenderManager::getEngine()->clearColor(97.0/255.0, 119.0/255.0, 171.0/255.0, 1);
     
 	//shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test_shader.fs");
 //	engine_log << sc->getText() << "\n";
 	
-	std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
+	//std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
 	
-	this->camera = new FPSCamera(inputMgr, 45, 1.0, 100.0);
+	this->camera = new FPSCamera(inputMgr, 75, 0.5f, 100.0f);
 
 
 	rot = 0;
@@ -138,10 +128,10 @@ void TestGame::init()
 		.property("z", &Quaternion::getZ)
 
 		.def("new", &Quaternion::setToIdentity)
-		.def("copy", (Quaternion &(Quaternion::*) (Quaternion &)) &Quaternion::set)
+		.def("copy", (Quaternion &(Quaternion::*) (const Quaternion &)) &Quaternion::set)
 
 		.def("setFromAxis", &Quaternion::setFromAxis)
-		.def("multiply", (Quaternion &(Quaternion::*) (Quaternion &)) &Quaternion::multiply)
+		.def("multiply", (Quaternion &(Quaternion::*) (const Quaternion &)) &Quaternion::multiply)
 
 		.def("getPitch", &Quaternion::getPitch)
 		.def("getRoll", &Quaternion::getRoll)
@@ -158,7 +148,7 @@ void TestGame::init()
 
 		.def("new", (Vector3f &(Vector3f::*) (float, float, float)) &Vector3f::set)
 		.def("set", (Vector3f &(Vector3f::*) (float, float, float)) &Vector3f::set)
-		.def("copy", (Vector3f &(Vector3f::*) (Vector3f &)) &Vector3f::set)
+		.def("copy", (Vector3f &(Vector3f::*) (const Vector3f &)) &Vector3f::set)
 
 		.def("add", &Vector3f::add)
 		.def("subtract", &Vector3f::subtract)
@@ -246,22 +236,32 @@ void TestGame::init()
 	ShaderProperties props;
 	shared_ptr<Shader> shaderPtr = ShaderManager::getShader<MyShader>(props);
 
+
+
+	std::shared_ptr<Node> torus = getAssetManager()->loadAs<Node>("./data/models/torus.obj");
+	torus->setLocalTranslation(Vector3f(0, 1, 7));
+	torus->getAt<Geometry>(0)->setShader(shaderPtr);
+	this->getScene()->getRootNode()->add(torus);
+
 	std::shared_ptr<Node> cube = getAssetManager()->loadAs<Node>("./data/models/cube.obj");
 	cube->setLocalTranslation(Vector3f(0, -1, 2.5f));
 	cube->setLocalScale(Vector3f(0.3f));
 	cube->getAt<Geometry>(0)->setShader(shaderPtr);
 	this->getScene()->getRootNode()->add(cube);
 
-
+	/*
 	std::shared_ptr<Node> loadedmodel = getAssetManager()->loadAs<Node>("./data/models/logo.obj");
 
 	loadedmodel->setLocalTranslation(Vector3f(0, 1, 7));
+	loadedmodel->setLocalRotation(Quaternion().setFromAxis(Vector3f::UnitY, -90));
 
     loadedmodel->getAt<Geometry>(0)->setShader(shaderPtr);
 	loadedmodel->getAt<Geometry>(0)->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex);
-    loadedmodel->getAt<Geometry>(0)->getMaterial().setBool(Material::BOOL_CULLENABLED, false);
+    loadedmodel->getAt<Geometry>(0)->getMaterial().setBool(Material::BOOL_CULLENABLED, true);
 	loadedmodel->getAt<Geometry>(1)->setShader(shaderPtr);
-	this->getScene()->getRootNode()->add(loadedmodel);
+	this->getScene()->getRootNode()->add(loadedmodel);*/
+
+
 
 	/*vector<Vertex> myVerts;
 	mesh = new Mesh();
@@ -273,7 +273,7 @@ void TestGame::init()
 	mygeom->setLocalTranslation(Vector3f(0, 0, 4));*/
 
 
-	
+
 	// Test Lua
 	//lua = luaL_newstate();
 	//luaL_dofile(lua, "script.lua");
@@ -294,9 +294,9 @@ void TestGame::logic()
 	//lua_logic();
 
 	rot += 1;
-
+	
 	Quaternion &qr = scene->getRootNode()->getAt<Spatial>(1)->getLocalRotation();
-	qr.setFromAxis(Vector3f(0, 1, 0), rot);
+	qr.setFromAxis(Vector3f(0, 1, 0), rot*1.25f);
 	scene->getRootNode()->getAt<Spatial>(1)->setNeedsTransformUpdate();
 
 	Quaternion &qr1 = scene->getRootNode()->getAt<Spatial>(0)->getLocalRotation();

@@ -11,7 +11,7 @@ namespace apex
 		MatrixUtil::l_vey = Vector3f(),
 		MatrixUtil::l_vez = Vector3f();
 
-	void MatrixUtil::setToTranslation(Matrix4f &mat, Vector3f &translation)
+	void MatrixUtil::setToTranslation(Matrix4f &mat, const Vector3f &translation)
 	{
 		mat.setToIdentity();
 
@@ -20,7 +20,7 @@ namespace apex
 		mat.values[2][3] = translation.getZ();
 	}
 
-	void MatrixUtil::setToRotation(Matrix4f &mat, Quaternion &rotation)
+	void MatrixUtil::setToRotation(Matrix4f &mat, const Quaternion &rotation)
 	{
 		mat.setToIdentity();
 
@@ -52,7 +52,7 @@ namespace apex
 		mat.values[3][3] = 1.0;
 	}
 
-	void MatrixUtil::setToRotation(Matrix4f &mat, Vector3f &axis, float angle)
+	void MatrixUtil::setToRotation(Matrix4f &mat, const Vector3f &axis, float angle)
 	{
 		mat.setToIdentity();
 
@@ -62,7 +62,7 @@ namespace apex
 		delete tempQ;
 	}
 
-	void MatrixUtil::setToScaling(Matrix4f &mat, Vector3f &scale)
+	void MatrixUtil::setToScaling(Matrix4f &mat, const Vector3f &scale)
 	{
 		mat.setToIdentity();
 
@@ -74,8 +74,8 @@ namespace apex
 	void MatrixUtil::setToProjection(Matrix4f &mat, float fov, int w, int h, float n, float f)
 	{
 		mat.setToIdentity();
-
-		float ar = static_cast<float>(w) / static_cast<float>(h);
+		
+		float ar = static_cast<float>(w) / h;
 		float tanHalfFov = tan(MathUtil::toRadians(fov / 2.0f));
 		float range = n - f;
 
@@ -98,9 +98,10 @@ namespace apex
 		mat.values[3][1] = 0.0f;
 		mat.values[3][2] = 1.0f;
 		mat.values[3][3] = 0.0f;
+
 	}
 
-	void MatrixUtil::setToLookAt(Matrix4f &mat, Vector3f &dir, Vector3f &up)
+	void MatrixUtil::setToLookAt(Matrix4f &mat, const Vector3f &dir, const Vector3f &up)
 	{
 		mat.setToIdentity();
 
@@ -127,9 +128,10 @@ namespace apex
 		mat.values[2][2] = l_vez.z;
 	}
 
-	void MatrixUtil::setToLookAt(Matrix4f &mat, Vector3f &pos, Vector3f &target, Vector3f &up)
+	void MatrixUtil::setToLookAt(Matrix4f &mat, const Vector3f &pos, const Vector3f &target, const Vector3f &up)
 	{
 		mat.setToIdentity();
+
 		tempVec.set(target);
 		tempVec.subtract(pos);
 		tempVec2.set(pos);

@@ -29,6 +29,7 @@
     <ClInclude Include="..\..\src\apex_engine\assets\textfileloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\textureloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\util\stb_image.h" />
+    <ClInclude Include="..\..\src\apex_engine\event.h" />
     <ClInclude Include="..\..\src\apex_engine\input\inputmanager.h" />
     <ClInclude Include="..\..\src\apex_engine\input\input_enums.h" />
     <ClInclude Include="..\..\src\apex_engine\math\apexmath.h" />

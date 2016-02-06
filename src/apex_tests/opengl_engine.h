@@ -17,10 +17,10 @@ namespace apex
 	class WindowGamePair
 	{
 	public:
-		sf::RenderWindow *window;
+		sf::Window *window;
 		Game *game;
 
-		WindowGamePair(sf::RenderWindow *window, Game *game)
+		WindowGamePair(sf::Window *window, Game *game)
 		{
 			this->window = window;
 			this->game = game;
@@ -39,6 +39,8 @@ namespace apex
 
 		GLEngine() { this->contextActive = false; }
 		~GLEngine() { this->contextActive = false; }
+
+		virtual void setMousePosition(int x, int y);
 
 		virtual void createContext(Game *game, int width, int height);
 		virtual void viewport(int x, int y, int width, int height);

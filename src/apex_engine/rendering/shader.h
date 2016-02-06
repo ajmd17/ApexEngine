@@ -109,7 +109,6 @@ namespace apex
 		{
 			return this->properties;
 		}
-
 	};
 }
 

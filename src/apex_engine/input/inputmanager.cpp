@@ -1,12 +1,25 @@
 #include "inputmanager.h"
 
 #include "../util/logutil.h"
+#include "../rendering/rendermanager.h"
 
 namespace apex
 {
+	void InputManager::setMousePos(int x, int y)
+	{
+		RenderManager::getEngine()->setMousePosition(x, y);
+	}
+
 	void InputManager::keyDown(int key)
 	{
-		engine_log << "Key down: " << key << "\n";
+		for (int i = 0; i < keyEvents.size(); i++)
+		{
+			if (keyEvents[i].getKey() == key && !keyEvents[i].isKeyUpEvent())
+			{
+				keyEvents[i].trigger();
+			}
+		}
+
 		for (int i = 0; i < keysdown.size(); i++)
 		{
 			if (keysdown[i] == key)
@@ -17,7 +30,14 @@ namespace apex
 
 	void InputManager::keyUp(int key)
 	{
-		engine_log << "Key up: " << key << "\n";
+		for (int i = 0; i < keyEvents.size(); i++)
+		{
+			if (keyEvents[i].getKey() == key && keyEvents[i].isKeyUpEvent())
+			{
+				keyEvents[i].trigger();
+			}
+		}
+
 		for (int i = 0; i < keysdown.size(); i++)
 		{
 			if (keysdown[i] == key)
@@ -38,5 +58,65 @@ namespace apex
 			}
 		}
 		return false;
+	}
+
+	bool InputManager::isKeyUp(int key)
+	{
+		return !isKeyDown(key);
+	}
+
+	void InputManager::mouseButtonDown(int btn)
+	{
+		for (int i = 0; i < mouseEvents.size(); i++)
+		{
+			if (mouseEvents[i].getButton() == btn && !mouseEvents[i].isReleaseEvent())
+			{
+				mouseEvents[i].trigger();
+			}
+		}
+
+		for (int i = 0; i < btnsdown.size(); i++)
+		{
+			if (btnsdown[i] == btn)
+				return;
+		}
+		btnsdown.push_back(btn);
+	}
+
+	void InputManager::mouseButtonReleased(int btn)
+	{
+		for (int i = 0; i < mouseEvents.size(); i++)
+		{
+			if (mouseEvents[i].getButton() == btn && mouseEvents[i].isReleaseEvent())
+			{
+				mouseEvents[i].trigger();
+			}
+		}
+
+		for (int i = 0; i < btnsdown.size(); i++)
+		{
+			if (btnsdown[i] == btn)
+			{
+				btnsdown.erase(btnsdown.begin() + i);
+				return;
+			}
+		}
+	}
+
+	bool InputManager::isMouseButtonDown(int btn)
+	{
+		for (int i = 0; i < btnsdown.size(); i++)
+		{
+			if (btnsdown[i] == btn)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool InputManager::isMouseButtonReleased(int btn)
+	{
+		return !isMouseButtonDown(btn);
 	}
 }

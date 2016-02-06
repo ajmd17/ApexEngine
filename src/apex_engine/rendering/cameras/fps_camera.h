@@ -13,6 +13,22 @@ namespace apex
 	{
 	private:
 		InputManager *inputMgr;
+
+		Vector3f dirCrossY;
+
+		float magX, magY;
+
+		bool mouseCaptured;
+
+		void centerMouse();
+
+		void mouseClickCallback();
+
+		void altPressCallback();
+
+		void mouseInput(int x, int y, int halfWidth, int halfHeight);
+
+		void keyboardInput();
 	public:
 		FPSCamera(InputManager *inputMgr, float fov, float n, float f);
 

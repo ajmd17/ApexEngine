@@ -5,16 +5,16 @@ namespace apex
 {
 	enum MouseButton
 	{
-		None,
+		UndefinedButton = -1,
 
-		Left,
+		Left = 0,
 		Right,
 		Middle
 	};
 
 	enum KeyboardKey
 	{
-		Undefined = -1,
+		UndefinedKey = -1,
 
 		A = 0,
 		B,

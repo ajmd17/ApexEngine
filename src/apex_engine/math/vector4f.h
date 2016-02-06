@@ -13,7 +13,7 @@ namespace apex
 	class Vector4f
 	{
 	public:
-		static Vector4f Zero, One, UnitX, UnitY, UnitZ;
+		static const Vector4f Zero, One, UnitX, UnitY, UnitZ;
 
 		float x, y, z, w;
 
@@ -79,7 +79,7 @@ namespace apex
 			this->w = w;
 		}
 
-		Vector4f &set(Vector4f &other)
+		Vector4f &set(const Vector4f &other)
 		{
 			this->x = other.x;
 			this->y = other.y;
@@ -106,7 +106,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector4f &add(Vector4f &other)
+		Vector4f &add(const Vector4f &other)
 		{
 			this->x += other.x;
 			this->y += other.y;
@@ -115,7 +115,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector4f &subtract(Vector4f &other)
+		Vector4f &subtract(const Vector4f &other)
 		{
 			this->x -= other.x;
 			this->y -= other.y;
@@ -124,7 +124,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector4f &multiply(Vector4f &other)
+		Vector4f &multiply(const Vector4f &other)
 		{
 			this->x *= other.x;
 			this->y *= other.y;
@@ -142,7 +142,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector4f &transform(Matrix4f &mat)
+		Vector4f &transform(const Matrix4f &mat)
 		{
 			this->set(this->x * mat.values[0][0] + this->y * mat.values[0][1] + this->z * mat.values[0][2] + this->w * mat.values[0][3],
 				this->x * mat.values[1][0] + this->y * mat.values[1][1] + this->z * mat.values[1][2] + this->w * mat.values[1][3],
@@ -151,7 +151,7 @@ namespace apex
 			return *this;
 		}
 
-		Vector4f &divide(Vector4f &other)
+		Vector4f &divide(const Vector4f &other)
 		{
 			this->x /= other.x;
 			this->y /= other.y;
@@ -160,7 +160,7 @@ namespace apex
 			return *this;
 		}
 
-		float length()
+		float length() const
 		{
 			return sqrt(x * x + y * y + z * z + w * w);
 		}
@@ -175,12 +175,12 @@ namespace apex
 			return *this;
 		}
 
-		float dot(Vector4f &other)
+		float dot(const Vector4f &other)
 		{
 			return this->x * other.x + this->y * other.y + this->z * other.z + this->w * other.w;
 		}
 
-		float distanceSqr(Vector4f &other)
+		float distanceSqr(const Vector4f &other) const
 		{
 			float dx = this->x - other.x;
 			float dy = this->y - other.y;
@@ -189,12 +189,12 @@ namespace apex
 			return dx * dx + dy * dy + dz * dz + dw * dw;
 		}
 
-		float distance(Vector4f &other)
+		float distance(const Vector4f &other) const
 		{
 			return sqrt(distanceSqr(other));
 		}
 
-		static Vector4f min(Vector4f &a, Vector4f &b, Vector4f &outVec)
+		static Vector4f min(const Vector4f &a, const Vector4f &b, Vector4f &outVec)
 		{
 			outVec.x = MathUtil::min(a.x, b.x);
 			outVec.y = MathUtil::min(a.y, b.y);
@@ -203,7 +203,7 @@ namespace apex
 			return outVec;
 		}
 
-		static Vector4f max(Vector4f &a, Vector4f &b, Vector4f &outVec)
+		static Vector4f max(const Vector4f &a, const Vector4f &b, Vector4f &outVec)
 		{
 			outVec.x = MathUtil::max(a.x, b.x);
 			outVec.y = MathUtil::max(a.y, b.y);

@@ -55,6 +55,8 @@ namespace apex
 
 	void RenderManager::render(Camera &camera)
 	{
+		getEngine()->viewport(0, 0, camera.getWidth(), camera.getHeight());
+		
 		this->renderBucket(OpaqueBucket, camera);
 		this->renderBucket(TransparentBucket, camera);
 		this->renderBucket(SkyboxBucket, camera);

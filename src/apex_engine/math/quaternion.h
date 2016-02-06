@@ -5,6 +5,8 @@
 #include "vector3f.h"
 #include "matrix4f.h"
 
+#include "../util/logutil.h"
+
 #include <cmath>
 
 namespace apex
@@ -12,7 +14,7 @@ namespace apex
 	class Quaternion
 	{
 	private:
-		Vector3f tempX, tempY, tempZ;
+		Vector3f tempX, tempY, tempZ, tempAxis;
 	public:
 		float x, y, z, w;
 
@@ -54,7 +56,7 @@ namespace apex
 			return w;
 		}
 
-		Quaternion &set(Quaternion &other)
+		Quaternion &set(const Quaternion &other)
 		{
 			this->x = other.x;
 			this->y = other.y;
@@ -81,7 +83,7 @@ namespace apex
 			return *this;
 		}
 
-		Quaternion &multiply(Quaternion &other)
+		Quaternion &multiply(const Quaternion &other)
 		{
 			float x1 = x * other.w + y * other.z - z * other.y + w * other.x;
 			float y1 = -x * other.z + y * other.w + z * other.x + w * other.y;
@@ -167,25 +169,28 @@ namespace apex
 			return MathUtil::toDegrees(getYawRad());
 		}
 
-		Quaternion &setFromAxisRad(Vector3f axis, float rads)
+		Quaternion &setFromAxisRad(const Vector3f &axis, float rads)
 		{
-			axis.normalize();
+			tempAxis.set(axis);
 
-			if (axis.x == 0 && axis.y == 0 && axis.z == 0)
+			if (tempAxis.length() != 1)
+				tempAxis.normalize();
+
+			if (tempAxis.x == 0 && tempAxis.y == 0 && tempAxis.z == 0)
 				return set(0, 0, 0, 1);
 			else
 			{
 				float halfAngle = rads / 2.0f;
 				float sinHalfAngle = sin(halfAngle);
 				this->w = cos(halfAngle);
-				this->x = sinHalfAngle * axis.x;
-				this->y = sinHalfAngle * axis.y;
-				this->z = sinHalfAngle * axis.z;
+				this->x = sinHalfAngle * tempAxis.x;
+				this->y = sinHalfAngle * tempAxis.y;
+				this->z = sinHalfAngle * tempAxis.z;
 			}
 			return *this;
 		}
 
-		Quaternion &setFromAxis(Vector3f axis, float degrees)
+		Quaternion &setFromAxis(const Vector3f &axis, float degrees)
 		{
 			return setFromAxisRad(axis, MathUtil::toRadians(degrees));
 		}
@@ -230,14 +235,14 @@ namespace apex
 			return *this;
 		}
 
-		Quaternion &setFromMatrix(Matrix4f &mat)
+		Quaternion &setFromMatrix(const Matrix4f &mat)
 		{
 			return setFromAxes(mat.values[0][0], mat.values[1][0], mat.values[2][0],
 				mat.values[0][1], mat.values[1][1], mat.values[2][1],
 				mat.values[0][2], mat.values[1][2], mat.values[2][2]);
 		}
 
-		Quaternion &setToLookAt(Vector3f &dir, Vector3f &up)
+		Quaternion &setToLookAt(const Vector3f &dir, const Vector3f &up)
 		{
 			tempZ.set(dir);
 			tempZ.normalize();

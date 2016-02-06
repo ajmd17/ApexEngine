@@ -32,6 +32,9 @@ namespace apex
 
 		IEngine() { }
 		virtual ~IEngine() { }
+		
+		/* Input */
+		virtual void setMousePosition(int x, int y) = 0;
 
 		/* Rendering stuff */
 		virtual void createContext(Game *game, int width, int height) = 0;
