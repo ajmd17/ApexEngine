@@ -9,7 +9,7 @@ namespace apex
 {
 	void FPSCamera::centerMouse()
 	{
-		inputMgr->setMousePos(inputMgr->getWindowX() + width / 2, 
+		inputMgr->setMousePos(inputMgr->getWindowX() + width / 2,
 							  inputMgr->getWindowY() + height / 2);
 	}
 
@@ -65,31 +65,32 @@ namespace apex
 			inputMgr->setMousePos(halfWidth, halfHeight);
 		}
 	}
-	
+
 	void FPSCamera::keyboardInput()
 	{
+        const float speed = 0.005f;
 		if (inputMgr->isKeyDown(apex::KeyboardKey::W))
 		{
-			this->translation.x += direction.x * 0.1f;
-			this->translation.y += direction.y * 0.1f;
-			this->translation.z += direction.z * 0.1f;
+			this->translation.x += direction.x * speed;
+			this->translation.y += direction.y * speed;
+			this->translation.z += direction.z * speed;
 		}
 		else if (inputMgr->isKeyDown(apex::KeyboardKey::S))
 		{
-			this->translation.x -= direction.x * 0.1f;
-			this->translation.y -= direction.y * 0.1f;
-			this->translation.z -= direction.z * 0.1f;
+			this->translation.x -= direction.x * speed;
+			this->translation.y -= direction.y * speed;
+			this->translation.z -= direction.z * speed;
 		}
 
 		if (inputMgr->isKeyDown(apex::KeyboardKey::A))
 		{
-			this->translation.x += sin(MathUtil::toRadians(yaw + 90.0f)) * 0.1f;
-			this->translation.z -= cos(MathUtil::toRadians(yaw + 90.0f)) * 0.1f;
+			this->translation.x += sin(MathUtil::toRadians(yaw + 90.0f)) * speed;
+			this->translation.z -= cos(MathUtil::toRadians(yaw + 90.0f)) * speed;
 		}
 		else if (inputMgr->isKeyDown(apex::KeyboardKey::D))
 		{
-			this->translation.x += sin(MathUtil::toRadians(yaw - 90.0f)) * 0.1f;
-			this->translation.z -= cos(MathUtil::toRadians(yaw - 90.0f)) * 0.1f;
+			this->translation.x += sin(MathUtil::toRadians(yaw - 90.0f)) * speed;
+			this->translation.z -= cos(MathUtil::toRadians(yaw - 90.0f)) * speed;
 		}
 	}
 }

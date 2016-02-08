@@ -235,7 +235,7 @@
 	"../math/vector2f.h"
 	"../math/vector3f.h"
 
-1454887396 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/vertexattributes.h
+1454898983 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/vertexattributes.h
 	<iostream>
 	<vector>
 	<cstring>
@@ -339,7 +339,7 @@
 	"../util/logutil.h"
 	<climits>
 
-1454886230 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/rendermanager.cpp
+1454898330 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/rendermanager.cpp
 	"rendermanager.h"
 	"../scene/geometry.h"
 	"../util/logutil.h"
