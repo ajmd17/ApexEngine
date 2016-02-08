@@ -60,8 +60,6 @@ namespace apex
 				else
 					canRender = true;
 
-				engine_log << "Can render: " << canRender << "\n";
-
 				if (canRender)
 				{
 					geomList[i]->render(camera);

@@ -21,6 +21,9 @@
     <ClCompile Include="..\..\src\apex_tests\opengl_engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\apex_tests\glew\glew.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\apex_tests\opengl_engine.h">

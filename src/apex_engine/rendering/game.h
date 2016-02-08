@@ -35,10 +35,10 @@ namespace apex
 
 		~Game()
 		{
-			delete inputMgr;
 			delete assetMgr;
 			delete scene;
 			delete renderMgr;
+			delete inputMgr;
 		}
 
 		void update()

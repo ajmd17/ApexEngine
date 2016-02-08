@@ -171,6 +171,105 @@
     <ClCompile Include="..\..\src\apex_engine\rendering\cameras\fps_camera.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lapi.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lauxlib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lbaselib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lbitlib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lcode.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lcorolib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lctype.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\ldblib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\ldebug.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\ldo.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\ldump.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lfunc.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lgc.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\linit.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\liolib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\llex.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lmathlib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lmem.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\loadlib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lobject.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lopcodes.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\loslib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lparser.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lstate.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lstring.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lstrlib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\ltable.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\ltablib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\ltm.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lundump.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lutf8lib.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lvm.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\scripting\lua\lzio.c">
+      <Filter>Scripting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
@@ -446,9 +545,6 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
-    <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
     <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
     <ClInclude Include="..\..\src\apex_engine\math\matrix4f.h" />
@@ -466,7 +562,6 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\material.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\mesh.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\mesh_util.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\renderer.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\rendermanager.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
@@ -724,8 +819,6 @@
     <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\apex_engine\Header.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\apex_math.h" />
     <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
     <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
     <ClInclude Include="..\..\src\apex_engine\math\matrix4f.h" />
@@ -746,7 +839,6 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\renderer.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\rendermanager.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\shader_enums.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h">
@@ -3890,5 +3982,83 @@
     </ClInclude>
     <ClInclude Include="..\..\src\apex_engine\event.h" />
     <ClInclude Include="..\..\src\apex_engine\math\frustum.h" />
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lapi.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lauxlib.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lcode.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lctype.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\ldebug.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\ldo.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lfunc.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lgc.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\llex.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\llimits.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lmem.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lobject.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lopcodes.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lparser.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lprefix.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lstate.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lstring.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\ltable.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\ltm.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lua.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lua.hpp">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\luaconf.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lualib.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lundump.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lvm.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\scripting\lua\lzio.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
