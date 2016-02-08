@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="apextests" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/apextests" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+					<Add option="-DLINUX" />
+					<Add directory="../../../src/apex_engine" />
+					<Add directory="../../../includes" />
+					<Add directory="../../../includes/Lua" />
+					<Add directory="/usr/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-lGL" />
+					<Add option="-lX11" />
+					<Add library="../apexengine/bin/Debug/libapexengine.a" />
+					<Add library="../../../libs/linux/libsfml-audio.so" />
+					<Add library="../../../libs/linux/libsfml-graphics.so" />
+					<Add library="../../../libs/linux/libsfml-network.so" />
+					<Add library="../../../libs/linux/libsfml-system.so" />
+					<Add library="../../../libs/linux/libsfml-window.so" />
+					<Add directory="../../../libs/linux" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/apextests" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../../../src/apex_engine" />
+					<Add directory="../../../includes" />
+					<Add directory="../../../includes/Lua" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="../../../libs/linux/libsfml-audio.so" />
+					<Add library="../../../libs/linux/libsfml-graphics.so" />
+					<Add library="../../../libs/linux/libsfml-network.so" />
+					<Add library="../../../libs/linux/libsfml-system.so" />
+					<Add library="../../../libs/linux/libsfml-window.so" />
+					<Add directory="../../../libs/linux" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="../../../src/apex_tests/glew/glew.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_tests/main.cpp" />
+		<Unit filename="../../../src/apex_tests/opengl_engine.cpp" />
+		<Unit filename="../../../src/apex_tests/opengl_engine.h" />
+		<Unit filename="../../../src/apex_tests/sharedptr_conv.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

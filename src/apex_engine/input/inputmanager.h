@@ -33,8 +33,8 @@ namespace apex
 		{
 			evt();
 		}
-	}; 
-	
+	};
+
 	class MouseEvent : public Event
 	{
 	private:
@@ -92,9 +92,9 @@ namespace apex
 
 		void setHeight(int h) { this->height = h; }
 
-		const int getWidth() { return width; } const
+		const int getWidth() { return width; }
 
-		const int getHeight() { return height; } const
+		const int getHeight() { return height; }
 
 		void addKeyboardEvent(KeyboardEvent kbe) { keyEvents.push_back(kbe); }
 

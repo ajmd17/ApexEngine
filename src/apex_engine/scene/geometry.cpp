@@ -46,8 +46,6 @@ namespace apex
 	Geometry::~Geometry()
 	{
 		engine_log << "Deleting geometry: " << getName() << "\n";
-
-		Spatial::~Spatial();
 	}
 
 	void Geometry::render(Camera &cam)

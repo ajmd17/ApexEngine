@@ -18,8 +18,6 @@ namespace apex
 	{
 		engine_log << "Deleting node: " << getName() << "\n";
 
-		Spatial::~Spatial();
-
 		int ch_size = children.size();
 
 		for (size_t i = ch_size; i > 0; i--)

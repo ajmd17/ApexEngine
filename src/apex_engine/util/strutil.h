@@ -4,14 +4,14 @@
 #include <vector>
 using std::vector;
 
-#include <string>
+#include <cstring>
 using std::string;
 
 #include <sstream>
 using std::stringstream;
 
-#include <algorithm> 
-#include <functional> 
+#include <algorithm>
+#include <functional>
 #include <cctype>
 #include <locale>
 

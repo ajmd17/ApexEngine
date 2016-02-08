@@ -17,17 +17,14 @@ using namespace std;
 #include <assets/loadedtext.h>
 
 #include "sharedptr_conv.h"
-extern "C" {
-#include <lua.h>
-#include <lauxlib.h>
-#include <lualib.h>
+extern "C"
+{
+    #include <lua.h>
+    #include <lauxlib.h>
+    #include <lualib.h>
 }
 
 #include <luabind/luabind.hpp>
-
-//#include <LuaBridge.h>
-
-//using namespace luabridge;
 
 using namespace apex;
 
@@ -64,20 +61,20 @@ float rot;
 void TestGame::init()
 {
 	RenderManager::getEngine()->clearColor(97.0/255.0, 119.0/255.0, 171.0/255.0, 1);
-    
+
 	shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test_shader.fs");
 	engine_log << sc->getText() << "\n";
-	
+
 	//std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
-	
+
 	this->camera = new FPSCamera(inputMgr, 75, 0.5f, 100.0f);
 
 
 	rot = 0;
-	
+
 
 	// Create a new lua state
-	lua_State *myLuaState = luaL_newstate(); 
+	lua_State *myLuaState = luaL_newstate();
 	luaL_openlibs(myLuaState);
 
 	// Connect LuaBind to this lua state
@@ -120,7 +117,7 @@ void TestGame::init()
 
 		luabind::class_<Quaternion>("Quaternion")
 
-		.def(luabind::constructor<>()) // don't let a user directly set the	
+		.def(luabind::constructor<>()) // don't let a user directly set the
 									   // values of a quaternion.
 		.property("w", &Quaternion::getW)
 		.property("x", &Quaternion::getX)
@@ -166,12 +163,12 @@ void TestGame::init()
 		,
 
 		luabind::class_<Spatial, std::shared_ptr<Spatial>>("Spatial")
-		
+
 		.def("getName", &Spatial::getName)
 		.def("setName", &Spatial::setName)
 
 		.def("getParent", &Spatial::getParent)
-		
+
 		.def("setLocalTranslation", &Spatial::setLocalTranslation)
 		.def("setLocalScale", &Spatial::setLocalScale)
 		.def("setLocalRotation", &Spatial::setLocalRotation)
@@ -189,7 +186,7 @@ void TestGame::init()
 		,
 
 		luabind::class_<Node, Spatial, std::shared_ptr<Spatial>>("Node")
-		
+
 		.def(luabind::constructor<std::string>())
 
 		.def("size", &Node::size)
@@ -237,7 +234,7 @@ void TestGame::init()
 	shared_ptr<Shader> shaderPtr = ShaderManager::getShader<MyShader>(props);
 
 
-	
+
 	std::shared_ptr<Node> torus = getAssetManager()->loadAs<Node>("./data/models/torus.obj");
 	torus->setLocalTranslation(Vector3f(0, 1, 7));
 	torus->getAt<Geometry>(0)->setShader(shaderPtr);
@@ -272,7 +269,7 @@ void TestGame::init()
 	mygeom->setMesh(mesh);
 	mygeom->setLocalTranslation(Vector3f(0, 0, 4));*/
 
-	
+
 
 
 }

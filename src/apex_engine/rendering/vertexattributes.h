@@ -6,7 +6,7 @@
 #include <vector>
 using std::vector;
 
-#include <string>
+#include <cstring>
 using std::string;
 
 namespace apex

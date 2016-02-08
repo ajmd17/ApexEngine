@@ -19,6 +19,11 @@ namespace apex
 #include <OpenGL/gl.h>
 #endif
 
+#if defined (__UNIX__) || defined (unix) || defined (__LINUX__) || defined (linux) || defined (LINUX)
+#include <X11/Xlib.h>
+#define LINUX
+#endif
+
 #ifndef __APPLE__
 #ifndef GLEW_H
 #include <GL/glew.h>
@@ -254,6 +259,10 @@ namespace apex
 
 	void GLEngine::createContext(Game *game, int width, int height)
 	{
+        #ifdef LINUX
+        XInitThreads();
+        #endif
+
 		sf::Window window;
 		sf::ContextSettings settings;
 		settings.depthBits = 24;
@@ -266,7 +275,7 @@ namespace apex
 		engine_log << "OpenGL version supported: " << glGetString(GL_VERSION) << "\n\n";
 
 		this->contextActive = true;
-		
+
 		// Mac OS X / iOS don't need glew.
 #ifndef __APPLE__
 		glewInit();

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="apexengine" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/apexengine" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="../../../includes" />
+					<Add directory="../../../includes/Lua" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/apexengine" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../../../includes" />
+					<Add directory="../../../includes/Lua" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="../../../src/apex_engine/assets/assetinfo.h" />
+		<Unit filename="../../../src/apex_engine/assets/assetloader.h" />
+		<Unit filename="../../../src/apex_engine/assets/assetmanager.cpp" />
+		<Unit filename="../../../src/apex_engine/assets/assetmanager.h" />
+		<Unit filename="../../../src/apex_engine/assets/loadableobject.h" />
+		<Unit filename="../../../src/apex_engine/assets/loadedtext.h" />
+		<Unit filename="../../../src/apex_engine/assets/modelloaders/objloader.cpp" />
+		<Unit filename="../../../src/apex_engine/assets/modelloaders/objloader.h" />
+		<Unit filename="../../../src/apex_engine/assets/shaderloader/shaderloader.cpp" />
+		<Unit filename="../../../src/apex_engine/assets/shaderloader/shaderloader.h" />
+		<Unit filename="../../../src/apex_engine/assets/textfileloader.h" />
+		<Unit filename="../../../src/apex_engine/assets/textureloader.cpp" />
+		<Unit filename="../../../src/apex_engine/assets/textureloader.h" />
+		<Unit filename="../../../src/apex_engine/assets/util/stb_image.h" />
+		<Unit filename="../../../src/apex_engine/event.h" />
+		<Unit filename="../../../src/apex_engine/input/input_enums.h" />
+		<Unit filename="../../../src/apex_engine/input/inputmanager.cpp" />
+		<Unit filename="../../../src/apex_engine/input/inputmanager.h" />
+		<Unit filename="../../../src/apex_engine/math/apexmath.h" />
+		<Unit filename="../../../src/apex_engine/math/boundingbox.cpp" />
+		<Unit filename="../../../src/apex_engine/math/boundingbox.h" />
+		<Unit filename="../../../src/apex_engine/math/frustum.h" />
+		<Unit filename="../../../src/apex_engine/math/math_util.cpp" />
+		<Unit filename="../../../src/apex_engine/math/math_util.h" />
+		<Unit filename="../../../src/apex_engine/math/matrix4f.h" />
+		<Unit filename="../../../src/apex_engine/math/matrix_util.cpp" />
+		<Unit filename="../../../src/apex_engine/math/matrix_util.h" />
+		<Unit filename="../../../src/apex_engine/math/quaternion.h" />
+		<Unit filename="../../../src/apex_engine/math/ray.h" />
+		<Unit filename="../../../src/apex_engine/math/transform.h" />
+		<Unit filename="../../../src/apex_engine/math/vector2f.cpp" />
+		<Unit filename="../../../src/apex_engine/math/vector2f.h" />
+		<Unit filename="../../../src/apex_engine/math/vector3f.cpp" />
+		<Unit filename="../../../src/apex_engine/math/vector3f.h" />
+		<Unit filename="../../../src/apex_engine/math/vector4f.cpp" />
+		<Unit filename="../../../src/apex_engine/math/vector4f.h" />
+		<Unit filename="../../../src/apex_engine/object.h" />
+		<Unit filename="../../../src/apex_engine/rendering/camera.h" />
+		<Unit filename="../../../src/apex_engine/rendering/cameras/fps_camera.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/cameras/fps_camera.h" />
+		<Unit filename="../../../src/apex_engine/rendering/cameras/perspective_camera.h" />
+		<Unit filename="../../../src/apex_engine/rendering/constants.h" />
+		<Unit filename="../../../src/apex_engine/rendering/engine.h" />
+		<Unit filename="../../../src/apex_engine/rendering/enums.h" />
+		<Unit filename="../../../src/apex_engine/rendering/environment.h" />
+		<Unit filename="../../../src/apex_engine/rendering/game.h" />
+		<Unit filename="../../../src/apex_engine/rendering/light/lightsource.h" />
+		<Unit filename="../../../src/apex_engine/rendering/light/pointlight.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/light/pointlight.h" />
+		<Unit filename="../../../src/apex_engine/rendering/material.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/material.h" />
+		<Unit filename="../../../src/apex_engine/rendering/mesh.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/mesh.h" />
+		<Unit filename="../../../src/apex_engine/rendering/mesh_util.h" />
+		<Unit filename="../../../src/apex_engine/rendering/rendermanager.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/rendermanager.h" />
+		<Unit filename="../../../src/apex_engine/rendering/shader.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/shader.h" />
+		<Unit filename="../../../src/apex_engine/rendering/shader_util.h" />
+		<Unit filename="../../../src/apex_engine/rendering/shaderlib.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/shaderlib.h" />
+		<Unit filename="../../../src/apex_engine/rendering/shadermanager.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/shadermanager.h" />
+		<Unit filename="../../../src/apex_engine/rendering/texture.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/texture.h" />
+		<Unit filename="../../../src/apex_engine/rendering/texture2d.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/texture2d.h" />
+		<Unit filename="../../../src/apex_engine/rendering/vertex.h" />
+		<Unit filename="../../../src/apex_engine/rendering/vertexattributes.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/vertexattributes.h" />
+		<Unit filename="../../../src/apex_engine/scene/geometry.cpp" />
+		<Unit filename="../../../src/apex_engine/scene/geometry.h" />
+		<Unit filename="../../../src/apex_engine/scene/node.cpp" />
+		<Unit filename="../../../src/apex_engine/scene/node.h" />
+		<Unit filename="../../../src/apex_engine/scene/scene.h" />
+		<Unit filename="../../../src/apex_engine/scene/spatial.cpp" />
+		<Unit filename="../../../src/apex_engine/scene/spatial.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lapi.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lauxlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lauxlib.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lbaselib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lbitlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lcode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lcode.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lcorolib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lctype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lctype.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/ldblib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/ldebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/ldebug.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/ldo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/ldo.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/ldump.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lfunc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lfunc.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lgc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lgc.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/linit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/liolib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/llex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/llex.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/llimits.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lmathlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lmem.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/loadlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lobject.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lobject.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lopcodes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lopcodes.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/loslib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lparser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lparser.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lprefix.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lstate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lstate.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lstring.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lstring.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lstrlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/ltable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/ltable.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/ltablib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/ltm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/ltm.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lua.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lua.hpp" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/luaconf.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lualib.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lundump.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lundump.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lutf8lib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lvm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lvm.h" />
+		<Unit filename="../../../src/apex_engine/scripting/lua/lzio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/scripting/lua/lzio.h" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/class.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/class_info.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/class_registry.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/class_rep.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/create_class.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/error.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/exception_handler.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/function.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/inheritance.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/link_compatibility.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/object_rep.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/open.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/pcall.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/scope.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/stack_content_by_name.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/weak_ref.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/luabind/wrapper_base.cpp" />
+		<Unit filename="../../../src/apex_engine/scripting/scriptutil.h" />
+		<Unit filename="../../../src/apex_engine/util/logutil.cpp" />
+		<Unit filename="../../../src/apex_engine/util/logutil.h" />
+		<Unit filename="../../../src/apex_engine/util/strutil.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
