@@ -17,11 +17,11 @@ namespace apex
 {
 	class BoundingBox
 	{
-	private:
+	public:
 		const static int MAX_SIZE = INT_MAX;
 		const static int MIN_SIZE = INT_MIN;
 		const static int NUM_CORNERS = 8;
-
+	private:
 		Vector3f corners[NUM_CORNERS];
 		Matrix4f matrix;
 
@@ -29,7 +29,7 @@ namespace apex
 	public:
 		BoundingBox clear();
 
-		BoundingBox createBoundingBox(Vector3f &, Vector3f &);
+		BoundingBox createBoundingBox(const Vector3f &, const Vector3f &);
 
 		void extend(BoundingBox &b);
 
@@ -53,37 +53,47 @@ namespace apex
 			this->createBoundingBox(dimMin, dimMax);
 		}
 
-		const Vector3f getMin()
+		BoundingBox set(const BoundingBox &other)
+		{
+			this->createBoundingBox(other.min, other.max);
+		}
+
+		const Vector3f &getCorner(int i) const
+		{
+			return corners[i];
+		}
+
+		const Vector3f getMin() const
 		{
 			return min;
 		}
 
-		const Vector3f getMax()
+		const Vector3f getMax() const
 		{
 			return max;
 		}
 
-		const Vector3f getCenter()
+		const Vector3f getCenter() const
 		{
 			return center;
 		}
 
-		const Vector3f getDimensions()
+		const Vector3f getDimensions() const
 		{
 			return dimensions;
 		}
 
-		const float getWidth()
+		const float getWidth() const
 		{
 			return dimensions.x;
 		}
 
-		const float getHeight()
+		const float getHeight() const
 		{
 			return dimensions.y;
 		}
 
-		const float getLength()
+		const float getLength() const
 		{
 			return dimensions.z;
 		}

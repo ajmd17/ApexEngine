@@ -29,8 +29,8 @@ namespace apex
 			scene = new Scene();
 
 			renderMgr = new RenderManager();
-			assetMgr = new AssetManager();
 			inputMgr = new InputManager();
+			assetMgr = new AssetManager();
 		}
 
 		~Game()

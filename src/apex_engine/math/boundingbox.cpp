@@ -10,7 +10,7 @@ namespace apex
 		return *this;
 	}
 
-	BoundingBox BoundingBox::createBoundingBox(Vector3f &dimMin, Vector3f &dimMax)
+	BoundingBox BoundingBox::createBoundingBox(const Vector3f &dimMin, const Vector3f &dimMax)
 	{
 		min.set(dimMin);
 		max.set(dimMax);

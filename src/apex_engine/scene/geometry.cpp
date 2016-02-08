@@ -102,8 +102,13 @@ namespace apex
 
 	void Geometry::updateGlobalBoundingBox()
 	{
-		if (mesh != NULL)
-			MeshUtil::createMeshBoundingBox(*mesh, globalBoundingBox, getGlobalMatrix());
+		//if (mesh != NULL)
+		//	MeshUtil::createMeshBoundingBox(*mesh, globalBoundingBox, getGlobalMatrix());
+		tmpMin.set(localBoundingBox.getMin());
+		tmpMax.set(localBoundingBox.getMax());
+		tmpMin.transform(this->getGlobalMatrix());
+		tmpMax.transform(this->getGlobalMatrix());
+		globalBoundingBox.createBoundingBox(tmpMin, tmpMax);
 	}
 
 	void Geometry::updateLocalBoundingBox()
@@ -114,6 +119,17 @@ namespace apex
 
 	BoundingBox &Geometry::getGlobalBoundingBox()
 	{
+		if (!localBoundingBoxCreated)
+		{
+			updateLocalBoundingBox();
+			localBoundingBoxCreated = true;
+		}
+		if (this->updateFlags & Spatial::updateLocalBoundingBoxFlag)
+		{
+			updateLocalBoundingBox();
+			this->updateFlags &= ~Spatial::updateLocalBoundingBoxFlag;
+		}
+
 		if (!globalBoundingBoxCreated)
 		{
 			updateGlobalBoundingBox();

@@ -52,8 +52,8 @@ public:
 	}
 };
 
-const string MyShader::vscode = "#version 120\nattribute vec3 a_position;\nattribute vec2 a_texcoord0;\nattribute vec3 a_normal;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;\nuniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\nv_normal = a_normal;\n}";
-const string MyShader::fscode = "#version 120\nuniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\nfloat ndotl = dot(v_normal, vec3(1.0));\ngl_FragColor = vec4(v_normal, 1.0);\n}";
+const string MyShader::vscode = "#version 150\nattribute vec3 a_position;\nattribute vec2 a_texcoord0;\nattribute vec3 a_normal;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;\nuniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\nv_normal = mat3(inverse(transpose(Apex_ModelMatrix))) * a_normal;\n}";
+const string MyShader::fscode = "#version 150\nuniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\nfloat ndotl = dot(v_normal, vec3(1.0));\ngl_FragColor = vec4(v_normal, 1.0);\n}";
 
 Geometry *mygeom;
 Mesh *mesh;
@@ -65,8 +65,8 @@ void TestGame::init()
 {
 	RenderManager::getEngine()->clearColor(97.0/255.0, 119.0/255.0, 171.0/255.0, 1);
     
-	//shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test_shader.fs");
-//	engine_log << sc->getText() << "\n";
+	shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test_shader.fs");
+	engine_log << sc->getText() << "\n";
 	
 	//std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
 	
@@ -237,7 +237,7 @@ void TestGame::init()
 	shared_ptr<Shader> shaderPtr = ShaderManager::getShader<MyShader>(props);
 
 
-
+	
 	std::shared_ptr<Node> torus = getAssetManager()->loadAs<Node>("./data/models/torus.obj");
 	torus->setLocalTranslation(Vector3f(0, 1, 7));
 	torus->getAt<Geometry>(0)->setShader(shaderPtr);
@@ -272,12 +272,7 @@ void TestGame::init()
 	mygeom->setMesh(mesh);
 	mygeom->setLocalTranslation(Vector3f(0, 0, 4));*/
 
-
-
-	// Test Lua
-	//lua = luaL_newstate();
-	//luaL_dofile(lua, "script.lua");
-	//luaL_openlibs(lua);
+	
 
 
 }
@@ -290,20 +285,14 @@ void TestGame::exit()
 
 void TestGame::logic()
 {
-	//LuaRef lua_logic = getGlobal(lua, "logic");
-	//lua_logic();
 
 	rot += 1;
-	
-	Quaternion &qr = scene->getRootNode()->getAt<Spatial>(1)->getLocalRotation();
+	/*Quaternion &qr = scene->getRootNode()->getAt<Spatial>(1)->getLocalRotation();
 	qr.setFromAxis(Vector3f(0, 1, 0), rot*1.25f);
-	scene->getRootNode()->getAt<Spatial>(1)->setNeedsTransformUpdate();
+	scene->getRootNode()->getAt<Spatial>(1)->setNeedsTransformUpdate();*/
 
-	Quaternion &qr1 = scene->getRootNode()->getAt<Spatial>(0)->getLocalRotation();
-	qr1.setFromAxis(Vector3f(1, 1, 0), rot);
-	scene->getRootNode()->getAt<Spatial>(0)->setNeedsTransformUpdate();
-
-
+	//Quaternion &qr1 = scene->getRootNode()->getAt<Spatial>(0)->getLocalRotation();
+	//qr1.setFromAxis(Vector3f(1, 1, 0), rot);
 }
 
 int main()

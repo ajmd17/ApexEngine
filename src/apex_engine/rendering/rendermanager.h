@@ -32,12 +32,17 @@ namespace apex
 
 		static void removeGeometry(vector<Geometry*> *bucket, Geometry *geom);
 	public:
+		bool frustumCullingEnabled;
+
 		RenderManager()
 		{
 			buckets[OpaqueBucket] = bucket_opaque;
 			buckets[TransparentBucket] = bucket_transparent;
 			buckets[SkyboxBucket] = bucket_skybox;
 			buckets[ParticleBucket] = bucket_particles;
+
+			// Default flags
+			frustumCullingEnabled = true;
 		}
 
 		static IEngine *getEngine() { return m_engine; }

@@ -70,7 +70,7 @@ namespace apex
 
 		int width, height, mouseX, mouseY, windowX, windowY;
 	public:
-		InputManager() {}
+		InputManager() { width = 0; height = 0; }
 
 		int getMouseX() { return this->mouseX; }
 
@@ -92,9 +92,9 @@ namespace apex
 
 		void setHeight(int h) { this->height = h; }
 
-		int getWidth() { return width; }
+		const int getWidth() { return width; } const
 
-		int getHeight() { return height; }
+		const int getHeight() { return height; } const
 
 		void addKeyboardEvent(KeyboardEvent kbe) { keyEvents.push_back(kbe); }
 

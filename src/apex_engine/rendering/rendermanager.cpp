@@ -1,6 +1,7 @@
 #include "rendermanager.h"
 #include "../scene/geometry.h"
 #include "../util/logutil.h"
+#include "cameras/perspective_camera.h"
 
 #include <algorithm>
 
@@ -43,12 +44,28 @@ namespace apex
 
 	void RenderManager::renderBucket(RenderBucket bucket, Camera &camera)
 	{
+		bool canRender = false;
+
 		vector<Geometry*> geomList = buckets[bucket];
 		if (geomList.size() > 0)
 		{
 			for (size_t i = 0; i < geomList.size(); i++)
 			{
-				geomList[i]->render(camera);
+				if (frustumCullingEnabled)
+				{
+					PerspectiveCamera *pers = static_cast<PerspectiveCamera*>(&camera);
+					if (pers->getFrustum().intersectAABB(geomList[i]->getGlobalBoundingBox()))
+						canRender = true;
+				}
+				else
+					canRender = true;
+
+				engine_log << "Can render: " << canRender << "\n";
+
+				if (canRender)
+				{
+					geomList[i]->render(camera);
+				}
 			}
 		}
 	}

@@ -34,6 +34,7 @@
     <ClInclude Include="..\..\src\apex_engine\input\input_enums.h" />
     <ClInclude Include="..\..\src\apex_engine\math\apexmath.h" />
     <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\frustum.h" />
     <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
     <ClInclude Include="..\..\src\apex_engine\math\matrix4f.h" />
     <ClInclude Include="..\..\src\apex_engine\math\matrix_util.h" />

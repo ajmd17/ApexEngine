@@ -14,8 +14,6 @@ namespace apex
 		if (this->updateFlags & Spatial::updateTransformFlag)
 		{
 			this->updateTransform();
-			//this->updateLocalBoundingBox();
-			//this->updateGlobalBoundingBox();
 			this->updateFlags &= ~Spatial::updateTransformFlag;
 		}
 		if (this->updateFlags & Spatial::updateParentFlag)
@@ -46,6 +44,20 @@ namespace apex
 		globalTransform.setScale(globalScale);
 
 		globalMatrix = globalTransform.getMatrix();
+
+
+		this->setNeedsGlobalBoundingBoxUpdate();
+
+		Spatial *par = this->getParent();
+
+		while (par != 0)
+		{
+
+			par->setNeedsGlobalBoundingBoxUpdate();
+			par->setNeedsLocalBoundingBoxUpdate();
+			par = par->getParent();
+
+		}
 	}
 
 	void Spatial::calcAttachedToRoot()

@@ -7,6 +7,7 @@
 #include "../../math/matrix_util.h"
 #include "../../math/vector3f.h"
 #include "../../math/quaternion.h"
+#include "../../math/frustum.h"
 
 namespace apex
 {
@@ -18,6 +19,7 @@ namespace apex
 		float fov, n, f;
 		Quaternion rotation;
 		Vector3f target, up;
+		Frustum frustum;
 	public:
 		PerspectiveCamera(float fov, int width, int height, float n, float f)
 		{
@@ -62,6 +64,13 @@ namespace apex
 
 			viewProjectionMatrix.set(viewMatrix);
 			viewProjectionMatrix.multiply(projectionMatrix);
+
+			frustum.setViewProjectionMatrix(viewProjectionMatrix);
+		}
+
+		Frustum &getFrustum()
+		{
+			return frustum;
 		}
 
 		const float getPitch() { return pitch; }

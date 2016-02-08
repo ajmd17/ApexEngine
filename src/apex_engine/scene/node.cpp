@@ -47,7 +47,7 @@ namespace apex
 
 	BoundingBox &Node::getLocalBoundingBox()
 	{
-		if (!localBoundingBoxCreated)
+		/*if (!localBoundingBoxCreated)
 		{
 			updateLocalBoundingBox();
 			localBoundingBoxCreated = true;
@@ -59,6 +59,8 @@ namespace apex
 			this->updateFlags &= ~Spatial::updateLocalBoundingBoxFlag;
 		}
 
-		return localBoundingBox;
+		return localBoundingBox;*/
+
+		return getGlobalBoundingBox();
 	}
 }

@@ -208,9 +208,16 @@ namespace apex
 		virtual void setNeedsTransformUpdate()
 		{
 			this->updateFlags |= updateTransformFlag;
+		}
 
-			this->updateFlags |= updateLocalBoundingBoxFlag;
+		void setNeedsGlobalBoundingBoxUpdate()
+		{
 			this->updateFlags |= updateGlobalBoundingBoxFlag;
+		}
+
+		void setNeedsLocalBoundingBoxUpdate()
+		{
+			this->updateFlags |= updateLocalBoundingBoxFlag;
 		}
 
 		virtual void setNeedsParentUpdate()

@@ -39,7 +39,7 @@ namespace apex
 		{
 			localBoundingBox.clear();
 			for (size_t i = 0; i < children.size(); i++)
-				localBoundingBox.extend(children[i]->getLocalBoundingBox());
+				localBoundingBox.extend(children[i]->getGlobalBoundingBox());
 		}
 	public:
 		Node();
@@ -145,6 +145,8 @@ namespace apex
 			{
 				children.push_back(spatial);
 				spatial->setParent(this);
+				this->setNeedsLocalBoundingBoxUpdate();
+				this->setNeedsGlobalBoundingBoxUpdate();
 			}
 		}
 
@@ -156,6 +158,8 @@ namespace apex
 				{
 					spatial->setParent(0);
 					children.erase(children.begin() + i);
+					this->setNeedsLocalBoundingBoxUpdate();
+					this->setNeedsGlobalBoundingBoxUpdate();
 				}
 			}
 		}
@@ -167,6 +171,8 @@ namespace apex
 				if (children[i] == spatial)
 				{
 					children.erase(children.begin() + i);
+					this->setNeedsLocalBoundingBoxUpdate();
+					this->setNeedsGlobalBoundingBoxUpdate();
 				}
 			}
 		}
@@ -177,6 +183,8 @@ namespace apex
 			{
 				children[i]->setParent(0);
 				children.erase(children.begin() + i);
+				this->setNeedsLocalBoundingBoxUpdate();
+				this->setNeedsGlobalBoundingBoxUpdate();
 			}
 			else
 				throw std::out_of_range("Out of range.");

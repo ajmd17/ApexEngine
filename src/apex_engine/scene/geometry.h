@@ -37,6 +37,8 @@ namespace apex
 		BoundingBox localBoundingBox, globalBoundingBox;
 		bool localBoundingBoxCreated, globalBoundingBoxCreated;
 
+		Vector3f tmpMin, tmpMax;
+
 		void updateGlobalBoundingBox();
 
 		void updateLocalBoundingBox();
@@ -65,6 +67,19 @@ namespace apex
 		void setMesh(shared_ptr<Mesh> mesh)
 		{
 			this->mesh = mesh;
+			this->setNeedsLocalBoundingBoxUpdate();
+			this->setNeedsGlobalBoundingBoxUpdate();
+
+			Spatial *par = this->getParent();
+
+			while (par != 0)
+			{
+
+				par->setNeedsGlobalBoundingBoxUpdate();
+				par->setNeedsLocalBoundingBoxUpdate();
+				par = par->getParent();
+				
+			}
 		}
 
 		Material &getMaterial()
@@ -93,6 +108,11 @@ namespace apex
 		}
 
 		void setBucket(RenderBucket bucket);
+
+		void setNeedsTransformUpdate()
+		{
+			Spatial::setNeedsTransformUpdate();
+		}
 
 		BoundingBox &getGlobalBoundingBox();
 
