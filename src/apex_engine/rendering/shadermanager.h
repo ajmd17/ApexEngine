@@ -4,6 +4,8 @@
 #include "shader.h"
 #include "shader_util.h"
 
+#include "../util/logutil.h"
+
 #include <type_traits>
 
 #include <string>
@@ -31,9 +33,10 @@ namespace apex
 			{
 				if (dynamic_cast<ShaderClass*>(shaders[i].first.get()) != 0)
 				{
-					if (ShaderUtil::compareShaderProperties(properties, shaders[i].second))
+					if (ShaderUtil::compareShaderProperties(shaders[i].second, properties) &&
+                        ShaderUtil::compareShaderProperties(properties, shaders[i].second))
 					{
-						cout << "Same type.\n";
+                        return shaders[i].first;
 					}
 				}
 			}
@@ -42,6 +45,9 @@ namespace apex
 
 			std::pair<shared_ptr<Shader>, ShaderProperties> p = std::make_pair(shaderPtr, properties);
 			shaders.push_back(p);
+
+			apex::engine_log << "Added shader\n";
+
 			return shaders.back().first;
 		}
 	};

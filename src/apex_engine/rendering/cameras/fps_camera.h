@@ -16,7 +16,7 @@ namespace apex
 
 		Vector3f dirCrossY;
 
-		float magX, magY;
+		float magX, magY, oldMagX, oldMagY;
 
 		bool mouseCaptured;
 

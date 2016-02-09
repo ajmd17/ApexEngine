@@ -3,7 +3,7 @@
 
 namespace apex
 {
-	class Event
+	class IEvent
 	{
 	public:
 		virtual void trigger() = 0;

@@ -4,7 +4,7 @@
 #include "../util/strutil.h"
 #include "../util/logutil.h"
 
-#include <algorithm> 
+#include <algorithm>
 
 #include <vector>
 using std::vector;
@@ -126,12 +126,9 @@ namespace apex
 		{
 			for (std::map<std::string, bool>::iterator i = a.values.begin(); i != a.values.end(); ++i)
 			{
-				bool val;
-
 				if (b.values.find(i->first) != b.values.end())
 				{
-					val = b.values[i->first];
-					if (val != i->second)
+					if (b.values[i->first] != i->second)
 					{
 						return false;
 					}

@@ -118,7 +118,7 @@
 	"enums.h"
 	"../assets/assetinfo.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/camera.h
+1454977140 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/camera.h
 	"../math/vector3f.h"
 	"../math/matrix4f.h"
 
@@ -147,7 +147,7 @@
 	<algorithm>
 	<memory>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/spatial.h
+1454977140 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/spatial.h
 	"../math/vector3f.h"
 	"../math/quaternion.h"
 	"../math/matrix4f.h"
@@ -186,7 +186,7 @@
 1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/ray.h
 	"vector3f.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/node.h
+1454977140 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/node.h
 	"spatial.h"
 	<vector>
 	<algorithm>
@@ -194,7 +194,7 @@
 	"../util/logutil.h"
 	<memory>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/geometry.h
+1454977140 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/geometry.h
 	"spatial.h"
 	"../rendering/shader.h"
 	"../rendering/mesh.h"
@@ -215,8 +215,9 @@
 	"../math/vector4f.h"
 	"../math/matrix4f.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shader_util.h
+1454980552 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shader_util.h
 	"../util/strutil.h"
+	"../util/logutil.h"
 	<algorithm>
 	<vector>
 	<map>
@@ -273,7 +274,7 @@
 	"../util/logutil.h"
 	"../rendering/rendermanager.h"
 
-1454887433 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/input/inputmanager.h
+1454977858 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/input/inputmanager.h
 	"input_enums.h"
 	"../event.h"
 	<functional>
@@ -281,7 +282,7 @@
 
 1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/input/input_enums.h
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/event.h
+1454977833 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/event.h
 
 1454886230 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/boundingbox.cpp
 	"boundingbox.h"
@@ -302,18 +303,18 @@
 1454886230 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/vector4f.cpp
 	"vector4f.h"
 
-1454886230 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/cameras/fps_camera.cpp
+1454979813 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/cameras/fps_camera.cpp
 	"fps_camera.h"
 	"../../input/inputmanager.h"
 	"../../util/logutil.h"
 	<functional>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/cameras/fps_camera.h
+1454978988 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/cameras/fps_camera.h
 	"perspective_camera.h"
 	"../../math/matrix_util.h"
 	"../../math/vector3f.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/cameras/perspective_camera.h
+1454977140 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/cameras/perspective_camera.h
 	"../camera.h"
 	"../../math/matrix_util.h"
 	"../../math/vector3f.h"
@@ -361,11 +362,13 @@
 1454886230 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shaderlib.cpp
 	"shaderlib.h"
 
-1454886230 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shadermanager.cpp
+1454977140 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shadermanager.cpp
 	"shadermanager.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shadermanager.h
+1454981528 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shadermanager.h
 	"shader.h"
+	"shader_util.h"
+	"../util/logutil.h"
 	<type_traits>
 	<string>
 	<vector>
@@ -382,7 +385,7 @@
 	"vertexattributes.h"
 	"constants.h"
 
-1454887523 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/geometry.cpp
+1454977140 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/geometry.cpp
 	"geometry.h"
 	"../rendering/camera.h"
 	"../rendering/rendermanager.h"
@@ -392,7 +395,7 @@
 	"node.h"
 	"../util/logutil.h"
 
-1454886230 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/spatial.cpp
+1454977140 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/spatial.cpp
 	"spatial.h"
 	"node.h"
 	"../util/logutil.h"

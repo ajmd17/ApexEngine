@@ -11,7 +11,7 @@ using std::vector;
 
 namespace apex
 {
-	class KeyboardEvent : public Event
+	class KeyboardEvent : public IEvent
 	{
 	private:
 		std::function<void()> evt;
@@ -35,7 +35,7 @@ namespace apex
 		}
 	};
 
-	class MouseEvent : public Event
+	class MouseEvent : public IEvent
 	{
 	private:
 		std::function<void()> evt;
