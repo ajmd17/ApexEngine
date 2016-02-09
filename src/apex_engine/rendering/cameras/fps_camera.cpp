@@ -76,28 +76,32 @@ namespace apex
 	{
         const float speed = dt*6.0f;
 
+
+
 		if (inputMgr->isKeyDown(apex::KeyboardKey::W))
 		{
-			this->translation.x += direction.x * speed;
-			this->translation.y += direction.y * speed;
-			this->translation.z += direction.z * speed;
+			nextTranslation.x += direction.x * speed;
+			nextTranslation.y += direction.y * speed;
+			nextTranslation.z += direction.z * speed;
 		}
 		else if (inputMgr->isKeyDown(apex::KeyboardKey::S))
 		{
-			this->translation.x -= direction.x * speed;
-			this->translation.y -= direction.y * speed;
-			this->translation.z -= direction.z * speed;
+			nextTranslation.x -= direction.x * speed;
+			nextTranslation.y -= direction.y * speed;
+			nextTranslation.z -= direction.z * speed;
 		}
 
 		if (inputMgr->isKeyDown(apex::KeyboardKey::A))
 		{
-			this->translation.x += sin(MathUtil::toRadians(yaw + 90.0f)) * speed;
-			this->translation.z -= cos(MathUtil::toRadians(yaw + 90.0f)) * speed;
+			nextTranslation.x += sin(MathUtil::toRadians(yaw + 90.0f)) * speed;
+			nextTranslation.z -= cos(MathUtil::toRadians(yaw + 90.0f)) * speed;
 		}
 		else if (inputMgr->isKeyDown(apex::KeyboardKey::D))
 		{
-			this->translation.x += sin(MathUtil::toRadians(yaw - 90.0f)) * speed;
-			this->translation.z -= cos(MathUtil::toRadians(yaw - 90.0f)) * speed;
+			nextTranslation.x += sin(MathUtil::toRadians(yaw - 90.0f)) * speed;
+			nextTranslation.z -= cos(MathUtil::toRadians(yaw - 90.0f)) * speed;
 		}
+
+		this->translation.lerp(nextTranslation, MathUtil::clamp(8.0f*dt, 0.0f, 1.0f));
 	}
 }

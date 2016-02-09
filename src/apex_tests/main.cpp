@@ -241,10 +241,10 @@ void TestGame::init()
 
 
 
-	std::shared_ptr<Node> torus = getAssetManager()->loadAs<Node>("./data/models/torus.obj");
+	/*std::shared_ptr<Node> torus = getAssetManager()->loadAs<Node>("./data/models/torus.obj");
 	torus->setLocalTranslation(Vector3f(0, 1, 7));
 	torus->getAt<Geometry>(0)->setShader(shaderPtr);
-	this->getScene()->getRootNode()->add(torus);
+	this->getScene()->getRootNode()->add(torus);*/
 
 	std::shared_ptr<Node> cube = getAssetManager()->loadAs<Node>("./data/models/cube.obj");
 	cube->setLocalTranslation(Vector3f(0, -1, 2.5f));
@@ -252,17 +252,16 @@ void TestGame::init()
 	cube->getAt<Geometry>(0)->setShader(shaderPtr);
 	this->getScene()->getRootNode()->add(cube);
 
-	/*
+
 	std::shared_ptr<Node> loadedmodel = getAssetManager()->loadAs<Node>("./data/models/logo.obj");
 
 	loadedmodel->setLocalTranslation(Vector3f(0, 1, 7));
 	loadedmodel->setLocalRotation(Quaternion().setFromAxis(Vector3f::UnitY, -90));
 
     loadedmodel->getAt<Geometry>(0)->setShader(shaderPtr);
-	loadedmodel->getAt<Geometry>(0)->getMaterial().setTexture(Material::TEXTURE_DIFFUSE, mytex);
-    loadedmodel->getAt<Geometry>(0)->getMaterial().setBool(Material::BOOL_CULLENABLED, true);
+    loadedmodel->getAt<Geometry>(0)->getMaterial().setBool(Material::BOOL_CULLENABLED, false);
 	loadedmodel->getAt<Geometry>(1)->setShader(shaderPtr);
-	this->getScene()->getRootNode()->add(loadedmodel);*/
+	this->getScene()->getRootNode()->add(loadedmodel);
 
 
 
@@ -289,10 +288,10 @@ void TestGame::exit()
 void TestGame::logic(const float dt)
 {
 
-	rot += dt*50.0f;
+	/*rot += dt*50.0f;
 	Quaternion &qr = scene->getRootNode()->getAt<Spatial>(1)->getLocalRotation();
 	qr.setFromAxis(Vector3f(1, 1, 0), rot*1.25f);
-	scene->getRootNode()->getAt<Spatial>(1)->setNeedsTransformUpdate();
+	scene->getRootNode()->getAt<Spatial>(1)->setNeedsTransformUpdate();*/
 
 	//Quaternion &qr1 = scene->getRootNode()->getAt<Spatial>(0)->getLocalRotation();
 	//qr1.setFromAxis(Vector3f(1, 1, 0), rot);

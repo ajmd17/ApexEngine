@@ -18,6 +18,8 @@ namespace apex
 
 		float magX, magY, oldMagX, oldMagY;
 
+		Vector3f nextTranslation;
+
 		bool mouseCaptured;
 
 		void centerMouse();

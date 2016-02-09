@@ -194,6 +194,16 @@ namespace apex
 			return sqrt(distanceSqr(other));
 		}
 
+		Vector4f &lerp(const Vector4f &toVector, const float amt)
+		{
+            this->x = MathUtil::lerp(this->x, toVector.x, amt);
+            this->y = MathUtil::lerp(this->y, toVector.y, amt);
+            this->z = MathUtil::lerp(this->z, toVector.z, amt);
+            this->w = MathUtil::lerp(this->w, toVector.w, amt);
+
+            return *this;
+		}
+
 		static Vector4f min(const Vector4f &a, const Vector4f &b, Vector4f &outVec)
 		{
 			outVec.x = MathUtil::min(a.x, b.x);

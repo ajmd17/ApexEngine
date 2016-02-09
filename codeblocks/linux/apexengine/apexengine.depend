@@ -58,7 +58,7 @@
 	<vector>
 	<string>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/vector3f.h
+1454991011 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/vector3f.h
 	<cmath>
 	<iostream>
 	"math_util.h"
@@ -69,7 +69,7 @@
 1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/matrix4f.h
 	<iostream>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/vector2f.h
+1454991054 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/vector2f.h
 	<cmath>
 	<iostream>
 	"math_util.h"
@@ -81,7 +81,7 @@
 	"../math/vector4f.h"
 	"texture.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/vector4f.h
+1454991033 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/vector4f.h
 	<cmath>
 	<iostream>
 	"math_util.h"
@@ -303,13 +303,13 @@
 1454886230 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/vector4f.cpp
 	"vector4f.h"
 
-1454979813 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/cameras/fps_camera.cpp
+1454991397 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/cameras/fps_camera.cpp
 	"fps_camera.h"
 	"../../input/inputmanager.h"
 	"../../util/logutil.h"
 	<functional>
 
-1454978988 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/cameras/fps_camera.h
+1454991315 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/cameras/fps_camera.h
 	"perspective_camera.h"
 	"../../math/matrix_util.h"
 	"../../math/vector3f.h"
