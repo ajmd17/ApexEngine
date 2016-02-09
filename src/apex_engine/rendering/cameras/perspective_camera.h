@@ -45,7 +45,7 @@ namespace apex
 			this->up.set(up);
 		}
 
-		virtual void updateCameraLogic()
+		virtual void updateCameraLogic(const float dt)
 		{
 		}
 

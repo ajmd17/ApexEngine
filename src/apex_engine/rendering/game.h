@@ -41,15 +41,15 @@ namespace apex
 			delete inputMgr;
 		}
 
-		void update()
+		void update(const float dt)
 		{
 			if (this->camera != NULL)
 			{
-				this->camera->update();
+				this->camera->update(dt);
 			}
 
-			this->scene->getRootNode()->update(this->renderMgr);
-			this->logic();
+			this->scene->getRootNode()->update(this->renderMgr, dt);
+			this->logic(dt);
 		}
 
 		void render()
@@ -65,7 +65,7 @@ namespace apex
 
 		virtual void init() = 0;
 
-		virtual void logic() = 0;
+		virtual void logic(const float dt) = 0;
 
 		virtual void exit() = 0;
 

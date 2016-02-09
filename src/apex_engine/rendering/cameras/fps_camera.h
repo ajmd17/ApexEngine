@@ -26,13 +26,13 @@ namespace apex
 
 		void altPressCallback();
 
-		void mouseInput(int x, int y, int halfWidth, int halfHeight);
+		void mouseInput(const float dt, int x, int y, int halfWidth, int halfHeight);
 
-		void keyboardInput();
+		void keyboardInput(const float dt);
 	public:
 		FPSCamera(InputManager *inputMgr, float fov, float n, float f);
 
-		void updateCameraLogic();
+		void updateCameraLogic(const float dt);
 	};
 }
 

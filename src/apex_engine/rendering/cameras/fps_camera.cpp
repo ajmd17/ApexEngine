@@ -37,16 +37,16 @@ namespace apex
 		inputMgr->addKeyboardEvent(k_e);
 	}
 
-	void FPSCamera::updateCameraLogic()
+	void FPSCamera::updateCameraLogic(const float dt)
 	{
 		this->width = inputMgr->getWidth();
 		this->height = inputMgr->getHeight();
 
-		this->mouseInput(inputMgr->getMouseX(), inputMgr->getMouseY(), inputMgr->getWindowX() + width / 2, inputMgr->getWindowY() + height / 2);
-		this->keyboardInput();
+		this->mouseInput(dt, inputMgr->getMouseX(), inputMgr->getMouseY(), inputMgr->getWindowX() + width / 2, inputMgr->getWindowY() + height / 2);
+		this->keyboardInput(dt);
 	}
 
-	void FPSCamera::mouseInput(int x, int y, int halfWidth, int halfHeight)
+	void FPSCamera::mouseInput(const float dt, int x, int y, int halfWidth, int halfHeight)
 	{
 		if (mouseCaptured)
 		{
@@ -66,9 +66,10 @@ namespace apex
 		}
 	}
 
-	void FPSCamera::keyboardInput()
+	void FPSCamera::keyboardInput(const float dt)
 	{
-        const float speed = 0.005f;
+        const float speed = dt;
+
 		if (inputMgr->isKeyDown(apex::KeyboardKey::W))
 		{
 			this->translation.x += direction.x * speed;

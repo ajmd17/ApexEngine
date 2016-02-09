@@ -226,6 +226,8 @@ namespace apex
 		sf::Window *window = pair.window;
 		Game *game = pair.game;
 
+		sf::Clock clock;
+
 		window->setActive(true);
 
 		if (game != NULL)
@@ -241,12 +243,14 @@ namespace apex
 		{
 			globalMutex.lock();
 
+			float dt = clock.restart().asSeconds();
+
 			if (game != NULL)
 			{
 				game->getInputManager()->_setMousePos(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
 				game->getInputManager()->_setWindowPos(window->getPosition().x, window->getPosition().y);
 
-				game->update();
+				game->update(dt);
 				game->render();
 			}
 

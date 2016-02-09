@@ -9,7 +9,7 @@ namespace apex
 	{
 	}
 
-	void Spatial::update(RenderManager *renderMgr)
+	void Spatial::update(RenderManager *renderMgr, const float dt)
 	{
 		if (this->updateFlags & Spatial::updateTransformFlag)
 		{

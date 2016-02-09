@@ -186,7 +186,7 @@ namespace apex
 
 		void updateTransform();
 
-		virtual void update(RenderManager *renderMgr);
+		virtual void update(RenderManager *renderMgr, const float dt);
 
 		// Don't set this manually. Otherwise, bad things will happen.
 		void setParent(Spatial *parent)

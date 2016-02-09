@@ -76,11 +76,11 @@ namespace apex
 		}
 	}
 
-	void Geometry::update(RenderManager *renderMgr)
+	void Geometry::update(RenderManager *renderMgr, const float dt)
 	{
 		this->renderMgr = renderMgr;
 
-		Spatial::update(renderMgr);
+		Spatial::update(renderMgr, dt);
 	}
 
 	void Geometry::setBucket(RenderBucket bucket)

@@ -2,6 +2,7 @@
 #define SHADERUTIL_H
 
 #include "../util/strutil.h"
+#include "../util/logutil.h"
 
 #include <algorithm> 
 
@@ -24,7 +25,7 @@ namespace apex
 	public:
 		map<string, bool> values;
 
-		ShaderProperties setProperty(string &name, bool &val)
+		ShaderProperties setProperty(string name, bool val)
 		{
 			bool hasVal = this->hasValue(name);
 
@@ -60,7 +61,7 @@ namespace apex
 		{
 		}
 
-		ShaderProperties(ShaderProperties &other)
+		ShaderProperties(const ShaderProperties &other)
 		{
 			this->values.clear();
 			this->values.insert(other.values.begin(), other.values.end());
@@ -69,11 +70,9 @@ namespace apex
 		friend ostream& operator<<(ostream& out, const ShaderProperties &props) // output
 		{
 			out << "ShaderProperties {\n";
-			/*for (int i = 0; i < props.values.size(); i++)
+			/*for (map<string, bool>::iterator i = props.values.begin(); i != props.values.end(); ++i)
 			{
-				std::map<string, bool>::iterator it;
-				it = props.values.find(props.values.begin() + i);
-				out << it->first << "\t" << it->second << "\n";
+				out << "\t" << i->first << ":\t" << i->second << "\n";
 			}*/
 			out << "}\n";
 			return out;
@@ -117,10 +116,35 @@ namespace apex
 			return code;
 		}
 
+		// TODO
 		static string formatShaderProperties(string &code, ShaderProperties &properties)
 		{
 			return code;
 		}
+
+		static bool compareShaderProperties(ShaderProperties a, ShaderProperties b)
+		{
+			for (std::map<std::string, bool>::iterator i = a.values.begin(); i != a.values.end(); ++i)
+			{
+				bool val;
+
+				if (b.values.find(i->first) != b.values.end())
+				{
+					val = b.values[i->first];
+					if (val != i->second)
+					{
+						return false;
+					}
+				}
+				else
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
 	};
 }
 #endif

@@ -35,7 +35,7 @@ public:
 	{
 	}
 	void init();
-	void logic();
+	void logic(const float dt);
 	void exit();
 };
 
@@ -47,7 +47,7 @@ public:
 	MyShader(ShaderProperties &properties) : Shader(properties, vscode, fscode)
 	{
 	}
-};
+}; 
 
 const string MyShader::vscode = "#version 150\nattribute vec3 a_position;\nattribute vec2 a_texcoord0;\nattribute vec3 a_normal;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;\nuniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\nv_normal = mat3(inverse(transpose(Apex_ModelMatrix))) * a_normal;\n}";
 const string MyShader::fscode = "#version 150\nuniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\nfloat ndotl = dot(v_normal, vec3(1.0));\ngl_FragColor = vec4(v_normal, 1.0);\n}";
@@ -231,7 +231,13 @@ void TestGame::init()
 
 
 	ShaderProperties props;
+	ShaderProperties props2;
+	props.setProperty(string("LIGHTING"), true);
+	props.setProperty(string("TEST"), true);
+	props2.setProperty(string("LIGHTING"), true);
+	props2.setProperty(string("TEST"), false);
 	shared_ptr<Shader> shaderPtr = ShaderManager::getShader<MyShader>(props);
+	shared_ptr<Shader> shaderPtr2 = ShaderManager::getShader<MyShader>(props2);
 
 
 
@@ -280,7 +286,7 @@ void TestGame::exit()
 	delete mesh;
 }
 
-void TestGame::logic()
+void TestGame::logic(const float dt)
 {
 
 	rot += 1;

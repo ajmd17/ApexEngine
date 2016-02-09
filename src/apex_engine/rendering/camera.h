@@ -17,7 +17,7 @@ namespace apex
 
 		unsigned int width, height;
 	public:
-		virtual void updateCameraLogic() = 0;
+		virtual void updateCameraLogic(const float dt) = 0;
 
 		virtual void updateCameraMatrices() = 0;
 
@@ -82,9 +82,9 @@ namespace apex
 			direction.normalize();
 		}
 
-		void update()
+		void update(const float dt)
 		{
-			updateCameraLogic();
+			updateCameraLogic(dt);
 			updateCameraMatrices();
 		}
 	};

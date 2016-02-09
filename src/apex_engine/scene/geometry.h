@@ -53,7 +53,7 @@ namespace apex
 
 		~Geometry();
 
-		void update(RenderManager *renderMgr);
+		void update(RenderManager *renderMgr, const float dt);
 
 		void render(Camera &cam);
 

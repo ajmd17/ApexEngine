@@ -2,6 +2,7 @@
 #define SHADERMANAGER_H
 
 #include "shader.h"
+#include "shader_util.h"
 
 #include <type_traits>
 
@@ -19,17 +20,29 @@ namespace apex
 	class ShaderManager
 	{
 	public:
-		static vector<shared_ptr<Shader>> shaders;
+		static vector<std::pair<shared_ptr<Shader>, ShaderProperties>> shaders;
 
 		template<typename ShaderClass>
 		typename std::enable_if<std::is_base_of<Shader, ShaderClass>::value, shared_ptr<Shader>>::type
 			static getShader(ShaderProperties properties)
 		{
-			// TODO: Iterate through current shaders and find ones with same class and properties before adding a new one
+
+			for (int i = 0; i < shaders.size(); i++)
+			{
+				if (dynamic_cast<ShaderClass*>(shaders[i].first.get()) != 0)
+				{
+					if (ShaderUtil::compareShaderProperties(properties, shaders[i].second))
+					{
+						cout << "Same type.\n";
+					}
+				}
+			}
+
 			shared_ptr<Shader> shaderPtr(new ShaderClass(properties));
 
-			shaders.push_back(shaderPtr);
-			return shaders.back();
+			std::pair<shared_ptr<Shader>, ShaderProperties> p = std::make_pair(shaderPtr, properties);
+			shaders.push_back(p);
+			return shaders.back().first;
 		}
 	};
 }

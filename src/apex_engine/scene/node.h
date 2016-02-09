@@ -50,13 +50,13 @@ namespace apex
 
 		vector<shared_ptr<Spatial>> children;
 
-		void update(RenderManager *renderMgr)
+		void update(RenderManager *renderMgr, const float dt)
 		{
-			Spatial::update(renderMgr);
+			Spatial::update(renderMgr, dt);
 
 			for (size_t i = 0; i < children.size(); i++)
 			{
-				children[i]->update(renderMgr);
+				children[i]->update(renderMgr, dt);
 			}
 		}
 

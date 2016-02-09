@@ -3,6 +3,6 @@
 namespace apex
 {
 	// Define the static vector of shaders
-	vector<shared_ptr<Shader>> ShaderManager::shaders;
+	vector<std::pair<shared_ptr<Shader>, ShaderProperties>> ShaderManager::shaders;
 
 }
