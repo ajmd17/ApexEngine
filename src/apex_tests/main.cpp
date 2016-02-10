@@ -244,10 +244,10 @@ void TestGame::init()
 
 
 
-	/*std::shared_ptr<Node> torus = getAssetManager()->loadAs<Node>("./data/models/torus.obj");
-	torus->setLocalTranslation(Vector3f(0, 1, 7));
-	torus->getAt<Geometry>(0)->setShader(shaderPtr);
-	this->getScene()->getRootNode()->add(torus);*/
+	std::shared_ptr<Node> torus = getAssetManager()->loadAs<Node>("./data/models/torus.obj");
+	torus->setLocalTranslation(Vector3f(0, 0, -3.5f));
+	torus->getAt<Geometry>(0)->setShader<MyShader>();
+	this->getScene()->getRootNode()->add(torus);
 
 	std::shared_ptr<Node> sphere = getAssetManager()->loadAs<Node>("./data/models/test.obj");
 	//cube->setLocalTranslation(Vector3f(0, -1, 2.5f));
@@ -256,7 +256,7 @@ void TestGame::init()
 	this->getScene()->getRootNode()->add(sphere);
 
 	std::shared_ptr<Node> cube = getAssetManager()->loadAs<Node>("./data/models/cube.obj");
-	cube->setLocalTranslation(Vector3f(0, 0, 4.5f));
+	cube->setLocalTranslation(Vector3f(0, 0, 3.5f));
 	cube->getAt<Geometry>(0)->setShader<MyShader>();
 	this->getScene()->getRootNode()->add(cube);
 
@@ -274,7 +274,6 @@ void TestGame::init()
 	loadedmodel->getAt<Geometry>(4)->setShader<MyShader>();
 	loadedmodel->getAt<Geometry>(5)->setShader<MyShader>();
 	this->getScene()->getRootNode()->add(loadedmodel);*/
-
 
 
 	/*vector<Vertex> myVerts;
@@ -321,8 +320,6 @@ void TestGame::logic(const float dt)
 
 int main()
 {
-	engine_log << "PLIGHT: " << PointLight::P_LIGHT_COLOR << "\n";
-
 	IEngine *pEngine = new GLEngine();
 	RenderManager::setEngine(pEngine);
 

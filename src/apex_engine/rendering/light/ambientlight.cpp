@@ -6,9 +6,6 @@
 
 namespace apex
 {
-	const string AmbientLight::A_LIGHT_NAME = "Env_AmbientLight";
-	const string AmbientLight::A_LIGHT_COLOR = "color";
-
 	AmbientLight::AmbientLight()
 	{
 		this->color.set(0.1f, 0.1f, 0.1f, 1.0f);

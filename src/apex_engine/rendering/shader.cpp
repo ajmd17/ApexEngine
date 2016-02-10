@@ -52,7 +52,7 @@ namespace apex
 		formatted_fs = ShaderUtil::formatShaderVersion(formatted_fs);
 		this->addFragmentProgram(formatted_fs);
 
-		engine_log << "\n\n\n" << formatted_vs << "\n\n\n" << formatted_fs << "\n\n\n";
+		//engine_log << "\n\n\n" << formatted_vs << "\n\n\n" << formatted_fs << "\n\n\n";
 
 		this->compileShader();
 

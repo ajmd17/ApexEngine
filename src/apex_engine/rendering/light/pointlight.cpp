@@ -6,11 +6,6 @@
 
 namespace apex
 {
-	const string PointLight::P_LIGHT_NAME = "Env_PointLights";
-	const string PointLight::P_LIGHT_POSITION = "position";
-	const string PointLight::P_LIGHT_COLOR = "color";
-	const string PointLight::P_LIGHT_RADIUS = "radius";
-
 	PointLight::PointLight()
 	{
 		this->position.set(0.0f);

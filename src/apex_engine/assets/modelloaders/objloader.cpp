@@ -108,7 +108,12 @@ namespace apex
 	std::shared_ptr<ILoadableObject> ObjLoader::load(AssetManager *assetMgr, AssetInfo &asset)
 	{
 		Node *node = new Node();
-		node->setName("Objthing");
+
+		std::string currentDir = std::string(asset.getFilePath());
+		std::string nodeFileName = currentDir.substr(currentDir.find_last_of("\\/")+1);
+		nodeFileName = nodeFileName.substr(0, nodeFileName.find_first_of(".")); // trim extension
+
+		node->setName(nodeFileName);
 
 		std::string line;
 		while (std::getline(*asset.getStream(), line))

@@ -37,25 +37,25 @@ namespace apex
 		// Lighting structs
 		"struct PointLight\n"
 		"{\n"
-		"    vec3 " + PointLight::P_LIGHT_POSITION + ";\n"
-		"    vec4 " + PointLight::P_LIGHT_COLOR + ";\n"
-		"    float " + PointLight::P_LIGHT_RADIUS + ";\n"
+		"    vec3 " + P_LIGHT_POSITION + ";\n"
+		"    vec4 " + P_LIGHT_COLOR + ";\n"
+		"    float " + P_LIGHT_RADIUS + ";\n"
 		"};\n"
 
 		"struct AmbientLight\n"
 		"{\n"
-		"    vec4 " + AmbientLight::A_LIGHT_COLOR + ";\n"
+		"    vec4 " + A_LIGHT_COLOR + ";\n"
 		"};\n"
 
 		"struct DirectionalLight\n"
 		"{\n"
-		"    vec3 " + DirectionalLight::D_LIGHT_DIRECTION + ";\n"
-		"    vec4 " + DirectionalLight::D_LIGHT_COLOR + ";\n"
+		"    vec3 " + D_LIGHT_DIRECTION + ";\n"
+		"    vec4 " + D_LIGHT_COLOR + ";\n"
 		"};\n"
 
-		"uniform DirectionalLight " + DirectionalLight::D_LIGHT_NAME + ";\n"
-		"uniform PointLight " + PointLight::P_LIGHT_NAME + "[4];\n"
-		"uniform AmbientLight " + AmbientLight::A_LIGHT_NAME + ";\n"
+		"uniform DirectionalLight " + D_LIGHT_NAME + ";\n"
+		"uniform PointLight " + P_LIGHT_NAME + "[4];\n"
+		"uniform AmbientLight " + A_LIGHT_NAME + ";\n"
 
 		;
 

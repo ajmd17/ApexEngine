@@ -6,10 +6,6 @@
 
 namespace apex
 {
-	const string DirectionalLight::D_LIGHT_NAME = "Env_DirectionalLights";
-	const string DirectionalLight::D_LIGHT_DIRECTION = "direction";
-	const string DirectionalLight::D_LIGHT_COLOR = "color";
-
 	DirectionalLight::DirectionalLight()
 	{
 		this->direction.set(1.0f);

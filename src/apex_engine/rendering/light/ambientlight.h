@@ -8,10 +8,10 @@ using std::string;
 
 namespace apex
 {
+	const string A_LIGHT_NAME = "Env_AmbientLight", A_LIGHT_COLOR = "color";
 	class AmbientLight : public LightSource
 	{
 	public:
-		static const string A_LIGHT_NAME, A_LIGHT_COLOR;
 	private:
 
 		string tmpUniform0;

@@ -14,10 +14,11 @@ using std::string;
 
 namespace apex
 {
+	const string P_LIGHT_NAME = "Env_PointLights", P_LIGHT_POSITION = "position", P_LIGHT_COLOR = "color", P_LIGHT_RADIUS = "radius";
+
 	class PointLight : public LightSource
 	{
 	public:
-		static const string P_LIGHT_NAME, P_LIGHT_POSITION, P_LIGHT_COLOR, P_LIGHT_RADIUS;
 	private:
 		Vector3f position;
 		float radius;

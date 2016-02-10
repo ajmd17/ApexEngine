@@ -10,10 +10,11 @@ using std::string;
 
 namespace apex
 {
+	const string D_LIGHT_NAME = "Env_DirectionalLight", D_LIGHT_DIRECTION = "direction", D_LIGHT_COLOR = "color";
+
 	class DirectionalLight : public LightSource
 	{
 	public:
-		static const string D_LIGHT_NAME, D_LIGHT_DIRECTION, D_LIGHT_COLOR;
 	private:
 		Vector3f direction;
 
