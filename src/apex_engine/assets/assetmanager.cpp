@@ -21,6 +21,8 @@ using std::ifstream;
 
 namespace apex
 {
+	AssetManager *AssetManager::defaultAssetManager = new AssetManager();
+
 	AssetManager::AssetManager()
 	{
 		// Create and register default loaders
@@ -51,6 +53,11 @@ namespace apex
 	{
 		loaders.clear();
 		loadedAssets.clear();
+	}
+
+	AssetManager *AssetManager::getDefaultAssetManager()
+	{
+		return defaultAssetManager;
 	}
 
 	std::shared_ptr<ILoadableObject> AssetManager::load(const char *filepath, std::shared_ptr<IAssetLoader> loader)

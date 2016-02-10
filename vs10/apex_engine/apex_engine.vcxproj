@@ -45,6 +45,7 @@
     <ClInclude Include="..\..\src\apex_engine\math\vector3f.h" />
     <ClInclude Include="..\..\src\apex_engine\math\vector4f.h" />
     <ClInclude Include="..\..\src\apex_engine\object.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\animation\skeleton.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\camera.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\cameras\fps_camera.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\cameras\perspective_camera.h" />
@@ -52,6 +53,8 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\enums.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\environment.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\game.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\light\ambientlight.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\light\directionallight.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\light\lightsource.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\light\pointlight.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\material.h" />
@@ -114,6 +117,9 @@
     <ClCompile Include="..\..\src\apex_engine\math\vector3f.cpp" />
     <ClCompile Include="..\..\src\apex_engine\math\vector4f.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\cameras\fps_camera.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\rendering\game.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\rendering\light\ambientlight.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\rendering\light\directionallight.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\light\pointlight.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\material.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\mesh.cpp" />

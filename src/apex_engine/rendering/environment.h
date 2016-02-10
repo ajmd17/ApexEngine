@@ -6,13 +6,47 @@
 
 #include "light/lightsource.h"
 #include "light/pointlight.h"
+#include "light/directionallight.h"
+
+#include <vector>
+using std::vector;
 
 namespace apex
 {
 	class Environment
 	{
+	private:
+		DirectionalLight directionalLight;
+		vector<PointLight> pointLights;
 	public:
-		void addPointLight(PointLight &pl);
+		Environment() {};
+
+		~Environment() { pointLights.clear(); }
+
+		const unsigned int getNumPointLights()
+		{
+			return pointLights.size();
+		}
+
+		void setDirectionalLight(DirectionalLight dl)
+		{
+			this->directionalLight = dl;
+		}
+
+		DirectionalLight &getDirectionalLight()
+		{
+			return directionalLight;
+		}
+
+		void addPointLight(PointLight pl)
+		{
+			pointLights.push_back(pl);
+		}
+
+		PointLight &getPointLight(int i)
+		{
+			return pointLights[i];
+		}
 	};
 }
 #endif

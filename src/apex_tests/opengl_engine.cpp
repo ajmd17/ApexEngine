@@ -247,8 +247,11 @@ namespace apex
 
 			if (game != NULL)
 			{
-				game->getInputManager()->_setMousePos(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
-				game->getInputManager()->_setWindowPos(window->getPosition().x, window->getPosition().y);
+				if (game->getInputManager() != 0)
+				{
+					game->getInputManager()->_setWindowPos(window->getPosition().x, window->getPosition().y);
+					game->getInputManager()->_setMousePos(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+				}
 
 				game->update(dt);
 				game->render();

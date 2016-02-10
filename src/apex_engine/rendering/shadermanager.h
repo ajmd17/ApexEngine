@@ -46,7 +46,7 @@ namespace apex
 			std::pair<shared_ptr<Shader>, ShaderProperties> p = std::make_pair(shaderPtr, properties);
 			shaders.push_back(p);
 
-			apex::engine_log << "Added shader\n";
+			apex::engine_log << "# of shaders initalized: " << shaders.size() << "\n";
 
 			return shaders.back().first;
 		}

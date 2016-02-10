@@ -56,6 +56,17 @@ namespace apex
 			return *this;
 		}
 
+		bool getProperty(const std::string name)
+		{
+			if (hasValue(name))
+			{
+				return values[name];
+			}
+			else
+			{
+				return false;
+			}
+		}
 
 		ShaderProperties()
 		{
@@ -115,11 +126,110 @@ namespace apex
 			code = verString + "\n" + res;
 			return code;
 		}
-
-		// TODO
+		
+		// Test this
 		static string formatShaderProperties(string &code, ShaderProperties &properties)
 		{
-			return code;
+			string res = "";
+			std::vector<string> lines = split(code, '\n');
+			bool inIfStatement = false;
+			string ifStatementText = "";
+			bool removing = false;
+
+			std::vector<string>ifdefs, ifndefs;
+			string currentIfDef = "";
+
+			for (int i = 0; i < lines.size(); i++)
+			{
+				string line = lines[i];
+				if (startsWith(trim(line), string("#ifdef")))
+				{
+					inIfStatement = true;
+					ifStatementText = trim(line).substr(7);
+					currentIfDef = string("!") + ifStatementText;
+					ifdefs.push_back(currentIfDef);
+
+					bool remove = !(properties.getProperty(ifStatementText));
+
+					int num_ifdefs = 0;
+					int num_endifs = 0;
+
+					for (int j = i; j < lines.size(); j++)
+					{
+						if (startsWith(trim(lines[j]), "#ifdef") || startsWith(trim(lines[j]), "#ifndef"))
+						{
+							num_ifdefs++;
+						}
+						else if (startsWith(trim(lines[j]), "#endif"))
+						{
+							num_endifs++;
+
+							if (num_endifs >= num_ifdefs)
+							{
+								break;
+							}
+						}
+						else
+						{
+							if (remove)
+							{
+								lines[j] = "";
+							}
+						}
+					}
+
+					lines[i] = "";
+				}
+				else if (startsWith(trim(lines[i]), "#ifndef"))
+				{
+					inIfStatement = true;
+					ifStatementText = trim(lines[i]).substr(8);
+					currentIfDef = string("!") + ifStatementText;
+					ifdefs.push_back(currentIfDef);
+
+					bool remove = (properties.getProperty(ifStatementText));
+
+					int num_ifdefs = 0;
+					int num_endifs = 0;
+
+					for (int j = i; j < lines.size(); j++)
+					{
+						if (startsWith(trim(lines[j]), "#ifdef") || startsWith(trim(lines[j]), "#ifndef"))
+						{
+							num_ifdefs++;
+						}
+						else if (startsWith(trim(lines[j]), "#endif"))
+						{
+							num_endifs++;
+
+							if (num_endifs >= num_ifdefs)
+							{
+								break;
+							}
+						}
+						else
+						{
+							if (remove)
+							{
+								lines[j] = "";
+							}
+						}
+					}
+
+					lines[i] = "";
+				}
+				else if (startsWith(trim(lines[i]), "#endif"))
+				{
+					lines[i] = "";
+				}
+
+				if (strcmp(lines[i].c_str(), ""))
+				{
+					res += lines[i] + string("\n");
+				}
+			}
+
+			return res;
 		}
 
 		static bool compareShaderProperties(ShaderProperties a, ShaderProperties b)

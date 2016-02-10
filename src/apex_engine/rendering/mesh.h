@@ -9,6 +9,9 @@
 #include "rendermanager.h"
 #include "vertexattributes.h"
 
+#include <memory>
+using std::shared_ptr;
+
 #include <vector>
 using std::vector;
 
@@ -19,11 +22,15 @@ namespace apex
 {
 	class BoundingBox;
 
+	class Skeleton;
+
 	class Mesh
 	{
 	private:
 		bool uploaded, created;
 		int vertexSize;
+
+		shared_ptr<Skeleton> skeleton;
 	public:
 
 		unsigned int vbo, ibo, size;
@@ -54,6 +61,16 @@ namespace apex
 		BoundingBox createBoundingBox(Matrix4f &worldTransform);
 
 		BoundingBox createBoundingBox();
+
+		shared_ptr<Skeleton> getSkeleton()
+		{ 
+			return this->skeleton;
+		}
+
+		void setSkeleton(shared_ptr<Skeleton> skeleton) 
+		{
+			this->skeleton = skeleton;
+		}
 
 		VertexAttributes &getAttributes()
 		{

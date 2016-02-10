@@ -15,7 +15,6 @@ namespace apex
 {
 	ShaderLoader::ShaderLoader()
 	{
-		ShaderLib::init();
 	}
 
 	void ShaderLoader::resetLoader()

@@ -4,9 +4,14 @@
 #include "spatial.h"
 
 #include "../rendering/shader.h"
+#include "../rendering/shader_util.h"
+#include "../rendering/shadermanager.h"
+
 #include "../rendering/mesh.h"
 #include "../rendering/mesh_util.h"
+
 #include "../rendering/material.h"
+
 #include "../rendering/enums.h"
 
 #include "../math/boundingbox.h"
@@ -27,8 +32,10 @@ namespace apex
 
 		RenderManager *renderMgr; // Contains a list of all geometry that can be rendered (attached to the root node)
 
-		shared_ptr<Shader> shader;
+		shared_ptr<Shader> shader, normalsShader, depthShader;
 		shared_ptr<Mesh> mesh;
+
+		ShaderProperties geomShaderProperties;
 
 		Material material;
 
@@ -55,7 +62,7 @@ namespace apex
 
 		void update(RenderManager *renderMgr, const float dt);
 
-		void render(Camera &cam);
+		void render(Camera &cam, Environment &env);
 
 		void updateParents();
 
@@ -102,12 +109,59 @@ namespace apex
 			this->shader = shader;
 		}
 
+		template <typename ShaderClass>
+		typename std::enable_if<std::is_base_of<Shader, ShaderClass>::value>::type
+			setShader(ShaderProperties &properties)
+		{
+			// Temporary set shader properties to DEFAULT, to make sure
+			// the default code is compiled 
+			properties.setProperty("DEFAULT", true);
+
+			shared_ptr<Shader> shaderPtr =
+				ShaderManager::getShader<ShaderClass>(properties);
+
+			properties.setProperty("DEFAULT", false);
+
+			this->setShader(shaderPtr);
+		}
+
+		template <typename ShaderClass>
+		typename std::enable_if<std::is_base_of<Shader, ShaderClass>::value>::type
+			setShader()
+		{
+			this->updateShaderProperties();
+
+			this->setShader<ShaderClass>(this->geomShaderProperties);
+		}
+
+		shared_ptr<Shader> getNormalsShader()
+		{
+			return normalsShader;
+		}
+
+		void setNormalsShader(shared_ptr<Shader> shader)
+		{
+			this->normalsShader = shader;
+		}
+
+		shared_ptr<Shader> getDepthShader()
+		{
+			return depthShader;
+		}
+
+		void setDepthShader(shared_ptr<Shader> shader)
+		{
+			this->depthShader = shader;
+		}
+
 		RenderBucket getBucket()
 		{
 			return bucket;
 		}
 
 		void setBucket(RenderBucket bucket);
+
+		void updateShaderProperties();
 
 		void setNeedsTransformUpdate()
 		{

@@ -43,15 +43,20 @@ class MyShader : public Shader
 {
 private:
 public:
-	static const string vscode, fscode;
-	MyShader(ShaderProperties &properties) : Shader(properties, vscode, fscode)
+	MyShader(ShaderProperties &properties)
 	{
+		shared_ptr<LoadedText> vsShader = AssetManager::getDefaultAssetManager()->loadAs<LoadedText>("./data/shaders/simple.vs.glsl");
+		shared_ptr<LoadedText> fsShader = AssetManager::getDefaultAssetManager()->loadAs<LoadedText>("./data/shaders/simple.fs.glsl");
+
+		this->createShader(properties, vsShader->getText(), fsShader->getText());
 	}
+
+	void update(Camera &cam, Mesh &mesh, Environment &env)
+	{
+		Shader::update(cam, mesh, env);
+	}
+
 };
-
-const string MyShader::vscode = "#version 150\nattribute vec3 a_position;\nattribute vec2 a_texcoord0;\nattribute vec3 a_normal;\nuniform mat4 Apex_ModelMatrix;uniform mat4 Apex_ViewMatrix;\nuniform mat4 Apex_ProjectionMatrix;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\ngl_Position = Apex_ProjectionMatrix * Apex_ViewMatrix * Apex_ModelMatrix * vec4(a_position, 1.0);\nv_texCoord0 = vec2(a_texcoord0.x, -a_texcoord0.y);\nv_normal = mat3(inverse(transpose(Apex_ModelMatrix))) * a_normal;\n}";
-const string MyShader::fscode = "#version 150\nuniform sampler2D u_texture;\nvarying vec2 v_texCoord0;\nvarying vec3 v_normal;\nvoid main() {\nfloat ndotl = dot(v_normal * vec3(0.5) + vec3(0.5), vec3(1.0));\ngl_FragColor = vec4(v_normal, 1.0);\n}";
-
 Geometry *mygeom;
 Mesh *mesh;
 Matrix4f myMatrix;
@@ -62,8 +67,8 @@ void TestGame::init()
 {
 	RenderManager::getEngine()->clearColor(97.0/255.0, 119.0/255.0, 171.0/255.0, 1);
 
-	shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test_shader.fs");
-	engine_log << sc->getText() << "\n";
+	//shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test_shader.fs");
+	//engine_log << sc->getText() << "\n";
 
 	//std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
 
@@ -231,13 +236,11 @@ void TestGame::init()
 
 
 	ShaderProperties props;
-	ShaderProperties props2;
-	props.setProperty(string("LIGHTING"), true);
+	props.setProperty(string("LIGHTING"), false);
 	props.setProperty(string("TEST"), true);
-	props2.setProperty(string("LIGHTING"), true);
-	props2.setProperty(string("TEST"), true);
-	shared_ptr<Shader> shaderPtr = ShaderManager::getShader<MyShader>(props);
-	shared_ptr<Shader> shaderPtr2 = ShaderManager::getShader<MyShader>(props2);
+
+	
+	//shared_ptr<Shader> shaderPtr = ShaderManager::getShader<MyShader>(props);
 
 
 
@@ -246,22 +249,31 @@ void TestGame::init()
 	torus->getAt<Geometry>(0)->setShader(shaderPtr);
 	this->getScene()->getRootNode()->add(torus);*/
 
+	std::shared_ptr<Node> sphere = getAssetManager()->loadAs<Node>("./data/models/test.obj");
+	//cube->setLocalTranslation(Vector3f(0, -1, 2.5f));
+	//cube->setLocalScale(Vector3f(0.3f));
+	sphere->getAt<Geometry>(0)->setShader<MyShader>();
+	this->getScene()->getRootNode()->add(sphere);
+
 	std::shared_ptr<Node> cube = getAssetManager()->loadAs<Node>("./data/models/cube.obj");
-	cube->setLocalTranslation(Vector3f(0, -1, 2.5f));
-	cube->setLocalScale(Vector3f(0.3f));
-	cube->getAt<Geometry>(0)->setShader(shaderPtr);
+	cube->setLocalTranslation(Vector3f(0, 0, 4.5f));
+	cube->getAt<Geometry>(0)->setShader<MyShader>();
 	this->getScene()->getRootNode()->add(cube);
 
-
-	std::shared_ptr<Node> loadedmodel = getAssetManager()->loadAs<Node>("./data/models/logo.obj");
+	/*
+	std::shared_ptr<Node> loadedmodel = getAssetManager()->loadAs<Node>("./data/models/NO.obj");
 
 	loadedmodel->setLocalTranslation(Vector3f(0, 1, 7));
 	loadedmodel->setLocalRotation(Quaternion().setFromAxis(Vector3f::UnitY, -90));
 
-    loadedmodel->getAt<Geometry>(0)->setShader(shaderPtr);
+    loadedmodel->getAt<Geometry>(0)->setShader<MyShader>();
     loadedmodel->getAt<Geometry>(0)->getMaterial().setBool(Material::BOOL_CULLENABLED, false);
-	loadedmodel->getAt<Geometry>(1)->setShader(shaderPtr);
-	this->getScene()->getRootNode()->add(loadedmodel);
+	loadedmodel->getAt<Geometry>(1)->setShader<MyShader>();
+	loadedmodel->getAt<Geometry>(2)->setShader<MyShader>();
+	loadedmodel->getAt<Geometry>(3)->setShader<MyShader>();
+	loadedmodel->getAt<Geometry>(4)->setShader<MyShader>();
+	loadedmodel->getAt<Geometry>(5)->setShader<MyShader>();
+	this->getScene()->getRootNode()->add(loadedmodel);*/
 
 
 
@@ -288,10 +300,20 @@ void TestGame::exit()
 void TestGame::logic(const float dt)
 {
 
-	/*rot += dt*50.0f;
+	rot += dt*50.0f;
 	Quaternion &qr = scene->getRootNode()->getAt<Spatial>(1)->getLocalRotation();
 	qr.setFromAxis(Vector3f(1, 1, 0), rot*1.25f);
-	scene->getRootNode()->getAt<Spatial>(1)->setNeedsTransformUpdate();*/
+	scene->getRootNode()->getAt<Spatial>(1)->setNeedsTransformUpdate();
+
+	/*Vector3f &scl = scene->getRootNode()->getAt<Node>(1)->getAt<Spatial>(1)->getLocalScale();
+	scl.set(sin(rot*0.025f) * 2.0f + 1.0f,1,sin(rot*0.05f)+1.0f);
+	
+
+	Quaternion &qrot = scene->getRootNode()->getAt<Node>(1)->getAt<Spatial>(1)->getLocalRotation();
+	qrot.setFromAxis(Vector3f(1, 0, 0), rot*1.25f);
+	scene->getRootNode()->getAt<Node>(1)->getAt<Spatial>(1)->setNeedsTransformUpdate();
+	*/
+
 
 	//Quaternion &qr1 = scene->getRootNode()->getAt<Spatial>(0)->getLocalRotation();
 	//qr1.setFromAxis(Vector3f(1, 1, 0), rot);
@@ -299,6 +321,8 @@ void TestGame::logic(const float dt)
 
 int main()
 {
+	engine_log << "PLIGHT: " << PointLight::P_LIGHT_COLOR << "\n";
+
 	IEngine *pEngine = new GLEngine();
 	RenderManager::setEngine(pEngine);
 

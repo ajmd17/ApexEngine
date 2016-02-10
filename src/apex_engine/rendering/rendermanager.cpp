@@ -42,7 +42,7 @@ namespace apex
 		RenderManager::removeGeometry(&buckets[geom->getBucket()], geom);
 	}
 
-	void RenderManager::renderBucket(RenderBucket bucket, Camera &camera)
+	void RenderManager::renderBucket(RenderBucket bucket, Camera &camera, Environment &env)
 	{
 		bool canRender = false;
 
@@ -62,19 +62,19 @@ namespace apex
 
 				if (canRender)
 				{
-					geomList[i]->render(camera);
+					geomList[i]->render(camera, env);
 				}
 			}
 		}
 	}
 
-	void RenderManager::render(Camera &camera)
+	void RenderManager::render(Camera &camera, Environment &env)
 	{
 		getEngine()->viewport(0, 0, camera.getWidth(), camera.getHeight());
 		
-		this->renderBucket(OpaqueBucket, camera);
-		this->renderBucket(TransparentBucket, camera);
-		this->renderBucket(SkyboxBucket, camera);
-		this->renderBucket(ParticleBucket, camera);
+		this->renderBucket(OpaqueBucket, camera, env);
+		this->renderBucket(TransparentBucket, camera, env);
+		this->renderBucket(SkyboxBucket, camera, env);
+		this->renderBucket(ParticleBucket, camera, env);
 	}
 }

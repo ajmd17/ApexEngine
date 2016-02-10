@@ -16,16 +16,18 @@ namespace apex
 	class Scene
 	{
 	private:
-		Environment environment;
+		Environment *environment;
 		Node *rootNode;
 	public:
 		Scene()
 		{
 			rootNode = new Node("root");
+			environment = new Environment();
 		}
 
 		~Scene()
 		{
+			delete environment;
 			delete rootNode;
 		}
 
@@ -34,7 +36,7 @@ namespace apex
 			return rootNode;
 		}
 
-		Environment &getEnvironment()
+		Environment *getEnvironment() const
 		{
 			return environment;
 		}

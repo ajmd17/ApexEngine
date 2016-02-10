@@ -5,6 +5,11 @@
 
 #include "../util/logutil.h"
 
+#include <unordered_map>
+using std::unordered_map;
+
+#include "../rendering/texture.h"
+
 namespace apex
 {
 	int Geometry::geom_count = 0;
@@ -48,7 +53,7 @@ namespace apex
 		engine_log << "Deleting geometry: " << getName() << "\n";
 	}
 
-	void Geometry::render(Camera &cam)
+	void Geometry::render(Camera &cam, Environment &env)
 	{
 		if (this->shader != 0 && this->mesh != 0)
 		{
@@ -56,7 +61,7 @@ namespace apex
 			shader->applyTransforms(this->getGlobalMatrix(), cam.getViewMatrix(), cam.getProjectionMatrix());
 			shader->applyMaterial(this->material);
 
-			shader->update(cam, *mesh);
+			shader->update(cam, *mesh, env);
 
 			this->mesh->render();
 
@@ -158,5 +163,27 @@ namespace apex
 		}
 
 		return localBoundingBox;
+	}
+
+	void Geometry::updateShaderProperties()
+	{
+		this->geomShaderProperties.values.clear();
+
+		if (this->mesh != 0 && this->mesh->getSkeleton() != 0)
+		{
+			geomShaderProperties.setProperty(string("SKINNING"), true);
+		}
+
+		for (std::unordered_map<std::string, bool>::iterator i = this->material.booleans.begin(); 
+			i != this->material.booleans.end(); ++i)
+
+		{ } // Don't worry about this for now at least
+
+		for (std::unordered_map<std::string, std::shared_ptr<Texture>>::iterator i = this->material.textures.begin();
+		i != this->material.textures.end(); ++i)
+
+		{
+			this->geomShaderProperties.setProperty(i->first, (i->second != 0));
+		} // Only set textures as important things to include in the shader properties
 	}
 }

@@ -53,9 +53,9 @@ namespace apex
 
 		void removeGeometry(Geometry *geom);
 
-		void renderBucket(RenderBucket bucket, Camera &camera);
+		void renderBucket(RenderBucket bucket, Camera &camera, Environment &env);
 
-		void render(Camera &camera);
+		void render(Camera &camera, Environment &env);
 	};
 }
 #endif

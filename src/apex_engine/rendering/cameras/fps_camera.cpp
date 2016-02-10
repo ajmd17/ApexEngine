@@ -48,7 +48,7 @@ namespace apex
 
 	void FPSCamera::mouseInput(const float dt, int x, int y, int halfWidth, int halfHeight)
 	{
-        const float sensitivity = 100.0f;
+        const float sensitivity = 5.0f;
         const float smoothing = 15.5f; // the lower the value, the smoother it will be
 
 		if (mouseCaptured)
@@ -61,12 +61,20 @@ namespace apex
 
 			oldMagX = magX; oldMagY = magY;
 
-			this->rotate(Vector3f::UnitY, magX*dt*sensitivity);
-
 			dirCrossY.set(direction);
 			dirCrossY.cross(Vector3f::UnitY);
 
+			this->rotate(Vector3f::UnitY, magX*dt*sensitivity);
 			this->rotate(dirCrossY, magY*dt*sensitivity);
+
+			if (direction.y > 0.97f || direction.y < -0.97f) 
+			{ 
+				// negate and rerotate 
+				magY *= -1.0f;
+				this->rotate(dirCrossY, magY*dt*sensitivity);
+			}
+
+
 
 			inputMgr->setMousePos(halfWidth, halfHeight);
 		}
@@ -75,8 +83,6 @@ namespace apex
 	void FPSCamera::keyboardInput(const float dt)
 	{
         const float speed = dt*6.0f;
-
-
 
 		if (inputMgr->isKeyDown(apex::KeyboardKey::W))
 		{

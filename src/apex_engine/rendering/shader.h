@@ -32,13 +32,19 @@ namespace apex
 	private:
 		ShaderProperties properties;
 		Matrix4f modelMatrix, viewMatrix, projectionMatrix, normalMatrix;
+
+		bool isCreated;
 	public:
 		int *m_shaderIDs, m_shaderCounter;
 		// don't mess with this, used by the OpenGL renderer to count up and properly store shader IDs in the shader
 
+		Shader();
+
 		Shader(ShaderProperties properties, string vs_code, string fs_code);
 
 		~Shader();
+
+		void createShader(ShaderProperties properties, string vs_code, string fs_code);
 
 		const int &getProgramID()
 		{
@@ -50,8 +56,6 @@ namespace apex
 			this->id = id;
 		}
 
-		void create();
-
 		void use();
 
 		void compileShader();
@@ -60,7 +64,7 @@ namespace apex
 
 		virtual void end();
 
-		virtual void update(Camera &cam, Mesh &mesh);
+		virtual void update(Camera &cam, Mesh &mesh, Environment &env);
 
 		virtual void applyMaterial(Material &material);
 

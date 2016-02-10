@@ -9,27 +9,11 @@
 
 namespace apex
 {
+	Shader::Shader() {}
+
 	Shader::Shader(ShaderProperties properties, string vs_code, string fs_code)
 	{
-		// 2 shaders. Create the space to store their IDs.
-		this->m_shaderCounter = 0;
-
-		const int numShaders = 2; // vertex, fragment
-		this->m_shaderIDs = new int[numShaders];
-
-		this->properties = properties;
-		this->create();
-
-		string formatted_vs = ShaderUtil::formatShaderProperties(vs_code, properties);
-		formatted_vs = ShaderUtil::formatShaderVersion(formatted_vs);
-		this->addVertexProgram(formatted_vs);
-
-		string formatted_fs = ShaderUtil::formatShaderProperties(fs_code, properties);
-		formatted_fs = ShaderUtil::formatShaderVersion(formatted_fs);
-		this->addFragmentProgram(formatted_fs);
-
-		this->compileShader();
-		RenderManager::getEngine()->bindShaderProgram(0);
+		this->createShader(properties, vs_code, fs_code);
 	}
 
 	Shader::~Shader()
@@ -48,9 +32,31 @@ namespace apex
 		delete[] m_shaderIDs;
 	}
 
-	void Shader::create()
+	void Shader::createShader(ShaderProperties properties, string vs_code, string fs_code)
 	{
+		// 2 shaders. Create the space to store their IDs.
+		this->m_shaderCounter = 0;
+
+		const int numShaders = 2; // vertex, fragment
+		this->m_shaderIDs = new int[numShaders];
+
 		this->id = RenderManager::getEngine()->generateShaderProgram();
+
+		this->properties = properties;
+
+		string formatted_vs = ShaderUtil::formatShaderProperties(vs_code, properties);
+		formatted_vs = ShaderUtil::formatShaderVersion(formatted_vs);
+		this->addVertexProgram(formatted_vs);
+
+		string formatted_fs = ShaderUtil::formatShaderProperties(fs_code, properties);
+		formatted_fs = ShaderUtil::formatShaderVersion(formatted_fs);
+		this->addFragmentProgram(formatted_fs);
+
+		engine_log << "\n\n\n" << formatted_vs << "\n\n\n" << formatted_fs << "\n\n\n";
+
+		this->compileShader();
+
+		RenderManager::getEngine()->bindShaderProgram(0);
 	}
 
 	void Shader::use()
@@ -65,11 +71,22 @@ namespace apex
 
 	void Shader::addProgram(ShaderType type, string &code)
 	{
+	/*	if (!this->isCreated)
+		{
+			this->id = RenderManager::getEngine()->generateShaderProgram();
+			this->isCreated = true;
+		}*/
+
 		RenderManager::getEngine()->addShader(*this, code, type);
 	}
 
 	void Shader::compileShader()
 	{
+		/*if (!isCreated)
+		{
+			throw std::runtime_error("Shader not created yet. Cannot be compiled!");
+		}*/
+
 		RenderManager::getEngine()->compileShaderProgram(this->id);
 	}
 
@@ -119,11 +136,11 @@ namespace apex
 		this->viewMatrix = viewMatrix;
 		this->projectionMatrix = projectionMatrix;
 		this->normalMatrix.set(modelMatrix);
-		normalMatrix.invert();
 		normalMatrix.transpose();
+		normalMatrix.invert();
 	}
 
-	void Shader::update(Camera &cam, Mesh &mesh)
+	void Shader::update(Camera &cam, Mesh &mesh, Environment &env)
 	{
 		this->setDefaultValues();
 		this->setUniform(APEX_MODELMATRIX, modelMatrix);

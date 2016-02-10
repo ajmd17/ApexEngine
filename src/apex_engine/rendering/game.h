@@ -57,7 +57,7 @@ namespace apex
 			if (this->renderMgr != NULL)
 			{
 				this->renderMgr->getEngine()->clear(true, true, false);
-				this->renderMgr->render(*camera);
+				this->renderMgr->render(*camera, *this->scene->getEnvironment());
 			}
 			else
 				throw std::runtime_error("RenderManager should not be null");

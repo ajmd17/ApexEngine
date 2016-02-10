@@ -18,13 +18,14 @@ namespace apex
 	class Material
 	{
 	private:
+	public:
 		unordered_map<string, bool> booleans;
 		unordered_map<string, int> integers;
 		unordered_map<string, float> floats;
 		unordered_map<string, Vector4f> vector4fs;
 		unordered_map<string, string> strings;
 		unordered_map<string, shared_ptr<Texture>> textures;
-	public:
+
 		const static string
 			STRING_NAME,
 

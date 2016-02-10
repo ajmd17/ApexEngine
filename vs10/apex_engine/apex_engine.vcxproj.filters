@@ -26,9 +26,11 @@
     <Filter Include="Input">
       <UniqueIdentifier>{277c65b3-c047-4d7c-8f3b-618fa7d568be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering\Animation">
+      <UniqueIdentifier>{5379171b-8962-465b-ba8d-b9fbeb3895f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\apex_engine\rendering\shader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\shader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\shader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\rendering\shader.cpp" />
@@ -45,9 +47,6 @@
       <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\apex_engine\rendering\shadermanager.cpp">
-      <Filter>Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\apex_engine\assets\shaderloader\shaderloader.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\apex_engine\rendering\shaderlib.cpp">
@@ -270,6 +269,19 @@
     <ClCompile Include="..\..\src\apex_engine\scripting\lua\lzio.c">
       <Filter>Scripting</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\rendering\light\directionallight.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\rendering\game.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\assets\shaderloader\shaderloader.cpp">
+      <Filter>Asset Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\rendering\shader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\apex_engine\rendering\light\ambientlight.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
@@ -285,6 +297,43 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\camera.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\environment.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\game.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\mesh.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\mesh_util.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\matrix4f.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\matrix_util.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\quaternion.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\ray.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\transform.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\vector2f.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\vector3f.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\vector4f.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\camera.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\environment.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\game.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\material.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\mesh.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\mesh_util.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\rendermanager.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\matrix4f.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\matrix_util.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\quaternion.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\ray.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\transform.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\vector2f.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\vector3f.h" />
+    <ClInclude Include="..\..\src\apex_engine\math\vector4f.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\camera.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\environment.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\game.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\light\lightsource.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\material.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\mesh.h" />
@@ -839,62 +888,6 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\renderer.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\rendermanager.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
-    <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\apex_engine\Header.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\apex_math.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\matrix4f.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\matrix_util.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\quaternion.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\ray.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\transform.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\vector2f.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\vector3f.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\vector4f.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\camera.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\environment.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\game.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\light\lightsource.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\material.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\mesh.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\mesh_util.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\renderer.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\rendermanager.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\shader_enums.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
-    <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\apex_engine\Header.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\apex_math.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\boundingbox.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\math_util.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\matrix4f.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\matrix_util.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\quaternion.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\ray.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\transform.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\vector2f.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\vector3f.h" />
-    <ClInclude Include="..\..\src\apex_engine\math\vector4f.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\camera.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\environment.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\game.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\light\lightsource.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\material.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\mesh.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\mesh_util.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\renderer.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\rendermanager.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\shader.h" />
-    <ClInclude Include="..\..\src\apex_engine\rendering\shader_enums.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\texture.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\loadedasset.h">
@@ -3769,9 +3762,6 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\shaderlib.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\apex_engine\assets\shaderloader\shaderloader.h">
-      <Filter>Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\apex_engine\rendering\shadermanager.h">
       <Filter>Rendering</Filter>
     </ClInclude>
@@ -4059,6 +4049,33 @@
     </ClInclude>
     <ClInclude Include="..\..\src\apex_engine\scripting\lua\lzio.h">
       <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\rendering\light\directionallight.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\rendering\light\lightsource.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\rendering\light\lightsource.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\assets\shaderloader\shaderloader.h">
+      <Filter>Asset Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\rendering\rendermanager.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\rendering\material.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\rendering\animation\skeleton.h">
+      <Filter>Rendering\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\rendering\shader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\apex_engine\rendering\light\ambientlight.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
