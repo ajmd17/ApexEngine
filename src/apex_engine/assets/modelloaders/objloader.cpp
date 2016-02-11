@@ -1,5 +1,7 @@
 #include "objloader.h"
 
+#include "../assetmanager.h"
+
 #include "../../scene/spatial.h"
 #include "../../scene/node.h"
 #include "../../scene/geometry.h"
@@ -32,12 +34,13 @@ namespace apex
 		this->namesMtl.clear();
 		this->materials.clear();
 		this->mtlOrder.clear();
+		this->mtlList.clearList();
 	}
 
 	vector<ObjIndex> *ObjLoader::currentList()
 	{
 		if (objIndices.size() == 0)
-			newMesh("child_0");
+			newMesh("child");
 		return objIndices[objIndices.size() - 1];
 	}
 
@@ -89,25 +92,19 @@ namespace apex
 		return res;
 	}
 
-	Material &ObjLoader::materialWithName(const string name)
+	Material ObjLoader::materialWithName(const string name)
 	{
-		for (int i = 0; i < materials.size(); i++)
-		{
-			string outName;
-			if (materials[i].getString(Material::STRING_NAME, outName))
-			{
-				if (strcmp(outName.c_str(), name.c_str()) == 0)
-					return materials[i];
-			}
-		}
 		Material m;
+		if (mtlList.getMaterial(name, m))
+			return m;
+
 		m.setString(Material::STRING_NAME, name);
 		return m;
 	}
 
 	std::shared_ptr<ILoadableObject> ObjLoader::load(AssetManager *assetMgr, AssetInfo &asset)
 	{
-		Node *node = new Node();
+		shared_ptr<Node> node(new Node());
 
 		std::string currentDir = std::string(asset.getFilePath());
 		std::string nodeFileName = currentDir.substr(currentDir.find_last_of("\\/")+1);
@@ -157,6 +154,23 @@ namespace apex
 					c_idx->push_back(parseObjIndex(tokens[3 + i]));
 				}
 			}
+			else if (strcmp(tokens[0].c_str(), "mtllib") == 0)
+			{
+				string libLoc = tokens[1];
+
+				std::string currentDir = std::string(asset.getFilePath());
+				currentDir = currentDir.substr(0, currentDir.find_last_of("\\/"));
+
+				if (!contains(currentDir, "/") && !contains(currentDir, "\\"))	// the file path is just current file name,															   
+				{																// so just make the string empty
+					currentDir = "";
+				}
+
+				currentDir += "/" + libLoc;
+
+				std::shared_ptr<MaterialList> mtlList = assetMgr->loadAs<MaterialList>(currentDir.c_str());
+				this->mtlList = *mtlList.get();
+			}
 			else if (strcmp(tokens[0].c_str(), "usemtl") == 0)
 			{
 				string matname = tokens[1];
@@ -172,8 +186,8 @@ namespace apex
 			for (int j = 0; j < c_idx->size(); j++)
 			{
 				Vertex vert(positions[(*c_idx)[j].vertex_idx],
-					(hasTexCoords ? texCoords[(*c_idx)[j].texcoord_idx] : Vector2f()),
-					(hasNormals ? normals[(*c_idx)[j].normal_idx] : Vector3f()));
+						   (hasTexCoords ? texCoords[(*c_idx)[j].texcoord_idx] : Vector2f()),
+						   (hasNormals ? normals[(*c_idx)[j].normal_idx] : Vector3f()));
 
 				vertices.push_back(vert);
 			}
@@ -184,12 +198,12 @@ namespace apex
 			shared_ptr<Geometry> geom(new Geometry());
 			geom->setName(names[i]);
 			geom->setMesh(mesh);
+			geom->setMaterial(materialWithName(namesMtl[i]));
 			node->add(geom);
 
 			delete c_idx;
 		}
 
-		std::shared_ptr<ILoadableObject> resPtr(node);
-		return resPtr;
+		return std::static_pointer_cast<ILoadableObject>(node);
 	}
 }

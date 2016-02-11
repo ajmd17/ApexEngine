@@ -45,20 +45,6 @@ namespace apex
 
 	BoundingBox &Node::getLocalBoundingBox()
 	{
-		/*if (!localBoundingBoxCreated)
-		{
-			updateLocalBoundingBox();
-			localBoundingBoxCreated = true;
-		}
-
-		if (this->updateFlags & Spatial::updateLocalBoundingBoxFlag)
-		{
-			updateLocalBoundingBox();
-			this->updateFlags &= ~Spatial::updateLocalBoundingBoxFlag;
-		}
-
-		return localBoundingBox;*/
-
 		return getGlobalBoundingBox();
 	}
 }

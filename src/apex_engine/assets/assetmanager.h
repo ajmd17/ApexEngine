@@ -36,6 +36,8 @@ namespace apex
 		// Default loaders
 		std::shared_ptr<IAssetLoader> textureLoader;
 		std::shared_ptr<IAssetLoader> objLoader;
+		std::shared_ptr<IAssetLoader> mtlLoader;
+		std::shared_ptr<IAssetLoader> a3dLoader;
 		std::shared_ptr<IAssetLoader> shaderLoader;
 		std::shared_ptr<IAssetLoader> textFileLoader;
 	public:

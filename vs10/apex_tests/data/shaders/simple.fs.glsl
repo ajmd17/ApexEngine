@@ -24,9 +24,12 @@ void main()
 	vec3 hv = normalize(l+v);
 	float ndotv = pow(max(dot(n, hv), 0.0), 100.0);
 	
+	color += amb;
 	
+	vec4 diffuse = texture2D(u_texture, v_texCoord0);
+	color *= diffuse.rgb;
 	
-	gl_FragColor = vec4(color*vec3(0.6,0.6,0.6)+amb+vec3(ndotv), 1.0);
+	gl_FragColor = vec4(color*vec3(0.6,0.3,0.1)+vec3(ndotv), 1.0);
 	gl_FragColor.rgb = pow(gl_FragColor.rgb, vec3(1.0 / 2.2));
 }
 

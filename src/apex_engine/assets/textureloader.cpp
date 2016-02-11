@@ -11,11 +11,9 @@ namespace apex
 
 	std::shared_ptr<ILoadableObject> TextureLoader::load(AssetManager *assetMgr, AssetInfo &asset)
 	{
-		Texture2D *tex = new Texture2D();
-		RenderManager::getEngine()->loadTexture2D(asset, *tex);
+		std::shared_ptr<Texture2D> tex(new Texture2D());
+		RenderManager::getEngine()->loadTexture2D(asset, *tex.get());
 
-		std::shared_ptr<ILoadableObject> res(tex);
-
-		return res;
+		return std::static_pointer_cast<ILoadableObject> (tex);
 	}
 }

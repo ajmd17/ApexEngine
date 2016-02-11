@@ -4,6 +4,8 @@
 #include "../assetloader.h"
 #include "../assetinfo.h"
 
+#include "mtlloader.h"
+
 #include "../../math/vector3f.h"
 #include "../../math/vector2f.h"
 
@@ -17,6 +19,8 @@ using std::string;
 
 namespace apex
 {
+	class MaterialList;
+
 	class ObjIndex
 	{
 	public:
@@ -51,6 +55,8 @@ namespace apex
 		vector<Material> materials;
 		vector<Material> mtlOrder;
 
+		MaterialList mtlList;
+
 		bool hasTexCoords, hasNormals;
 
 		vector<ObjIndex> *currentList();
@@ -59,7 +65,7 @@ namespace apex
 
 		ObjIndex parseObjIndex(const string &token);
 
-		Material &materialWithName(const string name);
+		Material materialWithName(const string name);
 	public:
 		ObjLoader()
 		{

@@ -55,6 +55,8 @@ namespace apex
 
 		virtual void use() = 0;
 
+		virtual void end() = 0;
+
 		virtual void setFilter(TextureFilterMode min, TextureFilterMode mag) = 0;
 
 		virtual void genMipmap() = 0;

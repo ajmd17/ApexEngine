@@ -24,6 +24,8 @@
     <ClInclude Include="..\..\src\apex_engine\assets\loadableobject.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\assetinfo.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\loadedtext.h" />
+    <ClInclude Include="..\..\src\apex_engine\assets\modelloaders\a3dloader.h" />
+    <ClInclude Include="..\..\src\apex_engine\assets\modelloaders\mtlloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\modelloaders\objloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\shaderloader\shaderloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\textfileloader.h" />
@@ -106,6 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\apex_engine\assets\assetmanager.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\assets\modelloaders\a3dloader.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\assets\modelloaders\mtlloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\assets\modelloaders\objloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\assets\shaderloader\shaderloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\assets\textureloader.cpp" />

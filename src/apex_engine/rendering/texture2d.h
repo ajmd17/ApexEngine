@@ -20,7 +20,11 @@ namespace apex
 		{
 		}
 
+		static void clear();
+
 		virtual void use();
+
+		virtual void end();
 
 		virtual void setFilter(TextureFilterMode min, TextureFilterMode mag);
 

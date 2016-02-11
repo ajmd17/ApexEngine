@@ -16,6 +16,8 @@ using std::ifstream;
 // Default loaders
 #include "textureloader.h"
 #include "modelloaders/objloader.h"
+#include "modelloaders/mtlloader.h"
+#include "modelloaders/a3dloader.h"
 #include "shaderloader/shaderloader.h"
 #include "textfileloader.h"
 
@@ -35,6 +37,12 @@ namespace apex
 
 		this->objLoader = std::make_shared<ObjLoader>();
 		this->registerExt("obj", this->objLoader);
+
+		this->mtlLoader = std::make_shared<MtlLoader>();
+		this->registerExt("mtl", this->mtlLoader);
+
+		this->a3dLoader = std::make_shared<A3dLoader>();
+		this->registerExt("a3d", this->a3dLoader);
 
 		this->shaderLoader = std::make_shared<ShaderLoader>();
 		this->registerExt("frag", this->shaderLoader);
@@ -65,7 +73,8 @@ namespace apex
 		ifstream filestream(filepath);
 		if (!filestream.is_open())
 		{
-			throw std::runtime_error("File stream is not valid");
+			//throw std::runtime_error("File stream is not valid");
+			engine_log << "Error: Could not load file \"" << filepath << "\"!\n";
 			return 0;
 		}
 

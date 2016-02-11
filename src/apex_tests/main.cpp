@@ -54,6 +54,18 @@ public:
 	void update(Camera &cam, Mesh &mesh, Environment &env)
 	{
 		Shader::update(cam, mesh, env);
+
+		shared_ptr<Texture> diff;
+		if (currentMaterial->getTexture(Material::TEXTURE_DIFFUSE, diff))
+		{
+			Texture::activeTextureSlot(0);
+			diff->use();
+			this->setUniform("u_texture", 0);
+		}
+		else
+		{
+			Texture2D::clear();
+		}
 	}
 
 };
@@ -66,6 +78,8 @@ float rot;
 void TestGame::init()
 {
 	RenderManager::getEngine()->clearColor(97.0/255.0, 119.0/255.0, 171.0/255.0, 1);
+
+	shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test.a3d");
 
 	//shared_ptr<LoadedText> sc = getAssetManager()->loadAs<LoadedText>("test_shader.fs");
 	//engine_log << sc->getText() << "\n";

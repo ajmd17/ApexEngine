@@ -64,7 +64,7 @@ namespace apex
 					}
 
 					// append the requested file name, so we can load the included file
-					currentDir += "./" + inc;
+					currentDir += "/" + inc;
 
 					std::shared_ptr<LoadedText> shaderc = assetMgr->loadAs<LoadedText>(currentDir.c_str());
 					shaderCode = shaderc->getText();

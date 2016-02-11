@@ -94,7 +94,7 @@ namespace apex
 			return material;
 		}
 
-		void setMaterial(Material material)
+		void setMaterial(Material &material)
 		{
 			this->material = material;
 		}
