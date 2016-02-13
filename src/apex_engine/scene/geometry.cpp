@@ -105,8 +105,6 @@ namespace apex
 
 	void Geometry::updateGlobalBoundingBox()
 	{
-		//if (mesh != NULL)
-		//	MeshUtil::createMeshBoundingBox(*mesh, globalBoundingBox, getGlobalMatrix());
 		tmpMin.set(localBoundingBox.getMin());
 		tmpMax.set(localBoundingBox.getMax());
 		tmpMin.transform(this->getGlobalMatrix());

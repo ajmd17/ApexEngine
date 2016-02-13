@@ -73,7 +73,6 @@ namespace apex
 		ifstream filestream(filepath);
 		if (!filestream.is_open())
 		{
-			//throw std::runtime_error("File stream is not valid");
 			engine_log << "Error: Could not load file \"" << filepath << "\"!\n";
 			return 0;
 		}

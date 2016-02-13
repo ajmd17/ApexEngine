@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\apex_engine\assets\a3dmodel.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\assetloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\assetmanager.h" />
+    <ClInclude Include="..\..\src\apex_engine\assets\exporters\a3dexporter.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\loadableobject.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\assetinfo.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\loadedtext.h" />
@@ -105,6 +107,23 @@
     <ClInclude Include="..\..\src\apex_engine\scripting\scriptutil.h" />
     <ClInclude Include="..\..\src\apex_engine\util\logutil.h" />
     <ClInclude Include="..\..\src\apex_engine\util\strutil.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat_defs.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\ascii.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\asciitab.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\expat.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\expat_external.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\iasciitab.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\internal.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\latin1tab.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\nametab.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\utf8tab.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\winconfig.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\xmlrole.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\xmltok.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\expat\xmltok_impl.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\sax_parser.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\sax_handler.h" />
+    <ClInclude Include="..\..\src\apex_engine\util\xml\xml_writer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\apex_engine\assets\assetmanager.cpp" />
@@ -187,6 +206,12 @@
     <ClCompile Include="..\..\src\apex_engine\scripting\lua\lvm.c" />
     <ClCompile Include="..\..\src\apex_engine\scripting\lua\lzio.c" />
     <ClCompile Include="..\..\src\apex_engine\util\logutil.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\util\xml\expat\xmlparse.c" />
+    <ClCompile Include="..\..\src\apex_engine\util\xml\expat\xmlrole.c" />
+    <ClCompile Include="..\..\src\apex_engine\util\xml\expat\xmltok.c" />
+    <ClCompile Include="..\..\src\apex_engine\util\xml\expat\xmltok_impl.c" />
+    <ClCompile Include="..\..\src\apex_engine\util\xml\expat\xmltok_ns.c" />
+    <ClCompile Include="..\..\src\apex_engine\util\xml\sax_parser.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{BDD7E864-88C3-4A79-AB61-9F799C833305}</ProjectGuid>

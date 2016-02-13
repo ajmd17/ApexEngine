@@ -12,7 +12,7 @@ namespace apex
 		engine_log << "Delete mesh\n";
 	}
 
-	void Mesh::setVertices(vector<Vertex> &vertices)
+	void Mesh::setVertices(vector<Vertex> vertices)
 	{
 		this->vertices.clear();
 		this->indices.clear();
@@ -29,7 +29,7 @@ namespace apex
 		uploaded = false;
 	}
 
-	void Mesh::setVertices(vector<Vertex> &vertices, vector<int> &indices)
+	void Mesh::setVertices(vector<Vertex> vertices, vector<int> indices)
 	{
 		this->vertices.clear();
 		this->indices.clear();

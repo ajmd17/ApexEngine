@@ -23,7 +23,7 @@ namespace apex
 
 			for (size_t i = 0; i < mesh.getAttributes().getNumAttributes(); i++)
 			{
-				offset += prevSize * sizeof(int);
+				offset += prevSize;
 				mesh.getAttributes().getAttribute(i).setOffset(offset);
 				prevSize = mesh.getAttributes().getAttribute(i).getSize();
 				vertSize += prevSize;
@@ -31,69 +31,70 @@ namespace apex
 
 			mesh.setVertexSize(vertSize);
 
-
-			vector<float> floatBuffer;
+			vector<float> floatBuffer(mesh.vertices.size() * vertSize);
 
 			bool positions, texCoords0, texCoords1, normals, tangents, bitangents, boneIndices, boneWeights;
+			VertexAttribute posAttr, texCoord0Attr, texCoord1Attr, normAttr, tangAttr, bitangAttr, boneIAttr, boneWAttr;
 
-			positions = mesh.getAttributes().hasAttribute(VertexAttributes::POSITIONS);
-			texCoords0 = mesh.getAttributes().hasAttribute(VertexAttributes::TEXCOORDS0);
-			texCoords1 = mesh.getAttributes().hasAttribute(VertexAttributes::TEXCOORDS1);
-			normals = mesh.getAttributes().hasAttribute(VertexAttributes::NORMALS);
-			tangents = mesh.getAttributes().hasAttribute(VertexAttributes::TANGENTS);
-			bitangents = mesh.getAttributes().hasAttribute(VertexAttributes::BITANGENTS);
-			boneIndices = mesh.getAttributes().hasAttribute(VertexAttributes::BONEINDICES);
-			boneWeights = mesh.getAttributes().hasAttribute(VertexAttributes::BONEWEIGHTS);
+			positions = mesh.getAttributes().getAttribute(VertexAttributes::POSITIONS.getAttributeName(), posAttr);
+			texCoords0 = mesh.getAttributes().getAttribute(VertexAttributes::TEXCOORDS0.getAttributeName(), texCoord0Attr);
+			texCoords1 = mesh.getAttributes().getAttribute(VertexAttributes::TEXCOORDS1.getAttributeName(), texCoord1Attr);
+			normals = mesh.getAttributes().getAttribute(VertexAttributes::NORMALS.getAttributeName(), normAttr);
+			tangents = mesh.getAttributes().getAttribute(VertexAttributes::TANGENTS.getAttributeName(), tangAttr);
+			bitangents = mesh.getAttributes().getAttribute(VertexAttributes::BITANGENTS.getAttributeName(), bitangAttr);
+			boneIndices = mesh.getAttributes().getAttribute(VertexAttributes::BONEINDICES.getAttributeName(), boneIAttr);
+			boneWeights = mesh.getAttributes().getAttribute(VertexAttributes::BONEWEIGHTS.getAttributeName(), boneWAttr);
 
 			for (size_t i = 0; i < mesh.vertices.size(); i++)
 			{
 				if (positions)
 				{
-					floatBuffer.push_back(mesh.vertices[i].getPosition().x);
-					floatBuffer.push_back(mesh.vertices[i].getPosition().y);
-					floatBuffer.push_back(mesh.vertices[i].getPosition().z);
-				}
-				if (texCoords0)
-				{
-					floatBuffer.push_back(mesh.vertices[i].getTexCoord0().x);
-					floatBuffer.push_back(mesh.vertices[i].getTexCoord0().y);
-				}
-				if (texCoords1)
-				{
-					floatBuffer.push_back(mesh.vertices[i].getTexCoord1().x);
-					floatBuffer.push_back(mesh.vertices[i].getTexCoord1().y);
+					floatBuffer.at((i * vertSize) + posAttr.getOffset()) = mesh.vertices[i].getPosition().x;
+					floatBuffer.at((i * vertSize) + posAttr.getOffset() + 1) = mesh.vertices[i].getPosition().y;
+					floatBuffer.at((i * vertSize) + posAttr.getOffset() + 2) = mesh.vertices[i].getPosition().z;
 				}
 				if (normals)
 				{
-					floatBuffer.push_back(mesh.vertices[i].getNormal().x);
-					floatBuffer.push_back(mesh.vertices[i].getNormal().y);
-					floatBuffer.push_back(mesh.vertices[i].getNormal().z);
+					floatBuffer.at((i * vertSize) + normAttr.getOffset()) = mesh.vertices[i].getNormal().x;
+					floatBuffer.at((i * vertSize) + normAttr.getOffset() + 1) = mesh.vertices[i].getNormal().y;
+					floatBuffer.at((i * vertSize) + normAttr.getOffset() + 2) = mesh.vertices[i].getNormal().z;
+				}
+				if (texCoords0)
+				{
+					floatBuffer.at((i * vertSize) + texCoord0Attr.getOffset()) = mesh.vertices[i].getTexCoord0().x;
+					floatBuffer.at((i * vertSize) + texCoord0Attr.getOffset() + 1) = mesh.vertices[i].getTexCoord0().y;
+					
+				}
+				if (texCoords1)
+				{
+					floatBuffer.at((i * vertSize) + texCoord1Attr.getOffset()) = mesh.vertices[i].getTexCoord1().x;
+					floatBuffer.at((i * vertSize) + texCoord1Attr.getOffset() + 1) = mesh.vertices[i].getTexCoord1().y;
 				}
 				if (tangents)
 				{
-					floatBuffer.push_back(mesh.vertices[i].getTangent().x);
-					floatBuffer.push_back(mesh.vertices[i].getTangent().y);
-					floatBuffer.push_back(mesh.vertices[i].getTangent().z);
+					floatBuffer.at((i * vertSize) + tangAttr.getOffset()) = mesh.vertices[i].getTangent().x;
+					floatBuffer.at((i * vertSize) + tangAttr.getOffset() + 1) = mesh.vertices[i].getTangent().y;
+					floatBuffer.at((i * vertSize) + tangAttr.getOffset() + 2) = mesh.vertices[i].getTangent().z;
 				}
 				if (bitangents)
 				{
-					floatBuffer.push_back(mesh.vertices[i].getBitangent().x);
-					floatBuffer.push_back(mesh.vertices[i].getBitangent().y);
-					floatBuffer.push_back(mesh.vertices[i].getBitangent().z);
+					floatBuffer.at((i * vertSize) + bitangAttr.getOffset()) = mesh.vertices[i].getBitangent().x;
+					floatBuffer.at((i * vertSize) + bitangAttr.getOffset() + 1) = mesh.vertices[i].getBitangent().y;
+					floatBuffer.at((i * vertSize) + bitangAttr.getOffset() + 2) = mesh.vertices[i].getBitangent().z;
 				}
 				if (boneIndices)
 				{
-					floatBuffer.push_back(static_cast<float>(mesh.vertices[i].getBoneIndex(0)));
-					floatBuffer.push_back(static_cast<float>(mesh.vertices[i].getBoneIndex(1)));
-					floatBuffer.push_back(static_cast<float>(mesh.vertices[i].getBoneIndex(2)));
-					floatBuffer.push_back(static_cast<float>(mesh.vertices[i].getBoneIndex(3)));
+					floatBuffer.at((i * vertSize) + boneIAttr.getOffset()) = static_cast<float>(mesh.vertices[i].getBoneIndex(0));
+					floatBuffer.at((i * vertSize) + boneIAttr.getOffset() + 1) = static_cast<float>(mesh.vertices[i].getBoneIndex(1));
+					floatBuffer.at((i * vertSize) + boneIAttr.getOffset() + 2) = static_cast<float>(mesh.vertices[i].getBoneIndex(2));
+					floatBuffer.at((i * vertSize) + boneIAttr.getOffset() + 3) = static_cast<float>(mesh.vertices[i].getBoneIndex(3));
 				}
 				if (boneWeights)
 				{
-					floatBuffer.push_back(mesh.vertices[i].getBoneWeight(0));
-					floatBuffer.push_back(mesh.vertices[i].getBoneWeight(1));
-					floatBuffer.push_back(mesh.vertices[i].getBoneWeight(2));
-					floatBuffer.push_back(mesh.vertices[i].getBoneWeight(3));
+					floatBuffer.at((i * vertSize) + boneWAttr.getOffset()) = mesh.vertices[i].getBoneWeight(0);
+					floatBuffer.at((i * vertSize) + boneWAttr.getOffset() + 1) = mesh.vertices[i].getBoneWeight(1);
+					floatBuffer.at((i * vertSize) + boneWAttr.getOffset() + 2) = mesh.vertices[i].getBoneWeight(2);
+					floatBuffer.at((i * vertSize) + boneWAttr.getOffset() + 3) = mesh.vertices[i].getBoneWeight(3);
 				}
 			}
 

@@ -74,8 +74,6 @@ namespace apex
 				this->rotate(dirCrossY, magY*dt*sensitivity);
 			}
 
-
-
 			inputMgr->setMousePos(halfWidth, halfHeight);
 		}
 	}

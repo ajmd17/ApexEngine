@@ -17,7 +17,7 @@ using std::stringstream;
 
 namespace apex
 {
-	inline bool contains(const std::string s1, const std::string s2)
+	inline bool contains(const std::string &s1, const std::string &s2)
 	{
 		return s1.find(s2) != std::string::npos;
 	}
@@ -30,6 +30,18 @@ namespace apex
 		std::string str = ss.str();
 
 		return str;
+	}
+	
+	inline bool str_eql(const std::string &s1, const std::string &s2)
+	{
+		bool strcmp_res = strcmp(s1.c_str(), s2.c_str());
+		return !strcmp_res;
+	}
+
+	inline std::string str_conv(const std::wstring &ws)
+	{
+		std::string res(ws.begin(), ws.end());
+		return res;
 	}
 
 	template <typename T>

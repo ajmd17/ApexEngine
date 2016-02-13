@@ -26,8 +26,10 @@ void main()
 	
 	color += amb;
 	
+	#ifdef diffuse_map
 	vec4 diffuse = texture2D(u_texture, v_texCoord0);
 	color *= diffuse.rgb;
+	#endif
 	
 	gl_FragColor = vec4(color*vec3(0.6,0.3,0.1)+vec3(ndotv), 1.0);
 	gl_FragColor.rgb = pow(gl_FragColor.rgb, vec3(1.0 / 2.2));

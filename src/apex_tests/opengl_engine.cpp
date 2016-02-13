@@ -38,6 +38,24 @@ namespace apex
 
 #include <util/logutil.h>
 
+	unordered_map<std::string, int> GLEngine::initMap()
+	{
+		unordered_map<std::string, int> mp;
+
+		mp[A_POSITION] = 0;
+		mp[A_TEXCOORD0] = 1;
+		mp[A_TEXCOORD1] = 2;
+		mp[A_NORMAL] = 3;
+		mp[A_TANGENT] = 4;
+		mp[A_BITANGENT] = 5;
+		mp[A_BONEWEIGHTS] = 6;
+		mp[A_BONEINDICES] = 7;
+
+		return mp;
+	}
+
+	unordered_map<std::string, int> GLEngine::vAttribNames = GLEngine::initMap();
+
 #ifdef USE_SFML
 
 	int convertSFMLMouseCode(int btn)
@@ -499,14 +517,19 @@ namespace apex
 	void GLEngine::compileShaderProgram(int id)
 	{
 		// Bind all default vertex attributes
-		glBindAttribLocation(id, 0, A_POSITION.c_str());
+		/*glBindAttribLocation(id, 0, A_POSITION.c_str());
 		glBindAttribLocation(id, 1, A_TEXCOORD0.c_str());
 		glBindAttribLocation(id, 2, A_TEXCOORD1.c_str());
 		glBindAttribLocation(id, 3, A_NORMAL.c_str());
 		glBindAttribLocation(id, 4, A_TANGENT.c_str());
 		glBindAttribLocation(id, 5, A_BITANGENT.c_str());
 		glBindAttribLocation(id, 6, A_BONEWEIGHTS.c_str());
-		glBindAttribLocation(id, 7, A_BONEINDICES.c_str());
+		glBindAttribLocation(id, 7, A_BONEINDICES.c_str());*/
+		typedef std::unordered_map<std::string, int>::iterator it_type;
+		for (it_type iterator = vAttribNames.begin(); iterator != vAttribNames.end(); iterator++) 
+		{
+			glBindAttribLocation(id, iterator->second, iterator->first.c_str());
+		}
 
 		glLinkProgram(id);
 		glValidateProgram(id);
@@ -554,7 +577,7 @@ namespace apex
 #ifndef GL_ES
 		case GeometryShader:
 			i_type = GL_GEOMETRY_SHADER;
-			str_type = "Geomsetry Shader";
+			str_type = "Geometry Shader";
 			break;
 		case TessEvalShader:
 			i_type = GL_TESS_EVALUATION_SHADER;
@@ -663,8 +686,10 @@ namespace apex
 
 		for (size_t i = 0; i < mesh.getAttributes().getNumAttributes(); i++)
 		{
-			glEnableVertexAttribArray(i);
-			glVertexAttribPointer(i, mesh.getAttributes().getAttribute(i).getSize(), GL_FLOAT, false, mesh.getVertexSize() * sizeof(GL_FLOAT), (void*)mesh.getAttributes().getAttribute(i).getOffset());
+			int ptr = vAttribNames[mesh.getAttributes().getAttribute(i).getAttributeName()];
+
+			glEnableVertexAttribArray(ptr);
+			glVertexAttribPointer(ptr, mesh.getAttributes().getAttribute(i).getSize(), GL_FLOAT, false, mesh.getVertexSize() * sizeof(GL_FLOAT), (void*)(mesh.getAttributes().getAttribute(i).getOffset() * sizeof(float)));
 		}
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.ibo);
@@ -672,7 +697,9 @@ namespace apex
 
 		for (size_t i = 0; i < mesh.getAttributes().getNumAttributes(); i++)
 		{
-			glDisableVertexAttribArray(i);
+			int ptr = vAttribNames[mesh.getAttributes().getAttribute(i).getAttributeName()];
+
+			glDisableVertexAttribArray(ptr);
 		}
 
 		// Unbind the buffers

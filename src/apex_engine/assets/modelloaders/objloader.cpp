@@ -195,6 +195,11 @@ namespace apex
 			shared_ptr<Mesh> mesh(new Mesh());
 			mesh->setVertices(vertices);
 
+			if (hasNormals)
+				mesh->getAttributes().setAttribute(VertexAttributes::NORMALS);
+			if (hasTexCoords)
+				mesh->getAttributes().setAttribute(VertexAttributes::TEXCOORDS0);
+
 			shared_ptr<Geometry> geom(new Geometry());
 			geom->setName(names[i]);
 			geom->setMesh(mesh);

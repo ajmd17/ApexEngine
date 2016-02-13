@@ -89,20 +89,12 @@ namespace apex
 
 		void setAttributes()
 		{
-			//TODO: Automatically detect what attributes to set instead of just assuming everything
 			this->getAttributes().setAttribute(VertexAttributes::POSITIONS);
-			this->getAttributes().setAttribute(VertexAttributes::TEXCOORDS0);
-			this->getAttributes().setAttribute(VertexAttributes::TEXCOORDS1);
-			this->getAttributes().setAttribute(VertexAttributes::NORMALS);
-			this->getAttributes().setAttribute(VertexAttributes::TANGENTS);
-			this->getAttributes().setAttribute(VertexAttributes::BITANGENTS);
-			this->getAttributes().setAttribute(VertexAttributes::BONEINDICES);
-			this->getAttributes().setAttribute(VertexAttributes::BONEWEIGHTS);
 		}
 
-		void setVertices(vector<Vertex> &vertices);
+		void setVertices(vector<Vertex> vertices);
 
-		void setVertices(vector<Vertex> &vertices, vector<int> &indices);
+		void setVertices(vector<Vertex> vertices, vector<int> indices);
 	};
 }
 #endif

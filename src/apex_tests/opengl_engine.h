@@ -6,6 +6,9 @@
 #include <rendering/mesh_util.h>
 #include <rendering/shader.h>
 
+#include <unordered_map>
+using std::unordered_map;
+
 #ifndef __ANDROID__
 #define USE_SFML
 #include <SFML/Graphics.hpp>
@@ -32,6 +35,9 @@ namespace apex
 	class GLEngine : public IEngine
 	{
 	private:
+		static unordered_map<std::string, int> vAttribNames;
+
+		static unordered_map<std::string, int> initMap();
 	public:
 		sf::Mutex globalMutex;
 

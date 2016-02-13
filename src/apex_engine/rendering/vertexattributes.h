@@ -14,7 +14,7 @@ namespace apex
 	class VertexAttribute
 	{
 	private:
-		const char *attribName;
+		std::string attribName;
 		unsigned int size, offset;
 	public:
 
@@ -23,13 +23,13 @@ namespace apex
 
 		}
 
-		VertexAttribute(const char *attributeName, unsigned int size)
+		VertexAttribute(std::string attributeName, unsigned int size)
 		{
 			this->attribName = attributeName;
 			this->size = size;
 		}
 
-		const char *getAttributeName()
+		std::string getAttributeName()
 		{
 			return attribName;
 		}
@@ -85,7 +85,7 @@ namespace apex
 		{
 			for (size_t i = 0; i < attribs.size(); i++)
 			{
-				if (strcmp(attribs[i].getAttributeName(), attr.getAttributeName()) == 0)
+				if (strcmp(attribs[i].getAttributeName().c_str(), attr.getAttributeName().c_str()) == 0)
 				{
 					if (attribs[i].getSize() == attr.getSize())
 						return true;
@@ -94,13 +94,13 @@ namespace apex
 			return false;
 		}
 
-		void setAttribute(VertexAttribute &val)
+		void setAttribute(VertexAttribute val)
 		{
 			for (size_t i = 0; i < attribs.size(); i++)
 			{
-				if (strcmp(attribs[i].getAttributeName(), val.getAttributeName()) == 0)
+				if (strcmp(attribs[i].getAttributeName().c_str(), val.getAttributeName().c_str()) == 0)
 				{
-					std::cout << "An attribute with the name '" << val.getAttributeName() << "' already exists!\n";
+					//std::cout << "An attribute with the name '" << val.getAttributeName() << "' already exists!\n";
 					return;
 				}
 			}
@@ -119,11 +119,11 @@ namespace apex
 			return attribs[index];
 		}
 
-		bool getAttribute(const char *name, VertexAttribute &outAttr)
+		bool getAttribute(std::string name, VertexAttribute &outAttr)
 		{
 			for (size_t i = 0; i < attribs.size(); i++)
 			{
-				if (strcmp(attribs[i].getAttributeName(), name) == 0)
+				if (strcmp(attribs[i].getAttributeName().c_str(), name.c_str()) == 0)
 				{
 					outAttr = attribs[i];
 					return true;
