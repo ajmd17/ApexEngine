@@ -167,7 +167,9 @@ namespace apex
 	{
 		this->geomShaderProperties.values.clear();
 
-		if (this->mesh != 0 && this->mesh->getSkeleton() != 0)
+		if (this->mesh != 0 && mesh->getSkeleton() != 0 && 
+			this->mesh->getAttributes().hasAttribute(VertexAttributes::BONEINDICES) &&
+			this->mesh->getAttributes().hasAttribute(VertexAttributes::BONEWEIGHTS))
 		{
 			geomShaderProperties.setProperty(string("SKINNING"), true);
 		}

@@ -1,4 +1,5 @@
 #include "mesh.h"
+
 #include "../math/boundingbox.h"
 
 #include "../util/logutil.h"
@@ -10,6 +11,16 @@ namespace apex
 	Mesh::~Mesh()
 	{
 		engine_log << "Delete mesh\n";
+	}
+
+	std::shared_ptr<Skeleton> Mesh::getSkeleton()
+	{
+		return this->skeleton;
+	}
+
+	void Mesh::setSkeleton(std::shared_ptr<Skeleton> skeleton)
+	{
+		this->skeleton = skeleton;
 	}
 
 	void Mesh::setVertices(vector<Vertex> vertices)

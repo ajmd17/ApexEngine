@@ -112,15 +112,11 @@ namespace apex
 			{
 				string line = lines[i];
 				if (startsWith(ltrim(line), ver))
-				{
 					verString = ltrim(line);
-				}
 				else
 				{
 					if (line != "")
-					{
 						res += line + "\n";
-					}
 				}
 			}
 			code = verString + "\n" + res;
@@ -157,24 +153,18 @@ namespace apex
 					for (int j = i; j < lines.size(); j++)
 					{
 						if (startsWith(trim(lines[j]), "#ifdef") || startsWith(trim(lines[j]), "#ifndef"))
-						{
 							num_ifdefs++;
-						}
 						else if (startsWith(trim(lines[j]), "#endif"))
 						{
 							num_endifs++;
 
 							if (num_endifs >= num_ifdefs)
-							{
 								break;
-							}
 						}
 						else
 						{
 							if (remove)
-							{
 								lines[j] = "";
-							}
 						}
 					}
 
@@ -195,38 +185,28 @@ namespace apex
 					for (int j = i; j < lines.size(); j++)
 					{
 						if (startsWith(trim(lines[j]), "#ifdef") || startsWith(trim(lines[j]), "#ifndef"))
-						{
 							num_ifdefs++;
-						}
 						else if (startsWith(trim(lines[j]), "#endif"))
 						{
 							num_endifs++;
 
 							if (num_endifs >= num_ifdefs)
-							{
 								break;
-							}
 						}
 						else
 						{
 							if (remove)
-							{
 								lines[j] = "";
-							}
 						}
 					}
 
 					lines[i] = "";
 				}
 				else if (startsWith(trim(lines[i]), "#endif"))
-				{
 					lines[i] = "";
-				}
 
 				if (strcmp(lines[i].c_str(), ""))
-				{
 					res += lines[i] + string("\n");
-				}
 			}
 
 			return res;
@@ -239,14 +219,10 @@ namespace apex
 				if (b.values.find(i->first) != b.values.end())
 				{
 					if (b.values[i->first] != i->second)
-					{
 						return false;
-					}
 				}
 				else
-				{
 					return false;
-				}
 			}
 
 			return true;

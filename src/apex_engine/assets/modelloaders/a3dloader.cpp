@@ -12,7 +12,7 @@
 
 namespace apex
 {
-	class Handler : public SaxParserHandler
+	class A3dHandler : public SaxParserHandler
 	{
 	public:
 		std::vector<std::shared_ptr<Node>> nodes;
@@ -131,7 +131,7 @@ namespace apex
 		}
 
 	public:
-		Handler() { lastNode = NULL; }
+		A3dHandler() { lastNode = NULL; }
 
 		void onElementStart(const std::wstring& element, const SaxParserAttributes& attributes)
 		{
@@ -498,19 +498,25 @@ namespace apex
 		}
 		void onCharacterData(const std::wstring& characterData)
 		{
-			std::wcout << "OnCharacterData() characterData=" << characterData << std::endl;
 		}
 		void onComment(const std::wstring& comment)
 		{
-			std::wcout << "OnComment() comment=" << comment << std::endl;
 		}
 	};
 
+	void A3dLoader::resetLoader()
+	{
+
+	}
+
 	std::shared_ptr<ILoadableObject> A3dLoader::load(AssetManager *assetMgr, AssetInfo &asset)
 	{
-		Handler handler;
+		A3dHandler handler;
 		SaxParser parser(handler);
-		parser.parseFromFile(std::string(asset.getFilePath()), false);
+		if (!parser.parseFromFile(std::string(asset.getFilePath()), false))
+		{
+			throw std::runtime_error("Error parsing file");
+		}
 
 		std::shared_ptr<Node> finalNode = std::make_shared<Node>();
 
@@ -526,6 +532,8 @@ namespace apex
 			if (!n->getParent())
 				finalNode->add(n);
 		}
+
+		
 
 		return std::static_pointer_cast<ILoadableObject>(finalNode);
 	}

@@ -11,8 +11,16 @@
 #include "../math/boundingbox.h"
 #include "../assets/loadableobject.h"
 
+#include "components/controller.h"
+
 #include <string>
 using std::string;
+
+#include <vector>
+using std::vector;
+
+#include <memory>
+using std::shared_ptr;
 
 namespace apex
 {
@@ -21,6 +29,8 @@ namespace apex
 	class Spatial : public ILoadableObject // A spatial is loadable as a resource
 	{
 	protected:
+		Spatial *parent;
+
 		string name;
 
 		Vector3f localTranslation;
@@ -29,6 +39,8 @@ namespace apex
 
 		Transform globalTransform;
 		Matrix4f globalMatrix;
+
+		vector<shared_ptr<Controller>> controllers;
 
 		static const unsigned char	updateParentFlag = 0x01,
 			updateTransformFlag = 0x02,
@@ -39,8 +51,6 @@ namespace apex
 	private:
 		Vector3f tmpGlobalTrans, tmpGlobalScale;
 		Quaternion tmpGlobalRot;
-
-		Spatial *parent;
 
 		bool attachedToRoot;
 		bool updateNeeded;
@@ -78,6 +88,51 @@ namespace apex
 		}
 
 		virtual ~Spatial();
+
+		void addController(shared_ptr<Controller> controller)
+		{
+			controller->_setParent(this);
+			controller->init();
+			controllers.push_back(controller);
+		}
+
+		shared_ptr<Controller> getController(int i)
+		{
+			return controllers.at(i);
+		}
+
+		template <typename T>
+		typename std::enable_if<std::is_base_of<Controller, T>::value, shared_ptr<T>>::type
+			getController(int i)
+		{
+			return std::dynamic_pointer_cast<T>(controllers.at(i));
+		}
+		
+		template <typename T>
+			typename std::enable_if<std::is_base_of<Controller, T>::value, shared_ptr<T>>::type
+			getControllerOfType()
+		{
+			for (size_t i = 0; i < controllers.size(); i++)
+			{
+				std::shared_ptr<T> res;
+				if ((res = std::dynamic_pointer_cast<T>(controllers[i])))
+					return res;
+			}
+		}
+
+		void removeController(shared_ptr<Controller> controller)
+		{
+			for (size_t i = 0; i < controllers.size(); i++)
+			{
+				if (controllers[i] == controller)
+				{
+					controllers[i]->removed();
+					controllers.erase(controllers.begin() + i);
+
+					break;
+				}
+			}
+		}
 
 		void setName(string name)
 		{
@@ -155,17 +210,17 @@ namespace apex
 			return tmpGlobalTrans;
 		}
 
-		Vector3f &getGlobalTranslation()
+		virtual Vector3f &getGlobalTranslation()
 		{
 			return globalTransform.getTranslation();
 		}
 
-		Vector3f &getGlobalScale()
+		virtual Vector3f &getGlobalScale()
 		{
 			return globalTransform.getScale();
 		}
 
-		Quaternion &getGlobalRotation()
+		virtual Quaternion &getGlobalRotation()
 		{
 			return globalTransform.getRotation();
 		}
@@ -184,7 +239,7 @@ namespace apex
 			this->calcAttachedToRoot();
 		}
 
-		void updateTransform();
+		virtual void updateTransform();
 
 		virtual void update(RenderManager *renderMgr, const float dt);
 

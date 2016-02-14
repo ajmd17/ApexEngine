@@ -38,6 +38,7 @@ namespace apex
 		std::shared_ptr<IAssetLoader> objLoader;
 		std::shared_ptr<IAssetLoader> mtlLoader;
 		std::shared_ptr<IAssetLoader> a3dLoader;
+		std::shared_ptr<IAssetLoader> ogreXmlLoader;
 		std::shared_ptr<IAssetLoader> shaderLoader;
 		std::shared_ptr<IAssetLoader> textFileLoader;
 	public:

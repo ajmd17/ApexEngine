@@ -8,6 +8,7 @@
 #include "vertex.h"
 #include "rendermanager.h"
 #include "vertexattributes.h"
+#include "animation/skeleton.h"
 
 #include <memory>
 using std::shared_ptr;
@@ -22,15 +23,13 @@ namespace apex
 {
 	class BoundingBox;
 
-	class Skeleton;
-
 	class Mesh
 	{
 	private:
 		bool uploaded, created;
 		int vertexSize;
 
-		shared_ptr<Skeleton> skeleton;
+		std::shared_ptr<Skeleton> skeleton;
 	public:
 
 		unsigned int vbo, ibo, size;
@@ -62,15 +61,9 @@ namespace apex
 
 		BoundingBox createBoundingBox();
 
-		shared_ptr<Skeleton> getSkeleton()
-		{ 
-			return this->skeleton;
-		}
+		std::shared_ptr<Skeleton> getSkeleton();
 
-		void setSkeleton(shared_ptr<Skeleton> skeleton) 
-		{
-			this->skeleton = skeleton;
-		}
+		void setSkeleton(std::shared_ptr<Skeleton> skeleton);
 
 		VertexAttributes &getAttributes()
 		{
@@ -90,6 +83,7 @@ namespace apex
 		void setAttributes()
 		{
 			this->getAttributes().setAttribute(VertexAttributes::POSITIONS);
+		//	this->getAttributes().setAttribute(VertexAttributes::NORMALS);
 		}
 
 		void setVertices(vector<Vertex> vertices);

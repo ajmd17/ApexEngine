@@ -24,7 +24,7 @@ namespace apex
 
 		~A3dLoader() {}
 
-		void resetLoader() {}
+		void resetLoader();
 
 		std::shared_ptr<ILoadableObject> load(AssetManager *assetMgr, AssetInfo &asset);
 	};

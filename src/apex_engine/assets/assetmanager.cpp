@@ -18,6 +18,7 @@ using std::ifstream;
 #include "modelloaders/objloader.h"
 #include "modelloaders/mtlloader.h"
 #include "modelloaders/a3dloader.h"
+#include "modelloaders/ogrexmlloader.h"
 #include "shaderloader/shaderloader.h"
 #include "textfileloader.h"
 
@@ -43,6 +44,9 @@ namespace apex
 
 		this->a3dLoader = std::make_shared<A3dLoader>();
 		this->registerExt("a3d", this->a3dLoader);
+
+		this->ogreXmlLoader = std::make_shared<OgreXmlLoader>();
+		this->registerExt("mesh.xml", this->ogreXmlLoader);
 
 		this->shaderLoader = std::make_shared<ShaderLoader>();
 		this->registerExt("frag", this->shaderLoader);
@@ -73,7 +77,7 @@ namespace apex
 		ifstream filestream(filepath);
 		if (!filestream.is_open())
 		{
-			engine_log << "Error: Could not load file \"" << filepath << "\"!\n";
+			engine_log << "Error loading \"" << filepath << "\": Invalid path.\n";
 			return 0;
 		}
 
@@ -118,7 +122,7 @@ namespace apex
 
 		if (!finalLoader)
 		{
-			throw std::runtime_error("No suitable loader found");
+			engine_log << "Error loading \"" << filepath << "\": File type not supported.\n";
 			return 0;
 		}
 

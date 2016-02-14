@@ -29,6 +29,7 @@
     <ClInclude Include="..\..\src\apex_engine\assets\modelloaders\a3dloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\modelloaders\mtlloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\modelloaders\objloader.h" />
+    <ClInclude Include="..\..\src\apex_engine\assets\modelloaders\ogrexmlloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\shaderloader\shaderloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\textfileloader.h" />
     <ClInclude Include="..\..\src\apex_engine\assets\textureloader.h" />
@@ -49,6 +50,12 @@
     <ClInclude Include="..\..\src\apex_engine\math\vector3f.h" />
     <ClInclude Include="..\..\src\apex_engine\math\vector4f.h" />
     <ClInclude Include="..\..\src\apex_engine\object.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\animation\animation.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\animation\animationcontroller.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\animation\animationtrack.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\animation\bone.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\animation\boneassign.h" />
+    <ClInclude Include="..\..\src\apex_engine\rendering\animation\keyframe.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\animation\skeleton.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\camera.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\cameras\fps_camera.h" />
@@ -74,6 +81,7 @@
     <ClInclude Include="..\..\src\apex_engine\rendering\texture2d.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\vertex.h" />
     <ClInclude Include="..\..\src\apex_engine\rendering\vertexattributes.h" />
+    <ClInclude Include="..\..\src\apex_engine\scene\components\controller.h" />
     <ClInclude Include="..\..\src\apex_engine\scene\geometry.h" />
     <ClInclude Include="..\..\src\apex_engine\scene\node.h" />
     <ClInclude Include="..\..\src\apex_engine\scene\scene.h" />
@@ -130,6 +138,7 @@
     <ClCompile Include="..\..\src\apex_engine\assets\modelloaders\a3dloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\assets\modelloaders\mtlloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\assets\modelloaders\objloader.cpp" />
+    <ClCompile Include="..\..\src\apex_engine\assets\modelloaders\ogrexmlloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\assets\shaderloader\shaderloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\assets\textureloader.cpp" />
     <ClCompile Include="..\..\src\apex_engine\input\inputmanager.cpp" />

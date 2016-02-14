@@ -88,7 +88,7 @@ void TestGame::init()
 
 	//std::shared_ptr<Texture2D> mytex = getAssetManager()->loadAs<Texture2D>("test.jpg");
 
-	this->camera = new FPSCamera(inputMgr, 45, 0.5f, 100.0f);
+	this->camera = new FPSCamera(inputMgr, 45, 0.1f, 100.0f);
 
 
 	rot = 0;
@@ -313,6 +313,11 @@ void TestGame::init()
 	shared_ptr<Node> a3d = getAssetManager()->loadAs<Node>("test_saving.a3d");
 	a3d->getAt<Node>(0)->getAt<Geometry>(0)->setShader<MyShader>();
 	this->getScene()->getRootNode()->add(a3d);
+
+	shared_ptr<Node> ogreXml = getAssetManager()->loadAs<Node>("./data/models/dragger_Body.mesh.xml");
+	ogreXml->getAt<Geometry>(0)->setShader<MyShader>();
+	//engine_log << ogreXml->size() << "\n";
+	this->getScene()->getRootNode()->add(ogreXml);
 
 }
 

@@ -22,7 +22,10 @@ namespace apex
 			this->updateFlags &= ~Spatial::updateParentFlag;
 		}
 
-		//TODO: Update controllers
+		for (size_t i = 0; i < controllers.size(); i++)
+		{
+			controllers[i]->update(dt);
+		}
 	}
 
 	void Spatial::updateTransform()

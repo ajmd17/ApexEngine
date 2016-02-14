@@ -7,6 +7,8 @@
 #include "../../scene/geometry.h"
 #include "../../scene/node.h"
 
+#include "../../rendering/animation/boneassign.h"
+
 #include "../../math/vector2f.h"
 #include "../../math/vector3f.h"
 
@@ -65,6 +67,7 @@ namespace apex
 	{
 	private:
 		XmlWriter *xml;
+		vector<shared_ptr<Skeleton>> skeletons;
 
 		void saveMesh(Mesh *mesh)
 		{
@@ -72,7 +75,7 @@ namespace apex
 
 			vector<Vector3f> tmpPositions, tmpNormals;
 			vector<Vector2f> tmpTexCoords0, tmpTexCoords1;
-			//vector<BoneAssign> tmpBoneAssigns;
+			vector<BoneAssign> tmpBoneAssigns;
 
 			vector<int> facesP, facesN, facesT0, facesT1;
 			vector<Vertex> tmpVerts;
@@ -100,13 +103,13 @@ namespace apex
 				facesT0.push_back(indices[2]);
 				facesT1.push_back(indices[3]);
 
-				/*for (int j = 0; j < 4; j++)
+				for (int j = 0; j < 4; j++)
 				{
 					if (tmpVerts[i].getBoneWeight(j) > 0.0f)
 					{
-						boneAssigns.push_back(BoneAssign(i, tmpVerts[i].getBoneWeight(j), tmpVerts[i].getBoneIndex(j)));
+						tmpBoneAssigns.push_back(BoneAssign(i, tmpVerts[i].getBoneWeight(j), tmpVerts[i].getBoneIndex(j)));
 					}
-				}*/
+				}
 			}
 
 			bool writeNormals = facesN.size() > 0 && mesh->getAttributes().hasAttribute(VertexAttributes::NORMALS);
@@ -195,15 +198,15 @@ namespace apex
 
 			xml->endElement(); // faces
 
-			/*if (boneAssigns.size() > 0)
+			if (tmpBoneAssigns.size() > 0)
 			{
 				xml->beginElement(TOKEN_BONE_ASSIGNS);
-				for (size_t i = 0; i < boneAssigns.size(); i++)
+				for (size_t i = 0; i < tmpBoneAssigns.size(); i++)
 				{
 					xml->beginElement(TOKEN_BONE_ASSIGN);
-					xml->attribute(TOKEN_VERTEXINDEX, to_str<int>(boneAssigns[i].getVertexIndex()));
-					xml->attribute(TOKEN_BONEINDEX, to_str<int>(boneAssigns[i].getBoneIndex()));
-					xml->attribute(TOKEN_BONEWEIGHT, to_str<float>(boneAssigns[i].getBoneWeight()));
+					xml->attribute(TOKEN_VERTEXINDEX, to_str<int>(tmpBoneAssigns[i].getVertexIndex()));
+					xml->attribute(TOKEN_BONEINDEX, to_str<int>(tmpBoneAssigns[i].getBoneIndex()));
+					xml->attribute(TOKEN_BONEWEIGHT, to_str<float>(tmpBoneAssigns[i].getBoneWeight()));
 					xml->endElement(); // bone assign
 				}
 				xml->endElement(); // bone assigns
@@ -211,11 +214,26 @@ namespace apex
 
 			if (mesh->getSkeleton() != 0)
 			{
-				// if vector doesnt contain mesh's skeleton,
-				// add it.
+				int index = -1;
+				for (size_t i = 0; i < skeletons.size(); i++)
+				{
+					if (skeletons[i] == mesh->getSkeleton())
+					{
+						index = i;
+						break;
+					}
+				}
 
-				// blah blah write assign
-			}*/
+				if (index == -1)
+				{
+					index = skeletons.size();
+					skeletons.push_back(mesh->getSkeleton());
+				}
+
+				xml->beginElement(TOKEN_SKELETON_ASSIGN);
+				xml->attribute(TOKEN_ID, to_str<int>(index));
+				xml->endElement();
+			}
 
 			xml->endElement(); // mesh
 		}

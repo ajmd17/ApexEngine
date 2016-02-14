@@ -9,6 +9,7 @@ varying vec2 v_texCoord0;
 
 varying vec3 v_normal;
 varying vec3 ws_pos;
+varying vec4 v_boneweights;
 
 void main()
 {
@@ -33,6 +34,10 @@ void main()
 	
 	gl_FragColor = vec4(color*vec3(0.6,0.3,0.1)+vec3(ndotv), 1.0);
 	gl_FragColor.rgb = pow(gl_FragColor.rgb, vec3(1.0 / 2.2));
+	
+	
+	
+	//gl_FragColor.rgb = vec3(v_boneweights.r);
 }
 
 #endif

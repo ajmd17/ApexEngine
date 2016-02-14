@@ -136,7 +136,7 @@ namespace apex
 			{
 				float dist = frustum[i][0] * tmp.x + frustum[i][1] * tmp.y + frustum[i][2] * tmp.z + frustum[i][3];
 				
-				if (dist <= 0)
+				if (dist <= -0.5f)
 				{
 					return false;
 				}

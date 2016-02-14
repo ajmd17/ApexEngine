@@ -130,6 +130,37 @@ namespace apex
 			return *this;
 		}
 
+		Quaternion &slerp(const Quaternion &to, float amt)
+		{
+			float cosHalfTheta = this->w * to.w + this->x * to.x + this->y * to.y + this->z * to.z;
+
+			if (abs(cosHalfTheta) >= 1.0f)
+				return *this;
+
+			float halfTheta = acos(cosHalfTheta);
+			float sinHalfTheta = sqrt(1.0f - cosHalfTheta * cosHalfTheta);
+
+			if (abs(sinHalfTheta) < 0.001f)
+			{
+				this->w = (this->w * 0.5f + to.w * 0.5f);
+				this->x = (this->x * 0.5f + to.x * 0.5f);
+				this->y = (this->y * 0.5f + to.y * 0.5f);
+				this->z = (this->z * 0.5f + to.z * 0.5f);
+
+				return *this;
+			}
+
+			float ratioA = sin((1.0f - amt) * halfTheta) / sinHalfTheta;
+			float ratioB = sin(amt * halfTheta) / sinHalfTheta;
+
+			this->w = (this->w * ratioA + to.w * ratioB);
+			this->x = (this->x * ratioA + to.x * ratioB);
+			this->y = (this->y * ratioA + to.y * ratioB);
+			this->z = (this->z * ratioA + to.z * ratioB);
+
+			return *this;
+		}
+
 		int getGimbalPole()
 		{
 			float amt = y * x + z * w;

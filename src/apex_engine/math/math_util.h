@@ -8,17 +8,17 @@ namespace apex
 	public:
 		const static float PI;
 
-		static float toDegrees(float rad)
+		static float toDegrees(const float rad)
 		{
 			return rad * 180.0f / PI;
 		}
 
-		static float toRadians(float deg)
+		static float toRadians(const float deg)
 		{
 			return deg * PI / 180.0f;
 		}
 
-		static float clamp(float val, float min, float max)
+		static float clamp(const float val, const float min, const float max)
 		{
 			if (val > max)
 				return max;
@@ -27,12 +27,12 @@ namespace apex
 			return val;
 		}
 
-		static float lerp(float from, float to, float amt)
+		static float lerp(const float from, const float to, const float amt)
 		{
 			return from + amt * (to - from);
 		}
 
-		static float min(float a, float b)
+		static float min(const float a, const float b)
 		{
 			if (a < b)
 				return a;
@@ -40,7 +40,7 @@ namespace apex
 				return b;
 		}
 
-		static float max(float a, float b)
+		static float max(const float a, const float b)
 		{
 			if (a > b)
 				return a;
