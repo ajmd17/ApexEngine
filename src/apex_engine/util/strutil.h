@@ -31,7 +31,7 @@ namespace apex
 
 		return str;
 	}
-	
+
 	inline bool str_eql(const std::string &s1, const std::string &s2)
 	{
 		bool strcmp_res = strcmp(s1.c_str(), s2.c_str());

@@ -8,9 +8,11 @@
 #define XML_STATIC
 
 // Win32 platform
-#define COMPILED_FROM_DSP 
-
+#ifdef _WIN32
+#define COMPILED_FROM_DSP
 // Unicode support
-#define XML_UNICODE_WCHAR_T 
+#endif
+#define XML_UNICODE_WCHAR_T
+
 
 #endif

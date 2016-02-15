@@ -33,7 +33,7 @@ namespace apex
 
 		void extend(BoundingBox &b);
 
-		void extend(Vector3f &point);
+		void extend(Vector3f point);
 
 		void updateCorners();
 

@@ -38,14 +38,22 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="../../../src/apex_engine/assets/a3dmodel.h" />
 		<Unit filename="../../../src/apex_engine/assets/assetinfo.h" />
 		<Unit filename="../../../src/apex_engine/assets/assetloader.h" />
 		<Unit filename="../../../src/apex_engine/assets/assetmanager.cpp" />
 		<Unit filename="../../../src/apex_engine/assets/assetmanager.h" />
+		<Unit filename="../../../src/apex_engine/assets/exporters/a3dexporter.h" />
 		<Unit filename="../../../src/apex_engine/assets/loadableobject.h" />
 		<Unit filename="../../../src/apex_engine/assets/loadedtext.h" />
+		<Unit filename="../../../src/apex_engine/assets/modelloaders/a3dloader.cpp" />
+		<Unit filename="../../../src/apex_engine/assets/modelloaders/a3dloader.h" />
+		<Unit filename="../../../src/apex_engine/assets/modelloaders/mtlloader.cpp" />
+		<Unit filename="../../../src/apex_engine/assets/modelloaders/mtlloader.h" />
 		<Unit filename="../../../src/apex_engine/assets/modelloaders/objloader.cpp" />
 		<Unit filename="../../../src/apex_engine/assets/modelloaders/objloader.h" />
+		<Unit filename="../../../src/apex_engine/assets/modelloaders/ogrexmlloader.cpp" />
+		<Unit filename="../../../src/apex_engine/assets/modelloaders/ogrexmlloader.h" />
 		<Unit filename="../../../src/apex_engine/assets/shaderloader/shaderloader.cpp" />
 		<Unit filename="../../../src/apex_engine/assets/shaderloader/shaderloader.h" />
 		<Unit filename="../../../src/apex_engine/assets/textfileloader.h" />
@@ -75,6 +83,13 @@
 		<Unit filename="../../../src/apex_engine/math/vector4f.cpp" />
 		<Unit filename="../../../src/apex_engine/math/vector4f.h" />
 		<Unit filename="../../../src/apex_engine/object.h" />
+		<Unit filename="../../../src/apex_engine/rendering/animation/animation.h" />
+		<Unit filename="../../../src/apex_engine/rendering/animation/animationcontroller.h" />
+		<Unit filename="../../../src/apex_engine/rendering/animation/animationtrack.h" />
+		<Unit filename="../../../src/apex_engine/rendering/animation/bone.h" />
+		<Unit filename="../../../src/apex_engine/rendering/animation/boneassign.h" />
+		<Unit filename="../../../src/apex_engine/rendering/animation/keyframe.h" />
+		<Unit filename="../../../src/apex_engine/rendering/animation/skeleton.h" />
 		<Unit filename="../../../src/apex_engine/rendering/camera.h" />
 		<Unit filename="../../../src/apex_engine/rendering/cameras/fps_camera.cpp" />
 		<Unit filename="../../../src/apex_engine/rendering/cameras/fps_camera.h" />
@@ -83,7 +98,12 @@
 		<Unit filename="../../../src/apex_engine/rendering/engine.h" />
 		<Unit filename="../../../src/apex_engine/rendering/enums.h" />
 		<Unit filename="../../../src/apex_engine/rendering/environment.h" />
+		<Unit filename="../../../src/apex_engine/rendering/game.cpp" />
 		<Unit filename="../../../src/apex_engine/rendering/game.h" />
+		<Unit filename="../../../src/apex_engine/rendering/light/ambientlight.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/light/ambientlight.h" />
+		<Unit filename="../../../src/apex_engine/rendering/light/directionallight.cpp" />
+		<Unit filename="../../../src/apex_engine/rendering/light/directionallight.h" />
 		<Unit filename="../../../src/apex_engine/rendering/light/lightsource.h" />
 		<Unit filename="../../../src/apex_engine/rendering/light/pointlight.cpp" />
 		<Unit filename="../../../src/apex_engine/rendering/light/pointlight.h" />
@@ -108,6 +128,7 @@
 		<Unit filename="../../../src/apex_engine/rendering/vertex.h" />
 		<Unit filename="../../../src/apex_engine/rendering/vertexattributes.cpp" />
 		<Unit filename="../../../src/apex_engine/rendering/vertexattributes.h" />
+		<Unit filename="../../../src/apex_engine/scene/components/controller.h" />
 		<Unit filename="../../../src/apex_engine/scene/geometry.cpp" />
 		<Unit filename="../../../src/apex_engine/scene/geometry.h" />
 		<Unit filename="../../../src/apex_engine/scene/node.cpp" />
@@ -261,6 +282,39 @@
 		<Unit filename="../../../src/apex_engine/util/logutil.cpp" />
 		<Unit filename="../../../src/apex_engine/util/logutil.h" />
 		<Unit filename="../../../src/apex_engine/util/strutil.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/ascii.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/asciitab.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/expat.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/expat_external.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/iasciitab.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/internal.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/latin1tab.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/nametab.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/utf8tab.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/winconfig.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/xmlparse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/util/xml/expat/xmlrole.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/util/xml/expat/xmlrole.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/xmltok.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/util/xml/expat/xmltok.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/xmltok_impl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/util/xml/expat/xmltok_impl.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/expat/xmltok_ns.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../../../src/apex_engine/util/xml/expat_defs.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/sax_handler.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/sax_parser.cpp" />
+		<Unit filename="../../../src/apex_engine/util/xml/sax_parser.h" />
+		<Unit filename="../../../src/apex_engine/util/xml/xml_writer.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

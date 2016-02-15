@@ -260,7 +260,7 @@ void TestGame::init()
 	props.setProperty(string("LIGHTING"), false);
 	props.setProperty(string("TEST"), true);
 
-	
+
 	//shared_ptr<Shader> shaderPtr = ShaderManager::getShader<MyShader>(props);
 
 
@@ -269,7 +269,7 @@ void TestGame::init()
 	torus->setLocalTranslation(Vector3f(0, 0, -3.5f));
 	torus->getAt<Geometry>(0)->setShader<MyShader>();
 	this->getScene()->getRootNode()->add(torus);
-	
+
 	std::shared_ptr<Node> sphere = getAssetManager()->loadAs<Node>("./data/models/test.obj");/*
 	sphere->getAt<Geometry>(0)->setShader<MyShader>();
 	this->getScene()->getRootNode()->add(sphere);
@@ -306,7 +306,7 @@ void TestGame::init()
 
 
 
-	
+
 	A3dExporter a3dExporter;
 	a3dExporter.exportFile("test_saving.a3d", sphere.get());
 
@@ -337,7 +337,7 @@ void TestGame::logic(const float dt)
 
 	/*Vector3f &scl = scene->getRootNode()->getAt<Node>(1)->getAt<Spatial>(1)->getLocalScale();
 	scl.set(sin(rot*0.025f) * 2.0f + 1.0f,1,sin(rot*0.05f)+1.0f);
-	
+
 
 	Quaternion &qrot = scene->getRootNode()->getAt<Node>(1)->getAt<Spatial>(1)->getLocalRotation();
 	qrot.setFromAxis(Vector3f(1, 0, 0), rot*1.25f);

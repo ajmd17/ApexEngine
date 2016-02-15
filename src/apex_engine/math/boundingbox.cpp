@@ -43,7 +43,7 @@ namespace apex
 		this->extend(b.max);
 	}
 
-	void BoundingBox::extend(Vector3f &point)
+	void BoundingBox::extend(Vector3f point)
 	{
 		Vector3f minVec, maxVec;
 		Vector3f::min(min, point, minVec);

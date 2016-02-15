@@ -28,7 +28,7 @@ using std::vector;
 
 namespace apex
 {
-	
+
 	inline bool vec_contains(const vector<Vector3f> &list, const Vector3f &item, int &outIndex)
 	{
 		for (size_t i = 0; i < list.size(); i++)
@@ -198,7 +198,9 @@ namespace apex
 
 			xml->endElement(); // faces
 
-			if (tmpBoneAssigns.size() > 0)
+			if (mesh->getAttributes().hasAttribute(VertexAttributes::BONEINDICES) &&
+                mesh->getAttributes().hasAttribute(VertexAttributes::BONEWEIGHTS) &&
+                tmpBoneAssigns.size() > 0)
 			{
 				xml->beginElement(TOKEN_BONE_ASSIGNS);
 				for (size_t i = 0; i < tmpBoneAssigns.size(); i++)
@@ -265,7 +267,7 @@ namespace apex
 			if (geometry->getMesh() != 0)
 				saveMesh(geometry->getMesh());
 			//saveMaterial(&geometry->getMaterial());
-			
+
 			xml->endElement(); // geometry
 		}
 
@@ -298,7 +300,7 @@ namespace apex
 
 			for (size_t i = 0; i < node->size(); i++)
 				saveSpatial(node->getAt<Spatial>(i).get());
-			
+
 			xml->endElement(); // node
 		}
 

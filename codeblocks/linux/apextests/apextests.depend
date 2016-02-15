@@ -198,7 +198,7 @@
 	<bits/string2.h>
 	<bits/string3.h>
 
-1454991644 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_tests/main.cpp
+1455491391 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_tests/main.cpp
 	<iostream>
 	"opengl_engine.h"
 	<assets/assetmanager.h>
@@ -214,17 +214,19 @@
 	<rendering/cameras/fps_camera.h>
 	<input/inputmanager.h>
 	<assets/loadedtext.h>
+	<assets/exporters/a3dexporter.h>
 	"sharedptr_conv.h"
 	<lua.h>
 	<lauxlib.h>
 	<lualib.h>
 	<luabind/luabind.hpp>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_tests/opengl_engine.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_tests/opengl_engine.h
 	<rendering/engine.h>
 	<rendering/mesh.h>
 	<rendering/mesh_util.h>
 	<rendering/shader.h>
+	<unordered_map>
 	<SFML/Graphics.hpp>
 
 1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/engine.h
@@ -237,15 +239,17 @@
 1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/assets/assetinfo.h
 	<iostream>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/mesh.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/mesh.h
 	"enums.h"
 	"vertex.h"
 	"rendermanager.h"
 	"vertexattributes.h"
+	"animation/skeleton.h"
+	<memory>
 	<vector>
 	<string>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/vertex.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/vertex.h
 	"../math/vector2f.h"
 	"../math/vector3f.h"
 
@@ -254,7 +258,7 @@
 	<iostream>
 	"math_util.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/math_util.h
+1455462978 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/math_util.h
 
 1454991011 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/vector3f.h
 	<cmath>
@@ -265,7 +269,7 @@
 1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/matrix4f.h
 	<iostream>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/rendermanager.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/rendermanager.h
 	"environment.h"
 	"engine.h"
 	"camera.h"
@@ -273,16 +277,20 @@
 	<vector>
 	<unordered_map>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/environment.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/environment.h
 	"light/lightsource.h"
 	"light/pointlight.h"
+	"light/directionallight.h"
+	<vector>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/light/lightsource.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/light/lightsource.h
+	"../../math/vector4f.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/light/pointlight.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/light/pointlight.h
 	"lightsource.h"
 	"../../math/vector3f.h"
 	"../../math/vector4f.h"
+	<cstring>
 
 1454991033 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/vector4f.h
 	<cmath>
@@ -294,19 +302,19 @@
 	"../math/vector3f.h"
 	"../math/matrix4f.h"
 
-1454898983 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/vertexattributes.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/vertexattributes.h
 	<iostream>
 	<vector>
 	<cstring>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/mesh_util.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/mesh_util.h
 	"../math/boundingbox.h"
 	"../math/matrix4f.h"
 	"mesh.h"
 	"vertex.h"
 	<vector>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/boundingbox.h
+1455488988 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/boundingbox.h
 	"matrix4f.h"
 	"vector3f.h"
 	"transform.h"
@@ -321,7 +329,7 @@
 	"quaternion.h"
 	"matrix_util.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/quaternion.h
+1455462978 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/quaternion.h
 	"math_util.h"
 	"vector3f.h"
 	"matrix4f.h"
@@ -339,7 +347,7 @@
 1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/ray.h
 	"vector3f.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shader.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shader.h
 	<vector>
 	<string>
 	"enums.h"
@@ -350,7 +358,7 @@
 	"../math/vector4f.h"
 	"../math/matrix4f.h"
 
-1454980552 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shader_util.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shader_util.h
 	"../util/strutil.h"
 	"../util/logutil.h"
 	<algorithm>
@@ -359,7 +367,7 @@
 	<string>
 	<iostream>
 
-1454887504 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/util/strutil.h
+1455490327 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/util/strutil.h
 	<vector>
 	<cstring>
 	<sstream>
@@ -368,14 +376,14 @@
 	<cctype>
 	<locale>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/material.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/material.h
 	<unordered_map>
 	<memory>
 	<string>
 	"../math/vector4f.h"
 	"texture.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/texture.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/texture.h
 	"../assets/loadableobject.h"
 	"enums.h"
 	"rendermanager.h"
@@ -763,7 +771,7 @@
 	<string>
 	<vector>
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/assets/assetmanager.h
+1455462978 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/assets/assetmanager.h
 	"assetinfo.h"
 	"loadableobject.h"
 	<vector>
@@ -784,28 +792,31 @@
 	"ray.h"
 	"boundingbox.h"
 
-1454977140 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/game.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/game.h
 	"../scene/scene.h"
 	"../rendering/rendermanager.h"
 	"../rendering/camera.h"
 	"../assets/assetmanager.h"
 	"../input/inputmanager.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/scene.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/scene.h
 	"spatial.h"
 	"node.h"
 	"../rendering/environment.h"
 
-1454977140 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/spatial.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/spatial.h
 	"../math/vector3f.h"
 	"../math/quaternion.h"
 	"../math/matrix4f.h"
 	"../math/transform.h"
 	"../math/boundingbox.h"
 	"../assets/loadableobject.h"
+	"components/controller.h"
 	<string>
+	<vector>
+	<memory>
 
-1454977140 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/node.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/node.h
 	"spatial.h"
 	<vector>
 	<algorithm>
@@ -823,10 +834,10 @@
 
 1454977833 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/event.h
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/texture2d.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/texture2d.h
 	"texture.h"
 
-1454981528 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shadermanager.h
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/shadermanager.h
 	"shader.h"
 	"shader_util.h"
 	"../util/logutil.h"
@@ -835,9 +846,11 @@
 	<vector>
 	<memory>
 
-1454977140 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/geometry.h
+1455488958 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/geometry.h
 	"spatial.h"
 	"../rendering/shader.h"
+	"../rendering/shader_util.h"
+	"../rendering/shadermanager.h"
 	"../rendering/mesh.h"
 	"../rendering/mesh_util.h"
 	"../rendering/material.h"
@@ -857,7 +870,7 @@
 	"../../math/quaternion.h"
 	"../../math/frustum.h"
 
-1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/frustum.h
+1455462978 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/math/frustum.h
 	"matrix4f.h"
 	"vector4f.h"
 	"vector3f.h"
@@ -4703,7 +4716,7 @@
 1454886230 /home/andrew/Documents/apexengine-linux/ApexEngine/includes/luabind/no_dependency.hpp
 	<luabind/detail/policy.hpp>
 
-1454977140 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_tests/opengl_engine.cpp
+1455462979 source:/home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_tests/opengl_engine.cpp
 	"opengl_engine.h"
 	<rendering/constants.h>
 	<rendering/texture2d.h>
@@ -4747,4 +4760,71 @@
 	<bits/mathcalls.h>
 	<bits/mathinline.h>
 	<bits/math-finite.h>
+
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/light/directionallight.h
+	"lightsource.h"
+	"../../math/vector3f.h"
+	"../../math/vector4f.h"
+	<cstring>
+
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/animation/skeleton.h
+	<vector>
+	<memory>
+	<string>
+	"bone.h"
+	"animation.h"
+	"../../assets/loadableobject.h"
+
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/animation/bone.h
+	"../../math/quaternion.h"
+	"../../math/vector3f.h"
+	"../../math/matrix4f.h"
+	"../../scene/node.h"
+	"keyframe.h"
+
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/scene/components/controller.h
+
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/animation/keyframe.h
+	"../../math/vector3f.h"
+	"../../math/quaternion.h"
+	"../../math/math_util.h"
+
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/animation/animation.h
+	<vector>
+	<string>
+	"animationtrack.h"
+	"keyframe.h"
+
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/animation/animationtrack.h
+	<vector>
+	<memory>
+	"../../math/vector3f.h"
+	"../../math/quaternion.h"
+	"keyframe.h"
+
+1455491323 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/assets/exporters/a3dexporter.h
+	"../a3dmodel.h"
+	"../../scene/spatial.h"
+	"../../scene/geometry.h"
+	"../../scene/node.h"
+	"../../rendering/animation/boneassign.h"
+	"../../math/vector2f.h"
+	"../../math/vector3f.h"
+	"../../rendering/vertex.h"
+	"../../rendering/constants.h"
+	"../../util/xml/xml_writer.h"
+	"../../util/strutil.h"
+	<fstream>
+	<algorithm>
+	<vector>
+
+1455462978 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/assets/a3dmodel.h
+	<string>
+
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/rendering/animation/boneassign.h
+
+1455462979 /home/andrew/Documents/apexengine-linux/ApexEngine/src/apex_engine/util/xml/xml_writer.h
+	<fstream>
+	<string>
+	<vector>
 

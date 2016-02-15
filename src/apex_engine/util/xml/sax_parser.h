@@ -1,6 +1,7 @@
 #ifndef SAXPARSER_H
 #define SAXPARSER_H
 
+#include <string.h>
 #include <string>
 #include <assert.h>
 
@@ -102,9 +103,13 @@ namespace apex
 		bool parseChunk(const char* pText, int size)
 		{
 			void* pBuffer = XML_GetBuffer(m_pParser, size);
-			//assert(pBuffer != NULL);
+			assert(pBuffer != NULL);
 
+            #ifdef _WIN32
 			::memcpy_s(pBuffer, size, pText, size);
+			#else
+			::memcpy(pBuffer, pText, size);
+			#endif
 
 			if (XML_ParseBuffer(m_pParser, size, false) == XML_STATUS_ERROR)
 			{

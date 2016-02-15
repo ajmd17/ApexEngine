@@ -85,7 +85,7 @@ namespace apex
 				par->setNeedsGlobalBoundingBoxUpdate();
 				par->setNeedsLocalBoundingBoxUpdate();
 				par = par->getParent();
-				
+
 			}
 		}
 
@@ -94,7 +94,7 @@ namespace apex
 			return material;
 		}
 
-		void setMaterial(Material &material)
+		void setMaterial(Material material)
 		{
 			this->material = material;
 		}
@@ -114,7 +114,7 @@ namespace apex
 			setShader(ShaderProperties &properties)
 		{
 			// Temporary set shader properties to DEFAULT, to make sure
-			// the default code is compiled 
+			// the default code is compiled
 			properties.setProperty("DEFAULT", true);
 
 			shared_ptr<Shader> shaderPtr =

@@ -8,7 +8,7 @@ namespace apex
 	{
 		m_pImpl = new SaxParserImpl(handler, NULL, true);
 		assert(m_pImpl != NULL);
-		assert(m_pImpl->GetParser() != NULL);
+		assert(m_pImpl->getParser() != NULL);
 	}
 
 	SaxParser::SaxParser(SaxParserHandler& handler, const std::wstring& encodingName, bool bSkipWhitespaces)
@@ -17,7 +17,7 @@ namespace apex
 		const wchar_t* pEncodingName = (encodingName.length() > 0) ? encodingName.c_str() : NULL;
 		m_pImpl = new SaxParserImpl(handler, pEncodingName, bSkipWhitespaces);
 		assert(m_pImpl != NULL);
-		assert(m_pImpl->GetParser() != NULL);
+		assert(m_pImpl->getParser() != NULL);
 	}
 
 	SaxParser::~SaxParser()
